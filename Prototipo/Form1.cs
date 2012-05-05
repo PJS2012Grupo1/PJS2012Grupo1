@@ -90,7 +90,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
@@ -104,7 +104,7 @@ namespace WindowsFormsApplication1
 
 
             //Comandos para a inserção de dados
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -120,10 +120,10 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmCategoria);
 
-            SqlParameter prmStatus1 = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
-            prmStatus1.SourceColumn = "Recorrente";
-            prmStatus1.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmStatus1);
+            SqlParameter prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmRecorrente);
 
             SqlParameter prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
             prmDataVencimento.SourceColumn = "DataVencimento";
@@ -164,7 +164,7 @@ namespace WindowsFormsApplication1
         
 
             //Comandos para Atualização
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Status1, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
             prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -180,10 +180,10 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoReg.Parameters.Add(prmCategoria);
 
-            prmStatus1 = new SqlParameter("@Status1", SqlDbType.TinyInt);
-            prmStatus1.SourceColumn = "Status1";
-            prmStatus1.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmStatus1);
+            prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmRecorrente);
 
             prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
             prmValor.SourceColumn = "Valor";

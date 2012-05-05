@@ -53,15 +53,9 @@ namespace WindowsFormsApplication1
 
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
         {
-            int status = 0;
             //parameter.Value = DBNull.Value;
-            if (radio == 3)
-            {
-                labelCampoPreenchidos.Text = "Forma de pagamento não selecionada.";
-                labelCampoPreenchidos.Visible = true;
-
-            }
-            else if (textBoxDescricaoRegistro.Text == "")
+            
+            if (textBoxDescricaoRegistro.Text == "")
             {
                 labelCampoPreenchidos.Text = "*Campo descrição vazio.";
                 labelCampoPreenchidos.Visible = true;
@@ -76,8 +70,26 @@ namespace WindowsFormsApplication1
                 labelCampoPreenchidos.Text = "*Campo valor vazio.";
                 labelCampoPreenchidos.Visible = true;
             }
+            else if (radio == 3)
+            {
+                labelCampoPreenchidos.Text = "Forma de pagamento não selecionada.";
+                labelCampoPreenchidos.Visible = true;
+
+            }
             else
             {
+                int recorrente = 1;
+                int parcelas;
+
+                if (radio == 3)
+                    parcelas = int.Parse(comboBoxQtdeParcelasReg.Text);
+                else
+                {
+                    parcelas = 1;
+                    if (radio == 2)
+                        recorrente = 2;
+                }
+
                 int categoria = 0;
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                     if (comboBoxCategoriaRegistro.Text == registro["DescricaoCat"].ToString())
@@ -88,11 +100,11 @@ namespace WindowsFormsApplication1
                 novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
                 novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
                 novoRegistro["Categoria"] = categoria;
-                novoRegistro["Recorrente"] = status;
+                novoRegistro["Recorrente"] = recorrente;
                 novoRegistro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
                 novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                 novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
-                novoRegistro["Parcelas"] = 2;// comboBoxQtdeParcelasReg.Text;
+                novoRegistro["Parcelas"] = parcelas;
                 dados.Tables["Registros"].Rows.Add(novoRegistro);
 
                 adaptadorReg.Update(dados, "Registros");
@@ -104,9 +116,9 @@ namespace WindowsFormsApplication1
         private void Registros_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
             
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             //prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -122,10 +134,10 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmCategoria);
 
-            SqlParameter prmStatus1 = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
-            prmStatus1.SourceColumn = "Recorrente";
-            prmStatus1.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmStatus1);
+            SqlParameter prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmRecorrente);
 
             SqlParameter prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
             prmDataVencimento.SourceColumn = "DataVencimento";
