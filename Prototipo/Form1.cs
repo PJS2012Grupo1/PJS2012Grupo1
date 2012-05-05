@@ -276,12 +276,16 @@ namespace WindowsFormsApplication1
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-
+            int categoria = 0;
             listViewPrincipal.Items.Clear();
 
             if (checkBoxCategoria.Checked == true && checkBoxDescricao.Checked == true)
             {
-                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBox1.Text + "%'");
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                    if (comboBoxCategoria.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '"+categoria+ "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBoxDescricao.Text + "%'");
 
                 if (registros.Length != 0)
                 {
@@ -295,7 +299,7 @@ namespace WindowsFormsApplication1
 
             if (checkBoxDescricao.Checked == true)
             {
-                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBox1.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBoxDescricao.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
 
                 if (registros.Length != 0)
                 {
@@ -311,6 +315,8 @@ namespace WindowsFormsApplication1
 
             if (checkBoxData.Checked == true)
             {
+                
+
                 DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
 
                 if (registros.Length != 0)
@@ -324,7 +330,12 @@ namespace WindowsFormsApplication1
 
             if (checkBoxCategoria.Checked == true)
             {
-                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+                
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                    if (comboBoxCategoria.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
 
                 if (registros.Length != 0)
                 {
@@ -346,6 +357,20 @@ namespace WindowsFormsApplication1
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
             atualizaListView();
+            
+            comboBoxCategoria.SelectedIndex = -1;
+            textBoxDescricao.Text = "";
+            dateTimePickerDataMinima.Value = dateTimePickerDataMinima.MinDate;
+            dateTimePickerDataMaxima.Value = dateTimePickerDataMaxima.MaxDate;
+
+            checkBoxCategoria.Checked = false;
+            checkBoxData.Checked = false;
+            checkBoxDescricao.Checked = false;
+
+            dateTimePickerDataMinima.Enabled = false;
+            dateTimePickerDataMaxima.Enabled = false;
+            textBoxDescricao.Enabled = false;
+            comboBoxCategoria.Enabled = false;
         }
 
         private void verificaCheckBox()
@@ -366,7 +391,10 @@ namespace WindowsFormsApplication1
         {
             verificaCheckBox();
             if (checkBoxDescricao.Checked == true)
+            {
                 groupBoxDescricao.Enabled = true;
+                textBoxDescricao.Enabled = true;
+            }
             else
                 groupBoxDescricao.Enabled = false;
         }
@@ -375,7 +403,11 @@ namespace WindowsFormsApplication1
         {
             verificaCheckBox();
             if (checkBoxData.Checked == true)
+            {
                 groupBoxData.Enabled = true;
+                dateTimePickerDataMaxima.Enabled = true;
+                dateTimePickerDataMinima.Enabled = true;
+            }
             else
                 groupBoxData.Enabled = false;
         }
@@ -384,7 +416,10 @@ namespace WindowsFormsApplication1
         {
             verificaCheckBox();
             if (checkBoxCategoria.Checked == true)
+            {
                 groupBoxCategoria.Enabled = true;
+                comboBoxCategoria.Enabled = true;
+            }
             else
                 groupBoxCategoria.Enabled = false;
         }
