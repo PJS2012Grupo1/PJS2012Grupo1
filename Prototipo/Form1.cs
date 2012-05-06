@@ -424,6 +424,11 @@ namespace WindowsFormsApplication1
             //adicionacat();
         }
 
+        private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
 
     }
 }

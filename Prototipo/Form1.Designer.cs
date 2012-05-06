@@ -41,6 +41,7 @@
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -82,7 +83,7 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
-            this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnHeaderCodigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -105,7 +106,8 @@
             this.columnHeaderCategoria1,
             this.columnHeaderCadastro,
             this.columnHeaderDataVencimento,
-            this.columnHeaderDataPagamento});
+            this.columnHeaderDataPagamento,
+            this.columnHeaderCodigo});
             this.listViewPrincipal.FullRowSelect = true;
             this.listViewPrincipal.Location = new System.Drawing.Point(12, 75);
             this.listViewPrincipal.Name = "listViewPrincipal";
@@ -113,6 +115,7 @@
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
+            this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
             // 
             // columnHeaderDescricao
             // 
@@ -142,7 +145,7 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
-            this.columnHeaderDataPagamento.Width = 102;
+            this.columnHeaderDataPagamento.Width = 41;
             // 
             // menuStripPrincipal
             // 
@@ -169,7 +172,7 @@
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
@@ -184,7 +187,7 @@
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem1.Text = "Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
@@ -195,6 +198,13 @@
             this.categoriToolStripMenuItem.Name = "categoriToolStripMenuItem";
             this.categoriToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.categoriToolStripMenuItem.Text = "Categorias";
+            // 
+            // cadastroToolStripMenuItem2
+            // 
+            this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
+            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem2.Text = "Cadastro";
+            this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
             // 
             // sairToolStripMenuItem
             // 
@@ -729,12 +739,9 @@
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cadastroToolStripMenuItem2
+            // columnHeaderCodigo
             // 
-            this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
-            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.cadastroToolStripMenuItem2.Text = "Cadastro";
-            this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
+            this.columnHeaderCodigo.Text = "codigo";
             // 
             // Form1
             // 
@@ -832,6 +839,7 @@
         private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem2;
+        protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
     }
 }
 
