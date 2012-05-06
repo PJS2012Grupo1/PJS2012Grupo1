@@ -344,14 +344,7 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                     }
                 }
-            }
-
-    
-        }
-
-        public void buscaRegistro()
-        {
- 
+            }    
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -422,6 +415,13 @@ namespace WindowsFormsApplication1
             }
             else
                 groupBoxCategoria.Enabled = false;
+        }
+
+        private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
+            cadastroCategoria.ShowDialog(this);
+            //adicionacat();
         }
 
 
