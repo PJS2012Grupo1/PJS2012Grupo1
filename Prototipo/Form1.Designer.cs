@@ -28,36 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Água",
-            "40.00",
-            "Casa",
-            "Pago",
-            "23/05/2012",
-            "21/05/2012"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Luz",
-            "80.00",
-            "Casa",
-            "Pago",
-            "20/05/2012",
-            "18/05/2012"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Gasolina",
-            "35.00",
-            "Carro",
-            "Pago",
-            "20/05/2012",
-            "15/05/2012"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Alugel",
-            "300.00",
-            "Casa",
-            "Pendente",
-            "30/05/2012"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Casa");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Carro");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Outros");
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeaderDescricao = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,24 +42,24 @@
             this.caixaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageBusca = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDataMinima = new System.Windows.Forms.DateTimePicker();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.Categorias = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeaderCategoria = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelDescricao = new System.Windows.Forms.Label();
+            this.labelDataMinima = new System.Windows.Forms.Label();
+            this.labelDataMaxima = new System.Windows.Forms.Label();
+            this.labelCategoria = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -110,11 +80,6 @@
             this.columnHeaderStatus,
             this.columnHeaderDataVencimento,
             this.columnHeaderDataPagamento});
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
             this.listView1.Location = new System.Drawing.Point(12, 67);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(747, 444);
@@ -176,19 +141,19 @@
             // regitroToolStripMenuItem
             // 
             this.regitroToolStripMenuItem.Name = "regitroToolStripMenuItem";
-            this.regitroToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.regitroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.regitroToolStripMenuItem.Text = "Registro";
             // 
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.categoriaToolStripMenuItem.Text = "Categoria";
             // 
             // caixaToolStripMenuItem
             // 
             this.caixaToolStripMenuItem.Name = "caixaToolStripMenuItem";
-            this.caixaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.caixaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.caixaToolStripMenuItem.Text = "Caixa";
             // 
             // relatorioToolStripMenuItem
@@ -210,6 +175,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Gasto mês: 0.00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Saldo: 0.00";
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -224,14 +207,14 @@
             // 
             // tabPageBusca
             // 
+            this.tabPageBusca.Controls.Add(this.labelCategoria);
+            this.tabPageBusca.Controls.Add(this.labelDataMinima);
+            this.tabPageBusca.Controls.Add(this.labelDescricao);
             this.tabPageBusca.Controls.Add(this.textBox2);
-            this.tabPageBusca.Controls.Add(this.radioButton3);
-            this.tabPageBusca.Controls.Add(this.label1);
+            this.tabPageBusca.Controls.Add(this.labelDataMaxima);
             this.tabPageBusca.Controls.Add(this.dateTimePicker1);
             this.tabPageBusca.Controls.Add(this.dateTimePickerDataMinima);
-            this.tabPageBusca.Controls.Add(this.radioButton2);
             this.tabPageBusca.Controls.Add(this.textBox1);
-            this.tabPageBusca.Controls.Add(this.radioButton1);
             this.tabPageBusca.Controls.Add(this.button1);
             this.tabPageBusca.Location = new System.Drawing.Point(4, 22);
             this.tabPageBusca.Name = "tabPageBusca";
@@ -243,62 +226,32 @@
             // 
             // textBox2
             // 
-            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(6, 185);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(220, 20);
             this.textBox2.TabIndex = 9;
             // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 162);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(70, 17);
-            this.radioButton3.TabIndex = 8;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Categoria";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 114);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Data Máxima";
-            // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(6, 136);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(86, 20);
             this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePicker1.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
             // 
             // dateTimePickerDataMinima
             // 
-            this.dateTimePickerDataMinima.Enabled = false;
             this.dateTimePickerDataMinima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerDataMinima.Location = new System.Drawing.Point(6, 87);
+            this.dateTimePickerDataMinima.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDataMinima.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerDataMinima.Name = "dateTimePickerDataMinima";
             this.dateTimePickerDataMinima.Size = new System.Drawing.Size(86, 20);
             this.dateTimePickerDataMinima.TabIndex = 4;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 64);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(86, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Data Miníma";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.dateTimePickerDataMinima.Value = new System.DateTime(2000, 1, 1, 22, 13, 0, 0);
             // 
             // textBox1
             // 
@@ -306,18 +259,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(220, 20);
             this.textBox1.TabIndex = 2;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Descrição";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // button1
             // 
@@ -345,10 +286,6 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderCategoria});
-            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6,
-            listViewItem7});
             this.listView2.Location = new System.Drawing.Point(-4, 3);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(236, 414);
@@ -380,23 +317,41 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Março 2012";
             // 
-            // label3
+            // labelDescricao
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Gasto mês: 0.00";
+            this.labelDescricao.AutoSize = true;
+            this.labelDescricao.Location = new System.Drawing.Point(6, 15);
+            this.labelDescricao.Name = "labelDescricao";
+            this.labelDescricao.Size = new System.Drawing.Size(55, 13);
+            this.labelDescricao.TabIndex = 10;
+            this.labelDescricao.Text = "Descrição";
             // 
-            // label4
+            // labelDataMinima
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Saldo: 0.00";
+            this.labelDataMinima.AutoSize = true;
+            this.labelDataMinima.Location = new System.Drawing.Point(9, 68);
+            this.labelDataMinima.Name = "labelDataMinima";
+            this.labelDataMinima.Size = new System.Drawing.Size(68, 13);
+            this.labelDataMinima.TabIndex = 11;
+            this.labelDataMinima.Text = "Data Miníma";
+            // 
+            // labelDataMaxima
+            // 
+            this.labelDataMaxima.AutoSize = true;
+            this.labelDataMaxima.Location = new System.Drawing.Point(7, 115);
+            this.labelDataMaxima.Name = "labelDataMaxima";
+            this.labelDataMaxima.Size = new System.Drawing.Size(69, 13);
+            this.labelDataMaxima.TabIndex = 7;
+            this.labelDataMaxima.Text = "Data Máxima";
+            // 
+            // labelCategoria
+            // 
+            this.labelCategoria.AutoSize = true;
+            this.labelCategoria.Location = new System.Drawing.Point(6, 166);
+            this.labelCategoria.Name = "labelCategoria";
+            this.labelCategoria.Size = new System.Drawing.Size(52, 13);
+            this.labelCategoria.TabIndex = 12;
+            this.labelCategoria.Text = "Categoria";
             // 
             // Form1
             // 
@@ -449,13 +404,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageBusca;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage Categorias;
         private System.Windows.Forms.ListView listView2;
@@ -464,6 +415,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelCategoria;
+        private System.Windows.Forms.Label labelDataMinima;
+        private System.Windows.Forms.Label labelDescricao;
+        private System.Windows.Forms.Label labelDataMaxima;
     }
 }
 

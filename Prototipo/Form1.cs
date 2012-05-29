@@ -40,52 +40,19 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //SqlConnection conexao = new SqlConnection();
-            //conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESSS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-            //adaptador = new SqlDataAdapter();
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "Data Source=PC09LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            adaptador = new SqlDataAdapter();
 
-            //SqlCommand comandoSelecao = new SqlCommand("select * from Registros", conexao);
-            //adaptador.SelectCommand = comandoSelecao;
+            SqlCommand comandoSelecao = new SqlCommand("select * from Registros", conexao);
+            adaptador.SelectCommand = comandoSelecao;
 
-            //adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
-            //dados = new DataSet();
-            //adaptador.Fill(dados, "Registros");
+            dados = new DataSet();
+            adaptador.Fill(dados, "Registros");
 
-            //atualizaListView();
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked)
-            {
-                textBox1.Enabled = true;
-                dateTimePicker1.Enabled = false;
-                dateTimePickerDataMinima.Enabled = false;
-                textBox2.Enabled = false;
-            }
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton2.Checked)
-            {
-                textBox1.Enabled = false;
-                dateTimePicker1.Enabled = true;
-                dateTimePickerDataMinima.Enabled = true;
-                textBox2.Enabled = false;
-            }
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton3.Checked)
-            {
-                textBox1.Enabled = false;
-                dateTimePicker1.Enabled = false;
-                dateTimePickerDataMinima.Enabled = false;
-                textBox2.Enabled = true;
-            }
+            atualizaListView();
         }
     }
 }
