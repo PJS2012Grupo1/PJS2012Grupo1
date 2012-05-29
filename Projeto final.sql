@@ -16,11 +16,23 @@ Descricao VARCHAR(40) NOT NULL ,
 Valor DECIMAL(6,2) NOT NULL ,
 Categoria INT  NOT NULL FOREIGN KEY REFERENCES Categoria(Codigo),
 Status1 int,
-DataVencimento DATE NOT NULL ,
+DataVencimento DATE,
 DataPagamneto DATE,
-DataCadastro DATE,
+DataCadastro DATE not null,
 Parcelas int);
 GO
+
+
+create table Caixa(
+Codigo_ca INT NOT NULL PRIMARY KEY IDENTITY,
+Descricao_ca VARCHAR(40) NOT NULL ,
+Valor_ca DECIMAL(6,2) NOT NULL ,
+DataCadastro_ca DATE not null);
+go
+
+
+
+
 
 INSERT INTO Categoria(Descrição, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(Descrição, Orcamento) VALUES('Carro', 350.00);
