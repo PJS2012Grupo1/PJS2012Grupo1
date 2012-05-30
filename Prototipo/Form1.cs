@@ -12,8 +12,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        DataSet dados;
-        SqlDataAdapter adaptador;
+        DataSet dados = new DataSet();
+        SqlDataAdapter adaptador = new SqlDataAdapter();
         public Form1()
         {
             InitializeComponent();
@@ -40,14 +40,15 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            conexao.ConnectionString = "Data Source=PC09LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
-            adaptador.SelectCommand = comandoSelecaoReg;
+            //adaptador.SelectCommand = comandoSelecaoReg;
 
-            SqlCommand comandoSelecaoCa = new SqlCommand("Select * from Caixa", conexao);
-            adaptador.SelectCommand = comandoSelecaoCa;
+            SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            adaptador.SelectCommand = comandoSelecaoCat;
 
 
             //Comandos para a inserção de dados
@@ -94,6 +95,19 @@ namespace WindowsFormsApplication1
 
             adaptador.InsertCommand = comandoInsercaoReg;
 
+
+            SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
+            SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            prmDescricao.SourceColumn = "DescricaoCat";
+            prmDescricao.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
+
+            SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            prmOrcamento.SourceColumn = "Orcamento";
+            prmOrcamento.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoCat.Parameters.Add(prmOrcamento);
+
+            adaptador.InsertCommand = comandoInsercaoCat;
 
         
 
@@ -146,16 +160,44 @@ namespace WindowsFormsApplication1
 
             adaptador.UpdateCommand = comandoAtualizacaoReg;
 
+            SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
+            prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            prmDescricaoCat.SourceColumn = "DescricaoCat";
+            prmDescricaoCat.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoCat.Parameters.Add(prmDescricaoCat);
 
-            SqlCommand comandoRemocao = new SqlCommand("Delete from Comprados where Codigo = @Codigo", conexao);
+            prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            prmOrcamento.SourceColumn = "Orcamento";
+            prmOrcamento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoCat.Parameters.Add(prmOrcamento);
+
+            SqlParameter prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
+            prmCodigoCat.SourceColumn = "CodigoCat";
+            prmCodigoCat.SourceVersion = DataRowVersion.Original;
+            comandoAtualizacaoCat.Parameters.Add(prmCodigoCat);
+
+            adaptador.UpdateCommand = comandoAtualizacaoCat;
+
+            //Caomandos para a remoção de dados
+            SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
             prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
-            comandoRemocao.Parameters.Add(prmCodigo);
-            adaptador.DeleteCommand = comandoRemocao;
+            comandoRemocaoReg.Parameters.Add(prmCodigo);
+            adaptador.DeleteCommand = comandoRemocaoReg;
+
+            SqlCommand comandoRemocaoCat = new SqlCommand("Delete from Categoria where CodigoCat = @CodigoCat", conexao);
+            prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
+            prmCodigoCat.SourceColumn = "CodigoCat";
+            prmCodigoCat.SourceVersion = DataRowVersion.Original;
+            comandoRemocaoCat.Parameters.Add(prmCodigoCat);
+            adaptador.DeleteCommand = comandoRemocaoCat;
 
             adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
+
+            adaptador.Fill(dados, "Registros");
+            adaptador.Fill(dados, "Categoria");
         }
     }
 }
