@@ -110,6 +110,7 @@ namespace WindowsFormsApplication1
 
             adaptador.InsertCommand = comandoInsercaoReg;
 
+
         
 
             //Comandos para Atualização
@@ -160,6 +161,7 @@ namespace WindowsFormsApplication1
             comandoAtualizacaoReg.Parameters.Add(prmCodigo);
 
             adaptador.UpdateCommand = comandoAtualizacaoReg;
+
 
             SqlCommand comandoRemocao = new SqlCommand("Delete from Comprados where Codigo = @Codigo", conexao);
             prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
