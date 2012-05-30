@@ -156,8 +156,6 @@ namespace WindowsFormsApplication1
 
             adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
-
-
         }
     }
 }
