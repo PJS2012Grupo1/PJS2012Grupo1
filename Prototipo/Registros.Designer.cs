@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBoxCodigoRegistro = new System.Windows.Forms.TextBox();
             this.textBoxDescricaoRegistro = new System.Windows.Forms.TextBox();
             this.textBoxValorRegistro = new System.Windows.Forms.TextBox();
             this.comboBoxCategoriaRegistro = new System.Windows.Forms.ComboBox();
@@ -56,20 +54,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(145, 23);
+            this.label1.Location = new System.Drawing.Point(22, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Descrição:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Codigo:";
             // 
             // label3
             // 
@@ -83,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(445, 23);
+            this.label4.Location = new System.Drawing.Point(420, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 3;
@@ -116,18 +105,11 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Data de Cadastro:";
             // 
-            // textBoxCodigoRegistro
-            // 
-            this.textBoxCodigoRegistro.Location = new System.Drawing.Point(25, 40);
-            this.textBoxCodigoRegistro.Name = "textBoxCodigoRegistro";
-            this.textBoxCodigoRegistro.Size = new System.Drawing.Size(80, 20);
-            this.textBoxCodigoRegistro.TabIndex = 8;
-            // 
             // textBoxDescricaoRegistro
             // 
-            this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(148, 39);
+            this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(25, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
-            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(262, 20);
+            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(358, 20);
             this.textBoxDescricaoRegistro.TabIndex = 9;
             // 
             // textBoxValorRegistro
@@ -140,9 +122,9 @@
             // comboBoxCategoriaRegistro
             // 
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
-            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(448, 39);
+            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(423, 38);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
-            this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(192, 21);
             this.comboBoxCategoriaRegistro.TabIndex = 11;
             // 
             // dateTimePickerDataCadastroReg
@@ -293,13 +275,11 @@
             this.Controls.Add(this.comboBoxCategoriaRegistro);
             this.Controls.Add(this.textBoxValorRegistro);
             this.Controls.Add(this.textBoxDescricaoRegistro);
-            this.Controls.Add(this.textBoxCodigoRegistro);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Registros";
             this.Text = "Registros";
@@ -312,13 +292,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxCodigoRegistro;
         private System.Windows.Forms.TextBox textBoxDescricaoRegistro;
         private System.Windows.Forms.TextBox textBoxValorRegistro;
         private System.Windows.Forms.ComboBox comboBoxCategoriaRegistro;

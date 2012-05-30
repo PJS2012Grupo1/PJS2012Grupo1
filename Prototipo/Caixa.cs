@@ -20,5 +20,10 @@ namespace WindowsFormsApplication1
         {
             
         }
+
+        private void buttonCadastrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
