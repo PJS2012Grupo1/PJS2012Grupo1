@@ -124,7 +124,7 @@
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
             this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(331, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
-            this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(192, 21);
             this.comboBoxCategoriaRegistro.TabIndex = 11;
             // 
             // dateTimePickerDataCadastroReg

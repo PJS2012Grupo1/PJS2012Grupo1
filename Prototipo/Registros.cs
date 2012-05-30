@@ -24,7 +24,6 @@ namespace WindowsFormsApplication1
 
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
-            textBoxCodigoRegistro.Text = "";
             textBoxDescricaoRegistro.Text = "";
             textBoxValorRegistro.Text = "";
             comboBoxCategoriaRegistro.Text = "";
