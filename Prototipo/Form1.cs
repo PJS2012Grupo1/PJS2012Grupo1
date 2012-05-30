@@ -41,8 +41,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=PC09LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);

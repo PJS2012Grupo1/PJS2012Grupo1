@@ -72,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(328, 24);
+            this.label4.Location = new System.Drawing.Point(303, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 3;
@@ -109,7 +109,7 @@
             // 
             this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
-            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(296, 20);
+            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(268, 20);
             this.textBoxDescricaoRegistro.TabIndex = 9;
             // 
             // textBoxValorRegistro
@@ -122,7 +122,7 @@
             // comboBoxCategoriaRegistro
             // 
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
-            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(331, 39);
+            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(306, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
             this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(192, 21);
             this.comboBoxCategoriaRegistro.TabIndex = 11;
@@ -230,7 +230,7 @@
             // 
             // buttonRegistrarRegistro
             // 
-            this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 213);
+            this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 203);
             this.buttonRegistrarRegistro.Name = "buttonRegistrarRegistro";
             this.buttonRegistrarRegistro.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrarRegistro.TabIndex = 21;
@@ -239,7 +239,7 @@
             // 
             // buttonLimpar
             // 
-            this.buttonLimpar.Location = new System.Drawing.Point(331, 213);
+            this.buttonLimpar.Location = new System.Drawing.Point(331, 203);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpar.TabIndex = 22;
@@ -249,7 +249,7 @@
             // 
             // buttonCancelarRegistro
             // 
-            this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 213);
+            this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 203);
             this.buttonCancelarRegistro.Name = "buttonCancelarRegistro";
             this.buttonCancelarRegistro.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelarRegistro.TabIndex = 23;
@@ -261,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 248);
+            this.ClientSize = new System.Drawing.Size(514, 241);
             this.Controls.Add(this.buttonCancelarRegistro);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.buttonRegistrarRegistro);
