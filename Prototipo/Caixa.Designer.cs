@@ -42,7 +42,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 23);
+            this.label2.Location = new System.Drawing.Point(12, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 1;
@@ -51,7 +51,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 91);
+            this.label3.Location = new System.Drawing.Point(12, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -60,7 +60,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(164, 91);
+            this.label4.Location = new System.Drawing.Point(129, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 3;
@@ -68,14 +68,14 @@
             // 
             // textBoxDescricaoCaixa
             // 
-            this.textBoxDescricaoCaixa.Location = new System.Drawing.Point(25, 39);
+            this.textBoxDescricaoCaixa.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoCaixa.Name = "textBoxDescricaoCaixa";
             this.textBoxDescricaoCaixa.Size = new System.Drawing.Size(371, 20);
             this.textBoxDescricaoCaixa.TabIndex = 5;
             // 
             // textBoxValorCaixa
             // 
-            this.textBoxValorCaixa.Location = new System.Drawing.Point(25, 107);
+            this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 87);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
             this.textBoxValorCaixa.Size = new System.Drawing.Size(99, 20);
             this.textBoxValorCaixa.TabIndex = 6;
@@ -83,14 +83,14 @@
             // dateTimePickerDataEntradaCaixa
             // 
             this.dateTimePickerDataEntradaCaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(167, 107);
+            this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(132, 84);
             this.dateTimePickerDataEntradaCaixa.Name = "dateTimePickerDataEntradaCaixa";
             this.dateTimePickerDataEntradaCaixa.Size = new System.Drawing.Size(100, 20);
             this.dateTimePickerDataEntradaCaixa.TabIndex = 7;
             // 
             // buttonCadastrar
             // 
-            this.buttonCadastrar.Location = new System.Drawing.Point(139, 154);
+            this.buttonCadastrar.Location = new System.Drawing.Point(126, 124);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(75, 23);
             this.buttonCadastrar.TabIndex = 8;
@@ -100,27 +100,29 @@
             // 
             // Limpar
             // 
-            this.Limpar.Location = new System.Drawing.Point(230, 154);
+            this.Limpar.Location = new System.Drawing.Point(217, 124);
             this.Limpar.Name = "Limpar";
             this.Limpar.Size = new System.Drawing.Size(75, 23);
             this.Limpar.TabIndex = 9;
             this.Limpar.Text = "Limpar";
             this.Limpar.UseVisualStyleBackColor = true;
+            this.Limpar.Click += new System.EventHandler(this.Limpar_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(321, 154);
+            this.button1.Location = new System.Drawing.Point(308, 124);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 189);
+            this.ClientSize = new System.Drawing.Size(399, 162);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Limpar);
             this.Controls.Add(this.buttonCadastrar);
@@ -131,8 +133,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "Caixa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
-            this.Load += new System.EventHandler(this.Caixa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

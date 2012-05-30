@@ -255,12 +255,13 @@
             this.buttonCancelarRegistro.TabIndex = 23;
             this.buttonCancelarRegistro.Text = "Cancelar";
             this.buttonCancelarRegistro.UseVisualStyleBackColor = true;
+            this.buttonCancelarRegistro.Click += new System.EventHandler(this.buttonCancelarRegistro_Click);
             // 
             // Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 248);
+            this.ClientSize = new System.Drawing.Size(538, 248);
             this.Controls.Add(this.buttonCancelarRegistro);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.buttonRegistrarRegistro);
@@ -283,6 +284,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "Registros";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registros";
             this.ResumeLayout(false);
             this.PerformLayout();

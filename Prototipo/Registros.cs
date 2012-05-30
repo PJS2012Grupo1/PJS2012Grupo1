@@ -29,5 +29,10 @@ namespace WindowsFormsApplication1
             comboBoxCategoriaRegistro.Text = "";
             comboBoxQtdeParcelasReg.Text = "";
         }
+
+        private void buttonCancelarRegistro_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

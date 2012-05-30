@@ -41,11 +41,8 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-<<<<<<< HEAD
             conexao.ConnectionString = "Data Source=PC09LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-=======
-           conexao.ConnectionString = "Data Source=PC02LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
->>>>>>> origin/master
+
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
@@ -202,6 +199,23 @@ namespace WindowsFormsApplication1
 
             adaptador.Fill(dados, "Registros");
             adaptador.Fill(dados, "Categoria");
+        }
+
+        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Registros cadastroRegistro = new Registros();
+            cadastroRegistro.ShowDialog(this);
+        }
+
+        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Caixa cadastroCaixa = new Caixa();
+            cadastroCaixa.ShowDialog(this);
         }
     }
 }
