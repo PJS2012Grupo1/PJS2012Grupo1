@@ -83,7 +83,7 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmCategoria);
 
-            SqlParameter prmStatus1 = new SqlParameter("@Status1", SqlDbType.Int);
+            SqlParameter prmStatus1 = new SqlParameter("@Status1", SqlDbType.TinyInt);
             prmStatus1.SourceColumn = "Status1";
             prmStatus1.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmStatus1);
@@ -110,24 +110,56 @@ namespace WindowsFormsApplication1
 
             adaptador.InsertCommand = comandoInsercaoReg;
 
-            SqlCommand comandoAtualizacao = new SqlCommand("Update Comprados set Nome = @Nome, DataCompra = @DataCompra, Genero = @Genero where Codigo = @Codigo", conexao);
-            prmNome = new SqlParameter("@Nome", SqlDbType.VarChar, 50);
-            prmNome.SourceColumn = "Nome";
-            prmNome.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacao.Parameters.Add(prmNome);
-            prmDataCompra = new SqlParameter("@DataCompra", SqlDbType.Date);
-            prmDataCompra.SourceColumn = "DataCompra";
-            prmDataCompra.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacao.Parameters.Add(prmDataCompra);
-            prmGenero = new SqlParameter("@Genero", SqlDbType.SmallInt);
-            prmGenero.SourceColumn = "Genero";
-            prmGenero.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacao.Parameters.Add(prmGenero);
+        
+
+            //Comandos para Atualização
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Status1, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
+            prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
+            prmDescricao.SourceColumn = "Descricao";
+            prmDescricao.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDescricao);
+
+            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
+            prmValor.SourceColumn = "Valor";
+            prmValor.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmValor);
+
+            prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
+            prmCategoria.SourceColumn = "Categoria";
+            prmCategoria.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmCategoria);
+
+            prmStatus1 = new SqlParameter("@Status1", SqlDbType.TinyInt);
+            prmStatus1.SourceColumn = "Status1";
+            prmStatus1.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmStatus1);
+
+            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
+            prmValor.SourceColumn = "Valor";
+            prmValor.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmValor);
+
+            prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
+            prmDataVencimento.SourceColumn = "DataVencimento";
+            prmDataVencimento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataVencimento);
+
+            prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
+            prmDataPagamento.SourceColumn = "DataPagamento";
+            prmDataPagamento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataPagamento);
+
+            prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
+            prmDataCadastro.SourceColumn = "DataCadastro";
+            prmDataCadastro.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataCadastro);
+            
             SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
-            comandoAtualizacao.Parameters.Add(prmCodigo);
-            adaptador.UpdateCommand = comandoAtualizacao;
+            comandoAtualizacaoReg.Parameters.Add(prmCodigo);
+
+            adaptador.UpdateCommand = comandoAtualizacaoReg;
 
             SqlCommand comandoRemocao = new SqlCommand("Delete from Comprados where Codigo = @Codigo", conexao);
             prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
