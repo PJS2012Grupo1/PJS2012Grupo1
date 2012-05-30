@@ -16,15 +16,19 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void Registros_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void radioButtonPagamentoParceladoReg_CheckedChanged(object sender, EventArgs e)
         {
             comboBoxQtdeParcelasReg.Enabled = true;
             labelQtdeParcReg.Enabled = true;
+        }
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            textBoxCodigoRegistro.Text = "";
+            textBoxDescricaoRegistro.Text = "";
+            textBoxValorRegistro.Text = "";
+            comboBoxCategoriaRegistro.Text = "";
+            comboBoxQtdeParcelasReg.Text = "";
         }
     }
 }

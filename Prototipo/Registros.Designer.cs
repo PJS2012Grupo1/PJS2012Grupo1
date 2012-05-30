@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBoxCodigoRegistro = new System.Windows.Forms.TextBox();
             this.textBoxDescricaoRegistro = new System.Windows.Forms.TextBox();
             this.textBoxValorRegistro = new System.Windows.Forms.TextBox();
             this.comboBoxCategoriaRegistro = new System.Windows.Forms.ComboBox();
@@ -56,25 +54,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(145, 23);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Descrição:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Codigo:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 91);
+            this.label3.Location = new System.Drawing.Point(12, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -83,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(445, 23);
+            this.label4.Location = new System.Drawing.Point(328, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 3;
@@ -92,7 +81,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(232, 150);
+            this.label6.Location = new System.Drawing.Point(190, 149);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 5;
@@ -101,7 +90,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(420, 150);
+            this.label7.Location = new System.Drawing.Point(374, 150);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(105, 13);
             this.label7.TabIndex = 6;
@@ -110,29 +99,22 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(48, 150);
+            this.label8.Location = new System.Drawing.Point(12, 150);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Data de Cadastro:";
             // 
-            // textBoxCodigoRegistro
-            // 
-            this.textBoxCodigoRegistro.Location = new System.Drawing.Point(25, 40);
-            this.textBoxCodigoRegistro.Name = "textBoxCodigoRegistro";
-            this.textBoxCodigoRegistro.Size = new System.Drawing.Size(80, 20);
-            this.textBoxCodigoRegistro.TabIndex = 8;
-            // 
             // textBoxDescricaoRegistro
             // 
-            this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(148, 39);
+            this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
-            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(262, 20);
+            this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(296, 20);
             this.textBoxDescricaoRegistro.TabIndex = 9;
             // 
             // textBoxValorRegistro
             // 
-            this.textBoxValorRegistro.Location = new System.Drawing.Point(25, 107);
+            this.textBoxValorRegistro.Location = new System.Drawing.Point(12, 105);
             this.textBoxValorRegistro.Name = "textBoxValorRegistro";
             this.textBoxValorRegistro.Size = new System.Drawing.Size(99, 20);
             this.textBoxValorRegistro.TabIndex = 10;
@@ -140,7 +122,7 @@
             // comboBoxCategoriaRegistro
             // 
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
-            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(448, 39);
+            this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(331, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
             this.comboBoxCategoriaRegistro.Size = new System.Drawing.Size(167, 21);
             this.comboBoxCategoriaRegistro.TabIndex = 11;
@@ -148,7 +130,7 @@
             // dateTimePickerDataCadastroReg
             // 
             this.dateTimePickerDataCadastroReg.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataCadastroReg.Location = new System.Drawing.Point(51, 167);
+            this.dateTimePickerDataCadastroReg.Location = new System.Drawing.Point(12, 167);
             this.dateTimePickerDataCadastroReg.Name = "dateTimePickerDataCadastroReg";
             this.dateTimePickerDataCadastroReg.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerDataCadastroReg.TabIndex = 12;
@@ -156,7 +138,7 @@
             // dateTimePickerDataVencimentoReg
             // 
             this.dateTimePickerDataVencimentoReg.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataVencimentoReg.Location = new System.Drawing.Point(235, 168);
+            this.dateTimePickerDataVencimentoReg.Location = new System.Drawing.Point(193, 167);
             this.dateTimePickerDataVencimentoReg.Name = "dateTimePickerDataVencimentoReg";
             this.dateTimePickerDataVencimentoReg.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerDataVencimentoReg.TabIndex = 13;
@@ -164,7 +146,7 @@
             // dateTimePickerDataPagamentoReg
             // 
             this.dateTimePickerDataPagamentoReg.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataPagamentoReg.Location = new System.Drawing.Point(423, 167);
+            this.dateTimePickerDataPagamentoReg.Location = new System.Drawing.Point(377, 167);
             this.dateTimePickerDataPagamentoReg.Name = "dateTimePickerDataPagamentoReg";
             this.dateTimePickerDataPagamentoReg.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerDataPagamentoReg.TabIndex = 14;
@@ -172,7 +154,7 @@
             // radioButtonPagamentoAvistaReg
             // 
             this.radioButtonPagamentoAvistaReg.AutoSize = true;
-            this.radioButtonPagamentoAvistaReg.Location = new System.Drawing.Point(169, 110);
+            this.radioButtonPagamentoAvistaReg.Location = new System.Drawing.Point(138, 105);
             this.radioButtonPagamentoAvistaReg.Name = "radioButtonPagamentoAvistaReg";
             this.radioButtonPagamentoAvistaReg.Size = new System.Drawing.Size(58, 17);
             this.radioButtonPagamentoAvistaReg.TabIndex = 15;
@@ -183,7 +165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(272, 91);
+            this.label5.Location = new System.Drawing.Point(187, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 16;
@@ -192,7 +174,7 @@
             // radioButtonPagamentoParceladoReg
             // 
             this.radioButtonPagamentoParceladoReg.AutoSize = true;
-            this.radioButtonPagamentoParceladoReg.Location = new System.Drawing.Point(406, 108);
+            this.radioButtonPagamentoParceladoReg.Location = new System.Drawing.Point(286, 106);
             this.radioButtonPagamentoParceladoReg.Name = "radioButtonPagamentoParceladoReg";
             this.radioButtonPagamentoParceladoReg.Size = new System.Drawing.Size(73, 17);
             this.radioButtonPagamentoParceladoReg.TabIndex = 17;
@@ -204,7 +186,7 @@
             // radioButtonPagamentoRecorrenteReg
             // 
             this.radioButtonPagamentoRecorrenteReg.AutoSize = true;
-            this.radioButtonPagamentoRecorrenteReg.Location = new System.Drawing.Point(286, 110);
+            this.radioButtonPagamentoRecorrenteReg.Location = new System.Drawing.Point(202, 105);
             this.radioButtonPagamentoRecorrenteReg.Name = "radioButtonPagamentoRecorrenteReg";
             this.radioButtonPagamentoRecorrenteReg.Size = new System.Drawing.Size(78, 17);
             this.radioButtonPagamentoRecorrenteReg.TabIndex = 18;
@@ -215,7 +197,7 @@
             // labelQtdeParcReg
             // 
             this.labelQtdeParcReg.AutoSize = true;
-            this.labelQtdeParcReg.Location = new System.Drawing.Point(491, 91);
+            this.labelQtdeParcReg.Location = new System.Drawing.Point(374, 91);
             this.labelQtdeParcReg.Name = "labelQtdeParcReg";
             this.labelQtdeParcReg.Size = new System.Drawing.Size(124, 13);
             this.labelQtdeParcReg.TabIndex = 19;
@@ -241,14 +223,14 @@
             "48",
             "60",
             "72"});
-            this.comboBoxQtdeParcelasReg.Location = new System.Drawing.Point(494, 107);
+            this.comboBoxQtdeParcelasReg.Location = new System.Drawing.Point(377, 107);
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
             this.comboBoxQtdeParcelasReg.TabIndex = 20;
             // 
             // buttonRegistrarRegistro
             // 
-            this.buttonRegistrarRegistro.Location = new System.Drawing.Point(356, 213);
+            this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 213);
             this.buttonRegistrarRegistro.Name = "buttonRegistrarRegistro";
             this.buttonRegistrarRegistro.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrarRegistro.TabIndex = 21;
@@ -257,16 +239,17 @@
             // 
             // buttonLimpar
             // 
-            this.buttonLimpar.Location = new System.Drawing.Point(448, 213);
+            this.buttonLimpar.Location = new System.Drawing.Point(331, 213);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpar.TabIndex = 22;
             this.buttonLimpar.Text = "Limpar";
             this.buttonLimpar.UseVisualStyleBackColor = true;
+            this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
             // 
             // buttonCancelarRegistro
             // 
-            this.buttonCancelarRegistro.Location = new System.Drawing.Point(540, 213);
+            this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 213);
             this.buttonCancelarRegistro.Name = "buttonCancelarRegistro";
             this.buttonCancelarRegistro.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelarRegistro.TabIndex = 23;
@@ -277,7 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 248);
+            this.ClientSize = new System.Drawing.Size(515, 248);
             this.Controls.Add(this.buttonCancelarRegistro);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.buttonRegistrarRegistro);
@@ -293,17 +276,14 @@
             this.Controls.Add(this.comboBoxCategoriaRegistro);
             this.Controls.Add(this.textBoxValorRegistro);
             this.Controls.Add(this.textBoxDescricaoRegistro);
-            this.Controls.Add(this.textBoxCodigoRegistro);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Registros";
             this.Text = "Registros";
-            this.Load += new System.EventHandler(this.Registros_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,13 +292,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxCodigoRegistro;
         private System.Windows.Forms.TextBox textBoxDescricaoRegistro;
         private System.Windows.Forms.TextBox textBoxValorRegistro;
         private System.Windows.Forms.ComboBox comboBoxCategoriaRegistro;
