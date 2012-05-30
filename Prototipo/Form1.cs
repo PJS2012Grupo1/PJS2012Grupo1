@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         public void atualizaListView() //Atualiza list view
         {
-            listView1.Items.Clear();
+            listViewPrincipal.Items.Clear();
             foreach (DataRow registro in dados.Tables["Registros"].Rows)
             {
                 ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
@@ -34,13 +34,13 @@ namespace WindowsFormsApplication1
                 item.SubItems.Add(subItemCategoria);
                 item.SubItems.Add(subItemDataVencimento);
                 item.SubItems.Add(subItemDataPagamento);
-                listView1.Items.Add(item);
+                listViewPrincipal.Items.Add(item);
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SqlConnection conexao = new SqlConnection();
+            /*SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=PC09LAB3\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
             adaptador = new SqlDataAdapter();
 
@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
             dados = new DataSet();
             adaptador.Fill(dados, "Registros");
 
-            atualizaListView();
+            atualizaListView();*/
         }
     }
 }
