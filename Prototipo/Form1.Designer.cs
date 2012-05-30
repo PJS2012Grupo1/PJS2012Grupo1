@@ -68,6 +68,8 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.buttonIrData = new System.Windows.Forms.Button();
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -327,6 +329,8 @@
             this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelTopo.Controls.Add(this.buttonIrData);
+            this.panelTopo.Controls.Add(this.dateTimePicker);
             this.panelTopo.Controls.Add(this.buttonProximo);
             this.panelTopo.Controls.Add(this.buttonAnterior);
             this.panelTopo.Controls.Add(this.labelNomeMes);
@@ -338,9 +342,9 @@
             // buttonProximo
             // 
             this.buttonProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProximo.Location = new System.Drawing.Point(230, 6);
+            this.buttonProximo.Location = new System.Drawing.Point(215, 6);
             this.buttonProximo.Name = "buttonProximo";
-            this.buttonProximo.Size = new System.Drawing.Size(75, 23);
+            this.buttonProximo.Size = new System.Drawing.Size(60, 23);
             this.buttonProximo.TabIndex = 2;
             this.buttonProximo.Text = "Proximo";
             this.buttonProximo.UseVisualStyleBackColor = true;
@@ -350,7 +354,7 @@
             this.buttonAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonAnterior.Location = new System.Drawing.Point(3, 6);
             this.buttonAnterior.Name = "buttonAnterior";
-            this.buttonAnterior.Size = new System.Drawing.Size(75, 23);
+            this.buttonAnterior.Size = new System.Drawing.Size(60, 23);
             this.buttonAnterior.TabIndex = 1;
             this.buttonAnterior.Text = "Anterior";
             this.buttonAnterior.UseVisualStyleBackColor = true;
@@ -359,7 +363,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(84, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(69, 9);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(140, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -444,6 +448,26 @@
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.dateTimePicker.CustomFormat = "mm/yyyy";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(368, 7);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker.TabIndex = 3;
+            // 
+            // buttonIrData
+            // 
+            this.buttonIrData.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonIrData.Location = new System.Drawing.Point(495, 6);
+            this.buttonIrData.Name = "buttonIrData";
+            this.buttonIrData.Size = new System.Drawing.Size(30, 23);
+            this.buttonIrData.TabIndex = 4;
+            this.buttonIrData.Text = "Ir";
+            this.buttonIrData.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,6 +542,8 @@
         private System.Windows.Forms.Label labelSaldo;
         private System.Windows.Forms.Label labelTotalContas;
         private System.Windows.Forms.Label labelTotalCaixa;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Button buttonIrData;
     }
 }
 

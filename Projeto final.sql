@@ -15,22 +15,12 @@ Codigo INT NOT NULL PRIMARY KEY IDENTITY,
 Descricao VARCHAR(40) NOT NULL ,
 Valor DECIMAL(6,2) NOT NULL ,
 Categoria INT  NOT NULL FOREIGN KEY REFERENCES Categoria(Codigo),
-Status1 int,
+Status1 tinyint,
 DataVencimento DATE,
 DataPagamneto DATE,
 DataCadastro DATE not null,
 Parcelas int);
 GO
-
-
-create table Caixa(
-Codigo_ca INT NOT NULL PRIMARY KEY IDENTITY,
-Descricao_ca VARCHAR(40) NOT NULL ,
-Valor_ca DECIMAL(6,2) NOT NULL ,
-DataCadastro_ca DATE not null);
-go
-
-
 
 
 
