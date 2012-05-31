@@ -20,6 +20,11 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        public void atualizaGroupBoxDadosMes()
+        {
+            groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
+        }
+
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
@@ -38,17 +43,25 @@ namespace WindowsFormsApplication1
                 item.SubItems.Add(subItemDataPagamento);
                 listViewPrincipal.Items.Add(item);
             }
+            atualizaGroupBoxDadosMes();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> origin/master
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
+            //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            //adaptador.SelectCommand = comandoSelecaoCat;
             SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
             adaptadorCat.SelectCommand = comandoSelecaoCat;
 
@@ -221,6 +234,40 @@ namespace WindowsFormsApplication1
         {
             Caixa cadastroCaixa = new Caixa();
             cadastroCaixa.ShowDialog(this);
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            if (checkBoxDescricao.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '" + textBox1.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["Descricao"].ToString() == textBox1.Text)
+                        {
+                            
+                            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                            ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                            item.SubItems.Add(subitemValor);
+
+                            ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+                            item.SubItems.Add(subitemCategoria);
+
+                            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
+                            item.SubItems.Add(subItemStatus);
+                            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
+                            item.SubItems.Add(subItemDataVencimento);
+                            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
+                            item.SubItems.Add(subItemDataPagamento);
+                          
+                            listViewPrincipal.Items.Add(item);
+                        }
+                    }
+                }
+            }
         }
     }
 }
