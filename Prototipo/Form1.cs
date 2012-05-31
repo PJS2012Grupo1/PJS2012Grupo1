@@ -13,7 +13,8 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         DataSet dados = new DataSet();
-        SqlDataAdapter adaptador = new SqlDataAdapter();
+        SqlDataAdapter adaptadorReg = new SqlDataAdapter();
+        SqlDataAdapter adaptadorCat = new SqlDataAdapter();
         public Form1()
         {
             InitializeComponent();
@@ -41,14 +42,14 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=pc02lab3\\MSSQLSERVER1;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
-            //adaptador.SelectCommand = comandoSelecaoReg;
+            adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
-            adaptador.SelectCommand = comandoSelecaoCat;
+            adaptadorCat.SelectCommand = comandoSelecaoCat;
 
 
             //Comandos para a inserção de dados
@@ -93,7 +94,7 @@ namespace WindowsFormsApplication1
             prmParcelas.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmParcelas);
 
-            adaptador.InsertCommand = comandoInsercaoReg;
+            adaptadorReg.InsertCommand = comandoInsercaoReg;
 
 
             SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
@@ -107,7 +108,7 @@ namespace WindowsFormsApplication1
             prmOrcamento.SourceVersion = DataRowVersion.Current;
             comandoInsercaoCat.Parameters.Add(prmOrcamento);
 
-            adaptador.InsertCommand = comandoInsercaoCat;
+            adaptadorCat.InsertCommand = comandoInsercaoCat;
 
         
 
@@ -158,7 +159,7 @@ namespace WindowsFormsApplication1
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoAtualizacaoReg.Parameters.Add(prmCodigo);
 
-            adaptador.UpdateCommand = comandoAtualizacaoReg;
+            adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
 
             SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
             prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
@@ -176,7 +177,7 @@ namespace WindowsFormsApplication1
             prmCodigoCat.SourceVersion = DataRowVersion.Original;
             comandoAtualizacaoCat.Parameters.Add(prmCodigoCat);
 
-            adaptador.UpdateCommand = comandoAtualizacaoCat;
+            adaptadorCat.UpdateCommand = comandoAtualizacaoCat;
 
             //Caomandos para a remoção de dados
             SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
@@ -184,20 +185,23 @@ namespace WindowsFormsApplication1
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoRemocaoReg.Parameters.Add(prmCodigo);
-            adaptador.DeleteCommand = comandoRemocaoReg;
+            adaptadorReg.DeleteCommand = comandoRemocaoReg;
 
             SqlCommand comandoRemocaoCat = new SqlCommand("Delete from Categoria where CodigoCat = @CodigoCat", conexao);
             prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
             prmCodigoCat.SourceColumn = "CodigoCat";
             prmCodigoCat.SourceVersion = DataRowVersion.Original;
             comandoRemocaoCat.Parameters.Add(prmCodigoCat);
-            adaptador.DeleteCommand = comandoRemocaoCat;
+            adaptadorCat.DeleteCommand = comandoRemocaoCat;
 
-            adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adaptadorCat.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
 
-            adaptador.Fill(dados, "Registros");
-            adaptador.Fill(dados, "Categoria");
+            adaptadorReg.Fill(dados, "Registros");
+            adaptadorCat.Fill(dados, "Categoria");
+
+            atualizaListView();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
