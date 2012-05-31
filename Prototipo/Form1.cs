@@ -198,6 +198,8 @@ namespace WindowsFormsApplication1
 
             adaptador.Fill(dados, "Registros");
             adaptador.Fill(dados, "Categoria");
+
+            atualizaListView();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
