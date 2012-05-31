@@ -16,14 +16,20 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void Caixa_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Limpar_Click(object sender, EventArgs e)
+        {
+            textBoxDescricaoCaixa.Text = "";
+            textBoxValorCaixa.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
