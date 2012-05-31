@@ -47,8 +47,8 @@ namespace WindowsFormsApplication1
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
             //adaptador.SelectCommand = comandoSelecaoReg;
 
-            SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
-            adaptador.SelectCommand = comandoSelecaoCat;
+            //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            //adaptador.SelectCommand = comandoSelecaoCat;
 
 
             //Comandos para a inserção de dados
@@ -197,7 +197,10 @@ namespace WindowsFormsApplication1
 
 
             adaptador.Fill(dados, "Registros");
-            adaptador.Fill(dados, "Categoria");
+            adaptador.Fill(dados, "categoria");
+
+            atualizaListView();
         }
+
     }
 }
