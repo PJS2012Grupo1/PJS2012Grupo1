@@ -20,6 +20,11 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        public void atualizaGroupBoxDadosMes()
+        {
+            groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
+        }
+
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
@@ -33,10 +38,13 @@ namespace WindowsFormsApplication1
                 ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
                 item.SubItems.Add(subItemValor);
                 item.SubItems.Add(subItemCategoria);
+                item.SubItems.Add(subItemStatus);
                 item.SubItems.Add(subItemDataVencimento);
                 item.SubItems.Add(subItemDataPagamento);
                 listViewPrincipal.Items.Add(item);
             }
+            atualizaGroupBoxDadosMes();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

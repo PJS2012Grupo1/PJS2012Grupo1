@@ -37,7 +37,9 @@
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.cadatroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,19 +82,6 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
-            this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeaderOrcamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderGasto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.checkBoxDescricao = new System.Windows.Forms.CheckBox();
-            this.checkBoxData = new System.Windows.Forms.CheckBox();
-            this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
-            this.groupBoxDescricao = new System.Windows.Forms.GroupBox();
-            this.groupBoxData = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonLimpar = new System.Windows.Forms.Button();
-            this.comboBoxMes = new System.Windows.Forms.ComboBox();
-            this.comboBoxAno = new System.Windows.Forms.ComboBox();
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -106,9 +95,9 @@
             // 
             // listViewPrincipal
             // 
-            this.listViewPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewPrincipal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderDescricao,
             this.columnHeaderValor,
@@ -176,6 +165,13 @@
             this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.cadatroToolStripMenuItem.Text = "Contas";
             // 
+            // cadastroToolStripMenuItem
+            // 
+            this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem.Text = "Cadastro";
+            this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
+            // 
             // relatorioToolStripMenuItem
             // 
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -183,6 +179,13 @@
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.relatorioToolStripMenuItem.Text = "Caixa";
+            // 
+            // cadastroToolStripMenuItem1
+            // 
+            this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem1.Text = "Cadastro";
+            this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
             // categoriToolStripMenuItem
             // 
@@ -204,7 +207,7 @@
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // groupBox1
-            //
+            // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(12, 419);
@@ -216,8 +219,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageBusca);
             this.tabControl1.Controls.Add(this.Categorias);
             this.tabControl1.Location = new System.Drawing.Point(518, 130);
@@ -447,8 +450,8 @@
             // 
             // panelTopo
             // 
-            this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopo.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelTopo.Controls.Add(this.comboBoxAno);
             this.panelTopo.Controls.Add(this.comboBoxMes);
@@ -461,248 +464,6 @@
             this.panelTopo.Size = new System.Drawing.Size(500, 35);
             this.panelTopo.TabIndex = 4;
             // 
-            // buttonIrData
-            // 
-            this.buttonIrData.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonIrData.Location = new System.Drawing.Point(467, 6);
-            this.buttonIrData.Name = "buttonIrData";
-            this.buttonIrData.Size = new System.Drawing.Size(30, 23);
-            this.buttonIrData.TabIndex = 4;
-            this.buttonIrData.Text = "Ir";
-            this.buttonIrData.UseVisualStyleBackColor = true;
-            // 
-            // buttonProximo
-            // 
-            this.buttonProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProximo.Location = new System.Drawing.Point(205, 6);
-            this.buttonProximo.Name = "buttonProximo";
-            this.buttonProximo.Size = new System.Drawing.Size(60, 23);
-            this.buttonProximo.TabIndex = 2;
-            this.buttonProximo.Text = "Proximo";
-            this.buttonProximo.UseVisualStyleBackColor = true;
-            // 
-            // buttonAnterior
-            // 
-            this.buttonAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonAnterior.Location = new System.Drawing.Point(3, 6);
-            this.buttonAnterior.Name = "buttonAnterior";
-            this.buttonAnterior.Size = new System.Drawing.Size(60, 23);
-            this.buttonAnterior.TabIndex = 1;
-            this.buttonAnterior.Text = "Anterior";
-            this.buttonAnterior.UseVisualStyleBackColor = true;
-            // 
-            // labelNomeMes
-            // 
-            this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(69, 10);
-            this.labelNomeMes.Name = "labelNomeMes";
-            this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
-            this.labelNomeMes.TabIndex = 0;
-            this.labelNomeMes.Text = "Março 2012";
-            this.labelNomeMes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 5;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // groupBoxDadosMes
-            // 
-            this.groupBoxDadosMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxDadosMes.Controls.Add(this.labelSaldoValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalContasValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixaValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelSaldo);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalContas);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixa);
-            this.groupBoxDadosMes.Location = new System.Drawing.Point(522, 27);
-            this.groupBoxDadosMes.Name = "groupBoxDadosMes";
-            this.groupBoxDadosMes.Size = new System.Drawing.Size(250, 97);
-            this.groupBoxDadosMes.TabIndex = 6;
-            this.groupBoxDadosMes.TabStop = false;
-            this.groupBoxDadosMes.Text = "Mês: Março 2012";
-            // 
-            // labelSaldoValor
-            // 
-            this.labelSaldoValor.Location = new System.Drawing.Point(128, 62);
-            this.labelSaldoValor.Name = "labelSaldoValor";
-            this.labelSaldoValor.Size = new System.Drawing.Size(100, 13);
-            this.labelSaldoValor.TabIndex = 5;
-            this.labelSaldoValor.Text = "R$ 0,00";
-            this.labelSaldoValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelTotalContasValor
-            // 
-            this.labelTotalContasValor.Location = new System.Drawing.Point(128, 42);
-            this.labelTotalContasValor.Name = "labelTotalContasValor";
-            this.labelTotalContasValor.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalContasValor.TabIndex = 4;
-            this.labelTotalContasValor.Text = "R$ 0,00";
-            this.labelTotalContasValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelTotalCaixaValor
-            // 
-            this.labelTotalCaixaValor.Location = new System.Drawing.Point(128, 22);
-            this.labelTotalCaixaValor.Name = "labelTotalCaixaValor";
-            this.labelTotalCaixaValor.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalCaixaValor.TabIndex = 3;
-            this.labelTotalCaixaValor.Text = "R$ 0,00";
-            this.labelTotalCaixaValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelSaldo
-            // 
-            this.labelSaldo.Location = new System.Drawing.Point(22, 62);
-            this.labelSaldo.Name = "labelSaldo";
-            this.labelSaldo.Size = new System.Drawing.Size(100, 13);
-            this.labelSaldo.TabIndex = 2;
-            this.labelSaldo.Text = "Saldo:";
-            this.labelSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelTotalContas
-            // 
-            this.labelTotalContas.Location = new System.Drawing.Point(22, 42);
-            this.labelTotalContas.Name = "labelTotalContas";
-            this.labelTotalContas.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalContas.TabIndex = 1;
-            this.labelTotalContas.Text = "Total de Contas:";
-            this.labelTotalContas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelTotalCaixa
-            // 
-            this.labelTotalCaixa.Location = new System.Drawing.Point(22, 22);
-            this.labelTotalCaixa.Name = "labelTotalCaixa";
-            this.labelTotalCaixa.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalCaixa.TabIndex = 0;
-            this.labelTotalCaixa.Text = "Total do Caixa:";
-            this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cadastroToolStripMenuItem
-            // 
-            this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cadastroToolStripMenuItem.Text = "Cadastro";
-            this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
-            // 
-            // cadastroToolStripMenuItem1
-            // 
-            this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.cadastroToolStripMenuItem1.Text = "Cadastro";
-            this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
-
-            // columnHeaderOrcamento
-            // 
-            this.columnHeaderOrcamento.Text = "Orçamento";
-            this.columnHeaderOrcamento.Width = 65;
-            // 
-            // columnHeaderGasto
-            // 
-            this.columnHeaderGasto.Text = "Gasto";
-            this.columnHeaderGasto.Width = 65;
-            // 
-            // checkBoxDescricao
-            // 
-            this.checkBoxDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxDescricao.AutoSize = true;
-            this.checkBoxDescricao.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxDescricao.Name = "checkBoxDescricao";
-            this.checkBoxDescricao.Size = new System.Drawing.Size(74, 17);
-            this.checkBoxDescricao.TabIndex = 13;
-            this.checkBoxDescricao.Text = "Descrição";
-            this.checkBoxDescricao.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxData
-            // 
-            this.checkBoxData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxData.AutoSize = true;
-            this.checkBoxData.Location = new System.Drawing.Point(6, 108);
-            this.checkBoxData.Name = "checkBoxData";
-            this.checkBoxData.Size = new System.Drawing.Size(49, 17);
-            this.checkBoxData.TabIndex = 14;
-            this.checkBoxData.Text = "Data";
-            this.checkBoxData.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxCategoria
-            // 
-            this.checkBoxCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxCategoria.AutoSize = true;
-            this.checkBoxCategoria.Location = new System.Drawing.Point(6, 210);
-            this.checkBoxCategoria.Name = "checkBoxCategoria";
-            this.checkBoxCategoria.Size = new System.Drawing.Size(71, 17);
-            this.checkBoxCategoria.TabIndex = 15;
-            this.checkBoxCategoria.Text = "Categoria";
-            this.checkBoxCategoria.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxDescricao
-            // 
-            this.groupBoxDescricao.Controls.Add(this.labelDescricao);
-            this.groupBoxDescricao.Controls.Add(this.textBox1);
-            this.groupBoxDescricao.Location = new System.Drawing.Point(6, 29);
-            this.groupBoxDescricao.Name = "groupBoxDescricao";
-            this.groupBoxDescricao.Size = new System.Drawing.Size(234, 73);
-            this.groupBoxDescricao.TabIndex = 16;
-            this.groupBoxDescricao.TabStop = false;
-            // 
-            // groupBoxData
-            // 
-            this.groupBoxData.Controls.Add(this.labelDataMinima);
-            this.groupBoxData.Controls.Add(this.dateTimePickerDataMinima);
-            this.groupBoxData.Controls.Add(this.labelDataMaxima);
-            this.groupBoxData.Controls.Add(this.dateTimePicker1);
-            this.groupBoxData.Location = new System.Drawing.Point(6, 131);
-            this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(234, 73);
-            this.groupBoxData.TabIndex = 17;
-            this.groupBoxData.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.labelCategoria);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(6, 233);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 73);
-            this.groupBox2.TabIndex = 18;
-            this.groupBox2.TabStop = false;
-            // 
-            // buttonLimpar
-            // 
-            this.buttonLimpar.Location = new System.Drawing.Point(165, 312);
-            this.buttonLimpar.Name = "buttonLimpar";
-            this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
-            this.buttonLimpar.TabIndex = 19;
-            this.buttonLimpar.Text = "Limpar";
-            this.buttonLimpar.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxMes
-            // 
-            this.comboBoxMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxMes.FormattingEnabled = true;
-            this.comboBoxMes.Items.AddRange(new object[] {
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"});
-            this.comboBoxMes.Location = new System.Drawing.Point(295, 7);
-            this.comboBoxMes.Name = "comboBoxMes";
-            this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxMes.TabIndex = 5;
-            //
             // comboBoxAno
             // 
             this.comboBoxAno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -830,6 +591,18 @@
             "Setembro",
             "Outubro",
             "Novembro",
+            "Dezembro",
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
             "Dezembro"});
             this.comboBoxMes.Location = new System.Drawing.Point(295, 7);
             this.comboBoxMes.Name = "comboBoxMes";
@@ -899,7 +672,6 @@
             this.groupBoxDadosMes.Size = new System.Drawing.Size(250, 97);
             this.groupBoxDadosMes.TabIndex = 6;
             this.groupBoxDadosMes.TabStop = false;
-            this.groupBoxDadosMes.Text = "Mês: Março 2012";
             // 
             // labelSaldoValor
             // 
