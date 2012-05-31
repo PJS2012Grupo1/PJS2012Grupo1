@@ -12,8 +12,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        DataSet dados = new DataSet();
-        SqlDataAdapter adaptador = new SqlDataAdapter();
+        DataSet dados;
+        SqlDataAdapter adaptador;
         public Form1()
         {
             InitializeComponent();
@@ -42,10 +42,11 @@ namespace WindowsFormsApplication1
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            adaptador = new SqlDataAdapter();
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
-            //adaptador.SelectCommand = comandoSelecaoReg;
+            adaptador.SelectCommand = comandoSelecaoReg;
 
             SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
             adaptador.SelectCommand = comandoSelecaoCat;
@@ -195,9 +196,11 @@ namespace WindowsFormsApplication1
 
             adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
-
+            dados = new DataSet();
             adaptador.Fill(dados, "Registros");
             adaptador.Fill(dados, "Categoria");
+
+            atualizaListView();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
