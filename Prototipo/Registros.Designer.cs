@@ -165,7 +165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(187, 80);
+            this.label5.Location = new System.Drawing.Point(186, 91);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 16;
@@ -202,6 +202,7 @@
             this.labelQtdeParcReg.Size = new System.Drawing.Size(124, 13);
             this.labelQtdeParcReg.TabIndex = 19;
             this.labelQtdeParcReg.Text = "Quantidade de Parcelas:";
+            this.labelQtdeParcReg.Visible = false;
             // 
             // comboBoxQtdeParcelasReg
             // 
@@ -227,6 +228,7 @@
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
             this.comboBoxQtdeParcelasReg.TabIndex = 20;
+            this.comboBoxQtdeParcelasReg.Visible = false;
             // 
             // buttonRegistrarRegistro
             // 
@@ -236,6 +238,7 @@
             this.buttonRegistrarRegistro.TabIndex = 21;
             this.buttonRegistrarRegistro.Text = "Cadastrar";
             this.buttonRegistrarRegistro.UseVisualStyleBackColor = true;
+            this.buttonRegistrarRegistro.Click += new System.EventHandler(this.buttonRegistrarRegistro_Click);
             // 
             // buttonLimpar
             // 

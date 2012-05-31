@@ -5,8 +5,8 @@ USE SistemaFinanceiro;
 GO
 
 CREATE TABLE Categoria(
-Codigo INT  NOT NULL PRIMARY KEY IDENTITY,
-Descrição VARCHAR(20) NOT NULL,
+CodigoCat INT  NOT NULL PRIMARY KEY IDENTITY,
+DescricaoCat VARCHAR(20) NOT NULL,
 Orcamento DECIMAL(6,2) NOT NULL);
 GO
 
@@ -34,3 +34,5 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento,
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, DataPagamento, Parcelas, Status1) VALUES(2, 'Gasolina', -60.50, getdate(), '05-22-2012', '06-18-2012',  null, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, DataPagamento, Parcelas, Status1) VALUES(3, 'Remédio', -35.50, getdate(), '05-20-2012', '06-25-2012', null, 1);
 
+select * from Registros;
+go
