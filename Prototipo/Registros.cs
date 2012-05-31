@@ -18,8 +18,8 @@ namespace WindowsFormsApplication1
 
         private void radioButtonPagamentoParceladoReg_CheckedChanged(object sender, EventArgs e)
         {
-            comboBoxQtdeParcelasReg.Enabled = true;
-            labelQtdeParcReg.Enabled = true;
+            comboBoxQtdeParcelasReg.Visible = true;
+            labelQtdeParcReg.Visible = true;
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
