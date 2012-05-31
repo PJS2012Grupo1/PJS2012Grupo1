@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1
                 ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
                 item.SubItems.Add(subItemValor);
                 item.SubItems.Add(subItemCategoria);
+                item.SubItems.Add(subItemStatus);
                 item.SubItems.Add(subItemDataVencimento);
                 item.SubItems.Add(subItemDataPagamento);
                 listViewPrincipal.Items.Add(item);
@@ -219,6 +220,40 @@ namespace WindowsFormsApplication1
         {
             Caixa cadastroCaixa = new Caixa();
             cadastroCaixa.ShowDialog(this);
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            if (checkBoxDescricao.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '" + textBox1.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["Descricao"].ToString() == textBox1.Text)
+                        {
+                            
+                            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                            ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                            item.SubItems.Add(subitemValor);
+
+                            ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+                            item.SubItems.Add(subitemCategoria);
+
+                            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
+                            item.SubItems.Add(subItemStatus);
+                            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
+                            item.SubItems.Add(subItemDataVencimento);
+                            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
+                            item.SubItems.Add(subItemDataPagamento);
+                          
+                            listViewPrincipal.Items.Add(item);
+                        }
+                    }
+                }
+            }
         }
     }
 }
