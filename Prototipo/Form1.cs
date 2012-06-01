@@ -13,10 +13,16 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         DataSet dados = new DataSet();
-        SqlDataAdapter adaptador = new SqlDataAdapter();
+        SqlDataAdapter adaptadorReg = new SqlDataAdapter();
+        SqlDataAdapter adaptadorCat = new SqlDataAdapter();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public void atualizaGroupBoxDadosMes()
+        {
+            groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
         }
 
         public void atualizaListView() //Atualiza list view
@@ -32,27 +38,36 @@ namespace WindowsFormsApplication1
                 ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
                 item.SubItems.Add(subItemValor);
                 item.SubItems.Add(subItemCategoria);
+                item.SubItems.Add(subItemStatus);
                 item.SubItems.Add(subItemDataVencimento);
                 item.SubItems.Add(subItemDataPagamento);
                 listViewPrincipal.Items.Add(item);
             }
+            atualizaGroupBoxDadosMes();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+<<<<<<< HEAD
+            
+=======
 
+>>>>>>> origin/master
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
-            //adaptador.SelectCommand = comandoSelecaoReg;
+            adaptadorReg.SelectCommand = comandoSelecaoReg;
 
+            //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            //adaptador.SelectCommand = comandoSelecaoCat;
             SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
-            adaptador.SelectCommand = comandoSelecaoCat;
+            adaptadorCat.SelectCommand = comandoSelecaoCat;
 
 
             //Comandos para a inserção de dados
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Descricao, @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -79,7 +94,7 @@ namespace WindowsFormsApplication1
             comandoInsercaoReg.Parameters.Add(prmDataVencimento);
 
             SqlParameter prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
-            prmDataPagamento.SourceColumn = "DataCompra";
+            prmDataPagamento.SourceColumn = "DataPagamento";
             prmDataPagamento.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmDataPagamento);
 
@@ -93,7 +108,7 @@ namespace WindowsFormsApplication1
             prmParcelas.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmParcelas);
 
-            adaptador.InsertCommand = comandoInsercaoReg;
+            adaptadorReg.InsertCommand = comandoInsercaoReg;
 
 
             SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
@@ -107,7 +122,7 @@ namespace WindowsFormsApplication1
             prmOrcamento.SourceVersion = DataRowVersion.Current;
             comandoInsercaoCat.Parameters.Add(prmOrcamento);
 
-            adaptador.InsertCommand = comandoInsercaoCat;
+            adaptadorCat.InsertCommand = comandoInsercaoCat;
 
         
 
@@ -158,7 +173,7 @@ namespace WindowsFormsApplication1
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoAtualizacaoReg.Parameters.Add(prmCodigo);
 
-            adaptador.UpdateCommand = comandoAtualizacaoReg;
+            adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
 
             SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
             prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
@@ -176,7 +191,7 @@ namespace WindowsFormsApplication1
             prmCodigoCat.SourceVersion = DataRowVersion.Original;
             comandoAtualizacaoCat.Parameters.Add(prmCodigoCat);
 
-            adaptador.UpdateCommand = comandoAtualizacaoCat;
+            adaptadorCat.UpdateCommand = comandoAtualizacaoCat;
 
             //Caomandos para a remoção de dados
             SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
@@ -184,28 +199,30 @@ namespace WindowsFormsApplication1
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoRemocaoReg.Parameters.Add(prmCodigo);
-            adaptador.DeleteCommand = comandoRemocaoReg;
+            adaptadorReg.DeleteCommand = comandoRemocaoReg;
 
             SqlCommand comandoRemocaoCat = new SqlCommand("Delete from Categoria where CodigoCat = @CodigoCat", conexao);
             prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
             prmCodigoCat.SourceColumn = "CodigoCat";
             prmCodigoCat.SourceVersion = DataRowVersion.Original;
             comandoRemocaoCat.Parameters.Add(prmCodigoCat);
-            adaptador.DeleteCommand = comandoRemocaoCat;
+            adaptadorCat.DeleteCommand = comandoRemocaoCat;
 
-            adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-
-            adaptador.Fill(dados, "Registros");
-            adaptador.Fill(dados, "Categoria");
+            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adaptadorCat.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            
+            adaptadorReg.Fill(dados, "Registros");
+            adaptadorCat.Fill(dados, "Categoria");
 
             atualizaListView();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros();
+            Registros cadastroRegistro = new Registros(dados, adaptadorReg);
             cadastroRegistro.ShowDialog(this);
+
+            atualizaListView();
         }
 
         private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -215,8 +232,42 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa();
+            Caixa cadastroCaixa = new Caixa(dados, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            if (checkBoxDescricao.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '" + textBox1.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["Descricao"].ToString() == textBox1.Text)
+                        {
+                            
+                            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                            ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                            item.SubItems.Add(subitemValor);
+
+                            ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+                            item.SubItems.Add(subitemCategoria);
+
+                            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
+                            item.SubItems.Add(subItemStatus);
+                            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
+                            item.SubItems.Add(subItemDataVencimento);
+                            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
+                            item.SubItems.Add(subItemDataPagamento);
+                          
+                            listViewPrincipal.Items.Add(item);
+                        }
+                    }
+                }
+            }
         }
     }
 }
