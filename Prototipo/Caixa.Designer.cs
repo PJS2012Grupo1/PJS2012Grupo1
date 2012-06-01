@@ -38,7 +38,7 @@
             this.Limpar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxCategoriaCaixa = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -73,14 +73,14 @@
             this.textBoxDescricaoCaixa.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoCaixa.Name = "textBoxDescricaoCaixa";
             this.textBoxDescricaoCaixa.Size = new System.Drawing.Size(371, 20);
-            this.textBoxDescricaoCaixa.TabIndex = 5;
+            this.textBoxDescricaoCaixa.TabIndex = 1;
             // 
             // textBoxValorCaixa
             // 
             this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 87);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
             this.textBoxValorCaixa.Size = new System.Drawing.Size(99, 20);
-            this.textBoxValorCaixa.TabIndex = 6;
+            this.textBoxValorCaixa.TabIndex = 2;
             // 
             // dateTimePickerDataEntradaCaixa
             // 
@@ -88,14 +88,14 @@
             this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(132, 87);
             this.dateTimePickerDataEntradaCaixa.Name = "dateTimePickerDataEntradaCaixa";
             this.dateTimePickerDataEntradaCaixa.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePickerDataEntradaCaixa.TabIndex = 7;
+            this.dateTimePickerDataEntradaCaixa.TabIndex = 3;
             // 
             // buttonCadastrar
             // 
             this.buttonCadastrar.Location = new System.Drawing.Point(126, 124);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCadastrar.TabIndex = 8;
+            this.buttonCadastrar.TabIndex = 5;
             this.buttonCadastrar.Text = "Cadastrar";
             this.buttonCadastrar.UseVisualStyleBackColor = true;
             this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
@@ -105,7 +105,7 @@
             this.Limpar.Location = new System.Drawing.Point(217, 124);
             this.Limpar.Name = "Limpar";
             this.Limpar.Size = new System.Drawing.Size(75, 23);
-            this.Limpar.TabIndex = 9;
+            this.Limpar.TabIndex = 6;
             this.Limpar.Text = "Limpar";
             this.Limpar.UseVisualStyleBackColor = true;
             this.Limpar.Click += new System.EventHandler(this.Limpar_Click);
@@ -115,7 +115,7 @@
             this.button1.Location = new System.Drawing.Point(308, 124);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
+            this.button1.TabIndex = 7;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -129,20 +129,20 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Categoria";
             // 
-            // comboBox1
+            // comboBoxCategoriaCaixa
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(253, 87);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(130, 21);
-            this.comboBox1.TabIndex = 12;
+            this.comboBoxCategoriaCaixa.FormattingEnabled = true;
+            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(253, 87);
+            this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
+            this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxCategoriaCaixa.TabIndex = 4;
             // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 162);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxCategoriaCaixa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Limpar);
@@ -173,6 +173,6 @@
         private System.Windows.Forms.Button Limpar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxCategoriaCaixa;
     }
 }

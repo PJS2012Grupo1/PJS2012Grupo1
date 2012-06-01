@@ -228,7 +228,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa();
+            Caixa cadastroCaixa = new Caixa(dados, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
         }
 
