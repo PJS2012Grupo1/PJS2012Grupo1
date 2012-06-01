@@ -48,14 +48,13 @@
             this.tabPageBusca = new System.Windows.Forms.TabPage();
             this.buttonLimpar = new System.Windows.Forms.Button();
             this.buttonBuscar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxCategoria = new System.Windows.Forms.GroupBox();
             this.labelCategoria = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBoxData = new System.Windows.Forms.GroupBox();
             this.labelDataMinima = new System.Windows.Forms.Label();
             this.dateTimePickerDataMinima = new System.Windows.Forms.DateTimePicker();
             this.labelDataMaxima = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDataMaxima = new System.Windows.Forms.DateTimePicker();
             this.groupBoxDescricao = new System.Windows.Forms.GroupBox();
             this.labelDescricao = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -82,10 +81,11 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
+            this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxCategoria.SuspendLayout();
             this.groupBoxData.SuspendLayout();
             this.groupBoxDescricao.SuspendLayout();
             this.Categorias.SuspendLayout();
@@ -207,9 +207,9 @@
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // groupBox1
-            //
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(12, 419);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(500, 78);
@@ -233,7 +233,7 @@
             // 
             this.tabPageBusca.Controls.Add(this.buttonLimpar);
             this.tabPageBusca.Controls.Add(this.buttonBuscar);
-            this.tabPageBusca.Controls.Add(this.groupBox2);
+            this.tabPageBusca.Controls.Add(this.groupBoxCategoria);
             this.tabPageBusca.Controls.Add(this.groupBoxData);
             this.tabPageBusca.Controls.Add(this.groupBoxDescricao);
             this.tabPageBusca.Controls.Add(this.checkBoxCategoria);
@@ -249,6 +249,7 @@
             // 
             // buttonLimpar
             // 
+            this.buttonLimpar.Enabled = false;
             this.buttonLimpar.Location = new System.Drawing.Point(165, 312);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
@@ -258,6 +259,7 @@
             // 
             // buttonBuscar
             // 
+            this.buttonBuscar.Enabled = false;
             this.buttonBuscar.Location = new System.Drawing.Point(84, 312);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
@@ -266,15 +268,16 @@
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
-            // groupBox2
+            // groupBoxCategoria
             // 
-            this.groupBox2.Controls.Add(this.labelCategoria);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(6, 233);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 73);
-            this.groupBox2.TabIndex = 18;
-            this.groupBox2.TabStop = false;
+            this.groupBoxCategoria.Controls.Add(this.comboBoxCategoria);
+            this.groupBoxCategoria.Controls.Add(this.labelCategoria);
+            this.groupBoxCategoria.Enabled = false;
+            this.groupBoxCategoria.Location = new System.Drawing.Point(6, 233);
+            this.groupBoxCategoria.Name = "groupBoxCategoria";
+            this.groupBoxCategoria.Size = new System.Drawing.Size(234, 73);
+            this.groupBoxCategoria.TabIndex = 18;
+            this.groupBoxCategoria.TabStop = false;
             // 
             // labelCategoria
             // 
@@ -285,19 +288,13 @@
             this.labelCategoria.TabIndex = 12;
             this.labelCategoria.Text = "Categoria:";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(17, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 9;
-            // 
             // groupBoxData
             // 
             this.groupBoxData.Controls.Add(this.labelDataMinima);
             this.groupBoxData.Controls.Add(this.dateTimePickerDataMinima);
             this.groupBoxData.Controls.Add(this.labelDataMaxima);
-            this.groupBoxData.Controls.Add(this.dateTimePicker1);
+            this.groupBoxData.Controls.Add(this.dateTimePickerDataMaxima);
+            this.groupBoxData.Enabled = false;
             this.groupBoxData.Location = new System.Drawing.Point(6, 131);
             this.groupBoxData.Name = "groupBoxData";
             this.groupBoxData.Size = new System.Drawing.Size(234, 73);
@@ -333,21 +330,22 @@
             this.labelDataMaxima.TabIndex = 7;
             this.labelDataMaxima.Text = "Data Máxima:";
             // 
-            // dateTimePicker1
+            // dateTimePickerDataMaxima
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 34);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
-            this.dateTimePicker1.TabIndex = 6;
-            this.dateTimePicker1.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDataMaxima.Location = new System.Drawing.Point(127, 34);
+            this.dateTimePickerDataMaxima.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.Name = "dateTimePickerDataMaxima";
+            this.dateTimePickerDataMaxima.Size = new System.Drawing.Size(95, 20);
+            this.dateTimePickerDataMaxima.TabIndex = 6;
+            this.dateTimePickerDataMaxima.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
             // 
             // groupBoxDescricao
             // 
             this.groupBoxDescricao.Controls.Add(this.labelDescricao);
             this.groupBoxDescricao.Controls.Add(this.textBox1);
+            this.groupBoxDescricao.Enabled = false;
             this.groupBoxDescricao.Location = new System.Drawing.Point(6, 29);
             this.groupBoxDescricao.Name = "groupBoxDescricao";
             this.groupBoxDescricao.Size = new System.Drawing.Size(234, 73);
@@ -371,9 +369,9 @@
             this.textBox1.TabIndex = 2;
             // 
             // checkBoxCategoria
-            //
-            this.checkBoxCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            this.checkBoxCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCategoria.AutoSize = true;
             this.checkBoxCategoria.Location = new System.Drawing.Point(6, 210);
             this.checkBoxCategoria.Name = "checkBoxCategoria";
@@ -381,11 +379,12 @@
             this.checkBoxCategoria.TabIndex = 15;
             this.checkBoxCategoria.Text = "Categoria";
             this.checkBoxCategoria.UseVisualStyleBackColor = true;
+            this.checkBoxCategoria.Click += new System.EventHandler(this.checkBoxCategoria_Click);
             // 
             // checkBoxData
             // 
-            this.checkBoxData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxData.AutoSize = true;
             this.checkBoxData.Location = new System.Drawing.Point(6, 108);
             this.checkBoxData.Name = "checkBoxData";
@@ -393,11 +392,12 @@
             this.checkBoxData.TabIndex = 14;
             this.checkBoxData.Text = "Data";
             this.checkBoxData.UseVisualStyleBackColor = true;
+            this.checkBoxData.Click += new System.EventHandler(this.checkBoxData_Click);
             // 
             // checkBoxDescricao
             // 
-            this.checkBoxDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxDescricao.AutoSize = true;
             this.checkBoxDescricao.Location = new System.Drawing.Point(6, 6);
             this.checkBoxDescricao.Name = "checkBoxDescricao";
@@ -405,6 +405,7 @@
             this.checkBoxDescricao.TabIndex = 13;
             this.checkBoxDescricao.Text = "Descrição";
             this.checkBoxDescricao.UseVisualStyleBackColor = true;
+            this.checkBoxDescricao.Click += new System.EventHandler(this.checkBoxDescricao_Click);
             // 
             // Categorias
             // 
@@ -419,9 +420,9 @@
             // 
             // listViewCategorias
             // 
-            this.listViewCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewCategorias.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderCategoria,
             this.columnHeaderOrcamento,
@@ -668,7 +669,7 @@
             this.labelSaldoValor.Name = "labelSaldoValor";
             this.labelSaldoValor.Size = new System.Drawing.Size(100, 13);
             this.labelSaldoValor.TabIndex = 5;
-            this.labelSaldoValor.Text = "R$ 0,00";
+            this.labelSaldoValor.Text = "R$";
             this.labelSaldoValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelTotalContasValor
@@ -677,7 +678,7 @@
             this.labelTotalContasValor.Name = "labelTotalContasValor";
             this.labelTotalContasValor.Size = new System.Drawing.Size(100, 13);
             this.labelTotalContasValor.TabIndex = 4;
-            this.labelTotalContasValor.Text = "R$ 0,00";
+            this.labelTotalContasValor.Text = "R$";
             this.labelTotalContasValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelTotalCaixaValor
@@ -686,7 +687,7 @@
             this.labelTotalCaixaValor.Name = "labelTotalCaixaValor";
             this.labelTotalCaixaValor.Size = new System.Drawing.Size(100, 13);
             this.labelTotalCaixaValor.TabIndex = 3;
-            this.labelTotalCaixaValor.Text = "R$ 0,00";
+            this.labelTotalCaixaValor.Text = "R$";
             this.labelTotalCaixaValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSaldo
@@ -716,6 +717,14 @@
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // comboBoxCategoria
+            // 
+            this.comboBoxCategoria.FormattingEnabled = true;
+            this.comboBoxCategoria.Location = new System.Drawing.Point(17, 34);
+            this.comboBoxCategoria.Name = "comboBoxCategoria";
+            this.comboBoxCategoria.Size = new System.Drawing.Size(200, 21);
+            this.comboBoxCategoria.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -740,8 +749,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageBusca.ResumeLayout(false);
             this.tabPageBusca.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBoxCategoria.ResumeLayout(false);
+            this.groupBoxCategoria.PerformLayout();
             this.groupBoxData.ResumeLayout(false);
             this.groupBoxData.PerformLayout();
             this.groupBoxDescricao.ResumeLayout(false);
@@ -769,8 +778,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderCategoria1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageBusca;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDataMaxima;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonBuscar;
@@ -805,11 +813,12 @@
         private System.Windows.Forms.CheckBox checkBoxCategoria;
         private System.Windows.Forms.CheckBox checkBoxData;
         private System.Windows.Forms.CheckBox checkBoxDescricao;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxCategoria;
         private System.Windows.Forms.GroupBox groupBoxData;
         private System.Windows.Forms.Button buttonLimpar;
         private System.Windows.Forms.ComboBox comboBoxMes;
         private System.Windows.Forms.ComboBox comboBoxAno;
+        private System.Windows.Forms.ComboBox comboBoxCategoria;
     }
 }
 

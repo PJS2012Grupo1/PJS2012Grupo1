@@ -20,14 +20,20 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public void atualizaGroupBoxDadosMes()
+        public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
+            contas *= -1;
             groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
+            labelTotalCaixaValor.Text = "R$ " + caixa.ToString("0.00");
+            labelTotalContasValor.Text = "R$ " + contas.ToString("0.00");
+            labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
 
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
+            float totalPositivo = 0f;
+            float totalNegativo = 0f;
             foreach (DataRow registro in dados.Tables["Registros"].Rows)
             {
                 ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
@@ -42,8 +48,13 @@ namespace WindowsFormsApplication1
                 item.SubItems.Add(subItemDataVencimento);
                 item.SubItems.Add(subItemDataPagamento);
                 listViewPrincipal.Items.Add(item);
+
+                if (float.Parse(subItemValor.Text) < 0)
+                    totalNegativo += float.Parse(subItemValor.Text);
+                else
+                    totalPositivo += float.Parse(subItemValor.Text);
             }
-            atualizaGroupBoxDadosMes();
+            atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
 
         }
 
@@ -51,11 +62,6 @@ namespace WindowsFormsApplication1
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> origin/master
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
@@ -222,6 +228,7 @@ namespace WindowsFormsApplication1
             Registros cadastroRegistro = new Registros(dados, adaptadorReg);
             cadastroRegistro.ShowDialog(this);
 
+
             atualizaListView();
         }
 
@@ -269,5 +276,47 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
+        private void verificaCheckBox()
+        {
+            if (checkBoxDescricao.Checked == true || checkBoxData.Checked == true || checkBoxCategoria.Checked == true)
+            {
+                buttonBuscar.Enabled = true;
+                buttonLimpar.Enabled = true;
+            }
+            else
+            {
+                buttonBuscar.Enabled = false;
+                buttonLimpar.Enabled = false;
+            }
+        }
+
+        private void checkBoxDescricao_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxDescricao.Checked == true)
+                groupBoxDescricao.Enabled = true;
+            else
+                groupBoxDescricao.Enabled = false;
+        }
+
+        private void checkBoxData_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxData.Checked == true)
+                groupBoxData.Enabled = true;
+            else
+                groupBoxData.Enabled = false;
+        }
+
+        private void checkBoxCategoria_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxCategoria.Checked == true)
+                groupBoxCategoria.Enabled = true;
+            else
+                groupBoxCategoria.Enabled = false;
+        }
+
     }
 }
