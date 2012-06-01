@@ -51,11 +51,7 @@ namespace WindowsFormsApplication1
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> origin/master
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
@@ -268,6 +264,39 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+
+
+            if (checkBoxData.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                            ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                            item.SubItems.Add(subitemValor);
+
+                            ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+                            item.SubItems.Add(subitemCategoria);
+
+                            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
+                            item.SubItems.Add(subItemStatus);
+                            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
+                            item.SubItems.Add(subItemDataVencimento);
+                            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
+                            item.SubItems.Add(subItemDataPagamento);
+
+                            listViewPrincipal.Items.Add(item);
+                    }
+                }
+            }
+        }
+
+        public void buscaRegistro()
+        {
+ 
         }
     }
 }

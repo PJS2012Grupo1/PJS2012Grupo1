@@ -55,7 +55,7 @@
             this.labelDataMinima = new System.Windows.Forms.Label();
             this.dateTimePickerDataMinima = new System.Windows.Forms.DateTimePicker();
             this.labelDataMaxima = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDataMaxima = new System.Windows.Forms.DateTimePicker();
             this.groupBoxDescricao = new System.Windows.Forms.GroupBox();
             this.labelDescricao = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -95,9 +95,9 @@
             // 
             // listViewPrincipal
             // 
-            this.listViewPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewPrincipal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderDescricao,
             this.columnHeaderValor,
@@ -207,7 +207,7 @@
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // groupBox1
-            //
+            // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(12, 419);
@@ -219,8 +219,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageBusca);
             this.tabControl1.Controls.Add(this.Categorias);
             this.tabControl1.Location = new System.Drawing.Point(518, 130);
@@ -297,7 +297,7 @@
             this.groupBoxData.Controls.Add(this.labelDataMinima);
             this.groupBoxData.Controls.Add(this.dateTimePickerDataMinima);
             this.groupBoxData.Controls.Add(this.labelDataMaxima);
-            this.groupBoxData.Controls.Add(this.dateTimePicker1);
+            this.groupBoxData.Controls.Add(this.dateTimePickerDataMaxima);
             this.groupBoxData.Location = new System.Drawing.Point(6, 131);
             this.groupBoxData.Name = "groupBoxData";
             this.groupBoxData.Size = new System.Drawing.Size(234, 73);
@@ -333,16 +333,16 @@
             this.labelDataMaxima.TabIndex = 7;
             this.labelDataMaxima.Text = "Data Máxima:";
             // 
-            // dateTimePicker1
+            // dateTimePickerDataMaxima
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 34);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
-            this.dateTimePicker1.TabIndex = 6;
-            this.dateTimePicker1.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDataMaxima.Location = new System.Drawing.Point(127, 34);
+            this.dateTimePickerDataMaxima.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePickerDataMaxima.Name = "dateTimePickerDataMaxima";
+            this.dateTimePickerDataMaxima.Size = new System.Drawing.Size(95, 20);
+            this.dateTimePickerDataMaxima.TabIndex = 6;
+            this.dateTimePickerDataMaxima.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
             // 
             // groupBoxDescricao
             // 
@@ -371,7 +371,7 @@
             this.textBox1.TabIndex = 2;
             // 
             // checkBoxCategoria
-            //
+            // 
             this.checkBoxCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCategoria.AutoSize = true;
@@ -451,8 +451,8 @@
             // 
             // panelTopo
             // 
-            this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopo.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelTopo.Controls.Add(this.comboBoxAno);
             this.panelTopo.Controls.Add(this.comboBoxMes);
@@ -770,7 +770,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageBusca;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDataMaxima;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonBuscar;
