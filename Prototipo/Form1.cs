@@ -63,13 +63,22 @@ namespace WindowsFormsApplication1
 
         }
 
+        public void carregaCat()
+        {
+            comboBoxCategoria.Items.Clear();
+            foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+            {
+                
+                comboBoxCategoria.Items.Add(registro["DescricaoCat"].ToString());
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento, r.DataCadastro from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
@@ -226,7 +235,8 @@ namespace WindowsFormsApplication1
             adaptadorReg.Fill(dados, "Registros");
             adaptadorCat.Fill(dados, "Categoria");
 
-            atualizaListView();            
+            atualizaListView();
+            carregaCat();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,10 +260,12 @@ namespace WindowsFormsApplication1
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+
             listViewPrincipal.Items.Clear();
-            if (checkBoxDescricao.Checked == true)
+
+            if (checkBoxCategoria.Checked == true && checkBoxDescricao.Checked == true)
             {
-                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '" + textBox1.Text + "%'");
+                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBox1.Text + "%'");
 
                 if (registros.Length != 0)
                 {
@@ -262,8 +274,24 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                     }
                 }
+                return;
             }
 
+            if (checkBoxDescricao.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBox1.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+
+                if (registros.Length != 0)
+                {
+                    listViewPrincipal.Items.Clear();
+                    foreach (DataRow registro in registros)
+                    {
+
+                        adicionaItensListView(registro);
+
+                    }
+                }
+            }
 
             if (checkBoxData.Checked == true)
             {
@@ -277,11 +305,32 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+
+            if (checkBoxCategoria.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        adicionaItensListView(registro);
+                    }
+                }
+            }
+
+    
         }
 
         public void buscaRegistro()
         {
  
+        }
+
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            atualizaListView();
         }
 
         private void verificaCheckBox()
@@ -324,6 +373,7 @@ namespace WindowsFormsApplication1
             else
                 groupBoxCategoria.Enabled = false;
         }
+
 
     }
 }

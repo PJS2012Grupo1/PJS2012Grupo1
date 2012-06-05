@@ -22,6 +22,11 @@ DataCadastro DATE not null,
 Parcelas int);
 GO
 
+
+
+
+
+
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Outros', 150.00);
