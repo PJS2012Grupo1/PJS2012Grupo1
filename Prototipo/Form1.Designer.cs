@@ -58,7 +58,7 @@
             this.dateTimePickerDataMaxima = new System.Windows.Forms.DateTimePicker();
             this.groupBoxDescricao = new System.Windows.Forms.GroupBox();
             this.labelDescricao = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxDescricao = new System.Windows.Forms.TextBox();
             this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             this.checkBoxData = new System.Windows.Forms.CheckBox();
             this.checkBoxDescricao = new System.Windows.Forms.CheckBox();
@@ -353,7 +353,7 @@
             // groupBoxDescricao
             // 
             this.groupBoxDescricao.Controls.Add(this.labelDescricao);
-            this.groupBoxDescricao.Controls.Add(this.textBox1);
+            this.groupBoxDescricao.Controls.Add(this.textBoxDescricao);
             this.groupBoxDescricao.Enabled = false;
             this.groupBoxDescricao.Location = new System.Drawing.Point(6, 29);
             this.groupBoxDescricao.Name = "groupBoxDescricao";
@@ -370,12 +370,12 @@
             this.labelDescricao.TabIndex = 10;
             this.labelDescricao.Text = "Descrição:";
             // 
-            // textBox1
+            // textBoxDescricao
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxDescricao.Location = new System.Drawing.Point(17, 34);
+            this.textBoxDescricao.Name = "textBoxDescricao";
+            this.textBoxDescricao.Size = new System.Drawing.Size(200, 20);
+            this.textBoxDescricao.TabIndex = 2;
             // 
             // checkBoxCategoria
             // 
@@ -422,7 +422,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 341);
+            this.Categorias.Size = new System.Drawing.Size(246, 373);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
@@ -782,7 +782,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMaxima;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxDescricao;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.TabPage Categorias;
         private System.Windows.Forms.ListView listViewCategorias;
