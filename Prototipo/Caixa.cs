@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
+using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+
 
 namespace WindowsFormsApplication1
 {
@@ -24,14 +24,43 @@ namespace WindowsFormsApplication1
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
-            novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
-            novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
-            novoRegistroCai["Categoria"] = comboBoxCategoriaCaixa.Text;
-            novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
-            novoRegistroCai["DataPagamento"] = dateTimePickerDataEntradaCaixa.Value;
-            adaptadorCat.Update(dados, "Registros");
-            Close();
+            if (textBoxDescricaoCaixa.Text == "")
+            {
+                labelCampoPreenchimento.Text = "*Campo descrição vazio.";
+                labelCampoPreenchimento.Visible = true;
+            }
+
+            else if (textBoxValorCaixa.Text == "")
+            {
+                labelCampoPreenchimento.Text = "*Campo valor vazio.";
+                labelCampoPreenchimento.Visible = true;
+            }
+
+            else if (comboBoxCategoriaCaixa.SelectedIndex == -1)
+            {
+                labelCampoPreenchimento.Text = "*Campo categoria vazio.";
+                labelCampoPreenchimento.Visible = true;
+            }
+            else
+            {
+                int categoria = 0;
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                {
+                    if (comboBoxCategoriaCaixa.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+                    else
+                        categoria = 0;
+                }
+                labelCampoPreenchimento.Visible = false;
+                DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
+                novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
+                novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
+                novoRegistroCai["Categoria"] = comboBoxCategoriaCaixa.Text;
+                novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
+                novoRegistroCai["DataPagamento"] = dateTimePickerDataEntradaCaixa.Value;
+                adaptadorCat.Update(dados, "Registros");
+                Close();
+            }
         }
 
         private void Limpar_Click(object sender, EventArgs e)
@@ -50,7 +79,10 @@ namespace WindowsFormsApplication1
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, DataCadastro) values (@Desc, @Valor, @Categoria, @DataCadastro)", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select Descricao, Valor, DataCadastro, Categoria;", conexao);
+            adaptadorCat.SelectCommand = comandoSelecaoReg;
+
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, DataCadastro, Categoria) values (@Desc, @Valor, @DataCadastro@Categoria)", conexao);
 
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
@@ -61,19 +93,17 @@ namespace WindowsFormsApplication1
             prmValor.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmValor);
 
-            SqlParameter prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
-            prmCategoria.SourceColumn = "Categoria";
-            prmCategoria.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmCategoria);
-
             SqlParameter prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
             prmDataCadastro.SourceColumn = "DataCadastro";
             prmDataCadastro.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmDataCadastro);
 
-            adaptadorCat.InsertCommand = comandoInsercaoReg;
+            SqlParameter prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
+            prmCategoria.SourceColumn = "Categoria";
+            prmCategoria.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmCategoria);         
 
-            
+            adaptadorCat.InsertCommand = comandoInsercaoReg;
         }
     }
 }
