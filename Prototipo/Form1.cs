@@ -66,10 +66,10 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento, r.DataCadastro, r.Categoria, r.Parcelas from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);

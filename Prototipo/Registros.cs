@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         DataSet dados;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
+        int radio = 3;
 
         public Registros(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
@@ -44,14 +45,23 @@ namespace WindowsFormsApplication1
             Close();
         }
 
+        private void radioButtonClicado(object sender, EventArgs e)
+        {
+            RadioButton radio_clicado = (RadioButton)sender;
+            radio = int.Parse(radio_clicado.Tag.ToString());
+        }
+
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
         {
             int status = 0;
-            //RadioButton radio_clicado = (RadioButton)sender;
-            //int radio = int.Parse(radio_clicado.Tag.ToString());
             //parameter.Value = DBNull.Value;
+            if (radio == 3)
+            {
+                labelCampoPreenchidos.Text = "Forma de pagamento não selecionada.";
+                labelCampoPreenchidos.Visible = true;
 
-            if (textBoxDescricaoRegistro.Text == "")
+            }
+            else if (textBoxDescricaoRegistro.Text == "")
             {
                 labelCampoPreenchidos.Text = "*Campo descrição vazio.";
                 labelCampoPreenchidos.Visible = true;
@@ -59,6 +69,7 @@ namespace WindowsFormsApplication1
             else if (comboBoxCategoriaRegistro.SelectedIndex == -1)
             {
                 labelCampoPreenchidos.Text = "*Campo categoria vazio.";
+                labelCampoPreenchidos.Visible = true;
             }
             else if (textBoxValorRegistro.Text == "")
             {
@@ -73,13 +84,13 @@ namespace WindowsFormsApplication1
                     if (comboBoxCategoriaRegistro.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
                     else
-                        categoria = 3;
+                        categoria = 0;
                 }
                 labelCampoPreenchidos.Visible = false;
                 DataRow novoRegistro = dados.Tables["Registros"].NewRow();
                 novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
                 novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
-                novoRegistro["Categoria"] = categoria;
+                novoRegistro["Categoria"] = 1;// categoria;
                 novoRegistro["Status1"] = status;
                 novoRegistro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
                 novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
@@ -96,7 +107,10 @@ namespace WindowsFormsApplication1
         private void Registros_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+
+            SqlCommand comandoSelecaoReg = new SqlCommand("select Descricao, Valor,  Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas from Registros;", conexao);
+            adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);

@@ -138,15 +138,14 @@
             // radioButtonPagamentoAvistaReg
             // 
             this.radioButtonPagamentoAvistaReg.AutoSize = true;
-            this.radioButtonPagamentoAvistaReg.Checked = true;
             this.radioButtonPagamentoAvistaReg.Location = new System.Drawing.Point(138, 105);
             this.radioButtonPagamentoAvistaReg.Name = "radioButtonPagamentoAvistaReg";
             this.radioButtonPagamentoAvistaReg.Size = new System.Drawing.Size(58, 17);
             this.radioButtonPagamentoAvistaReg.TabIndex = 4;
-            this.radioButtonPagamentoAvistaReg.TabStop = true;
             this.radioButtonPagamentoAvistaReg.Tag = "1";
             this.radioButtonPagamentoAvistaReg.Text = "Á Vista";
             this.radioButtonPagamentoAvistaReg.UseVisualStyleBackColor = true;
+            this.radioButtonPagamentoAvistaReg.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // label5
             // 
@@ -168,6 +167,7 @@
             this.radioButtonPagamentoParceladoReg.Text = "Parcelado";
             this.radioButtonPagamentoParceladoReg.UseVisualStyleBackColor = true;
             this.radioButtonPagamentoParceladoReg.CheckedChanged += new System.EventHandler(this.radioButtonPagamentoParceladoReg_CheckedChanged);
+            this.radioButtonPagamentoParceladoReg.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // radioButtonPagamentoRecorrenteReg
             // 
@@ -179,6 +179,7 @@
             this.radioButtonPagamentoRecorrenteReg.Tag = "2";
             this.radioButtonPagamentoRecorrenteReg.Text = "Recorrente";
             this.radioButtonPagamentoRecorrenteReg.UseVisualStyleBackColor = true;
+            this.radioButtonPagamentoRecorrenteReg.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // labelQtdeParcReg
             // 
