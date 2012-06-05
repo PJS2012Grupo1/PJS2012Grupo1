@@ -63,10 +63,19 @@ namespace WindowsFormsApplication1
 
         }
 
+        public void carregaCat()
+        {
+            comboBoxCategoria.Items.Clear();
+            foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+            {
+                
+                comboBoxCategoria.Items.Add(registro["DescricaoCat"].ToString());
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
@@ -226,7 +235,8 @@ namespace WindowsFormsApplication1
             adaptadorReg.Fill(dados, "Registros");
             adaptadorCat.Fill(dados, "Categoria");
 
-            atualizaListView();            
+            atualizaListView();
+            carregaCat();
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
