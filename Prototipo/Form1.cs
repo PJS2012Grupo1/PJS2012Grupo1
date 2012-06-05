@@ -78,7 +78,7 @@ namespace WindowsFormsApplication1
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento, r.DataCadastro from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
@@ -260,10 +260,26 @@ namespace WindowsFormsApplication1
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+
             listViewPrincipal.Items.Clear();
+
+            if (checkBoxCategoria.Checked == true && checkBoxDescricao.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBox1.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        adicionaItensListView(registro);
+                    }
+                }
+                return;
+            }
+
             if (checkBoxDescricao.Checked == true)
             {
-                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBox1.Text + "%'");
+                DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBox1.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
 
                 if (registros.Length != 0)
                 {
@@ -271,30 +287,11 @@ namespace WindowsFormsApplication1
                     foreach (DataRow registro in registros)
                     {
 
-                            
-                        ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-                        ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-                        item.SubItems.Add(subitemValor);
-
-                        ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
-                        item.SubItems.Add(subitemCategoria);
-
-                        ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
-                        item.SubItems.Add(subItemStatus);
-                        ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
-                        item.SubItems.Add(subItemDataVencimento);
-                        ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
-                        item.SubItems.Add(subItemDataPagamento);
-                          
-                        listViewPrincipal.Items.Add(item);
-                        
-
                         adicionaItensListView(registro);
 
                     }
                 }
             }
-
 
             if (checkBoxData.Checked == true)
             {
@@ -308,6 +305,21 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+
+            if (checkBoxCategoria.Checked == true)
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("DescricaoCat like '%" + comboBoxCategoria.SelectedItem.ToString() + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        adicionaItensListView(registro);
+                    }
+                }
+            }
+
+    
         }
 
         public void buscaRegistro()
