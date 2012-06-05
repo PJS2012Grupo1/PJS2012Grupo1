@@ -28,7 +28,8 @@ namespace WindowsFormsApplication1
             novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
             novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
             novoRegistroCai["Categoria"] = comboBoxCategoriaCaixa.Text;
-            novoRegistroCai["DataCadastro"] = dateTimePickerDataEntradaCaixa.Value;
+            novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
+            novoRegistroCai["DataPagamento"] = dateTimePickerDataEntradaCaixa.Value;
             adaptadorCat.Update(dados, "Registros");
             Close();
         }

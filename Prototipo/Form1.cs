@@ -32,15 +32,32 @@ namespace WindowsFormsApplication1
 
         public void adicionaItensListView(DataRow registro)
         {
+            string dataVencimento;
+            string dataPagamento;
+            string categoria = "";
+
+            if (registro["DataVencimento"].ToString() == "")
+                dataVencimento = " ";
+            else
+                dataVencimento = ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy");
+            if (registro["DataPagamento"].ToString() == "")
+                dataPagamento = " ";
+            else
+                dataPagamento = ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy");
+
+            foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
+                if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
+                    categoria = registroCat["DescricaoCat"].ToString();
+                
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
             ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["DescricaoCat"].ToString());
-            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
-            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy"));
-            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
+            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
+            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
+            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
+            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
             item.SubItems.Add(subItemValor);
             item.SubItems.Add(subItemCategoria);
-            item.SubItems.Add(subItemStatus);
+            item.SubItems.Add(subItemDataCadastro);
             item.SubItems.Add(subItemDataVencimento);
             item.SubItems.Add(subItemDataPagamento);
             listViewPrincipal.Items.Add(item);
@@ -67,18 +84,16 @@ namespace WindowsFormsApplication1
         {
             comboBoxCategoria.Items.Clear();
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
-            {
-                
                 comboBoxCategoria.Items.Add(registro["DescricaoCat"].ToString());
-            }
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento, r.DataCadastro from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
 
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
@@ -89,7 +104,7 @@ namespace WindowsFormsApplication1
 
 
             //Comandos para a inserção de dados
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -105,8 +120,8 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmCategoria);
 
-            SqlParameter prmStatus1 = new SqlParameter("@Status1", SqlDbType.TinyInt);
-            prmStatus1.SourceColumn = "Status1";
+            SqlParameter prmStatus1 = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmStatus1.SourceColumn = "Recorrente";
             prmStatus1.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmStatus1);
 
@@ -327,7 +342,6 @@ namespace WindowsFormsApplication1
         {
  
         }
-
 
         private void buttonLimpar_Click(object sender, EventArgs e)
         {

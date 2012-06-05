@@ -80,18 +80,15 @@ namespace WindowsFormsApplication1
             {
                 int categoria = 0;
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
-                {
                     if (comboBoxCategoriaRegistro.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
-                    else
-                        categoria = 0;
-                }
+
                 labelCampoPreenchidos.Visible = false;
                 DataRow novoRegistro = dados.Tables["Registros"].NewRow();
                 novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
                 novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
-                novoRegistro["Categoria"] = 1;// categoria;
-                novoRegistro["Status1"] = status;
+                novoRegistro["Categoria"] = categoria;
+                novoRegistro["Recorrente"] = status;
                 novoRegistro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
                 novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                 novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
@@ -107,12 +104,9 @@ namespace WindowsFormsApplication1
         private void Registros_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
-
-            SqlCommand comandoSelecaoReg = new SqlCommand("select Descricao, Valor,  Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas from Registros;", conexao);
-            adaptadorReg.SelectCommand = comandoSelecaoReg;
-
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Status1, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Status1, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             //prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -128,8 +122,8 @@ namespace WindowsFormsApplication1
             prmCategoria.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmCategoria);
 
-            SqlParameter prmStatus1 = new SqlParameter("@Status1", SqlDbType.TinyInt);
-            prmStatus1.SourceColumn = "Status1";
+            SqlParameter prmStatus1 = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmStatus1.SourceColumn = "Recorrente";
             prmStatus1.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmStatus1);
 
