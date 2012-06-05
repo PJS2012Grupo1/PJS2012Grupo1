@@ -22,11 +22,18 @@ DataCadastro DATE not null,
 Parcelas int);
 GO
 
+<<<<<<< HEAD
 
 
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Outros', 150.00);
+=======
+INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
+INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
+INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Outros', 150.00);
+INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Alimentação', 300.00);
+>>>>>>> origin/master
 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, DataPagamento, Parcelas, Status1) VALUES(1, 'Água', -35.50, getdate(),'05-23-2012', '06-09-2012', null, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, DataPagamento, Parcelas, Status1) VALUES(1, 'Lúz', -75.00, getdate(), '05-13-2012', '06-08-2012', null, 1);
@@ -36,3 +43,7 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento,
 
 select * from Registros;
 go
+
+select * from Categoria;
+go
+ 

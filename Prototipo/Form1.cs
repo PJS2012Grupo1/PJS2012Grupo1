@@ -15,45 +15,61 @@ namespace WindowsFormsApplication1
         DataSet dados = new DataSet();
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat = new SqlDataAdapter();
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        public void atualizaGroupBoxDadosMes()
+        public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
+            contas *= -1;
             groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
+            labelTotalCaixaValor.Text = "R$ " + caixa.ToString("0.00");
+            labelTotalContasValor.Text = "R$ " + contas.ToString("0.00");
+            labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
+        }
+
+        public void adicionaItensListView(DataRow registro)
+        {
+            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["DescricaoCat"].ToString());
+            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
+            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy"));
+            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemStatus);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewPrincipal.Items.Add(item);
         }
 
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
+            float totalPositivo = 0f;
+            float totalNegativo = 0f;
             foreach (DataRow registro in dados.Tables["Registros"].Rows)
             {
-                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-                ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
-                ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
-                ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy"));
-                ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy"));
-                item.SubItems.Add(subItemValor);
-                item.SubItems.Add(subItemCategoria);
-                item.SubItems.Add(subItemStatus);
-                item.SubItems.Add(subItemDataVencimento);
-                item.SubItems.Add(subItemDataPagamento);
-                listViewPrincipal.Items.Add(item);
+                adicionaItensListView(registro);
+                if (float.Parse(registro["Valor"].ToString()) < 0)
+                    totalNegativo += float.Parse(registro["Valor"].ToString());
+                else
+                    totalPositivo += float.Parse(registro["Valor"].ToString());
             }
-            atualizaGroupBoxDadosMes();
+            atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=MARCIA-PC\\SQLEXPRESS;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("Select * from Registros", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select r.Descricao, r.Valor, c.DescricaoCat, r.Status1, r.DataVencimento, r.DataPagamento from Registros as r, Categoria as c where r.Categoria = c.CodigoCat;", conexao);
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
             //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
@@ -210,12 +226,12 @@ namespace WindowsFormsApplication1
             adaptadorReg.Fill(dados, "Registros");
             adaptadorCat.Fill(dados, "Categoria");
 
-            atualizaListView();
+            atualizaListView();            
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros(dados, adaptadorReg);
+            Registros cadastroRegistro = new Registros(dados, adaptadorReg, adaptadorCat);
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
@@ -234,6 +250,7 @@ namespace WindowsFormsApplication1
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+            listViewPrincipal.Items.Clear();
             if (checkBoxDescricao.Checked == true)
             {
                 DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBox1.Text + "%'");
@@ -243,6 +260,7 @@ namespace WindowsFormsApplication1
                     listViewPrincipal.Items.Clear();
                     foreach (DataRow registro in registros)
                     {
+
                             
                         ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
                         ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
@@ -260,6 +278,9 @@ namespace WindowsFormsApplication1
                           
                         listViewPrincipal.Items.Add(item);
                         
+
+                        adicionaItensListView(registro);
+
                     }
                 }
             }
@@ -273,21 +294,7 @@ namespace WindowsFormsApplication1
                 {
                     foreach (DataRow registro in registros)
                     {
-                            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-                            ListViewItem.ListViewSubItem subitemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-                            item.SubItems.Add(subitemValor);
-
-                            ListViewItem.ListViewSubItem subitemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
-                            item.SubItems.Add(subitemCategoria);
-
-                            ListViewItem.ListViewSubItem subItemStatus = new ListViewItem.ListViewSubItem(item, registro["Status1"].ToString());
-                            item.SubItems.Add(subItemStatus);
-                            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
-                            item.SubItems.Add(subItemDataVencimento);
-                            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataPagamento"].ToString());
-                            item.SubItems.Add(subItemDataPagamento);
-
-                            listViewPrincipal.Items.Add(item);
+                        adicionaItensListView(registro);
                     }
                 }
             }
@@ -298,9 +305,53 @@ namespace WindowsFormsApplication1
  
         }
 
+
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
             atualizaListView();
         }
+
+        private void verificaCheckBox()
+        {
+            if (checkBoxDescricao.Checked == true || checkBoxData.Checked == true || checkBoxCategoria.Checked == true)
+            {
+                buttonBuscar.Enabled = true;
+                buttonLimpar.Enabled = true;
+            }
+            else
+            {
+                buttonBuscar.Enabled = false;
+                buttonLimpar.Enabled = false;
+            }
+        }
+
+        private void checkBoxDescricao_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxDescricao.Checked == true)
+                groupBoxDescricao.Enabled = true;
+            else
+                groupBoxDescricao.Enabled = false;
+        }
+
+        private void checkBoxData_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxData.Checked == true)
+                groupBoxData.Enabled = true;
+            else
+                groupBoxData.Enabled = false;
+        }
+
+        private void checkBoxCategoria_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxCategoria.Checked == true)
+                groupBoxCategoria.Enabled = true;
+            else
+                groupBoxCategoria.Enabled = false;
+        }
+
+
     }
 }
