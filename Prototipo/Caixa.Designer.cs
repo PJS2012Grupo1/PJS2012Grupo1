@@ -39,12 +39,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxCategoriaCaixa = new System.Windows.Forms.ComboBox();
+            this.labelCampoPreenchimento = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 23);
+            this.label2.Location = new System.Drawing.Point(9, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 1;
@@ -53,7 +54,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 71);
+            this.label3.Location = new System.Drawing.Point(9, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -62,7 +63,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(129, 71);
+            this.label4.Location = new System.Drawing.Point(150, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 3;
@@ -72,27 +73,27 @@
             // 
             this.textBoxDescricaoCaixa.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoCaixa.Name = "textBoxDescricaoCaixa";
-            this.textBoxDescricaoCaixa.Size = new System.Drawing.Size(371, 20);
+            this.textBoxDescricaoCaixa.Size = new System.Drawing.Size(406, 20);
             this.textBoxDescricaoCaixa.TabIndex = 1;
             // 
             // textBoxValorCaixa
             // 
-            this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 87);
+            this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 88);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
-            this.textBoxValorCaixa.Size = new System.Drawing.Size(99, 20);
+            this.textBoxValorCaixa.Size = new System.Drawing.Size(119, 20);
             this.textBoxValorCaixa.TabIndex = 2;
             // 
             // dateTimePickerDataEntradaCaixa
             // 
             this.dateTimePickerDataEntradaCaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(132, 87);
+            this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(153, 88);
             this.dateTimePickerDataEntradaCaixa.Name = "dateTimePickerDataEntradaCaixa";
             this.dateTimePickerDataEntradaCaixa.Size = new System.Drawing.Size(100, 20);
             this.dateTimePickerDataEntradaCaixa.TabIndex = 3;
             // 
             // buttonCadastrar
             // 
-            this.buttonCadastrar.Location = new System.Drawing.Point(126, 124);
+            this.buttonCadastrar.Location = new System.Drawing.Point(171, 124);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(75, 23);
             this.buttonCadastrar.TabIndex = 5;
@@ -102,7 +103,7 @@
             // 
             // Limpar
             // 
-            this.Limpar.Location = new System.Drawing.Point(217, 124);
+            this.Limpar.Location = new System.Drawing.Point(257, 124);
             this.Limpar.Name = "Limpar";
             this.Limpar.Size = new System.Drawing.Size(75, 23);
             this.Limpar.TabIndex = 6;
@@ -112,7 +113,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 124);
+            this.button1.Location = new System.Drawing.Point(343, 124);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -123,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(250, 71);
+            this.label1.Location = new System.Drawing.Point(270, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 11;
@@ -132,16 +133,29 @@
             // comboBoxCategoriaCaixa
             // 
             this.comboBoxCategoriaCaixa.FormattingEnabled = true;
-            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(253, 87);
+            this.comboBoxCategoriaCaixa.Items.AddRange(new object[] {
+            "Salario",
+            "Nda"});
+            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(273, 87);
             this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
-            this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(145, 21);
             this.comboBoxCategoriaCaixa.TabIndex = 4;
+            // 
+            // labelCampoPreenchimento
+            // 
+            this.labelCampoPreenchimento.AutoSize = true;
+            this.labelCampoPreenchimento.Location = new System.Drawing.Point(12, 129);
+            this.labelCampoPreenchimento.Name = "labelCampoPreenchimento";
+            this.labelCampoPreenchimento.Size = new System.Drawing.Size(0, 13);
+            this.labelCampoPreenchimento.TabIndex = 12;
+            this.labelCampoPreenchimento.Visible = false;
             // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 162);
+            this.ClientSize = new System.Drawing.Size(430, 161);
+            this.Controls.Add(this.labelCampoPreenchimento);
             this.Controls.Add(this.comboBoxCategoriaCaixa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -175,5 +189,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxCategoriaCaixa;
+        private System.Windows.Forms.Label labelCampoPreenchimento;
     }
 }
