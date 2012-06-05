@@ -156,6 +156,7 @@
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
+            this.Load += new System.EventHandler(this.Caixa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
