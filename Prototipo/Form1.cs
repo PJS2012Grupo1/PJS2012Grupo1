@@ -63,6 +63,35 @@ namespace WindowsFormsApplication1
             listViewPrincipal.Items.Add(item);
         }
 
+        public void adicionaCat()
+        {
+            float gasto = 0;
+            int c = 0;
+            //int t = 0;
+            DataRow[] registroCat = dados.Tables["Categoria"].Select("CodigoCat > 0");
+            DataRow[] registro = dados.Tables["Registros"].Select("Codigo > 0");
+            foreach (DataRow categoria in dados.Tables["Categoria"].Rows)
+            {
+                c = 0;
+                ListViewItem item = new ListViewItem(categoria["DescricaoCat"].ToString());
+                ListViewItem.ListViewSubItem subItemOrcamento = new ListViewItem.ListViewSubItem(item, categoria["Orcamento"].ToString());
+                do
+                {// FOR
+                    if (registro[c]["Categoria"].ToString() == registroCat[c]["CodigoCat"].ToString())
+                        gasto += float.Parse(registro[c]["Valor"].ToString());
+                    c++;
+                    //t++;
+                } while (c < registro.Length);
+
+               ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
+               
+               item.SubItems.Add(subItemOrcamento);
+               item.SubItems.Add(subItemConta);
+               listViewCategorias.Items.Add(item);
+                
+            }
+        }
+
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
@@ -252,6 +281,7 @@ namespace WindowsFormsApplication1
             adaptadorCat.Fill(dados, "Categoria");
 
             atualizaListView();
+            adicionaCat();
             carregaCat();
         }
 
