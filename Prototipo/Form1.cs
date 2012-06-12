@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
@@ -303,8 +302,9 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa(dados, adaptadorCat);
+            Caixa cadastroCaixa = new Caixa(dados, adaptadorReg, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
+            atualizaListView();
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
