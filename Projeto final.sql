@@ -10,6 +10,8 @@ DescricaoCat VARCHAR(20) NOT NULL,
 Orcamento DECIMAL(6,2) NOT NULL);
 GO
 
+select codigocat from Categoria;
+
 CREATE TABLE Registros(
 Codigo INT NOT NULL PRIMARY KEY IDENTITY,
 Descricao VARCHAR(40) NOT NULL ,
