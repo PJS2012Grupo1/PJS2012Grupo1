@@ -121,7 +121,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=pc02lab3\\MSSQLSERVER1;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
@@ -474,12 +474,8 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
-<<<<<<< HEAD
-            //adicionaCat();
             carregaCat();
-=======
             adicionaCat();
->>>>>>> origin/master
         }
 
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
@@ -488,10 +484,11 @@ namespace WindowsFormsApplication1
             {
                 if (registro["Codigo"].ToString() == listViewPrincipal.SelectedItems[0].Tag)
                 {
-                    int codigo = listViewPrincipal.SelectedItems[0].Tag.ToString();
-                    Registros cadastroPrograma = new Registros(codigo, true);
-                    cadastroPrograma.ShowDialog(this);
-                    break;
+                    MessageBox.Show(listViewPrincipal.SelectedItems[0].Tag.ToString());
+                    //int codigo = listViewPrincipal.SelectedItems[0].Tag.ToString();
+                    //Registros cadastroPrograma = new Registros(codigo, true);
+                    //cadastroPrograma.ShowDialog(this);
+                    //break;
                 }
             }          
         }

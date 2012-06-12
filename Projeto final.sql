@@ -21,10 +21,6 @@ DataPagamento DATE,
 DataCadastro DATE NOT NULL,
 Parcelas INT NULL);
 GO
-<<<<<<< HEAD
-=======
---Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente
->>>>>>> origin/master
 
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
@@ -56,11 +52,9 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(3, 'Celular', -600.00, getdate(), '05-20-2012', '05-20-2012', 12, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Geladeira', -900.00, getdate(), '05-20-2012', '05-20-2012', 12, 1);
 
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente, Parcelas) VALUES(3, 'Salário', 2000.00, getdate(), '01-20-2012', 2, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente, Parcelas) VALUES(3, 'MegaSena', 800.00, getdate(), '06-01-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente, Parcelas) VALUES(3, 'Aposta', 150.00, getdate(), '06-02-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente, Parcelas) VALUES(3, 'Esmola', 15.00, getdate(), '06-04-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente, Parcelas) VALUES(3, 'Auxilio financeiro', 50.00, getdate(), '06-05-2012', 2, 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, recorrente) VALUES(3, 'Salário', 2000.00, getdate(), 2);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, recorrente) VALUES(3, 'Esmola', 15.00, '06-04-2012', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, recorrente) VALUES(3, 'Auxilio financeiro', 50.00, '06-05-2012', 2);
 
 select * from Registros;
 go
