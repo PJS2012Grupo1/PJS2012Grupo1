@@ -480,17 +480,10 @@ namespace WindowsFormsApplication1
 
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
-            foreach (DataRow registro in dados.Tables["Registros"].Rows)
-            {
-                if (registro["Codigo"].ToString() == listViewPrincipal.SelectedItems[0].Tag)
-                {
-                    MessageBox.Show(listViewPrincipal.SelectedItems[0].Tag.ToString());
-                    //int codigo = listViewPrincipal.SelectedItems[0].Tag.ToString();
-                    //Registros cadastroPrograma = new Registros(codigo, true);
-                    //cadastroPrograma.ShowDialog(this);
-                    //break;
-                }
-            }          
+            int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
+            Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
+            cadastroPrograma.ShowDialog(this);
+            atualizaListView();
         }
 
 
