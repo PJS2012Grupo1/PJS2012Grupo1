@@ -55,6 +55,7 @@ namespace WindowsFormsApplication1
             ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
             ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
             ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+            item.Tag = registro["Codigo"].ToString();
             item.SubItems.Add(subItemValor);
             item.SubItems.Add(subItemCategoria);
             item.SubItems.Add(subItemDataCadastro);
@@ -421,12 +422,22 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
-            //adicionacat();
+            //adicionaCat();
+            carregaCat();
         }
 
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
-            
+            foreach (DataRow registro in dados.Tables["Registros"].Rows)
+            {
+                if (registro["Codigo"].ToString() == listViewPrincipal.SelectedItems[0].Tag)
+                {
+                    int codigo = listViewPrincipal.SelectedItems[0].Tag.ToString();
+                    Registros cadastroPrograma = new Registros(codigo, true);
+                    cadastroPrograma.ShowDialog(this);
+                    break;
+                }
+            }          
         }
 
 

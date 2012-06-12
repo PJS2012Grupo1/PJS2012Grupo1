@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
     public partial class Registros : Form
     {
         DataSet dados;
+        int codigo;
+        bool atualiza = false;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
         int radio = 3;
@@ -21,6 +23,16 @@ namespace WindowsFormsApplication1
         {
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
+            //this.adaptadorReg = adaptadorReg;
+            InitializeComponent();
+        }
+
+        public Registros(int codigo, bool atualiza)
+        {
+            this.atualiza = atualiza;
+            this.codigo = codigo;
+            //this.dados = dados;
+            //this.adaptadorCat = adaptadorCat;
             //this.adaptadorReg = adaptadorReg;
             InitializeComponent();
         }
@@ -163,6 +175,17 @@ namespace WindowsFormsApplication1
 
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaRegistro.Items.Add(registro["DescricaoCat"].ToString());
+
+            if (atualiza)
+            {
+                foreach (DataRow registro in dados.Tables["Registros"].Rows)
+                {
+                    if (int.Parse(registro["Codigo"].ToString()) == codigo)
+                    {
+                        textBoxDescricaoRegistro.Text = registro["Descricao"].ToString();
+                    }
+                }
+            }
         }
     }
 }

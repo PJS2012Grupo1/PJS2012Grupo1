@@ -10,8 +10,6 @@ DescricaoCat VARCHAR(20) NOT NULL,
 Orcamento DECIMAL(6,2) NOT NULL);
 GO
 
-select codigocat from Categoria;
-
 CREATE TABLE Registros(
 Codigo INT NOT NULL PRIMARY KEY IDENTITY,
 Descricao VARCHAR(40) NOT NULL ,
@@ -21,9 +19,8 @@ Recorrente tinyint,
 DataVencimento DATE,
 DataPagamento DATE,
 DataCadastro DATE NOT NULL,
-Parcelas int NOT NULL);
+Parcelas INT NULL);
 GO
-Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente
 
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
@@ -39,7 +36,7 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -15.50, getdate(), '04-16-2012', '04-16-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -49.50, getdate(), '04-21-2012', '04-21-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -60.50, getdate(), '04-26-2012', '04-26-2012',  1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -20.50, getdate(), '04-31-2012', '04-31-2012',  1, 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -20.50, getdate(), '04-30-2012', '04-30-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(5, 'Remédio', -35.50, getdate(), '04-19-2012', '04-19-2012', 1, 1); 
            
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Água', -35.50, getdate(), '05-03-2012', '05-05-2012', 1, 1);
