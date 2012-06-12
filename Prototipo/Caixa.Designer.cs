@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Caixa
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
