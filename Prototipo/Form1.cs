@@ -474,12 +474,12 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
-<<<<<<< HEAD
+
             //adicionaCat();
             carregaCat();
-=======
+
             adicionaCat();
->>>>>>> origin/master
+
         }
 
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
