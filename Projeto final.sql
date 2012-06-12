@@ -21,6 +21,10 @@ DataPagamento DATE,
 DataCadastro DATE NOT NULL,
 Parcelas INT NULL);
 GO
+<<<<<<< HEAD
+=======
+--Categoria, Descricao, Valor, DataCadastro, DataPagamento, recorrente
+>>>>>>> origin/master
 
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Carro', 350.00);
