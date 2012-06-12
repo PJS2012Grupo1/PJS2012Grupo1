@@ -66,29 +66,29 @@ namespace WindowsFormsApplication1
         public void adicionaCat()
         {
             float gasto = 0;
-            int c = 0;
+            //int c = 0;
             //int t = 0;
             DataRow[] registroCat = dados.Tables["Categoria"].Select("CodigoCat > 0");
             DataRow[] registro = dados.Tables["Registros"].Select("Codigo > 0");
             foreach (DataRow categoria in dados.Tables["Categoria"].Rows)
             {
-                c = 0;
+                
                 ListViewItem item = new ListViewItem(categoria["DescricaoCat"].ToString());
                 ListViewItem.ListViewSubItem subItemOrcamento = new ListViewItem.ListViewSubItem(item, categoria["Orcamento"].ToString());
-                do
-                {// FOR
-                    if (registro[c]["Categoria"].ToString() == registroCat[c]["CodigoCat"].ToString())
-                        gasto += float.Parse(registro[c]["Valor"].ToString());
-                    c++;
-                    //t++;
-                } while (c < registro.Length);
+
+                for (int i = 0; i < registro.Length; i++)
+                {
+                    if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
+                        gasto += float.Parse(registro[i]["Valor"].ToString());
+                }
+                
 
                ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
                
                item.SubItems.Add(subItemOrcamento);
                item.SubItems.Add(subItemConta);
                listViewCategorias.Items.Add(item);
-                
+               gasto = 0;
             }
         }
 
@@ -119,7 +119,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=pc02lab3\\MSSQLSERVER1;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
             SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
@@ -327,6 +327,24 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            if (checkBoxData.Checked == true && (checkBoxCategoria.Checked == true || checkBoxDescricao.Checked == true))
+            {
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                    if (comboBoxCategoria.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBoxDescricao.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        adicionaItensListView(registro);
+                    }
+                }
+                return;
+            }
+
             if (checkBoxDescricao.Checked == true)
             {
                 DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBoxDescricao.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
@@ -346,7 +364,6 @@ namespace WindowsFormsApplication1
             if (checkBoxData.Checked == true)
             {
                 
-
                 DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
 
                 if (registros.Length != 0)
@@ -374,7 +391,10 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                     }
                 }
-            }    
+            }
+
+         
+
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
