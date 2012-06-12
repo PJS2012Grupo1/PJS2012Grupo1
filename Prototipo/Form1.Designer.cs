@@ -83,6 +83,7 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
+            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -206,6 +207,8 @@
             // 
             // sairToolStripMenuItem
             // 
+            this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.apresentarToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
@@ -433,7 +436,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 414);
+            this.Categorias.Size = new System.Drawing.Size(246, 361);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
@@ -737,6 +740,13 @@
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // apresentarToolStripMenuItem
+            // 
+            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
+            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apresentarToolStripMenuItem.Text = "Categoria";
+           // this.apresentarToolStripMenuItem.Click += new System.EventHandler(this.apresentarToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -833,6 +843,7 @@
         private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem apresentarToolStripMenuItem;
     }
 }
 

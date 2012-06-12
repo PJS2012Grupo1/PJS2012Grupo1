@@ -79,10 +79,11 @@ namespace WindowsFormsApplication1
 
                 for (int i = 0; i < registro.Length; i++)
                 {
-                    if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
-                        gasto += float.Parse(registro[i]["Valor"].ToString());
+                    if (float.Parse(registro[i]["Valor"].ToString()) < 0)
+                        if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
+                            gasto += float.Parse(registro[i]["Valor"].ToString());
                 }
-                
+                gasto *= -1;
 
                ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
                
@@ -484,6 +485,11 @@ namespace WindowsFormsApplication1
             Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
             cadastroPrograma.ShowDialog(this);
             atualizaListView();
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 
