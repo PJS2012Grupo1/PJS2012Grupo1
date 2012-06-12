@@ -65,6 +65,7 @@ namespace WindowsFormsApplication1
 
         public void adicionaCat()
         {
+            listViewCategorias.Items.Clear();
             float gasto = 0;
             //int c = 0;
             //int t = 0;
@@ -291,6 +292,7 @@ namespace WindowsFormsApplication1
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
+            adicionaCat();
         }
 
         private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -471,7 +473,7 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
-            //adicionacat();
+            adicionaCat();
         }
 
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
