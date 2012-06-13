@@ -270,8 +270,9 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa(dados, adaptadorCat);
+            Caixa cadastroCaixa = new Caixa(dados, adaptadorReg, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
+            atualizaListView();
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
@@ -424,11 +425,10 @@ namespace WindowsFormsApplication1
             //adicionacat();
         }
 
-        private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            Relatorio relatorio = new Relatorio(dados);
+            relatorio.ShowDialog(this);
         }
-
-
     }
 }

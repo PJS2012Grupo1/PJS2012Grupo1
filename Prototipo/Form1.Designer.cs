@@ -35,6 +35,7 @@
             this.columnHeaderCadastro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataVencimento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCodigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.cadatroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,10 @@
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.semanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.anoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -83,7 +88,6 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
-            this.columnHeaderCodigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -115,7 +119,6 @@
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
-            this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
             // 
             // columnHeaderDescricao
             // 
@@ -145,7 +148,11 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
-            this.columnHeaderDataPagamento.Width = 41;
+            this.columnHeaderDataPagamento.Width = 112;
+            // 
+            // columnHeaderCodigo
+            // 
+            this.columnHeaderCodigo.Text = "codigo";
             // 
             // menuStripPrincipal
             // 
@@ -208,9 +215,42 @@
             // 
             // sairToolStripMenuItem
             // 
+            this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.categoriaToolStripMenuItem,
+            this.semanaToolStripMenuItem,
+            this.mêsToolStripMenuItem,
+            this.anoToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.categoriaToolStripMenuItem.Text = "Categoria";
+            this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
+            // 
+            // semanaToolStripMenuItem
+            // 
+            this.semanaToolStripMenuItem.Name = "semanaToolStripMenuItem";
+            this.semanaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.semanaToolStripMenuItem.Text = "Semana";
+            this.semanaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
+            // 
+            // mêsToolStripMenuItem
+            // 
+            this.mêsToolStripMenuItem.Name = "mêsToolStripMenuItem";
+            this.mêsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mêsToolStripMenuItem.Text = "Mês";
+            this.mêsToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
+            // 
+            // anoToolStripMenuItem
+            // 
+            this.anoToolStripMenuItem.Name = "anoToolStripMenuItem";
+            this.anoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.anoToolStripMenuItem.Text = "Ano";
+            this.anoToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem1
             // 
@@ -739,10 +779,6 @@
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // columnHeaderCodigo
-            // 
-            this.columnHeaderCodigo.Text = "codigo";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -840,6 +876,10 @@
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem2;
         protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
+        private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem semanaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mêsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem anoToolStripMenuItem;
     }
 }
 
