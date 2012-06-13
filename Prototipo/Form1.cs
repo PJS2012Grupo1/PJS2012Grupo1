@@ -47,13 +47,20 @@ namespace WindowsFormsApplication1
             foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
                 if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
                     categoria = registroCat["DescricaoCat"].ToString();
-                
+            
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
             ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
             ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
             ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
             ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
             ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+            if (float.Parse(registro["Valor"].ToString()) < 0)
+                subItemValor.ForeColor = Color.Red;
+
+            else
+                subItemValor.ForeColor = Color.Blue;
+
+            item.UseItemStyleForSubItems = false;
             item.Tag = registro["Codigo"].ToString();
             item.SubItems.Add(subItemValor);
             item.SubItems.Add(subItemCategoria);
@@ -61,6 +68,8 @@ namespace WindowsFormsApplication1
             item.SubItems.Add(subItemDataVencimento);
             item.SubItems.Add(subItemDataPagamento);
             listViewPrincipal.Items.Add(item);
+    
+
         }
 
         public void adicionaCat()
@@ -124,7 +133,7 @@ namespace WindowsFormsApplication1
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros order by Categoria, Descricao;", conexao);
 
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 

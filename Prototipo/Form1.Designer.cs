@@ -43,6 +43,7 @@
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -83,7 +84,6 @@
             this.labelSaldo = new System.Windows.Forms.Label();
             this.labelTotalContas = new System.Windows.Forms.Label();
             this.labelTotalCaixa = new System.Windows.Forms.Label();
-            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
@@ -124,6 +124,7 @@
             // columnHeaderValor
             // 
             this.columnHeaderValor.Text = "Valor";
+            this.columnHeaderValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderValor.Width = 65;
             // 
             // columnHeaderCategoria1
@@ -212,6 +213,12 @@
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
+            // 
+            // apresentarToolStripMenuItem
+            // 
+            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
+            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apresentarToolStripMenuItem.Text = "Categoria";
             // 
             // sairToolStripMenuItem1
             // 
@@ -466,11 +473,13 @@
             // columnHeaderOrcamento
             // 
             this.columnHeaderOrcamento.Text = "Orçamento";
+            this.columnHeaderOrcamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderOrcamento.Width = 65;
             // 
             // columnHeaderGasto
             // 
             this.columnHeaderGasto.Text = "Gasto";
+            this.columnHeaderGasto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderGasto.Width = 65;
             // 
             // panelTopo
@@ -739,13 +748,6 @@
             this.labelTotalCaixa.TabIndex = 0;
             this.labelTotalCaixa.Text = "Total do Caixa:";
             this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // apresentarToolStripMenuItem
-            // 
-            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
-            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.apresentarToolStripMenuItem.Text = "Categoria";
-           // this.apresentarToolStripMenuItem.Click += new System.EventHandler(this.apresentarToolStripMenuItem_Click);
             // 
             // Form1
             // 
