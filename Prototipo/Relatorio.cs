@@ -26,12 +26,12 @@ namespace WindowsFormsApplication1
         private void Relatorio_Load(object sender, EventArgs e)
         {
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
-                comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());  
+                comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
     }
 }
