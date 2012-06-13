@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
@@ -13,6 +12,8 @@ namespace WindowsFormsApplication1
     public partial class Registros : Form
     {
         DataSet dados;
+        int codigo;
+        bool atualiza = false;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
         int radio = 3;
@@ -22,6 +23,16 @@ namespace WindowsFormsApplication1
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
             //this.adaptadorReg = adaptadorReg;
+            InitializeComponent();
+        }
+
+        public Registros(int codigo, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
+        {
+            this.atualiza = atualiza;
+            this.codigo = codigo;
+            this.dados = dados;
+            this.adaptadorCat = adaptadorCat;
+            this.adaptadorReg = adaptadorReg;
             InitializeComponent();
         }
 
@@ -96,7 +107,13 @@ namespace WindowsFormsApplication1
                         categoria = int.Parse(registro["CodigoCat"].ToString());
 
                 labelCampoPreenchidos.Visible = false;
-                DataRow novoRegistro = dados.Tables["Registros"].NewRow();
+                DataRow novoRegistro;
+
+                if (atualiza)
+                    novoRegistro = dados.Tables["Comprados"].Rows.Find(codigo);
+                else
+                    novoRegistro = dados.Tables["Registros"].NewRow();
+
                 novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
                 novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
                 novoRegistro["Categoria"] = categoria;
@@ -105,9 +122,14 @@ namespace WindowsFormsApplication1
                 novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                 novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                 novoRegistro["Parcelas"] = parcelas;
-                dados.Tables["Registros"].Rows.Add(novoRegistro);
 
-                adaptadorReg.Update(dados, "Registros");
+                if (atualiza)
+                    adaptadorReg.Update(dados, "Registros");
+                else
+                {
+                    dados.Tables["Registros"].Rows.Add(novoRegistro);
+                    adaptadorReg.Update(dados, "Registros");
+                }
 
                 Close();
             }
@@ -116,7 +138,7 @@ namespace WindowsFormsApplication1
         private void Registros_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=pc02lab3\\MSSQLSERVER1;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
             
             SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
@@ -159,10 +181,29 @@ namespace WindowsFormsApplication1
             prmParcelas.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmParcelas);
 
+
+
             adaptadorReg.InsertCommand = comandoInsercaoReg;
+            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaRegistro.Items.Add(registro["DescricaoCat"].ToString());
+
+            if (atualiza)
+            {
+                DataRow registro = dados.Tables["Comprados"].Rows.Find(codigo);
+                string categoria = " ";
+
+                foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
+                    if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
+                        categoria = registroCat["DescricaoCat"].ToString();
+
+                textBoxDescricaoRegistro.Text = registro["Descricao"].ToString();
+                comboBoxCategoriaRegistro.Text = categoria;
+                textBoxValorRegistro.Text = registro["Valor"].ToString();
+                dateTimePickerDataPagamentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
+                dateTimePickerDataVencimentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
+            }
         }
     }
 }

@@ -44,10 +44,14 @@
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.semanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -110,12 +114,11 @@
             this.columnHeaderCategoria1,
             this.columnHeaderCadastro,
             this.columnHeaderDataVencimento,
-            this.columnHeaderDataPagamento,
-            this.columnHeaderCodigo});
+            this.columnHeaderDataPagamento});
             this.listViewPrincipal.FullRowSelect = true;
             this.listViewPrincipal.Location = new System.Drawing.Point(12, 75);
             this.listViewPrincipal.Name = "listViewPrincipal";
-            this.listViewPrincipal.Size = new System.Drawing.Size(661, 370);
+            this.listViewPrincipal.Size = new System.Drawing.Size(883, 358);
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
@@ -128,6 +131,7 @@
             // columnHeaderValor
             // 
             this.columnHeaderValor.Text = "Valor";
+            this.columnHeaderValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderValor.Width = 65;
             // 
             // columnHeaderCategoria1
@@ -148,11 +152,15 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
+
             this.columnHeaderDataPagamento.Width = 112;
             // 
             // columnHeaderCodigo
             // 
             this.columnHeaderCodigo.Text = "codigo";
+
+            this.columnHeaderDataPagamento.Width = 90;
+
             // 
             // menuStripPrincipal
             // 
@@ -165,7 +173,7 @@
             this.menuStripPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuStripPrincipal.Name = "menuStripPrincipal";
-            this.menuStripPrincipal.Size = new System.Drawing.Size(945, 24);
+            this.menuStripPrincipal.Size = new System.Drawing.Size(1167, 24);
             this.menuStripPrincipal.TabIndex = 1;
             // 
             // cadatroToolStripMenuItem
@@ -216,14 +224,19 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+
             this.categoriaToolStripMenuItem,
             this.semanaToolStripMenuItem,
             this.mêsToolStripMenuItem,
-            this.anoToolStripMenuItem});
+            this.anoToolStripMenuItem,
+
+            this.apresentarToolStripMenuItem});
+
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
             // 
+
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
@@ -251,6 +264,13 @@
             this.anoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.anoToolStripMenuItem.Text = "Ano";
             this.anoToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
+
+            // apresentarToolStripMenuItem
+            // 
+            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
+            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apresentarToolStripMenuItem.Text = "Categoria";
+
             // 
             // sairToolStripMenuItem1
             // 
@@ -263,9 +283,9 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 451);
+            this.groupBox1.Location = new System.Drawing.Point(12, 439);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(661, 78);
+            this.groupBox1.Size = new System.Drawing.Size(883, 78);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informações";
@@ -276,10 +296,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageBusca);
             this.tabControl1.Controls.Add(this.Categorias);
-            this.tabControl1.Location = new System.Drawing.Point(679, 130);
+            this.tabControl1.Location = new System.Drawing.Point(901, 130);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(254, 399);
+            this.tabControl1.Size = new System.Drawing.Size(254, 387);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPageBusca
@@ -295,7 +315,7 @@
             this.tabPageBusca.Location = new System.Drawing.Point(4, 22);
             this.tabPageBusca.Name = "tabPageBusca";
             this.tabPageBusca.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBusca.Size = new System.Drawing.Size(246, 373);
+            this.tabPageBusca.Size = new System.Drawing.Size(246, 361);
             this.tabPageBusca.TabIndex = 0;
             this.tabPageBusca.Text = "Busca";
             this.tabPageBusca.UseVisualStyleBackColor = true;
@@ -475,7 +495,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 373);
+            this.Categorias.Size = new System.Drawing.Size(246, 361);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
@@ -505,11 +525,13 @@
             // columnHeaderOrcamento
             // 
             this.columnHeaderOrcamento.Text = "Orçamento";
+            this.columnHeaderOrcamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderOrcamento.Width = 65;
             // 
             // columnHeaderGasto
             // 
             this.columnHeaderGasto.Text = "Gasto";
+            this.columnHeaderGasto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderGasto.Width = 65;
             // 
             // panelTopo
@@ -525,7 +547,7 @@
             this.panelTopo.Controls.Add(this.labelNomeMes);
             this.panelTopo.Location = new System.Drawing.Point(12, 34);
             this.panelTopo.Name = "panelTopo";
-            this.panelTopo.Size = new System.Drawing.Size(661, 35);
+            this.panelTopo.Size = new System.Drawing.Size(883, 35);
             this.panelTopo.TabIndex = 4;
             // 
             // comboBoxAno
@@ -634,7 +656,7 @@
             "2048",
             "2049",
             "2050"});
-            this.comboBoxAno.Location = new System.Drawing.Point(562, 7);
+            this.comboBoxAno.Location = new System.Drawing.Point(784, 7);
             this.comboBoxAno.Name = "comboBoxAno";
             this.comboBoxAno.Size = new System.Drawing.Size(60, 21);
             this.comboBoxAno.TabIndex = 6;
@@ -656,7 +678,7 @@
             "Outubro",
             "Novembro",
             "Dezembro"});
-            this.comboBoxMes.Location = new System.Drawing.Point(456, 7);
+            this.comboBoxMes.Location = new System.Drawing.Point(678, 7);
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
             this.comboBoxMes.TabIndex = 5;
@@ -664,7 +686,7 @@
             // buttonIrData
             // 
             this.buttonIrData.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonIrData.Location = new System.Drawing.Point(628, 6);
+            this.buttonIrData.Location = new System.Drawing.Point(850, 6);
             this.buttonIrData.Name = "buttonIrData";
             this.buttonIrData.Size = new System.Drawing.Size(30, 23);
             this.buttonIrData.TabIndex = 4;
@@ -674,7 +696,7 @@
             // buttonProximo
             // 
             this.buttonProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProximo.Location = new System.Drawing.Point(285, 6);
+            this.buttonProximo.Location = new System.Drawing.Point(396, 6);
             this.buttonProximo.Name = "buttonProximo";
             this.buttonProximo.Size = new System.Drawing.Size(60, 23);
             this.buttonProximo.TabIndex = 2;
@@ -684,7 +706,7 @@
             // buttonAnterior
             // 
             this.buttonAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonAnterior.Location = new System.Drawing.Point(83, 6);
+            this.buttonAnterior.Location = new System.Drawing.Point(194, 6);
             this.buttonAnterior.Name = "buttonAnterior";
             this.buttonAnterior.Size = new System.Drawing.Size(60, 23);
             this.buttonAnterior.TabIndex = 1;
@@ -695,7 +717,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(149, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(260, 10);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -704,9 +726,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 532);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 520);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(945, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1167, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -719,7 +741,7 @@
             this.groupBoxDadosMes.Controls.Add(this.labelSaldo);
             this.groupBoxDadosMes.Controls.Add(this.labelTotalContas);
             this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixa);
-            this.groupBoxDadosMes.Location = new System.Drawing.Point(679, 27);
+            this.groupBoxDadosMes.Location = new System.Drawing.Point(901, 27);
             this.groupBoxDadosMes.Name = "groupBoxDadosMes";
             this.groupBoxDadosMes.Size = new System.Drawing.Size(254, 97);
             this.groupBoxDadosMes.TabIndex = 6;
@@ -783,7 +805,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 554);
+            this.ClientSize = new System.Drawing.Size(1167, 542);
             this.Controls.Add(this.listViewPrincipal);
             this.Controls.Add(this.groupBoxDadosMes);
             this.Controls.Add(this.statusStrip1);
@@ -875,11 +897,15 @@
         private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem2;
+
         protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem semanaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mêsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem anoToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripMenuItem apresentarToolStripMenuItem;
+
     }
 }
 

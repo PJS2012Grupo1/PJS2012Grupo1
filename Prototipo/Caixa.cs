@@ -48,13 +48,15 @@ namespace WindowsFormsApplication1
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                     if (comboBoxCategoriaCaixa.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
-                   
+
                 labelCampoPreenchimento.Visible = false;
                 DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
                 novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
                 novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
                 novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
+
                 novoRegistroCai["Categoria"] = categoria;              
+
                 dados.Tables["Registros"].Rows.Add(novoRegistroCai);
                 adaptadorReg.Update(dados, "Registros");
                 Close();
@@ -103,7 +105,9 @@ namespace WindowsFormsApplication1
 
             adaptadorReg.InsertCommand = comandoInsercaoCai;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+
                 comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());       
+
         }
     }
 }

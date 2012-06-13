@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
@@ -48,19 +47,60 @@ namespace WindowsFormsApplication1
             foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
                 if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
                     categoria = registroCat["DescricaoCat"].ToString();
-                
+            
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
             ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
             ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
             ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
             ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
             ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+            if (float.Parse(registro["Valor"].ToString()) < 0)
+                subItemValor.ForeColor = Color.Red;
+
+            else
+                subItemValor.ForeColor = Color.Blue;
+
+            item.UseItemStyleForSubItems = false;
+            item.Tag = registro["Codigo"].ToString();
             item.SubItems.Add(subItemValor);
             item.SubItems.Add(subItemCategoria);
             item.SubItems.Add(subItemDataCadastro);
             item.SubItems.Add(subItemDataVencimento);
             item.SubItems.Add(subItemDataPagamento);
             listViewPrincipal.Items.Add(item);
+    
+
+        }
+
+        public void adicionaCat()
+        {
+            listViewCategorias.Items.Clear();
+            float gasto = 0;
+            //int c = 0;
+            //int t = 0;
+            DataRow[] registroCat = dados.Tables["Categoria"].Select("CodigoCat > 0");
+            DataRow[] registro = dados.Tables["Registros"].Select("Codigo > 0");
+            foreach (DataRow categoria in dados.Tables["Categoria"].Rows)
+            {
+                
+                ListViewItem item = new ListViewItem(categoria["DescricaoCat"].ToString());
+                ListViewItem.ListViewSubItem subItemOrcamento = new ListViewItem.ListViewSubItem(item, categoria["Orcamento"].ToString());
+
+                for (int i = 0; i < registro.Length; i++)
+                {
+                    if (float.Parse(registro[i]["Valor"].ToString()) < 0)
+                        if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
+                            gasto += float.Parse(registro[i]["Valor"].ToString());
+                }
+                gasto *= -1;
+
+               ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
+               
+               item.SubItems.Add(subItemOrcamento);
+               item.SubItems.Add(subItemConta);
+               listViewCategorias.Items.Add(item);
+               gasto = 0;
+            }
         }
 
         public void atualizaListView() //Atualiza list view
@@ -93,7 +133,7 @@ namespace WindowsFormsApplication1
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros;", conexao);
+            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros order by Categoria, Descricao;", conexao);
 
             adaptadorReg.SelectCommand = comandoSelecaoReg;
 
@@ -252,6 +292,7 @@ namespace WindowsFormsApplication1
             adaptadorCat.Fill(dados, "Categoria");
 
             atualizaListView();
+            adicionaCat();
             carregaCat();
         }
 
@@ -261,6 +302,7 @@ namespace WindowsFormsApplication1
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
+            adicionaCat();
         }
 
         private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -298,6 +340,24 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            if (checkBoxData.Checked == true && (checkBoxCategoria.Checked == true || checkBoxDescricao.Checked == true))
+            {
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                    if (comboBoxCategoria.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBoxDescricao.Text + "%'");
+
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        adicionaItensListView(registro);
+                    }
+                }
+                return;
+            }
+
             if (checkBoxDescricao.Checked == true)
             {
                 DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBoxDescricao.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
@@ -317,7 +377,6 @@ namespace WindowsFormsApplication1
             if (checkBoxData.Checked == true)
             {
                 
-
                 DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
 
                 if (registros.Length != 0)
@@ -345,7 +404,10 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                     }
                 }
-            }    
+            }
+
+         
+
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -422,13 +484,21 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
-            //adicionacat();
+            carregaCat();
+            adicionaCat();
         }
 
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Relatorio relatorio = new Relatorio(dados);
             relatorio.ShowDialog(this);
+
+            int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
+            Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
+            cadastroPrograma.ShowDialog(this);
+            atualizaListView();
         }
+
     }
 }
