@@ -114,15 +114,15 @@ namespace WindowsFormsApplication1
                     {
                         if (int.Parse(registro["Codigo"].ToString()) == codigo)
                         {
-                            DataRow Registro = dados.Tables["Registros"].NewRow();
-                            Registro["Descricao"] = textBoxDescricaoRegistro.Text;
-                            Registro["Valor"] = "-" + textBoxValorRegistro.Text;
-                            Registro["Categoria"] = categoria;
-                            Registro["Recorrente"] = recorrente;
-                            Registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
-                            Registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
-                            Registro["DataCadastro"] = DateTime.Now.ToShortDateString();
-                            Registro["Parcelas"] = parcelas;
+                            registro["Descricao"] = textBoxDescricaoRegistro.Text;
+                            registro["Valor"] = "-" + textBoxValorRegistro.Text;
+                            registro["Categoria"] = categoria;
+                            registro["Recorrente"] = recorrente;
+                            registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
+                            registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
+                            registro["DataCadastro"] = DateTime.Now.ToShortDateString();
+                            registro["Parcelas"] = parcelas;
+                            adaptadorReg.Update(dados, "Registros");
                             break;
                         }
                     }
@@ -139,7 +139,6 @@ namespace WindowsFormsApplication1
                         novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                         novoRegistro["Parcelas"] = parcelas;
                         dados.Tables["Registros"].Rows.Add(novoRegistro);
-                        adaptadorReg.Update(dados, "Registros");
                         adaptadorReg.Update(dados, "Registros");
                     }
                 Close();
@@ -192,7 +191,7 @@ namespace WindowsFormsApplication1
             prmParcelas.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmParcelas);
 
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Recorrente = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
             prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -213,11 +212,6 @@ namespace WindowsFormsApplication1
             prmRecorrente.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoReg.Parameters.Add(prmRecorrente);
 
-            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
-            prmValor.SourceColumn = "Valor";
-            prmValor.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmValor);
-
             prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
             prmDataVencimento.SourceColumn = "DataVencimento";
             prmDataVencimento.SourceVersion = DataRowVersion.Current;
@@ -233,6 +227,11 @@ namespace WindowsFormsApplication1
             prmDataCadastro.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoReg.Parameters.Add(prmDataCadastro);
 
+            prmParcelas = new SqlParameter("@Parcelas", SqlDbType.Int);
+            prmParcelas.SourceColumn = "Parcelas";
+            prmParcelas.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmParcelas);
+
             SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
@@ -242,6 +241,8 @@ namespace WindowsFormsApplication1
 
             adaptadorReg.InsertCommand = comandoInsercaoReg;
             adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+
+            adaptadorReg.Fill(dados, "Registros");
 
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaRegistro.Items.Add(registro["DescricaoCat"].ToString());
