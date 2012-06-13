@@ -120,6 +120,7 @@
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
             this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
+            this.listViewPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewPrincipal_KeyDown);
             // 
             // columnHeaderDescricao
             // 
