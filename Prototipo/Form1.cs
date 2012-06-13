@@ -14,6 +14,8 @@ namespace WindowsFormsApplication1
         DataSet dados = new DataSet();
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat = new SqlDataAdapter();
+        int mesCarregado;
+        int anoCarregado;
 
         public Form1()
         {
@@ -124,6 +126,29 @@ namespace WindowsFormsApplication1
 
         }
 
+        public void atualizaMesListView()
+        {
+            string mes;
+            switch (mesCarregado)
+            {
+                case 1: mes = "Janeiro"; break;
+                case 2: mes = "Fevereiro"; break;
+                case 3: mes = "Março"; break;
+                case 4: mes = "Abril"; break;
+                case 5: mes = "Maio"; break;
+                case 6: mes = "Junho"; break;
+                case 7: mes = "Julho"; break;
+                case 8: mes = "Agosto"; break;
+                case 9: mes = "Setembro"; break;
+                case 10: mes = "Outubro"; break;
+                case 11: mes = "Novembro"; break;
+                case 12: mes = "Dezembro"; break;
+
+                default: mes = " ";break;
+            }
+            labelNomeMes.Text = mes + " de " + anoCarregado.ToString();
+        }
+
         public void carregaCat()
         {
             comboBoxCategoria.Items.Clear();
@@ -133,6 +158,11 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            mesCarregado = DateTime.Now.Month;
+            anoCarregado = DateTime.Now.Year;
+
+            atualizaMesListView();
+
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
@@ -490,6 +520,7 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
+<<<<<<< HEAD
         private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
@@ -498,6 +529,49 @@ namespace WindowsFormsApplication1
                 registro.Delete();
                 adaptadorReg.Update(dados, "Registros");
                 atualizaListView();
+=======
+        private void buttonAnterior_Click(object sender, EventArgs e)
+        {
+            buttonProximo.Enabled = true;
+            if (!(mesCarregado == 2 && anoCarregado == 2000))
+            {
+                if (mesCarregado == 1)
+                {
+                    anoCarregado -= 1;
+                    mesCarregado = 12;
+                }
+                else
+                {
+                    mesCarregado -= 1;
+                }
+                atualizaMesListView();
+            }
+            else
+            {
+                buttonAnterior.Enabled = false;
+            }
+        }
+
+        private void buttonProximo_Click(object sender, EventArgs e)
+        {
+            buttonAnterior.Enabled = true;
+            if (!(mesCarregado == 11 && anoCarregado == 2020))
+            {
+                if (mesCarregado == 12)
+                {
+                    anoCarregado += 1;
+                    mesCarregado = 1;
+                }
+                else
+                {
+                    mesCarregado += 1;
+                }
+                atualizaMesListView();
+            }
+            else
+            {
+                buttonProximo.Enabled = false;
+>>>>>>> origin/master
             }
         }
 
