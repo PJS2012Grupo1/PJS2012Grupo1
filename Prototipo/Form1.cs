@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
             string dataVencimento;
             string dataPagamento;
             string categoria = "";
-
+           
             if (registro["DataVencimento"].ToString() == "")
                 dataVencimento = " ";
             else
@@ -54,6 +54,7 @@ namespace WindowsFormsApplication1
             ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
             ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
             ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
             if (float.Parse(registro["Valor"].ToString()) < 0)
                 subItemValor.ForeColor = Color.Red;
 
@@ -84,6 +85,7 @@ namespace WindowsFormsApplication1
             {
                 
                 ListViewItem item = new ListViewItem(categoria["DescricaoCat"].ToString());
+                item.UseItemStyleForSubItems = false;
                 ListViewItem.ListViewSubItem subItemOrcamento = new ListViewItem.ListViewSubItem(item, categoria["Orcamento"].ToString());
 
                 for (int i = 0; i < registro.Length; i++)
@@ -93,8 +95,14 @@ namespace WindowsFormsApplication1
                             gasto += float.Parse(registro[i]["Valor"].ToString());
                 }
                 gasto *= -1;
-
+                
                ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
+
+               if (gasto > float.Parse(categoria["Orcamento"].ToString()))
+                   subItemConta.ForeColor = Color.Red;
+
+               else
+                   subItemConta.ForeColor = Color.Blue;
                
                item.SubItems.Add(subItemOrcamento);
                item.SubItems.Add(subItemConta);
@@ -494,10 +502,10 @@ namespace WindowsFormsApplication1
             Relatorio relatorio = new Relatorio(dados);
             relatorio.ShowDialog(this);
 
-            int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
-            Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
-            cadastroPrograma.ShowDialog(this);
-            atualizaListView();
+           // int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
+            //Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
+            //cadastroPrograma.ShowDialog(this);
+            //atualizaListView();
         }
 
     }
