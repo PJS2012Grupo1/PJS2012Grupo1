@@ -490,10 +490,12 @@ namespace WindowsFormsApplication1
 
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             Relatorio relatorio = new Relatorio(dados);
-            relatorio.ShowDialog(this);
+            relatorio.ShowDialog(this);            
+        }
 
+        private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
+        {
             int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
             Registros cadastroPrograma = new Registros(codigo, true, dados, adaptadorReg, adaptadorCat);
             cadastroPrograma.ShowDialog(this);

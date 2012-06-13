@@ -44,14 +44,11 @@
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.semanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
             this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -122,6 +119,7 @@
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
+            this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
             // 
             // columnHeaderDescricao
             // 
@@ -152,15 +150,11 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
-
-            this.columnHeaderDataPagamento.Width = 112;
+            this.columnHeaderDataPagamento.Width = 90;
             // 
             // columnHeaderCodigo
             // 
             this.columnHeaderCodigo.Text = "codigo";
-
-            this.columnHeaderDataPagamento.Width = 90;
-
             // 
             // menuStripPrincipal
             // 
@@ -224,53 +218,48 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-
             this.categoriaToolStripMenuItem,
             this.semanaToolStripMenuItem,
             this.mêsToolStripMenuItem,
             this.anoToolStripMenuItem,
-
             this.apresentarToolStripMenuItem});
-
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
             // 
-
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.categoriaToolStripMenuItem.Text = "Categoria";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // semanaToolStripMenuItem
             // 
             this.semanaToolStripMenuItem.Name = "semanaToolStripMenuItem";
-            this.semanaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.semanaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.semanaToolStripMenuItem.Text = "Semana";
             this.semanaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // mêsToolStripMenuItem
             // 
             this.mêsToolStripMenuItem.Name = "mêsToolStripMenuItem";
-            this.mêsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mêsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.mêsToolStripMenuItem.Text = "Mês";
             this.mêsToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // anoToolStripMenuItem
             // 
             this.anoToolStripMenuItem.Name = "anoToolStripMenuItem";
-            this.anoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.anoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.anoToolStripMenuItem.Text = "Ano";
             this.anoToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-
+            // 
             // apresentarToolStripMenuItem
             // 
             this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
-            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.apresentarToolStripMenuItem.Text = "Categoria";
-
             // 
             // sairToolStripMenuItem1
             // 

@@ -19,11 +19,7 @@ Recorrente tinyint,
 DataVencimento DATE,
 DataPagamento DATE,
 DataCadastro DATE NOT NULL,
-<<<<<<< HEAD
-Parcelas int NULL);
-=======
 Parcelas INT NULL);
->>>>>>> origin/master
 GO
 
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Casa', 200.00);
