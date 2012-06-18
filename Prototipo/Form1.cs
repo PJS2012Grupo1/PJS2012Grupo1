@@ -498,7 +498,7 @@ namespace WindowsFormsApplication1
 
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Relatorio relatorio = new Relatorio(dados);
+            Relatorio relatorio = new Relatorio(dados, this);
             relatorio.ShowDialog(this);            
         }
 
@@ -520,16 +520,16 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
-<<<<<<< HEAD
-        private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
-            {
-                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-                registro.Delete();
-                adaptadorReg.Update(dados, "Registros");
-                atualizaListView();
-=======
+//<<<<< HEAD
+//        private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
+//        {
+//            if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
+//            {
+//                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+//                registro.Delete();
+//                adaptadorReg.Update(dados, "Registros");
+//                atualizaListView();
+//=======<<
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
             buttonProximo.Enabled = true;
@@ -571,7 +571,7 @@ namespace WindowsFormsApplication1
             else
             {
                 buttonProximo.Enabled = false;
->>>>>>> origin/master
+
             }
         }
 

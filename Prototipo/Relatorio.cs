@@ -12,8 +12,10 @@ namespace WindowsFormsApplication1
     public partial class Relatorio : Form
     {
         DataSet dados;
-        public Relatorio(DataSet dados)
+        Form1 f1;
+        public Relatorio(DataSet dados, Form1 form)
         {
+            f1 = form;
             this.dados = dados;
             InitializeComponent();
         }
@@ -25,6 +27,10 @@ namespace WindowsFormsApplication1
 
         private void Relatorio_Load(object sender, EventArgs e)
         {
+            label1.Text = "0.00";
+            label2.Text = "0.00";
+            label3.Text = "0.00";
+            label8.Text = "0.00";
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
             
@@ -77,8 +83,10 @@ namespace WindowsFormsApplication1
 
 
         }
+        //Verifica quais são os registros de determinada categoria
         private void comboBoxRelatorioCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listViewRelatorio.Items.Clear();
             int categoria = 0;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 if (comboBoxRelatorioCategoria.Text == registro["DescricaoCat"].ToString())
@@ -95,24 +103,192 @@ namespace WindowsFormsApplication1
             }
             atualizaGroupBox();
         }
+        //Verifica quais são os registros de determinado ano
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listViewRelatorio.Items.Clear();
+            DateTime data;
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");      
+            if (registros.Length != 0)
+            {
+                foreach (DataRow registro in registros)
+                {
+                    data = DateTime.Parse(registro["DataCadastro"].ToString());
+                    if (data.Year == int.Parse(comboBox1.SelectedItem.ToString()))
+                        adicionaItensListView(registro);
+                }
+            }
+            comboBoxDescCat.Visible = true;
+            atualizaCombo();
+            atualizaGroupBox();
+        }
 
+        //Retorna o número do mês
+        public int verificaMes(string mes)
+        {
+            int numero_mes = 0;
+            switch (mes)
+            {
+                case "Janeiro": numero_mes = 1; break;
+                case "Fevereiro": numero_mes = 2; break;
+                case "Março": numero_mes = 3; break;
+                case "Abril": numero_mes = 4; break;
+                case "Maio": numero_mes = 5; break;
+                case "Junho": numero_mes = 6; break;
+                case "Julho": numero_mes = 7; break;
+                case "Agosto": numero_mes = 8; break;
+                case "Setembro": numero_mes = 9; break;
+                case "Outubro": numero_mes = 10; break;
+                case "Novembro": numero_mes = 11; break;
+                case "Dezembro": numero_mes = 12; break;
+            }
+            return numero_mes;
+
+        }
+        //Verifica quais são os registros de determinado mês
+        private void comboBoxMes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listViewRelatorio.Items.Clear();
+            DateTime data;
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+            int numero_mes = verificaMes(comboBoxMes.SelectedItem.ToString());
+            if (registros.Length != 0)
+            {
+                foreach (DataRow registro in registros)
+                {
+                    data = DateTime.Parse(registro["DataCadastro"].ToString());
+                    if (data.Month == numero_mes)
+                        adicionaItensListView(registro);
+                }
+            }
+            comboBoxDescCat.Visible = true;
+
+            atualizaCombo();
+            atualizaGroupBox();
+        }
+
+        public void atualizaCombo()
+        {
+            if (listViewRelatorio.Items.Count != 0)
+            {
+                for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+                {
+                    if (i == 0)
+                        comboBoxDescCat.Items.Add(listViewRelatorio.Items[i].SubItems[2].Text);
+                    else
+                    {
+                        if (listViewRelatorio.Items[i].SubItems[2].ToString() != listViewRelatorio.Items[i - 1].SubItems[2].ToString())
+                            comboBoxDescCat.Items.Add(listViewRelatorio.Items[i].SubItems[2].Text);
+                    }
+                }
+            }
+        }
+        //Atualiza as informações no GroupBox
         public void atualizaGroupBox()
         {
-            float gasto_medio = 0;
+            float gasto_total = 0;
             float media = 0;
             string soma;
-            //for (int i = 0; i < listViewRelatorio.Items.Count; i++)
-            //{
-            //    gasto_medio += float.Parse(listViewRelatorio.Items[i].SubItems[1].);
-            //}
+            DataRow[] categoria = dados.Tables["Categoria"].Select("CodigoCat > 0");
+            float maior = 0;
+            float menor = 0;
+            //Soma o total no ListView
             foreach (ListViewItem item in listViewRelatorio.Items)
             {
                 soma = item.SubItems[1].Text;
-                gasto_medio += float.Parse(soma);
+                gasto_total += float.Parse(soma);
             }
-            media = gasto_medio / listViewRelatorio.Items.Count;
-            label1.Text = gasto_medio.ToString();
-          
+            
+            //Verifica o maior e o menor valor
+            for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+            {
+                if (i == 0)
+                {
+                    maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                    menor = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                }
+                else
+                {
+                    if (menor < float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
+                        menor = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                    else
+                        if (maior > float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
+                            maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                }
+                
+            }
+            //Verifica o débito ou crédito no orçamento da categoria
+            foreach (DataRow cat in dados.Tables["Categoria"].Rows)
+            {
+                float dif = 0;
+                gasto_total *= -1;
+                for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+                {
+                    if (comboBoxDescCat.Visible == false)                                            
+                    {
+                        if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString())
+                        {
+                            if (gasto_total > float.Parse(cat["Orcamento"].ToString()))
+                            {
+                                dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
+                                label3.Text = "Débito de:" + dif;
+                                break;
+                            }
+                            else
+                            {
+                                dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
+                                label3.Text = "Crédito de:" + dif;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            media = gasto_total / listViewRelatorio.Items.Count;
+            label1.Text = media.ToString("0.00");
+            label2.Text = menor.ToString("0.00");
+            label8.Text = maior.ToString("0.00");
+            
         }
+
+        private void comboBoxDescCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            float gasto_parcial = 0;
+            string soma_parcial;
+            float dif = 0;
+            if (comboBoxDescCat.SelectedIndex != -1)
+            {
+                for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+                {
+                    if (listViewRelatorio.Items[i].SubItems[2].Text == comboBoxDescCat.SelectedItem.ToString())
+                    {
+                        soma_parcial = listViewRelatorio.Items[i].SubItems[1].Text;
+                        gasto_parcial += float.Parse(soma_parcial);
+                    }
+                }
+            }
+            gasto_parcial *= -1;
+            foreach (DataRow cat in dados.Tables["Categoria"].Rows)
+            {
+
+                if (comboBoxDescCat.SelectedItem.ToString() == cat["DescricaoCat"].ToString())
+                {
+                    if (gasto_parcial> float.Parse(cat["Orcamento"].ToString()))
+                    {
+                        dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
+                        label3.Text = "Débito de:" + dif;
+                        break;
+                    }
+                    else
+                    {
+                        dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
+                        label3.Text = "Crédito de:" + dif;
+                        break;
+                    }
+                }
+            }
+        }
+
+        
     }
 }

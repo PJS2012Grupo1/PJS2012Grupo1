@@ -120,7 +120,6 @@
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
             this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
-            this.listViewPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewPrincipal_KeyDown);
             // 
             // columnHeaderDescricao
             // 
@@ -592,6 +591,7 @@
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
             this.comboBoxMes.TabIndex = 5;
+            
             // 
             // buttonIrData
             // 
