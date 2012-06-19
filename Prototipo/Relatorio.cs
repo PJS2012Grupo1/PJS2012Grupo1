@@ -112,7 +112,6 @@ namespace WindowsFormsApplication1
             }
             media = gasto_medio / listViewRelatorio.Items.Count;
             label1.Text = gasto_medio.ToString();
-          
         }
     }
 }
