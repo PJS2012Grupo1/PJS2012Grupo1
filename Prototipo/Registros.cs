@@ -16,13 +16,13 @@ namespace WindowsFormsApplication1
         bool atualiza = false;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
-        int radio = 3;
+        //int radio = 3;
 
         public Registros(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.dados = dados;
+            this.adaptadorReg = adaptadorReg;
             this.adaptadorCat = adaptadorCat;
-            //this.adaptadorReg = adaptadorReg;
             InitializeComponent();
         }
 
@@ -38,8 +38,8 @@ namespace WindowsFormsApplication1
 
         private void radioButtonPagamentoParceladoReg_CheckedChanged(object sender, EventArgs e)
         {
-            comboBoxQtdeParcelasReg.Visible = true;
-            labelQtdeParcReg.Visible = true;
+            comboBoxQtdeParcelasReg.Enabled = true;
+            labelQtdeParcReg.Enabled = true;
         }
 
         private void buttonLimpar_Click(object sender, EventArgs e)
@@ -48,18 +48,13 @@ namespace WindowsFormsApplication1
             textBoxValorRegistro.Text = "";
             comboBoxCategoriaRegistro.Text = "";
             comboBoxQtdeParcelasReg.Text = "";
+            comboBoxFormaPagamento.Text = "";
             dateTimePickerDataPagamentoReg.Text = dateTimePickerDataVencimentoReg.Text = DateTime.Now.ToShortDateString();
         }
 
         private void buttonCancelarRegistro_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void radioButtonClicado(object sender, EventArgs e)
-        {
-            RadioButton radio_clicado = (RadioButton)sender;
-            radio = int.Parse(radio_clicado.Tag.ToString());
         }
 
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
@@ -81,7 +76,7 @@ namespace WindowsFormsApplication1
                 labelCampoPreenchidos.Text = "*Campo valor vazio.";
                 labelCampoPreenchidos.Visible = true;
             }
-            else if (radio == 3)
+            else if (comboBoxFormaPagamento.SelectedIndex == -1)
             {
                 labelCampoPreenchidos.Text = "Forma de pagamento não selecionada.";
                 labelCampoPreenchidos.Visible = true;
@@ -91,12 +86,12 @@ namespace WindowsFormsApplication1
                 int recorrente = 1;
                 int parcelas;
 
-                if (radio == 3)
+                if (comboBoxFormaPagamento.SelectedIndex == 1)
                     parcelas = int.Parse(comboBoxQtdeParcelasReg.Text);
                 else
                 {
                     parcelas = 1;
-                    if (radio == 2)
+                    if (comboBoxFormaPagamento.SelectedIndex == 3)
                         recorrente = 2;
                 }
 
@@ -146,7 +141,7 @@ namespace WindowsFormsApplication1
             SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
-            //prmDescricao.SourceVersion = DataRowVersion.Current;
+            prmDescricao.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmDescricao);
 
             SqlParameter prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
@@ -251,10 +246,19 @@ namespace WindowsFormsApplication1
                 float valor = -1 * float.Parse(registro["Valor"].ToString());
                 textBoxDescricaoRegistro.Text = registro["Descricao"].ToString();
                 comboBoxCategoriaRegistro.Text = categoria;
+                //comboBoxFormaPagamento.SelectedIndex = 
                 textBoxValorRegistro.Text = valor.ToString();
                 dateTimePickerDataPagamentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
                 dateTimePickerDataVencimentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
             }
+        }
+
+        private void comboBoxFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxFormaPagamento.SelectedIndex == 1)
+                comboBoxQtdeParcelasReg.Enabled = true;
+            else
+                comboBoxQtdeParcelasReg.Enabled = false;
         }
     }
 }

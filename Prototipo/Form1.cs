@@ -76,8 +76,6 @@ namespace WindowsFormsApplication1
         {
             listViewCategorias.Items.Clear();
             float gasto = 0;
-            //int c = 0;
-            //int t = 0;
             DataRow[] registroCat = dados.Tables["Categoria"].Select("CodigoCat > 0");
             DataRow[] registro = dados.Tables["Registros"].Select("Codigo > 0");
 
@@ -88,11 +86,10 @@ namespace WindowsFormsApplication1
                 ListViewItem.ListViewSubItem subItemOrcamento = new ListViewItem.ListViewSubItem(item, categoria["Orcamento"].ToString());
 
                 for (int i = 0; i < registro.Length; i++)
-                {
                     if (float.Parse(registro[i]["Valor"].ToString()) < 0)
                         if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
                             gasto += float.Parse(registro[i]["Valor"].ToString());
-                }
+
                 gasto *= -1;
                 
                ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
@@ -105,6 +102,7 @@ namespace WindowsFormsApplication1
                item.SubItems.Add(subItemOrcamento);
                item.SubItems.Add(subItemConta);
                listViewCategorias.Items.Add(item);
+
                gasto = 0;
             }
         }
@@ -112,6 +110,7 @@ namespace WindowsFormsApplication1
         public void atualizaListView() //Atualiza list view
         {
             listViewPrincipal.Items.Clear();
+
             float totalPositivo = 0f;
             float totalNegativo = 0f;
             foreach (DataRow registro in dados.Tables["Registros"].Rows)
@@ -224,8 +223,8 @@ namespace WindowsFormsApplication1
 
             SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
             SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
-            prmDescricao.SourceColumn = "DescricaoCat";
-            prmDescricao.SourceVersion = DataRowVersion.Current;
+            prmDescricaoCat.SourceColumn = "DescricaoCat";
+            prmDescricaoCat.SourceVersion = DataRowVersion.Current;
             comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
 
             SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
@@ -347,13 +346,15 @@ namespace WindowsFormsApplication1
         {
             Caixa cadastroCaixa = new Caixa(dados, adaptadorReg, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
+
             atualizaListView();
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            int categoria = 0;
             listViewPrincipal.Items.Clear();
+
+            int categoria = 0;
 
             if (checkBoxCategoria.Checked == true && checkBoxDescricao.Checked == true)
             {
@@ -492,6 +493,7 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
+
             carregaCat();
             adicionaCat();
         }
@@ -520,16 +522,18 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
-//<<<<< HEAD
-//        private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
-//        {
-//            if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
-//            {
-//                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-//                registro.Delete();
-//                adaptadorReg.Update(dados, "Registros");
-//                atualizaListView();
-//=======<<
+        private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                registro.Delete();
+                adaptadorReg.Update(dados, "Registros");
+
+                atualizaListView();
+            }
+        }
+
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
             buttonProximo.Enabled = true;
@@ -544,6 +548,7 @@ namespace WindowsFormsApplication1
                 {
                     mesCarregado -= 1;
                 }
+
                 atualizaMesListView();
             }
             else
@@ -563,16 +568,12 @@ namespace WindowsFormsApplication1
                     mesCarregado = 1;
                 }
                 else
-                {
                     mesCarregado += 1;
-                }
+
                 atualizaMesListView();
             }
             else
-            {
                 buttonProximo.Enabled = false;
-
-            }
         }
 
     }
