@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
 
+        //Adiciona os itens do ListView Principal
         public void adicionaItensListView(DataRow registro)
         {
             string dataVencimento;
@@ -72,6 +73,7 @@ namespace WindowsFormsApplication1
             listViewPrincipal.Items.Add(item);
         }
 
+        //Adiciona as Categorias
         public void adicionaCat()
         {
             listViewCategorias.Items.Clear();
@@ -106,8 +108,8 @@ namespace WindowsFormsApplication1
                gasto = 0;
             }
         }
-
-        public void atualizaListView() //Atualiza list view
+        //Atualiza list view
+        public void atualizaListView() 
         {
             listViewPrincipal.Items.Clear();
 
@@ -148,6 +150,7 @@ namespace WindowsFormsApplication1
             labelNomeMes.Text = mes + " de " + anoCarregado.ToString();
         }
 
+        //Preenche o comboBox com as categorias
         public void carregaCat()
         {
             comboBoxCategoria.Items.Clear();
@@ -350,12 +353,14 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
+        //Botão que efetua a busca
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             listViewPrincipal.Items.Clear();
 
             int categoria = 0;
 
+            //Busca combinada de categoria e descrição
             if (checkBoxCategoria.Checked == true && checkBoxDescricao.Checked == true)
             {
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
@@ -369,7 +374,8 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                 return;
             }
-            
+
+            //Busca combinada com os três elementos
             if (checkBoxData.Checked == true && (checkBoxCategoria.Checked == true || checkBoxDescricao.Checked == true))
             {
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
@@ -383,7 +389,7 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                 return;
             }
-
+            //Busca só pela descrição
             if (checkBoxDescricao.Checked == true)
             {
                 DataRow[] registros = dados.Tables["Registros"].Select("Descricao like '%" + textBoxDescricao.Text + "%' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
@@ -395,7 +401,7 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
                 }
             }
-
+            //Busca pela intervalo de data
             if (checkBoxData.Checked == true)
             {                
                 DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
@@ -404,7 +410,7 @@ namespace WindowsFormsApplication1
                     foreach (DataRow registro in registros)
                         adicionaItensListView(registro);
             }
-
+            //Busca pela categoria
             if (checkBoxCategoria.Checked == true)
             {
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
@@ -418,7 +424,7 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
             }
         }
-
+        //Limpa a aba de busca
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
             atualizaListView();
@@ -437,7 +443,7 @@ namespace WindowsFormsApplication1
             textBoxDescricao.Enabled = false;
             comboBoxCategoria.Enabled = false;
         }
-
+        //Verifica o que está selecionado para efetuar a busca
         private void verificaCheckBox()
         {
             if (checkBoxDescricao.Checked == true || checkBoxData.Checked == true || checkBoxCategoria.Checked == true)
@@ -503,7 +509,7 @@ namespace WindowsFormsApplication1
             Relatorio relatorio = new Relatorio(dados, this);
             relatorio.ShowDialog(this);            
         }
-
+        //Altera um registro por meio de um clique duplo
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
 
@@ -522,6 +528,7 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
+        //Deleta um registro
         private void listViewPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
@@ -534,6 +541,7 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //Navega pelo botão 'Anterior'
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
             buttonProximo.Enabled = true;
@@ -556,7 +564,7 @@ namespace WindowsFormsApplication1
                 buttonAnterior.Enabled = false;
             }
         }
-
+        //Navega pelo botão 'Próximo'
         private void buttonProximo_Click(object sender, EventArgs e)
         {
             buttonAnterior.Enabled = true;

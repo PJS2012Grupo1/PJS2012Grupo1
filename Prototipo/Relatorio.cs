@@ -195,25 +195,31 @@ namespace WindowsFormsApplication1
             //Soma o total no ListView
             foreach (ListViewItem item in listViewRelatorio.Items)
             {
-                soma = item.SubItems[1].Text;
-                gasto_total += float.Parse(soma);
+                if (item.SubItems[1].ForeColor != Color.Blue)
+                {
+                    soma = item.SubItems[1].Text;
+                    gasto_total += float.Parse(soma);
+                }
             }
             
             //Verifica o maior e o menor valor
             for (int i = 0; i < listViewRelatorio.Items.Count; i++)
             {
-                if (i == 0)
+                if (listViewRelatorio.Items[i].SubItems[1].ForeColor != Color.Blue)
                 {
-                    maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
-                    menor = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
-                }
-                else
-                {
-                    if (menor < float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
+                    if (i == 0)
+                    {
+                        maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
                         menor = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                    }
                     else
-                        if (maior > float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
-                            maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                    {
+                        if (menor < float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
+                            menor = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                        else
+                            if (maior > float.Parse(listViewRelatorio.Items[i].SubItems[1].Text))
+                                maior = float.Parse(listViewRelatorio.Items[i].SubItems[1].Text);
+                    }
                 }
                 
             }
@@ -244,7 +250,8 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-            media = gasto_total / listViewRelatorio.Items.Count;
+            if (gasto_total != 0)
+                media = gasto_total / listViewRelatorio.Items.Count;
             label1.Text = media.ToString("0.00");
             label2.Text = menor.ToString("0.00");
             label8.Text = maior.ToString("0.00");
@@ -287,6 +294,7 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+        
         }
 
         
