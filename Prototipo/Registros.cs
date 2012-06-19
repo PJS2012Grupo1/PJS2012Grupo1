@@ -109,13 +109,10 @@ namespace WindowsFormsApplication1
                 {
                     float valor = (float.Parse(textBoxValorRegistro.Text) / parcelas);
                     string data = dateTimePickerDataVencimentoReg.Value.ToString("dd/MM/yyyy");
-                    string[] datas = data.Split('/');
+                    string[] datas = data.Split(' ');
                     int mes = int.Parse(datas[1]);
                     int ano = int.Parse(datas[2]);
-
-                    foreach(string p in datas)
-                        MessageBox.Show(p);
-
+                    
                     for (int i = 1; i <= parcelas; i++)
                     {
                         if (mes > 12)
@@ -255,40 +252,42 @@ namespace WindowsFormsApplication1
                 if (int.Parse(registro["Recorrente"].ToString()) == 2)
                     formaPagamento = 2;
 
-                //else if (int.Parse(registro["Parcelas"].ToString()) > 1)
-                //{
-                //    formaPagamento = 1;
-                //    comboBoxQtdeParcelasReg.Text = registro["Parcelas"].ToString();
-                //}
-                //else
-                //{
-                //    comboBoxQtdeParcelasReg.Enabled = false;
-                //    formaPagamento = 0;
-                //}
+                int index;
+                string descricao = registro["Descricao"].ToString();
+                index = descricao.IndexOf("/");
+
+                if (index != -1)
+                {
+                    formaPagamento = 1;
+                    comboBoxQtdeParcelasReg.Text = descricao.Substring(index + 1);
+                    comboBoxFormaPagamento.Enabled = false;
+                    comboBoxQtdeParcelasReg.Enabled = false;
+                    textBoxValorRegistro.Enabled = false;
+                }
+                else
+                {
+                    comboBoxQtdeParcelasReg.Enabled = true;
+                    formaPagamento = 0;
+                }
 
                 if (registro["DataPagamento"].ToString() == "")
                     data = DateTime.Parse(DateTime.Now.ToShortDateString());
                 else
                     data = DateTime.Parse(registro["DataPagamento"].ToString());
+                descricao = descricao.Replace(descricao.Substring(index + -2), " ");
 
-
-                textBoxDescricaoRegistro.Text = registro["Descricao"].ToString();
+                textBoxDescricaoRegistro.Text = descricao;
                 comboBoxCategoriaRegistro.Text = categoria;
                 comboBoxFormaPagamento.SelectedIndex = formaPagamento;
                 textBoxValorRegistro.Text = valor.ToString();
                 dateTimePickerDataPagamentoReg.Value = data;
                 dateTimePickerDataVencimentoReg.Value = DateTime.Parse(registro["DataVencimento"].ToString());
-                //if (comboBoxFormaPagamento.SelectedIndex == 1)
-                //    comboBoxFormaPagamento.Enabled = true;
-
-                //if (comboBoxFormaPagamento.SelectedIndex != 0 || comboBoxFormaPagamento.SelectedIndex != 1)
-                //    comboBoxFormaPagamento.Enabled = false;
             }
         }
 
         private void comboBoxFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxFormaPagamento.SelectedIndex == 1)
+            if (comboBoxFormaPagamento.SelectedIndex == 1 && !atualiza)
                 comboBoxQtdeParcelasReg.Enabled = true;
             else
                 comboBoxQtdeParcelasReg.Enabled = false;
