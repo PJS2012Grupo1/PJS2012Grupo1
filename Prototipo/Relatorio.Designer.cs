@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.comboBoxRelatorioCategoria = new System.Windows.Forms.ComboBox();
-            this.labelCategoria = new System.Windows.Forms.Label();
             this.buttonCancelarRelat = new System.Windows.Forms.Button();
             this.listViewRelatorio = new System.Windows.Forms.ListView();
             this.columnHeaderDescricao = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,39 +38,35 @@
             this.columnHeaderDataVencimento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxDescCat = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBoxMes = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxDescCat = new System.Windows.Forms.ComboBox();
+            this.comboBoxSemana = new System.Windows.Forms.ComboBox();
+            this.checkBoxSemana = new System.Windows.Forms.CheckBox();
+            this.checkBoxMes = new System.Windows.Forms.CheckBox();
+            this.checkBoxAno = new System.Windows.Forms.CheckBox();
+            this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxRelatorioCategoria
             // 
             this.comboBoxRelatorioCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxRelatorioCategoria.Enabled = false;
             this.comboBoxRelatorioCategoria.FormattingEnabled = true;
             this.comboBoxRelatorioCategoria.Location = new System.Drawing.Point(566, 42);
             this.comboBoxRelatorioCategoria.Name = "comboBoxRelatorioCategoria";
             this.comboBoxRelatorioCategoria.Size = new System.Drawing.Size(163, 21);
             this.comboBoxRelatorioCategoria.TabIndex = 1;
             this.comboBoxRelatorioCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxRelatorioCategoria_SelectedIndexChanged);
-            // 
-            // labelCategoria
-            // 
-            this.labelCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCategoria.AutoSize = true;
-            this.labelCategoria.Location = new System.Drawing.Point(563, 26);
-            this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(55, 13);
-            this.labelCategoria.TabIndex = 2;
-            this.labelCategoria.Text = "Categoria:";
             // 
             // buttonCancelarRelat
             // 
@@ -149,6 +144,61 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // comboBoxDescCat
+            // 
+            this.comboBoxDescCat.FormattingEnabled = true;
+            this.comboBoxDescCat.Location = new System.Drawing.Point(66, 122);
+            this.comboBoxDescCat.Name = "comboBoxDescCat";
+            this.comboBoxDescCat.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDescCat.TabIndex = 8;
+            this.comboBoxDescCat.Visible = false;
+            this.comboBoxDescCat.SelectedIndexChanged += new System.EventHandler(this.comboBoxDescCat_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(59, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "label8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(349, 34);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Crédito ou Débito";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(143, 34);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Menor Gasto";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Maior Gasto";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(576, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Média de Gasto";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -178,11 +228,12 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "2012",
             "2011"});
-            this.comboBox1.Location = new System.Drawing.Point(406, 42);
+            this.comboBox1.Location = new System.Drawing.Point(394, 42);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 6;
@@ -190,6 +241,7 @@
             // 
             // comboBoxMes
             // 
+            this.comboBoxMes.Enabled = false;
             this.comboBoxMes.FormattingEnabled = true;
             this.comboBoxMes.Items.AddRange(new object[] {
             "Janeiro",
@@ -204,78 +256,80 @@
             "Outubro",
             "Novembro",
             "Dezembro"});
-            this.comboBoxMes.Location = new System.Drawing.Point(216, 47);
+            this.comboBoxMes.Location = new System.Drawing.Point(223, 42);
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(121, 21);
             this.comboBoxMes.TabIndex = 7;
             this.comboBoxMes.SelectedIndexChanged += new System.EventHandler(this.comboBoxMes_SelectedIndexChanged);
             // 
-            // label4
+            // comboBoxSemana
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(576, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Média de Gasto";
+            this.comboBoxSemana.Enabled = false;
+            this.comboBoxSemana.FormattingEnabled = true;
+            this.comboBoxSemana.Location = new System.Drawing.Point(29, 42);
+            this.comboBoxSemana.Name = "comboBoxSemana";
+            this.comboBoxSemana.Size = new System.Drawing.Size(143, 21);
+            this.comboBoxSemana.TabIndex = 8;
             // 
-            // label5
+            // checkBoxSemana
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Maior Gasto";
+            this.checkBoxSemana.AutoSize = true;
+            this.checkBoxSemana.Location = new System.Drawing.Point(29, 25);
+            this.checkBoxSemana.Name = "checkBoxSemana";
+            this.checkBoxSemana.Size = new System.Drawing.Size(65, 17);
+            this.checkBoxSemana.TabIndex = 9;
+            this.checkBoxSemana.Text = "Semana";
+            this.checkBoxSemana.UseVisualStyleBackColor = true;
+            this.checkBoxSemana.CheckedChanged += new System.EventHandler(this.checkBoxSemana_CheckedChanged);
             // 
-            // label6
+            // checkBoxMes
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(143, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Menor Gasto";
+            this.checkBoxMes.AutoSize = true;
+            this.checkBoxMes.Location = new System.Drawing.Point(223, 25);
+            this.checkBoxMes.Name = "checkBoxMes";
+            this.checkBoxMes.Size = new System.Drawing.Size(46, 17);
+            this.checkBoxMes.TabIndex = 10;
+            this.checkBoxMes.Text = "Mês";
+            this.checkBoxMes.UseVisualStyleBackColor = true;
+            this.checkBoxMes.CheckedChanged += new System.EventHandler(this.checkBoxMes_CheckedChanged);
             // 
-            // label7
+            // checkBoxAno
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(349, 34);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Crédito ou Débito";
+            this.checkBoxAno.AutoSize = true;
+            this.checkBoxAno.Location = new System.Drawing.Point(394, 25);
+            this.checkBoxAno.Name = "checkBoxAno";
+            this.checkBoxAno.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxAno.TabIndex = 11;
+            this.checkBoxAno.Text = "Ano";
+            this.checkBoxAno.UseVisualStyleBackColor = true;
+            this.checkBoxAno.CheckedChanged += new System.EventHandler(this.checkBoxAno_CheckedChanged);
             // 
-            // label8
+            // checkBoxCategoria
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(59, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "label8";
-            // 
-            // comboBoxDescCat
-            // 
-            this.comboBoxDescCat.FormattingEnabled = true;
-            this.comboBoxDescCat.Location = new System.Drawing.Point(66, 122);
-            this.comboBoxDescCat.Name = "comboBoxDescCat";
-            this.comboBoxDescCat.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxDescCat.TabIndex = 8;
-            this.comboBoxDescCat.Visible = false;
-            this.comboBoxDescCat.SelectedIndexChanged += new System.EventHandler(this.comboBoxDescCat_SelectedIndexChanged);
+            this.checkBoxCategoria.AutoSize = true;
+            this.checkBoxCategoria.Location = new System.Drawing.Point(566, 25);
+            this.checkBoxCategoria.Name = "checkBoxCategoria";
+            this.checkBoxCategoria.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxCategoria.TabIndex = 12;
+            this.checkBoxCategoria.Text = "Categoria";
+            this.checkBoxCategoria.UseVisualStyleBackColor = true;
+            this.checkBoxCategoria.CheckedChanged += new System.EventHandler(this.checkBoxCategoria_CheckedChanged);
             // 
             // Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 691);
+            this.Controls.Add(this.checkBoxCategoria);
+            this.Controls.Add(this.checkBoxAno);
+            this.Controls.Add(this.checkBoxMes);
+            this.Controls.Add(this.checkBoxSemana);
+            this.Controls.Add(this.comboBoxSemana);
             this.Controls.Add(this.comboBoxMes);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listViewRelatorio);
             this.Controls.Add(this.buttonCancelarRelat);
-            this.Controls.Add(this.labelCategoria);
             this.Controls.Add(this.comboBoxRelatorioCategoria);
             this.Name = "Relatorio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -291,7 +345,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox comboBoxRelatorioCategoria;
-        private System.Windows.Forms.Label labelCategoria;
         private System.Windows.Forms.Button buttonCancelarRelat;
         private System.Windows.Forms.ListView listViewRelatorio;
         private System.Windows.Forms.ColumnHeader columnHeaderDescricao;
@@ -312,5 +365,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBoxDescCat;
+        private System.Windows.Forms.ComboBox comboBoxSemana;
+        private System.Windows.Forms.CheckBox checkBoxSemana;
+        private System.Windows.Forms.CheckBox checkBoxMes;
+        private System.Windows.Forms.CheckBox checkBoxAno;
+        private System.Windows.Forms.CheckBox checkBoxCategoria;
     }
 }

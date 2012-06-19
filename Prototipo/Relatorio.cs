@@ -293,10 +293,50 @@ namespace WindowsFormsApplication1
                         break;
                     }
                 }
+            }     
+        }
+        private void checkBoxSemana_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSemana.Checked == true)
+            {
+                comboBoxSemana.Enabled = true;
+                comboBoxSemana.Enabled = true;
             }
-        
+            else
+                comboBoxSemana.Enabled = false;
         }
 
-        
+        private void checkBoxMes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMes.Checked == true)
+            {
+                comboBoxMes.Enabled = true;
+                comboBoxMes.Enabled = true;
+            }
+            else
+                comboBoxMes.Enabled = false;
+        }
+
+        private void checkBoxAno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAno.Checked == true)
+            {
+                comboBox1.Enabled = true;
+                comboBox1.Enabled = true;
+            }
+            else
+                comboBox1.Enabled = false;
+        }
+
+        private void checkBoxCategoria_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCategoria.Checked == true)
+            {
+                comboBoxRelatorioCategoria.Enabled = true;
+                comboBoxRelatorioCategoria.Enabled = true;
+            }
+            else
+                comboBoxRelatorioCategoria.Enabled = false;
+        }        
     }
 }

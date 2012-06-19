@@ -176,6 +176,7 @@
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
             this.comboBoxQtdeParcelasReg.TabIndex = 7;
+            this.comboBoxQtdeParcelasReg.Text = "1";
             // 
             // buttonRegistrarRegistro
             // 

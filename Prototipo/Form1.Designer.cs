@@ -45,10 +45,6 @@
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.semanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDadosMes = new System.Windows.Forms.GroupBox();
             this.labelSaldoValor = new System.Windows.Forms.Label();
@@ -174,13 +170,13 @@
             this.cadatroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem});
             this.cadatroToolStripMenuItem.Name = "cadatroToolStripMenuItem";
-            this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.cadatroToolStripMenuItem.Text = "Contas";
             // 
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
@@ -189,13 +185,13 @@
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
-            this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.relatorioToolStripMenuItem.Text = "Caixa";
             // 
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
             this.cadastroToolStripMenuItem1.Text = "Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
@@ -204,66 +200,35 @@
             this.categoriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem2});
             this.categoriToolStripMenuItem.Name = "categoriToolStripMenuItem";
-            this.categoriToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.categoriToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.categoriToolStripMenuItem.Text = "Categorias";
             // 
             // cadastroToolStripMenuItem2
             // 
             this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
-            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
             this.cadastroToolStripMenuItem2.Text = "Cadastro";
             this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.categoriaToolStripMenuItem,
-            this.semanaToolStripMenuItem,
-            this.mêsToolStripMenuItem,
-            this.anoToolStripMenuItem,
-            this.apresentarToolStripMenuItem});
+            this.categoriaToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
             // 
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.categoriaToolStripMenuItem.Text = "Categoria";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.categoriaToolStripMenuItem.Text = "Gerar Relatório";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // semanaToolStripMenuItem
-            // 
-            this.semanaToolStripMenuItem.Name = "semanaToolStripMenuItem";
-            this.semanaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.semanaToolStripMenuItem.Text = "Semana";
-            this.semanaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // mêsToolStripMenuItem
-            // 
-            this.mêsToolStripMenuItem.Name = "mêsToolStripMenuItem";
-            this.mêsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.mêsToolStripMenuItem.Text = "Mês";
-            this.mêsToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // anoToolStripMenuItem
-            // 
-            this.anoToolStripMenuItem.Name = "anoToolStripMenuItem";
-            this.anoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.anoToolStripMenuItem.Text = "Ano";
-            this.anoToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // apresentarToolStripMenuItem
-            // 
-            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
-            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.apresentarToolStripMenuItem.Text = "Categoria";
             // 
             // sairToolStripMenuItem1
             // 
             this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.sairToolStripMenuItem1.Text = "Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
@@ -543,7 +508,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 474);
+            this.Categorias.Size = new System.Drawing.Size(246, 500);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
@@ -754,7 +719,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderCategoria1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageBusca;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMaxima;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
         private System.Windows.Forms.TextBox textBoxDescricao;
@@ -799,11 +763,6 @@
 
         protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem semanaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mêsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anoToolStripMenuItem;
-
-        private System.Windows.Forms.ToolStripMenuItem apresentarToolStripMenuItem;
 
     }
 }

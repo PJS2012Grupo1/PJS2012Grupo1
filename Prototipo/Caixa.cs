@@ -146,6 +146,7 @@ namespace WindowsFormsApplication1
             comandoAtualizacaoReg.Parameters.Add(prmCodigo);
 
             adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
+
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());
 
