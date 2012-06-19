@@ -73,7 +73,7 @@ namespace WindowsFormsApplication1
             listViewPrincipal.Items.Add(item);
         }
 
-        //Adiciona as Categorias
+        //Adiciona as Categorias e orçamentos
         public void adicionaCat()
         {
             listViewCategorias.Items.Clear();
@@ -108,6 +108,7 @@ namespace WindowsFormsApplication1
                gasto = 0;
             }
         }
+
         //Atualiza list view
         public void atualizaListView() 
         {
@@ -177,123 +178,28 @@ namespace WindowsFormsApplication1
             //adaptador.SelectCommand = comandoSelecaoCat;
             SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
             adaptadorCat.SelectCommand = comandoSelecaoCat;
-
-
-            //Comandos para a inserção de dados
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
-            SqlParameter prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
-            prmDescricao.SourceColumn = "Descricao";
-            prmDescricao.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmDescricao);
-
-            SqlParameter prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
-            prmValor.SourceColumn = "Valor";
-            prmValor.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmValor);
-
-            SqlParameter prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
-            prmCategoria.SourceColumn = "Categoria";
-            prmCategoria.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmCategoria);
-
-            SqlParameter prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
-            prmRecorrente.SourceColumn = "Recorrente";
-            prmRecorrente.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmRecorrente);
-
-            SqlParameter prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
-            prmDataVencimento.SourceColumn = "DataVencimento";
-            prmDataVencimento.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmDataVencimento);
-
-            SqlParameter prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
-            prmDataPagamento.SourceColumn = "DataPagamento";
-            prmDataPagamento.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmDataPagamento);
-
-            SqlParameter prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
-            prmDataCadastro.SourceColumn = "DataCadastro";
-            prmDataCadastro.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmDataCadastro);
-
-            SqlParameter prmParcelas = new SqlParameter("@Parcelas", SqlDbType.Int);
-            prmParcelas.SourceColumn = "Parcelas";
-            prmParcelas.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmParcelas);
-
-            adaptadorReg.InsertCommand = comandoInsercaoReg;
-
-
-            SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
-            SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
-            prmDescricaoCat.SourceColumn = "DescricaoCat";
-            prmDescricaoCat.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
-
-            SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
-            prmOrcamento.SourceColumn = "Orcamento";
-            prmOrcamento.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoCat.Parameters.Add(prmOrcamento);
-
-            adaptadorCat.InsertCommand = comandoInsercaoCat;
-        
-
-            //Comandos para Atualização
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
-            prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
-            prmDescricao.SourceColumn = "Descricao";
-            prmDescricao.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmDescricao);
-
-            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
-            prmValor.SourceColumn = "Valor";
-            prmValor.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmValor);
-
-            prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
-            prmCategoria.SourceColumn = "Categoria";
-            prmCategoria.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmCategoria);
-
-            prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
-            prmRecorrente.SourceColumn = "Recorrente";
-            prmRecorrente.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmRecorrente);
-
-            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
-            prmValor.SourceColumn = "Valor";
-            prmValor.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmValor);
-
-            prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
-            prmDataVencimento.SourceColumn = "DataVencimento";
-            prmDataVencimento.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmDataVencimento);
-
-            prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
-            prmDataPagamento.SourceColumn = "DataPagamento";
-            prmDataPagamento.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmDataPagamento);
-
-            prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
-            prmDataCadastro.SourceColumn = "DataCadastro";
-            prmDataCadastro.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmDataCadastro);
             
-            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
-            prmCodigo.SourceColumn = "Codigo";
-            prmCodigo.SourceVersion = DataRowVersion.Original;
-            comandoAtualizacaoReg.Parameters.Add(prmCodigo);
+            //SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
+            //SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            //prmDescricaoCat.SourceColumn = "DescricaoCat";
+            //prmDescricaoCat.SourceVersion = DataRowVersion.Current;
+            //comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
 
-            adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
+            //SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            //prmOrcamento.SourceColumn = "Orcamento";
+            //prmOrcamento.SourceVersion = DataRowVersion.Current;
+            //comandoInsercaoCat.Parameters.Add(prmOrcamento);
+
+            //adaptadorCat.InsertCommand = comandoInsercaoCat;
+            
 
             SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
-            prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
             prmDescricaoCat.SourceColumn = "DescricaoCat";
             prmDescricaoCat.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoCat.Parameters.Add(prmDescricaoCat);
 
-            prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
             prmOrcamento.SourceColumn = "Orcamento";
             prmOrcamento.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoCat.Parameters.Add(prmOrcamento);
@@ -307,7 +213,7 @@ namespace WindowsFormsApplication1
 
             //Caomandos para a remoção de dados
             SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
-            prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
+            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoRemocaoReg.Parameters.Add(prmCodigo);
@@ -424,6 +330,7 @@ namespace WindowsFormsApplication1
                         adicionaItensListView(registro);
             }
         }
+
         //Limpa a aba de busca
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
@@ -443,6 +350,7 @@ namespace WindowsFormsApplication1
             textBoxDescricao.Enabled = false;
             comboBoxCategoria.Enabled = false;
         }
+
         //Verifica o que está selecionado para efetuar a busca
         private void verificaCheckBox()
         {
@@ -509,6 +417,7 @@ namespace WindowsFormsApplication1
             Relatorio relatorio = new Relatorio(dados, this);
             relatorio.ShowDialog(this);            
         }
+
         //Altera um registro por meio de um clique duplo
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
@@ -564,6 +473,7 @@ namespace WindowsFormsApplication1
                 buttonAnterior.Enabled = false;
             }
         }
+
         //Navega pelo botão 'Próximo'
         private void buttonProximo_Click(object sender, EventArgs e)
         {

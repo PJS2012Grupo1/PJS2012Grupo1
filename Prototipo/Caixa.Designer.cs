@@ -114,9 +114,6 @@
             // comboBoxCategoriaCaixa
             // 
             this.comboBoxCategoriaCaixa.FormattingEnabled = true;
-            this.comboBoxCategoriaCaixa.Items.AddRange(new object[] {
-            "Salario",
-            "Nda"});
             this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(241, 87);
             this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
             this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(177, 21);
