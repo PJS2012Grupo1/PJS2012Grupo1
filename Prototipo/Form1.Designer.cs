@@ -110,7 +110,7 @@
             this.listViewPrincipal.FullRowSelect = true;
             this.listViewPrincipal.Location = new System.Drawing.Point(12, 68);
             this.listViewPrincipal.Name = "listViewPrincipal";
-            this.listViewPrincipal.Size = new System.Drawing.Size(656, 395);
+            this.listViewPrincipal.Size = new System.Drawing.Size(670, 395);
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
@@ -145,7 +145,7 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
-            this.columnHeaderDataPagamento.Width = 90;
+            this.columnHeaderDataPagamento.Width = 94;
             // 
             // columnHeaderCodigo
             // 
@@ -162,7 +162,7 @@
             this.menuStripPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuStripPrincipal.Name = "menuStripPrincipal";
-            this.menuStripPrincipal.Size = new System.Drawing.Size(940, 24);
+            this.menuStripPrincipal.Size = new System.Drawing.Size(954, 24);
             this.menuStripPrincipal.TabIndex = 1;
             // 
             // cadatroToolStripMenuItem
@@ -170,13 +170,13 @@
             this.cadatroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem});
             this.cadatroToolStripMenuItem.Name = "cadatroToolStripMenuItem";
-            this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.cadatroToolStripMenuItem.Text = "Contas";
             // 
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
@@ -185,13 +185,13 @@
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
-            this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.relatorioToolStripMenuItem.Text = "Caixa";
             // 
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem1.Text = "Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
@@ -200,13 +200,13 @@
             this.categoriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem2});
             this.categoriToolStripMenuItem.Name = "categoriToolStripMenuItem";
-            this.categoriToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.categoriToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.categoriToolStripMenuItem.Text = "Categorias";
             // 
             // cadastroToolStripMenuItem2
             // 
             this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
-            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
+            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem2.Text = "Cadastro";
             this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
             // 
@@ -215,20 +215,20 @@
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.categoriaToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
             // 
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.categoriaToolStripMenuItem.Text = "Gerar Relatório";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem1
             // 
             this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
             this.sairToolStripMenuItem1.Text = "Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
@@ -244,7 +244,7 @@
             this.groupBoxDadosMes.Controls.Add(this.labelSaldo);
             this.groupBoxDadosMes.Location = new System.Drawing.Point(12, 469);
             this.groupBoxDadosMes.Name = "groupBoxDadosMes";
-            this.groupBoxDadosMes.Size = new System.Drawing.Size(656, 84);
+            this.groupBoxDadosMes.Size = new System.Drawing.Size(670, 84);
             this.groupBoxDadosMes.TabIndex = 2;
             this.groupBoxDadosMes.TabStop = false;
             this.groupBoxDadosMes.Text = "Informações";
@@ -309,7 +309,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageBusca);
             this.tabControl1.Controls.Add(this.Categorias);
-            this.tabControl1.Location = new System.Drawing.Point(674, 27);
+            this.tabControl1.Location = new System.Drawing.Point(688, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(254, 526);
@@ -560,7 +560,7 @@
             this.panelTopo.Controls.Add(this.labelNomeMes);
             this.panelTopo.Location = new System.Drawing.Point(12, 27);
             this.panelTopo.Name = "panelTopo";
-            this.panelTopo.Size = new System.Drawing.Size(656, 35);
+            this.panelTopo.Size = new System.Drawing.Size(670, 35);
             this.panelTopo.TabIndex = 4;
             // 
             // comboBoxAno
@@ -589,7 +589,7 @@
             "2018",
             "2019",
             "2020"});
-            this.comboBoxAno.Location = new System.Drawing.Point(557, 7);
+            this.comboBoxAno.Location = new System.Drawing.Point(571, 7);
             this.comboBoxAno.Name = "comboBoxAno";
             this.comboBoxAno.Size = new System.Drawing.Size(60, 21);
             this.comboBoxAno.TabIndex = 6;
@@ -611,7 +611,7 @@
             "Outubro",
             "Novembro",
             "Dezembro"});
-            this.comboBoxMes.Location = new System.Drawing.Point(451, 7);
+            this.comboBoxMes.Location = new System.Drawing.Point(465, 7);
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
             this.comboBoxMes.TabIndex = 5;
@@ -619,7 +619,7 @@
             // buttonIrData
             // 
             this.buttonIrData.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonIrData.Location = new System.Drawing.Point(623, 6);
+            this.buttonIrData.Location = new System.Drawing.Point(637, 6);
             this.buttonIrData.Name = "buttonIrData";
             this.buttonIrData.Size = new System.Drawing.Size(30, 23);
             this.buttonIrData.TabIndex = 4;
@@ -629,7 +629,7 @@
             // buttonProximo
             // 
             this.buttonProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProximo.Location = new System.Drawing.Point(283, 6);
+            this.buttonProximo.Location = new System.Drawing.Point(290, 6);
             this.buttonProximo.Name = "buttonProximo";
             this.buttonProximo.Size = new System.Drawing.Size(60, 23);
             this.buttonProximo.TabIndex = 2;
@@ -640,7 +640,7 @@
             // buttonAnterior
             // 
             this.buttonAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonAnterior.Location = new System.Drawing.Point(81, 6);
+            this.buttonAnterior.Location = new System.Drawing.Point(88, 6);
             this.buttonAnterior.Name = "buttonAnterior";
             this.buttonAnterior.Size = new System.Drawing.Size(60, 23);
             this.buttonAnterior.TabIndex = 1;
@@ -652,7 +652,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(147, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(154, 10);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -663,7 +663,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 556);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(940, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(954, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -671,7 +671,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 578);
+            this.ClientSize = new System.Drawing.Size(954, 578);
             this.Controls.Add(this.listViewPrincipal);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelTopo);
@@ -679,6 +679,7 @@
             this.Controls.Add(this.groupBoxDadosMes);
             this.Controls.Add(this.menuStripPrincipal);
             this.MainMenuStrip = this.menuStripPrincipal;
+            this.MinimumSize = new System.Drawing.Size(970, 616);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

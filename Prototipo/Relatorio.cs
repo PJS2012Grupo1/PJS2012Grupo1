@@ -169,6 +169,7 @@ namespace WindowsFormsApplication1
 
         public void atualizaCombo()
         {
+            comboBoxDescCat.Items.Clear();
             if (listViewRelatorio.Items.Count != 0)
             {
                 for (int i = 0; i < listViewRelatorio.Items.Count; i++)
@@ -337,6 +338,6 @@ namespace WindowsFormsApplication1
             }
             else
                 comboBoxRelatorioCategoria.Enabled = false;
-        }        
+        }       
     }
 }

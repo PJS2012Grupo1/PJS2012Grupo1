@@ -59,7 +59,6 @@
             // 
             // comboBoxRelatorioCategoria
             // 
-            this.comboBoxRelatorioCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxRelatorioCategoria.Enabled = false;
             this.comboBoxRelatorioCategoria.FormattingEnabled = true;
             this.comboBoxRelatorioCategoria.Location = new System.Drawing.Point(566, 42);
@@ -81,6 +80,9 @@
             // 
             // listViewRelatorio
             // 
+            this.listViewRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewRelatorio.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderDescricao,
             this.columnHeaderValor,
@@ -128,6 +130,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.comboBoxDescCat);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -331,6 +335,7 @@
             this.Controls.Add(this.listViewRelatorio);
             this.Controls.Add(this.buttonCancelarRelat);
             this.Controls.Add(this.comboBoxRelatorioCategoria);
+            this.MinimumSize = new System.Drawing.Size(771, 729);
             this.Name = "Relatorio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatorio";

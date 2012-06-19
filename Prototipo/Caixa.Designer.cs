@@ -69,7 +69,7 @@
             // 
             this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 88);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
-            this.textBoxValorCaixa.Size = new System.Drawing.Size(223, 20);
+            this.textBoxValorCaixa.Size = new System.Drawing.Size(121, 20);
             this.textBoxValorCaixa.TabIndex = 2;
             // 
             // buttonCadastrar
@@ -105,7 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(238, 72);
+            this.label1.Location = new System.Drawing.Point(195, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 11;
@@ -114,7 +114,7 @@
             // comboBoxCategoriaCaixa
             // 
             this.comboBoxCategoriaCaixa.FormattingEnabled = true;
-            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(241, 87);
+            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(198, 87);
             this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
             this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(177, 21);
             this.comboBoxCategoriaCaixa.TabIndex = 4;
@@ -143,6 +143,9 @@
             this.Controls.Add(this.textBoxDescricaoCaixa);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(446, 199);
+            this.MinimumSize = new System.Drawing.Size(446, 199);
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
