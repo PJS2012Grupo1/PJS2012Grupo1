@@ -591,6 +591,7 @@
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
             this.comboBoxMes.TabIndex = 5;
+            
             // 
             // buttonIrData
             // 

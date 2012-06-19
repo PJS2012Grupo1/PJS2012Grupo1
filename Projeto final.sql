@@ -29,8 +29,8 @@ INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Alimentação', 300.00);
 INSERT INTO Categoria(DescricaoCat, Orcamento) VALUES('Farmácia', 300.00);
 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Água', -45.50, getdate(), '04-03-2012', '04-05-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Lúz', -87.00, getdate(), '04-16-2012', '04-16-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(3, 'Outros', -100.50, getdate(), '04-20-2012', '04-20-2012',  1, 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Lúz', -87.00, getdate(), '04-06-2012', '04-06-2012', 1, 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(3, 'Outros', -100.50, getdate(), '20-04-2012', '20-04-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -35.50, getdate(), '04-06-2012', '04-06-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -55.50, getdate(), '04-11-2012', '04-11-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -15.50, getdate(), '04-16-2012', '04-16-2012',  1, 1);
@@ -40,7 +40,7 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(5, 'Remédio', -35.50, getdate(), '04-19-2012', '04-19-2012', 1, 1); 
            
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Água', -35.50, getdate(), '05-03-2012', '05-05-2012', 1, 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Lúz', -75.00, getdate(), '05-16-2012', '05-16-2012', 1, 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(1, 'Lúz', -75.00, getdate(), '16-05-2012', '16-05-2012', 1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(3, 'Outros', -35.50, getdate(), '05-17-2012', '05-17-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -60.50, getdate(), '05-06-2012', '05-06-2012',  1, 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento, Parcelas, Recorrente) VALUES(2, 'Gasolina', -30.50, getdate(), '05-11-2012', '05-11-2012',  1, 1);
