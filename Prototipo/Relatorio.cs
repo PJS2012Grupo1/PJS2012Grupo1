@@ -32,8 +32,11 @@ namespace WindowsFormsApplication1
             label3.Text = "0.00";
             label8.Text = "0.00";
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+            {
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
-            
+ 
+            }
+           
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,13 +76,16 @@ namespace WindowsFormsApplication1
                 subItemValor.ForeColor = Color.Blue;
 
             item.UseItemStyleForSubItems = false;
-            item.Tag = registro["Codigo"].ToString();
-            item.SubItems.Add(subItemValor);
-            item.SubItems.Add(subItemCategoria);
-            item.SubItems.Add(subItemDataCadastro);
-            item.SubItems.Add(subItemDataVencimento);
-            item.SubItems.Add(subItemDataPagamento);
-            listViewRelatorio.Items.Add(item);
+
+    
+                item.Tag = registro["Codigo"].ToString();
+                item.SubItems.Add(subItemValor);
+                item.SubItems.Add(subItemCategoria);
+                item.SubItems.Add(subItemDataCadastro);
+                item.SubItems.Add(subItemDataVencimento);
+                item.SubItems.Add(subItemDataPagamento);
+                listViewRelatorio.Items.Add(item);
+            
 
 
         }
@@ -107,13 +113,14 @@ namespace WindowsFormsApplication1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
-            DateTime data;
+            DateTime data = DateTime.Now;
             DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");      
             if (registros.Length != 0)
             {
                 foreach (DataRow registro in registros)
                 {
-                    data = DateTime.Parse(registro["DataCadastro"].ToString());
+                    if(registro["DataVencimento"].ToString() != "")
+                        data = DateTime.Parse(registro["DataVencimento"].ToString());
                     if (data.Year == int.Parse(comboBox1.SelectedItem.ToString()))
                         adicionaItensListView(registro);
                 }
@@ -149,14 +156,15 @@ namespace WindowsFormsApplication1
         private void comboBoxMes_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
-            DateTime data;
+            DateTime data = DateTime.Now;
             DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
             int numero_mes = verificaMes(comboBoxMes.SelectedItem.ToString());
             if (registros.Length != 0)
             {
                 foreach (DataRow registro in registros)
                 {
-                    data = DateTime.Parse(registro["DataCadastro"].ToString());
+                    if (registro["DataVencimento"].ToString() != "")
+                        data = DateTime.Parse(registro["DataVencimento"].ToString());
                     if (data.Month == numero_mes)
                         adicionaItensListView(registro);
                 }
@@ -169,6 +177,7 @@ namespace WindowsFormsApplication1
 
         public void atualizaCombo()
         {
+            comboBoxDescCat.Items.Clear();
             if (listViewRelatorio.Items.Count != 0)
             {
                 for (int i = 0; i < listViewRelatorio.Items.Count; i++)
@@ -332,6 +341,7 @@ namespace WindowsFormsApplication1
         {
             if (checkBoxCategoria.Checked == true)
             {
+                comboBoxDescCat.Visible = false;
                 comboBoxRelatorioCategoria.Enabled = true;
                 comboBoxRelatorioCategoria.Enabled = true;
             }

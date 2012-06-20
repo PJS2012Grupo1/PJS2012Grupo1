@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
             string dataVencimento;
             string dataPagamento;
             string categoria = "";
-           
+            DateTime data = DateTime.Now;
             if (registro["DataVencimento"].ToString() == "")
                 dataVencimento = " ";
             else
@@ -51,26 +51,37 @@ namespace WindowsFormsApplication1
                 if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
                     categoria = registroCat["DescricaoCat"].ToString();
             
-            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
-            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
-            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
-            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+            if(registro["DataVencimento"].ToString()!="")
+                data = DateTime.Parse(registro["DataVencimento"].ToString());
+            string mes = labelNomeMes.Text;
+            string[] label_mes_ano = mes.Split(' ');
+            string nome_mes = label_mes_ano[0];
+            string nome_ano = label_mes_ano[2];
+            int num_mes = atualizaMes(nome_mes);
+            int num_ano = int.Parse(nome_ano);
+            if (data.Month == num_mes && data.Year == num_ano)
+            {
+                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                item.UseItemStyleForSubItems = false;
+                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
+                ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
+                ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
+                ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
 
-            if (float.Parse(registro["Valor"].ToString()) < 0)
-                subItemValor.ForeColor = Color.Red;
-            else
-                subItemValor.ForeColor = Color.Blue;
-
-            item.UseItemStyleForSubItems = false;
-            item.Tag = registro["Codigo"].ToString();
-            item.SubItems.Add(subItemValor);
-            item.SubItems.Add(subItemCategoria);
-            item.SubItems.Add(subItemDataCadastro);
-            item.SubItems.Add(subItemDataVencimento);
-            item.SubItems.Add(subItemDataPagamento);
-            listViewPrincipal.Items.Add(item);
+                if (float.Parse(registro["Valor"].ToString()) < 0)
+                    subItemValor.ForeColor = Color.Red;
+                else
+                    subItemValor.ForeColor = Color.Blue;
+                item.Tag = registro["Codigo"].ToString();
+                item.SubItems.Add(subItemValor);
+                item.SubItems.Add(subItemCategoria);
+                item.SubItems.Add(subItemDataCadastro);
+                item.SubItems.Add(subItemDataVencimento);
+                item.SubItems.Add(subItemDataPagamento);
+                listViewPrincipal.Items.Add(item);
+            }
+           
         }
 
         //Adiciona as Categorias e orçamentos
@@ -454,6 +465,7 @@ namespace WindowsFormsApplication1
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
             buttonProximo.Enabled = true;
+            
             if (!(mesCarregado == 2 && anoCarregado == 2000))
             {
                 if (mesCarregado == 1)
@@ -467,6 +479,7 @@ namespace WindowsFormsApplication1
                 }
 
                 atualizaMesListView();
+                atualizaListView();
             }
             else
             {
@@ -484,14 +497,37 @@ namespace WindowsFormsApplication1
                 {
                     anoCarregado += 1;
                     mesCarregado = 1;
+                    
                 }
                 else
                     mesCarregado += 1;
 
                 atualizaMesListView();
+                atualizaListView();
             }
             else
                 buttonProximo.Enabled = false;
+        }
+
+        public int atualizaMes(string s)
+        {
+            int numero_mes = 0;
+            switch (s)
+            {
+                case "Janeiro": numero_mes = 1; break;
+                case "Fevereiro": numero_mes = 2; break;
+                case "Março": numero_mes = 3; break;
+                case "Abril": numero_mes = 4; break;
+                case "Maio": numero_mes = 5; break;
+                case "Junho": numero_mes = 6; break;
+                case "Julho": numero_mes = 7; break;
+                case "Agosto": numero_mes = 8; break;
+                case "Setembro": numero_mes = 9; break;
+                case "Outubro": numero_mes = 10; break;
+                case "Novembro": numero_mes = 11; break;
+                case "Dezembro": numero_mes = 12; break;
+            }
+            return numero_mes;
         }
 
     }
