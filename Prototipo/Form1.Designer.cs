@@ -601,6 +601,7 @@
             this.buttonIrData.TabIndex = 4;
             this.buttonIrData.Text = "Ir";
             this.buttonIrData.UseVisualStyleBackColor = true;
+            this.buttonIrData.Click += new System.EventHandler(this.buttonIrData_Click);
             // 
             // buttonProximo
             // 
