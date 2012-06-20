@@ -30,10 +30,8 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxDescricaoCaixa = new System.Windows.Forms.TextBox();
             this.textBoxValorCaixa = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDataEntradaCaixa = new System.Windows.Forms.DateTimePicker();
             this.buttonCadastrar = new System.Windows.Forms.Button();
             this.Limpar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -60,15 +58,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Valor:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(150, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Data de Entrada";
-            // 
             // textBoxDescricaoCaixa
             // 
             this.textBoxDescricaoCaixa.Location = new System.Drawing.Point(12, 39);
@@ -80,16 +69,8 @@
             // 
             this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 88);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
-            this.textBoxValorCaixa.Size = new System.Drawing.Size(119, 20);
+            this.textBoxValorCaixa.Size = new System.Drawing.Size(121, 20);
             this.textBoxValorCaixa.TabIndex = 2;
-            // 
-            // dateTimePickerDataEntradaCaixa
-            // 
-            this.dateTimePickerDataEntradaCaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDataEntradaCaixa.Location = new System.Drawing.Point(153, 88);
-            this.dateTimePickerDataEntradaCaixa.Name = "dateTimePickerDataEntradaCaixa";
-            this.dateTimePickerDataEntradaCaixa.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePickerDataEntradaCaixa.TabIndex = 3;
             // 
             // buttonCadastrar
             // 
@@ -124,7 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(270, 70);
+            this.label1.Location = new System.Drawing.Point(195, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 11;
@@ -133,12 +114,9 @@
             // comboBoxCategoriaCaixa
             // 
             this.comboBoxCategoriaCaixa.FormattingEnabled = true;
-            this.comboBoxCategoriaCaixa.Items.AddRange(new object[] {
-            "Salario",
-            "Nda"});
-            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(273, 87);
+            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(198, 87);
             this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
-            this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(145, 21);
+            this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(177, 21);
             this.comboBoxCategoriaCaixa.TabIndex = 4;
             // 
             // labelCampoPreenchimento
@@ -161,12 +139,13 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Limpar);
             this.Controls.Add(this.buttonCadastrar);
-            this.Controls.Add(this.dateTimePickerDataEntradaCaixa);
             this.Controls.Add(this.textBoxValorCaixa);
             this.Controls.Add(this.textBoxDescricaoCaixa);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(446, 199);
+            this.MinimumSize = new System.Drawing.Size(446, 199);
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
@@ -180,10 +159,8 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxDescricaoCaixa;
         private System.Windows.Forms.TextBox textBoxValorCaixa;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDataEntradaCaixa;
         private System.Windows.Forms.Button buttonCadastrar;
         private System.Windows.Forms.Button Limpar;
         private System.Windows.Forms.Button button1;

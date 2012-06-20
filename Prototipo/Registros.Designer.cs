@@ -38,20 +38,20 @@
             this.comboBoxCategoriaRegistro = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDataVencimentoReg = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDataPagamentoReg = new System.Windows.Forms.DateTimePicker();
-            this.radioButtonPagamentoAvistaReg = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButtonPagamentoParceladoReg = new System.Windows.Forms.RadioButton();
-            this.radioButtonPagamentoRecorrenteReg = new System.Windows.Forms.RadioButton();
             this.labelQtdeParcReg = new System.Windows.Forms.Label();
             this.comboBoxQtdeParcelasReg = new System.Windows.Forms.ComboBox();
             this.buttonRegistrarRegistro = new System.Windows.Forms.Button();
             this.buttonLimpar = new System.Windows.Forms.Button();
             this.buttonCancelarRegistro = new System.Windows.Forms.Button();
             this.labelCampoPreenchidos = new System.Windows.Forms.Label();
+            this.comboBoxFormaPagamento = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
@@ -70,6 +70,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(303, 24);
             this.label4.Name = "label4";
@@ -97,6 +98,8 @@
             // 
             // textBoxDescricaoRegistro
             // 
+            this.textBoxDescricaoRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
             this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(268, 20);
@@ -104,6 +107,8 @@
             // 
             // textBoxValorRegistro
             // 
+            this.textBoxValorRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValorRegistro.Location = new System.Drawing.Point(12, 105);
             this.textBoxValorRegistro.Name = "textBoxValorRegistro";
             this.textBoxValorRegistro.Size = new System.Drawing.Size(99, 20);
@@ -111,6 +116,7 @@
             // 
             // comboBoxCategoriaRegistro
             // 
+            this.comboBoxCategoriaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
             this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(306, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
@@ -135,64 +141,30 @@
             this.dateTimePickerDataPagamentoReg.TabIndex = 10;
             this.dateTimePickerDataPagamentoReg.Value = new System.DateTime(2012, 6, 4, 0, 0, 0, 0);
             // 
-            // radioButtonPagamentoAvistaReg
-            // 
-            this.radioButtonPagamentoAvistaReg.AutoSize = true;
-            this.radioButtonPagamentoAvistaReg.Location = new System.Drawing.Point(138, 105);
-            this.radioButtonPagamentoAvistaReg.Name = "radioButtonPagamentoAvistaReg";
-            this.radioButtonPagamentoAvistaReg.Size = new System.Drawing.Size(58, 17);
-            this.radioButtonPagamentoAvistaReg.TabIndex = 4;
-            this.radioButtonPagamentoAvistaReg.Tag = "1";
-            this.radioButtonPagamentoAvistaReg.Text = "Á Vista";
-            this.radioButtonPagamentoAvistaReg.UseVisualStyleBackColor = true;
-            this.radioButtonPagamentoAvistaReg.Click += new System.EventHandler(this.radioButtonClicado);
-            // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(186, 91);
+            this.label5.Location = new System.Drawing.Point(173, 91);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Forma de Pagamento:";
             // 
-            // radioButtonPagamentoParceladoReg
-            // 
-            this.radioButtonPagamentoParceladoReg.AutoSize = true;
-            this.radioButtonPagamentoParceladoReg.Location = new System.Drawing.Point(286, 106);
-            this.radioButtonPagamentoParceladoReg.Name = "radioButtonPagamentoParceladoReg";
-            this.radioButtonPagamentoParceladoReg.Size = new System.Drawing.Size(73, 17);
-            this.radioButtonPagamentoParceladoReg.TabIndex = 6;
-            this.radioButtonPagamentoParceladoReg.Tag = "3";
-            this.radioButtonPagamentoParceladoReg.Text = "Parcelado";
-            this.radioButtonPagamentoParceladoReg.UseVisualStyleBackColor = true;
-            this.radioButtonPagamentoParceladoReg.CheckedChanged += new System.EventHandler(this.radioButtonPagamentoParceladoReg_CheckedChanged);
-            this.radioButtonPagamentoParceladoReg.Click += new System.EventHandler(this.radioButtonClicado);
-            // 
-            // radioButtonPagamentoRecorrenteReg
-            // 
-            this.radioButtonPagamentoRecorrenteReg.AutoSize = true;
-            this.radioButtonPagamentoRecorrenteReg.Location = new System.Drawing.Point(202, 105);
-            this.radioButtonPagamentoRecorrenteReg.Name = "radioButtonPagamentoRecorrenteReg";
-            this.radioButtonPagamentoRecorrenteReg.Size = new System.Drawing.Size(78, 17);
-            this.radioButtonPagamentoRecorrenteReg.TabIndex = 5;
-            this.radioButtonPagamentoRecorrenteReg.Tag = "2";
-            this.radioButtonPagamentoRecorrenteReg.Text = "Recorrente";
-            this.radioButtonPagamentoRecorrenteReg.UseVisualStyleBackColor = true;
-            this.radioButtonPagamentoRecorrenteReg.Click += new System.EventHandler(this.radioButtonClicado);
-            // 
             // labelQtdeParcReg
             // 
+            this.labelQtdeParcReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelQtdeParcReg.AutoSize = true;
             this.labelQtdeParcReg.Location = new System.Drawing.Point(374, 91);
             this.labelQtdeParcReg.Name = "labelQtdeParcReg";
             this.labelQtdeParcReg.Size = new System.Drawing.Size(124, 13);
             this.labelQtdeParcReg.TabIndex = 19;
             this.labelQtdeParcReg.Text = "Quantidade de Parcelas:";
-            this.labelQtdeParcReg.Visible = false;
             // 
             // comboBoxQtdeParcelasReg
             // 
+            this.comboBoxQtdeParcelasReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxQtdeParcelasReg.Enabled = false;
             this.comboBoxQtdeParcelasReg.FormattingEnabled = true;
             this.comboBoxQtdeParcelasReg.Items.AddRange(new object[] {
             "2",
@@ -215,10 +187,11 @@
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
             this.comboBoxQtdeParcelasReg.TabIndex = 7;
-            this.comboBoxQtdeParcelasReg.Visible = false;
+            this.comboBoxQtdeParcelasReg.Text = "1";
             // 
             // buttonRegistrarRegistro
             // 
+            this.buttonRegistrarRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 203);
             this.buttonRegistrarRegistro.Name = "buttonRegistrarRegistro";
             this.buttonRegistrarRegistro.Size = new System.Drawing.Size(75, 23);
@@ -229,6 +202,7 @@
             // 
             // buttonLimpar
             // 
+            this.buttonLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLimpar.Location = new System.Drawing.Point(331, 203);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
@@ -239,6 +213,7 @@
             // 
             // buttonCancelarRegistro
             // 
+            this.buttonCancelarRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 203);
             this.buttonCancelarRegistro.Name = "buttonCancelarRegistro";
             this.buttonCancelarRegistro.Size = new System.Drawing.Size(75, 23);
@@ -256,21 +231,33 @@
             this.labelCampoPreenchidos.TabIndex = 20;
             this.labelCampoPreenchidos.Visible = false;
             // 
+            // comboBoxFormaPagamento
+            // 
+            this.comboBoxFormaPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxFormaPagamento.FormattingEnabled = true;
+            this.comboBoxFormaPagamento.Items.AddRange(new object[] {
+            "Á vista",
+            "Parcelado",
+            "Recorrente"});
+            this.comboBoxFormaPagamento.Location = new System.Drawing.Point(176, 107);
+            this.comboBoxFormaPagamento.Name = "comboBoxFormaPagamento";
+            this.comboBoxFormaPagamento.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxFormaPagamento.TabIndex = 21;
+            this.comboBoxFormaPagamento.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaPagamento_SelectedIndexChanged);
+            // 
             // Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 241);
+            this.Controls.Add(this.comboBoxFormaPagamento);
             this.Controls.Add(this.labelCampoPreenchidos);
             this.Controls.Add(this.buttonCancelarRegistro);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.buttonRegistrarRegistro);
             this.Controls.Add(this.comboBoxQtdeParcelasReg);
             this.Controls.Add(this.labelQtdeParcReg);
-            this.Controls.Add(this.radioButtonPagamentoRecorrenteReg);
-            this.Controls.Add(this.radioButtonPagamentoParceladoReg);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.radioButtonPagamentoAvistaReg);
             this.Controls.Add(this.dateTimePickerDataPagamentoReg);
             this.Controls.Add(this.dateTimePickerDataVencimentoReg);
             this.Controls.Add(this.comboBoxCategoriaRegistro);
@@ -281,6 +268,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(700, 300);
+            this.MinimumSize = new System.Drawing.Size(530, 279);
             this.Name = "Registros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registros";
@@ -302,15 +292,13 @@
         private System.Windows.Forms.ComboBox comboBoxCategoriaRegistro;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataVencimentoReg;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataPagamentoReg;
-        private System.Windows.Forms.RadioButton radioButtonPagamentoAvistaReg;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButtonPagamentoParceladoReg;
-        private System.Windows.Forms.RadioButton radioButtonPagamentoRecorrenteReg;
         private System.Windows.Forms.Label labelQtdeParcReg;
         private System.Windows.Forms.ComboBox comboBoxQtdeParcelasReg;
         private System.Windows.Forms.Button buttonRegistrarRegistro;
         private System.Windows.Forms.Button buttonLimpar;
         private System.Windows.Forms.Button buttonCancelarRegistro;
         private System.Windows.Forms.Label labelCampoPreenchidos;
+        private System.Windows.Forms.ComboBox comboBoxFormaPagamento;
     }
 }

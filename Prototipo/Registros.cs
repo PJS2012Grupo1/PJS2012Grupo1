@@ -12,54 +12,42 @@ namespace WindowsFormsApplication1
     public partial class Registros : Form
     {
         DataSet dados;
-        int codigo;
+        DataRow registro;
         bool atualiza = false;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
-        int radio = 3;
 
         public Registros(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.dados = dados;
+            this.adaptadorReg = adaptadorReg;
             this.adaptadorCat = adaptadorCat;
-            //this.adaptadorReg = adaptadorReg;
             InitializeComponent();
         }
 
-        public Registros(int codigo, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
+        public Registros(DataRow registro, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.atualiza = atualiza;
-            this.codigo = codigo;
+            this.registro = registro;
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
             this.adaptadorReg = adaptadorReg;
             InitializeComponent();
         }
-
-        private void radioButtonPagamentoParceladoReg_CheckedChanged(object sender, EventArgs e)
-        {
-            comboBoxQtdeParcelasReg.Visible = true;
-            labelQtdeParcReg.Visible = true;
-        }
-
+        
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
             textBoxDescricaoRegistro.Text = "";
             textBoxValorRegistro.Text = "";
             comboBoxCategoriaRegistro.Text = "";
             comboBoxQtdeParcelasReg.Text = "";
+            comboBoxFormaPagamento.Text = "";
             dateTimePickerDataPagamentoReg.Text = dateTimePickerDataVencimentoReg.Text = DateTime.Now.ToShortDateString();
         }
 
         private void buttonCancelarRegistro_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void radioButtonClicado(object sender, EventArgs e)
-        {
-            RadioButton radio_clicado = (RadioButton)sender;
-            radio = int.Parse(radio_clicado.Tag.ToString());
         }
 
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
@@ -81,66 +69,84 @@ namespace WindowsFormsApplication1
                 labelCampoPreenchidos.Text = "*Campo valor vazio.";
                 labelCampoPreenchidos.Visible = true;
             }
-            else if (radio == 3)
+            else if (comboBoxFormaPagamento.SelectedIndex == -1)
             {
                 labelCampoPreenchidos.Text = "Forma de pagamento não selecionada.";
                 labelCampoPreenchidos.Visible = true;
-
             }
             else
             {
+                labelCampoPreenchidos.Visible = false;
+
                 int recorrente = 1;
                 int parcelas;
+                int categoria = 0;                
 
-                if (radio == 3)
-                    parcelas = int.Parse(comboBoxQtdeParcelasReg.Text);
-                else
-                {
-                    parcelas = 1;
-                    if (radio == 2)
-                        recorrente = 2;
-                }
-
-                int categoria = 0;
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                     if (comboBoxCategoriaRegistro.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
 
-                labelCampoPreenchidos.Visible = false;
+                if (comboBoxFormaPagamento.SelectedIndex == 1)
+                    parcelas = int.Parse(comboBoxQtdeParcelasReg.Text);
+                else
+                {
+                    parcelas = 1;
+                    if (comboBoxFormaPagamento.SelectedIndex == 2)
+                        recorrente = 2;
+                }
 
                 if (atualiza)
                 {
-                    foreach (DataRow registro in dados.Tables["Registros"].Rows)
+                    registro["Descricao"] = textBoxDescricaoRegistro.Text;
+                    registro["Valor"] = "-" + textBoxValorRegistro.Text;
+                    registro["Categoria"] = categoria;
+                    registro["Recorrente"] = recorrente;
+                    registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
+                    registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
+                    adaptadorReg.Update(dados, "Registros");
+                }
+                else if (parcelas > 1)
+                {
+                    float valor = (float.Parse(textBoxValorRegistro.Text) / parcelas);
+                    string data = dateTimePickerDataVencimentoReg.Value.ToString("dd/MM/yyyy");
+                    string[] datas = data.Split(' ');
+                    int mes = int.Parse(datas[1]);
+                    int ano = int.Parse(datas[2]);
+                    
+                    for (int i = 1; i <= parcelas; i++)
                     {
-                        if (int.Parse(registro["Codigo"].ToString()) == codigo)
+                        if (mes > 12)
                         {
-                            registro["Descricao"] = textBoxDescricaoRegistro.Text;
-                            registro["Valor"] = "-" + textBoxValorRegistro.Text;
-                            registro["Categoria"] = categoria;
-                            registro["Recorrente"] = recorrente;
-                            registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
-                            registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
-                            registro["DataCadastro"] = DateTime.Now.ToShortDateString();
-                            registro["Parcelas"] = parcelas;
-                            adaptadorReg.Update(dados, "Registros");
-                            break;
+                            mes = 1;
+                            ano += 1;
                         }
+                        DataRow novoRegistro = dados.Tables["Registros"].NewRow();
+                        novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text + " " + i + "/" + parcelas;
+                        novoRegistro["Valor"] = "-" + valor;
+                        novoRegistro["Categoria"] = categoria;
+                        novoRegistro["Recorrente"] = recorrente;
+                        novoRegistro["DataVencimento"] = datas[0] + "/" + mes + "/" + ano;
+                        if (i == 1)
+                            novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
+                        novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
+                        dados.Tables["Registros"].Rows.Add(novoRegistro);
+                        adaptadorReg.Update(dados, "Registros");
+                        mes = mes + 1;
                     }
                 }
                 else
-                    {
-                        DataRow novoRegistro = dados.Tables["Registros"].NewRow();
-                        novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
-                        novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
-                        novoRegistro["Categoria"] = categoria;
-                        novoRegistro["Recorrente"] = recorrente;
-                        novoRegistro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
-                        novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
-                        novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
-                        novoRegistro["Parcelas"] = parcelas;
-                        dados.Tables["Registros"].Rows.Add(novoRegistro);
-                        adaptadorReg.Update(dados, "Registros");
-                    }
+                {
+                    DataRow novoRegistro = dados.Tables["Registros"].NewRow();
+                    novoRegistro["Descricao"] = textBoxDescricaoRegistro.Text;
+                    novoRegistro["Valor"] = "-" + textBoxValorRegistro.Text;
+                    novoRegistro["Categoria"] = categoria;
+                    novoRegistro["Recorrente"] = recorrente;
+                    novoRegistro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
+                    novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
+                    novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
+                    dados.Tables["Registros"].Rows.Add(novoRegistro);
+                    adaptadorReg.Update(dados, "Registros");
+                }
                 Close();
             }
         }
@@ -150,10 +156,10 @@ namespace WindowsFormsApplication1
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
             
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro)", conexao);
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
-            //prmDescricao.SourceVersion = DataRowVersion.Current;
+            prmDescricao.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmDescricao);
 
             SqlParameter prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
@@ -186,12 +192,7 @@ namespace WindowsFormsApplication1
             prmDataCadastro.SourceVersion = DataRowVersion.Current;
             comandoInsercaoReg.Parameters.Add(prmDataCadastro);
 
-            SqlParameter prmParcelas = new SqlParameter("@Parcelas", SqlDbType.Int);
-            prmParcelas.SourceColumn = "Parcelas";
-            prmParcelas.SourceVersion = DataRowVersion.Current;
-            comandoInsercaoReg.Parameters.Add(prmParcelas);
-
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Recorrente = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Recorrente = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento where Codigo = @Codigo", conexao);
             prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -222,24 +223,14 @@ namespace WindowsFormsApplication1
             prmDataPagamento.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoReg.Parameters.Add(prmDataPagamento);
 
-            prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
-            prmDataCadastro.SourceColumn = "DataCadastro";
-            prmDataCadastro.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmDataCadastro);
-
-            prmParcelas = new SqlParameter("@Parcelas", SqlDbType.Int);
-            prmParcelas.SourceColumn = "Parcelas";
-            prmParcelas.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoReg.Parameters.Add(prmParcelas);
-
             SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
             prmCodigo.SourceColumn = "Codigo";
             prmCodigo.SourceVersion = DataRowVersion.Original;
             comandoAtualizacaoReg.Parameters.Add(prmCodigo);
 
             adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
-
             adaptadorReg.InsertCommand = comandoInsercaoReg;
+
             adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
             adaptadorReg.Fill(dados, "Registros");
@@ -249,26 +240,57 @@ namespace WindowsFormsApplication1
 
             if (atualiza)
             {
-                foreach (DataRow registro in dados.Tables["Registros"].Rows)
+                string categoria = " ";
+                float valor = -1 * float.Parse(registro["Valor"].ToString());
+                int formaPagamento = -1;
+                DateTime data;
+
+                foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
+                    if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
+                        categoria = registroCat["DescricaoCat"].ToString();
+
+                if (int.Parse(registro["Recorrente"].ToString()) == 2)
+                    formaPagamento = 2;
+
+                int index;
+                string descricao = registro["Descricao"].ToString();
+                index = descricao.IndexOf("/");
+
+                if (index != -1)
                 {
-                    if (int.Parse(registro["Codigo"].ToString()) == codigo)
-                    {
-
-                        string categoria = " ";
-
-                        foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
-                            if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
-                                categoria = registroCat["DescricaoCat"].ToString();
-
-                        float valor = -1 * float.Parse(registro["Valor"].ToString());
-                        textBoxDescricaoRegistro.Text = registro["Descricao"].ToString();
-                        comboBoxCategoriaRegistro.Text = categoria;
-                        textBoxValorRegistro.Text = valor.ToString();
-                        dateTimePickerDataPagamentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
-                        dateTimePickerDataVencimentoReg.Value = DateTime.Parse(registro["DataPagamento"].ToString());
-                    }
+                    formaPagamento = 1;
+                    comboBoxQtdeParcelasReg.Text = descricao.Substring(index + 1);
+                    comboBoxFormaPagamento.Enabled = false;
+                    comboBoxQtdeParcelasReg.Enabled = false;
+                    textBoxValorRegistro.Enabled = false;
                 }
+                else
+                {
+                    comboBoxQtdeParcelasReg.Enabled = true;
+                    formaPagamento = 0;
+                }
+
+                if (registro["DataPagamento"].ToString() == "")
+                    data = DateTime.Parse(DateTime.Now.ToShortDateString());
+                else
+                    data = DateTime.Parse(registro["DataPagamento"].ToString());
+                descricao = descricao.Replace(descricao.Substring(index + -2), " ");
+
+                textBoxDescricaoRegistro.Text = descricao;
+                comboBoxCategoriaRegistro.Text = categoria;
+                comboBoxFormaPagamento.SelectedIndex = formaPagamento;
+                textBoxValorRegistro.Text = valor.ToString();
+                dateTimePickerDataPagamentoReg.Value = data;
+                dateTimePickerDataVencimentoReg.Value = DateTime.Parse(registro["DataVencimento"].ToString());
             }
+        }
+
+        private void comboBoxFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxFormaPagamento.SelectedIndex == 1 && !atualiza)
+                comboBoxQtdeParcelasReg.Enabled = true;
+            else
+                comboBoxQtdeParcelasReg.Enabled = false;
         }
     }
 }

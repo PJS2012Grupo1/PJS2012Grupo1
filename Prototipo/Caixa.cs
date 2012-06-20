@@ -12,14 +12,25 @@ namespace WindowsFormsApplication1
 {
     public partial class Caixa : Form
     {
+        DataRow registro;
         DataSet dados;
         SqlDataAdapter adaptadorReg = new SqlDataAdapter();
         SqlDataAdapter adaptadorCat;
+        bool atualiza = false;
 
         public Caixa(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
+            InitializeComponent();
+        }
+
+        public Caixa(DataRow registro, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
+        {
+            this.dados = dados;
+            this.adaptadorCat = adaptadorCat;
+            this.registro = registro;
+            this.atualiza = atualiza;
             InitializeComponent();
         }
 
@@ -48,17 +59,24 @@ namespace WindowsFormsApplication1
                 foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                     if (comboBoxCategoriaCaixa.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
-
-                labelCampoPreenchimento.Visible = false;
-                DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
-                novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
-                novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
-                novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
-
-                novoRegistroCai["Categoria"] = categoria;              
-
-                dados.Tables["Registros"].Rows.Add(novoRegistroCai);
-                adaptadorReg.Update(dados, "Registros");
+                if (atualiza)
+                {
+                    registro["Descricao"] = textBoxDescricaoCaixa.Text;
+                    registro["Valor"] = textBoxValorCaixa.Text;
+                    registro["Categoria"] = categoria;
+                    adaptadorReg.Update(dados, "Registros");
+                }
+                else
+                {
+                    labelCampoPreenchimento.Visible = false;
+                    DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
+                    novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
+                    novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
+                    novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
+                    novoRegistroCai["Categoria"] = categoria;
+                    dados.Tables["Registros"].Rows.Add(novoRegistroCai);
+                    adaptadorReg.Update(dados, "Registros");
+                }
                 Close();
             }
         }
@@ -104,10 +122,46 @@ namespace WindowsFormsApplication1
             comandoInsercaoCai.Parameters.Add(prmCategoria);
 
             adaptadorReg.InsertCommand = comandoInsercaoCai;
+
+            //Comandos para Atualização
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria where Codigo = @Codigo", conexao);
+            prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
+            prmDescricao.SourceColumn = "Descricao";
+            prmDescricao.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDescricao);
+
+            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
+            prmValor.SourceColumn = "Valor";
+            prmValor.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmValor);
+
+            prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
+            prmCategoria.SourceColumn = "Categoria";
+            prmCategoria.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmCategoria);
+
+            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
+            prmCodigo.SourceColumn = "Codigo";
+            prmCodigo.SourceVersion = DataRowVersion.Original;
+            comandoAtualizacaoReg.Parameters.Add(prmCodigo);
+
+            adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
+
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());
 
-                comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());       
+            if (atualiza)
+            {
+                string categoria = " ";
 
+                foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
+                    if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
+                        categoria = registroCat["DescricaoCat"].ToString();
+
+                textBoxDescricaoCaixa.Text = registro["Descricao"].ToString();
+                comboBoxCategoriaCaixa.Text = categoria;
+                textBoxValorCaixa.Text = registro["Valor"].ToString();
+            }
         }
     }
 }

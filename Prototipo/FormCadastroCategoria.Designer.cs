@@ -49,8 +49,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(252, 9);
+            this.label2.Location = new System.Drawing.Point(293, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 1;
@@ -58,21 +59,25 @@
             // 
             // textBoxDescricao
             // 
+            this.textBoxDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescricao.Location = new System.Drawing.Point(13, 30);
             this.textBoxDescricao.Name = "textBoxDescricao";
-            this.textBoxDescricao.Size = new System.Drawing.Size(235, 20);
+            this.textBoxDescricao.Size = new System.Drawing.Size(250, 20);
             this.textBoxDescricao.TabIndex = 2;
             // 
             // textBoxOrcamento
             // 
-            this.textBoxOrcamento.Location = new System.Drawing.Point(255, 29);
+            this.textBoxOrcamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOrcamento.Location = new System.Drawing.Point(296, 30);
             this.textBoxOrcamento.Name = "textBoxOrcamento";
-            this.textBoxOrcamento.Size = new System.Drawing.Size(100, 20);
+            this.textBoxOrcamento.Size = new System.Drawing.Size(126, 20);
             this.textBoxOrcamento.TabIndex = 3;
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(273, 78);
+            this.buttonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancelar.Location = new System.Drawing.Point(347, 81);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 16;
@@ -81,7 +86,8 @@
             // 
             // buttonLimpar
             // 
-            this.buttonLimpar.Location = new System.Drawing.Point(181, 78);
+            this.buttonLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLimpar.Location = new System.Drawing.Point(255, 81);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpar.TabIndex = 15;
@@ -90,7 +96,8 @@
             // 
             // buttonCadastrar
             // 
-            this.buttonCadastrar.Location = new System.Drawing.Point(89, 78);
+            this.buttonCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCadastrar.Location = new System.Drawing.Point(163, 81);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(75, 23);
             this.buttonCadastrar.TabIndex = 14;
@@ -110,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 113);
+            this.ClientSize = new System.Drawing.Size(434, 116);
             this.Controls.Add(this.labelCampoPreenchidos);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonLimpar);
@@ -119,6 +126,9 @@
             this.Controls.Add(this.textBoxDescricao);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(550, 154);
+            this.MinimumSize = new System.Drawing.Size(450, 154);
             this.Name = "FormCadastroCategoria";
             this.Text = "FormCadastroCategoria";
             this.ResumeLayout(false);

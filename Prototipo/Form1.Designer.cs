@@ -45,12 +45,14 @@
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.semanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.apresentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxDadosMes = new System.Windows.Forms.GroupBox();
+            this.labelSaldoValor = new System.Windows.Forms.Label();
+            this.labelTotalCaixa = new System.Windows.Forms.Label();
+            this.labelTotalContasValor = new System.Windows.Forms.Label();
+            this.labelTotalContas = new System.Windows.Forms.Label();
+            this.labelTotalCaixaValor = new System.Windows.Forms.Label();
+            this.labelSaldo = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageBusca = new System.Windows.Forms.TabPage();
             this.buttonLimpar = new System.Windows.Forms.Button();
@@ -82,14 +84,9 @@
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.groupBoxDadosMes = new System.Windows.Forms.GroupBox();
-            this.labelSaldoValor = new System.Windows.Forms.Label();
-            this.labelTotalContasValor = new System.Windows.Forms.Label();
-            this.labelTotalCaixaValor = new System.Windows.Forms.Label();
-            this.labelSaldo = new System.Windows.Forms.Label();
-            this.labelTotalContas = new System.Windows.Forms.Label();
-            this.labelTotalCaixa = new System.Windows.Forms.Label();
+            this.toolStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripPrincipal.SuspendLayout();
+            this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBusca.SuspendLayout();
             this.groupBoxCategoria.SuspendLayout();
@@ -97,7 +94,7 @@
             this.groupBoxDescricao.SuspendLayout();
             this.Categorias.SuspendLayout();
             this.panelTopo.SuspendLayout();
-            this.groupBoxDadosMes.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewPrincipal
@@ -113,9 +110,9 @@
             this.columnHeaderDataVencimento,
             this.columnHeaderDataPagamento});
             this.listViewPrincipal.FullRowSelect = true;
-            this.listViewPrincipal.Location = new System.Drawing.Point(12, 100);
+            this.listViewPrincipal.Location = new System.Drawing.Point(12, 96);
             this.listViewPrincipal.Name = "listViewPrincipal";
-            this.listViewPrincipal.Size = new System.Drawing.Size(500, 344);
+            this.listViewPrincipal.Size = new System.Drawing.Size(500, 342);
             this.listViewPrincipal.TabIndex = 0;
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
@@ -150,7 +147,7 @@
             // columnHeaderDataPagamento
             // 
             this.columnHeaderDataPagamento.Text = "Data Pagamento";
-            this.columnHeaderDataPagamento.Width = 90;
+            this.columnHeaderDataPagamento.Width = 94;
             // 
             // columnHeaderCodigo
             // 
@@ -218,11 +215,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.categoriaToolStripMenuItem,
-            this.semanaToolStripMenuItem,
-            this.mêsToolStripMenuItem,
-            this.anoToolStripMenuItem,
-            this.apresentarToolStripMenuItem});
+            this.categoriaToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.sairToolStripMenuItem.Text = "Relatórios";
@@ -230,36 +223,9 @@
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.categoriaToolStripMenuItem.Text = "Categoria";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.categoriaToolStripMenuItem.Text = "Gerar Relatório";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // semanaToolStripMenuItem
-            // 
-            this.semanaToolStripMenuItem.Name = "semanaToolStripMenuItem";
-            this.semanaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.semanaToolStripMenuItem.Text = "Semana";
-            this.semanaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // mêsToolStripMenuItem
-            // 
-            this.mêsToolStripMenuItem.Name = "mêsToolStripMenuItem";
-            this.mêsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.mêsToolStripMenuItem.Text = "Mês";
-            this.mêsToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // anoToolStripMenuItem
-            // 
-            this.anoToolStripMenuItem.Name = "anoToolStripMenuItem";
-            this.anoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.anoToolStripMenuItem.Text = "Ano";
-            this.anoToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
-            // 
-            // apresentarToolStripMenuItem
-            // 
-            this.apresentarToolStripMenuItem.Name = "apresentarToolStripMenuItem";
-            this.apresentarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.apresentarToolStripMenuItem.Text = "Categoria";
             // 
             // sairToolStripMenuItem1
             // 
@@ -268,16 +234,76 @@
             this.sairToolStripMenuItem1.Text = "Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
-            // groupBox1
+            // groupBoxDadosMes
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBoxDadosMes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 450);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 67);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Informações";
+            this.groupBoxDadosMes.Controls.Add(this.labelSaldoValor);
+            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixa);
+            this.groupBoxDadosMes.Controls.Add(this.labelTotalContasValor);
+            this.groupBoxDadosMes.Controls.Add(this.labelTotalContas);
+            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixaValor);
+            this.groupBoxDadosMes.Controls.Add(this.labelSaldo);
+            this.groupBoxDadosMes.Location = new System.Drawing.Point(12, 444);
+            this.groupBoxDadosMes.Name = "groupBoxDadosMes";
+            this.groupBoxDadosMes.Size = new System.Drawing.Size(500, 73);
+            this.groupBoxDadosMes.TabIndex = 2;
+            this.groupBoxDadosMes.TabStop = false;
+            this.groupBoxDadosMes.Text = "Informações";
+            // 
+            // labelSaldoValor
+            // 
+            this.labelSaldoValor.Location = new System.Drawing.Point(425, 18);
+            this.labelSaldoValor.Name = "labelSaldoValor";
+            this.labelSaldoValor.Size = new System.Drawing.Size(100, 13);
+            this.labelSaldoValor.TabIndex = 5;
+            this.labelSaldoValor.Text = "R$";
+            this.labelSaldoValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelTotalCaixa
+            // 
+            this.labelTotalCaixa.Location = new System.Drawing.Point(6, 17);
+            this.labelTotalCaixa.Name = "labelTotalCaixa";
+            this.labelTotalCaixa.Size = new System.Drawing.Size(86, 15);
+            this.labelTotalCaixa.TabIndex = 0;
+            this.labelTotalCaixa.Text = "Total do Caixa:";
+            this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelTotalContasValor
+            // 
+            this.labelTotalContasValor.Location = new System.Drawing.Point(271, 18);
+            this.labelTotalContasValor.Name = "labelTotalContasValor";
+            this.labelTotalContasValor.Size = new System.Drawing.Size(85, 13);
+            this.labelTotalContasValor.TabIndex = 4;
+            this.labelTotalContasValor.Text = "R$";
+            this.labelTotalContasValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelTotalContas
+            // 
+            this.labelTotalContas.Location = new System.Drawing.Point(179, 18);
+            this.labelTotalContas.Name = "labelTotalContas";
+            this.labelTotalContas.Size = new System.Drawing.Size(86, 13);
+            this.labelTotalContas.TabIndex = 1;
+            this.labelTotalContas.Text = "Total de Contas:";
+            this.labelTotalContas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelTotalCaixaValor
+            // 
+            this.labelTotalCaixaValor.Location = new System.Drawing.Point(98, 18);
+            this.labelTotalCaixaValor.Name = "labelTotalCaixaValor";
+            this.labelTotalCaixaValor.Size = new System.Drawing.Size(75, 13);
+            this.labelTotalCaixaValor.TabIndex = 3;
+            this.labelTotalCaixaValor.Text = "R$";
+            this.labelTotalCaixaValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelSaldo
+            // 
+            this.labelSaldo.Location = new System.Drawing.Point(362, 18);
+            this.labelSaldo.Name = "labelSaldo";
+            this.labelSaldo.Size = new System.Drawing.Size(57, 13);
+            this.labelSaldo.TabIndex = 2;
+            this.labelSaldo.Text = "Saldo:";
+            this.labelSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabControl1
             // 
@@ -285,10 +311,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageBusca);
             this.tabControl1.Controls.Add(this.Categorias);
-            this.tabControl1.Location = new System.Drawing.Point(518, 130);
+            this.tabControl1.Location = new System.Drawing.Point(518, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(254, 387);
+            this.tabControl1.Size = new System.Drawing.Size(254, 490);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPageBusca
@@ -304,7 +330,7 @@
             this.tabPageBusca.Location = new System.Drawing.Point(4, 22);
             this.tabPageBusca.Name = "tabPageBusca";
             this.tabPageBusca.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBusca.Size = new System.Drawing.Size(246, 361);
+            this.tabPageBusca.Size = new System.Drawing.Size(246, 464);
             this.tabPageBusca.TabIndex = 0;
             this.tabPageBusca.Text = "Busca";
             this.tabPageBusca.UseVisualStyleBackColor = true;
@@ -484,7 +510,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 361);
+            this.Categorias.Size = new System.Drawing.Size(246, 500);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
@@ -501,7 +527,7 @@
             this.listViewCategorias.FullRowSelect = true;
             this.listViewCategorias.Location = new System.Drawing.Point(6, 3);
             this.listViewCategorias.Name = "listViewCategorias";
-            this.listViewCategorias.Size = new System.Drawing.Size(234, 272);
+            this.listViewCategorias.Size = new System.Drawing.Size(234, 385);
             this.listViewCategorias.TabIndex = 0;
             this.listViewCategorias.UseCompatibleStateImageBehavior = false;
             this.listViewCategorias.View = System.Windows.Forms.View.Details;
@@ -509,7 +535,7 @@
             // columnHeaderCategoria
             // 
             this.columnHeaderCategoria.Text = "Categoria";
-            this.columnHeaderCategoria.Width = 110;
+            this.columnHeaderCategoria.Width = 101;
             // 
             // columnHeaderOrcamento
             // 
@@ -534,7 +560,7 @@
             this.panelTopo.Controls.Add(this.buttonProximo);
             this.panelTopo.Controls.Add(this.buttonAnterior);
             this.panelTopo.Controls.Add(this.labelNomeMes);
-            this.panelTopo.Location = new System.Drawing.Point(12, 59);
+            this.panelTopo.Location = new System.Drawing.Point(12, 55);
             this.panelTopo.Name = "panelTopo";
             this.panelTopo.Size = new System.Drawing.Size(500, 35);
             this.panelTopo.TabIndex = 4;
@@ -638,80 +664,18 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 520);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // groupBoxDadosMes
+            // toolStripStatusLabelStatus
             // 
-            this.groupBoxDadosMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxDadosMes.Controls.Add(this.labelSaldoValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalContasValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixaValor);
-            this.groupBoxDadosMes.Controls.Add(this.labelSaldo);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalContas);
-            this.groupBoxDadosMes.Controls.Add(this.labelTotalCaixa);
-            this.groupBoxDadosMes.Location = new System.Drawing.Point(518, 27);
-            this.groupBoxDadosMes.Name = "groupBoxDadosMes";
-            this.groupBoxDadosMes.Size = new System.Drawing.Size(254, 97);
-            this.groupBoxDadosMes.TabIndex = 6;
-            this.groupBoxDadosMes.TabStop = false;
-            // 
-            // labelSaldoValor
-            // 
-            this.labelSaldoValor.Location = new System.Drawing.Point(128, 62);
-            this.labelSaldoValor.Name = "labelSaldoValor";
-            this.labelSaldoValor.Size = new System.Drawing.Size(100, 13);
-            this.labelSaldoValor.TabIndex = 5;
-            this.labelSaldoValor.Text = "R$";
-            this.labelSaldoValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelTotalContasValor
-            // 
-            this.labelTotalContasValor.Location = new System.Drawing.Point(128, 42);
-            this.labelTotalContasValor.Name = "labelTotalContasValor";
-            this.labelTotalContasValor.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalContasValor.TabIndex = 4;
-            this.labelTotalContasValor.Text = "R$";
-            this.labelTotalContasValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelTotalCaixaValor
-            // 
-            this.labelTotalCaixaValor.Location = new System.Drawing.Point(128, 22);
-            this.labelTotalCaixaValor.Name = "labelTotalCaixaValor";
-            this.labelTotalCaixaValor.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalCaixaValor.TabIndex = 3;
-            this.labelTotalCaixaValor.Text = "R$";
-            this.labelTotalCaixaValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelSaldo
-            // 
-            this.labelSaldo.Location = new System.Drawing.Point(22, 62);
-            this.labelSaldo.Name = "labelSaldo";
-            this.labelSaldo.Size = new System.Drawing.Size(100, 13);
-            this.labelSaldo.TabIndex = 2;
-            this.labelSaldo.Text = "Saldo:";
-            this.labelSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelTotalContas
-            // 
-            this.labelTotalContas.Location = new System.Drawing.Point(22, 42);
-            this.labelTotalContas.Name = "labelTotalContas";
-            this.labelTotalContas.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalContas.TabIndex = 1;
-            this.labelTotalContas.Text = "Total de Contas:";
-            this.labelTotalContas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelTotalCaixa
-            // 
-            this.labelTotalCaixa.Location = new System.Drawing.Point(22, 22);
-            this.labelTotalCaixa.Name = "labelTotalCaixa";
-            this.labelTotalCaixa.Size = new System.Drawing.Size(100, 13);
-            this.labelTotalCaixa.TabIndex = 0;
-            this.labelTotalCaixa.Text = "Total do Caixa:";
-            this.labelTotalCaixa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
+            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // Form1
             // 
@@ -719,13 +683,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 542);
             this.Controls.Add(this.listViewPrincipal);
-            this.Controls.Add(this.groupBoxDadosMes);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelTopo);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxDadosMes);
             this.Controls.Add(this.menuStripPrincipal);
             this.MainMenuStrip = this.menuStripPrincipal;
+            this.MinimumSize = new System.Drawing.Size(800, 580);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -734,6 +698,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStripPrincipal.ResumeLayout(false);
             this.menuStripPrincipal.PerformLayout();
+            this.groupBoxDadosMes.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageBusca.ResumeLayout(false);
             this.tabPageBusca.PerformLayout();
@@ -745,7 +710,8 @@
             this.groupBoxDescricao.PerformLayout();
             this.Categorias.ResumeLayout(false);
             this.panelTopo.ResumeLayout(false);
-            this.groupBoxDadosMes.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -760,13 +726,12 @@
         private System.Windows.Forms.ColumnHeader columnHeaderCadastro;
         private System.Windows.Forms.ColumnHeader columnHeaderDataPagamento;
         private System.Windows.Forms.MenuStrip menuStripPrincipal;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxDadosMes;
         private System.Windows.Forms.ToolStripMenuItem cadatroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatorioToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeaderCategoria1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageBusca;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMaxima;
         private System.Windows.Forms.DateTimePicker dateTimePickerDataMinima;
         private System.Windows.Forms.TextBox textBoxDescricao;
@@ -785,7 +750,6 @@
         private System.Windows.Forms.ToolStripMenuItem categoriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.Button buttonProximo;
-        private System.Windows.Forms.GroupBox groupBoxDadosMes;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem1;
         private System.Windows.Forms.Label labelSaldoValor;
         private System.Windows.Forms.Label labelTotalContasValor;
@@ -812,11 +776,7 @@
 
         protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem semanaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mêsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anoToolStripMenuItem;
-
-        private System.Windows.Forms.ToolStripMenuItem apresentarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelStatus;
 
     }
 }
