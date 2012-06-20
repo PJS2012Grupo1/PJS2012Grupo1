@@ -50,6 +50,8 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
@@ -68,6 +70,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(303, 24);
             this.label4.Name = "label4";
@@ -95,6 +98,8 @@
             // 
             // textBoxDescricaoRegistro
             // 
+            this.textBoxDescricaoRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
             this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(268, 20);
@@ -102,6 +107,8 @@
             // 
             // textBoxValorRegistro
             // 
+            this.textBoxValorRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValorRegistro.Location = new System.Drawing.Point(12, 105);
             this.textBoxValorRegistro.Name = "textBoxValorRegistro";
             this.textBoxValorRegistro.Size = new System.Drawing.Size(99, 20);
@@ -109,6 +116,7 @@
             // 
             // comboBoxCategoriaRegistro
             // 
+            this.comboBoxCategoriaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
             this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(306, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
@@ -135,6 +143,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(173, 91);
             this.label5.Name = "label5";
@@ -144,6 +153,7 @@
             // 
             // labelQtdeParcReg
             // 
+            this.labelQtdeParcReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelQtdeParcReg.AutoSize = true;
             this.labelQtdeParcReg.Location = new System.Drawing.Point(374, 91);
             this.labelQtdeParcReg.Name = "labelQtdeParcReg";
@@ -153,6 +163,7 @@
             // 
             // comboBoxQtdeParcelasReg
             // 
+            this.comboBoxQtdeParcelasReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxQtdeParcelasReg.Enabled = false;
             this.comboBoxQtdeParcelasReg.FormattingEnabled = true;
             this.comboBoxQtdeParcelasReg.Items.AddRange(new object[] {
@@ -180,6 +191,7 @@
             // 
             // buttonRegistrarRegistro
             // 
+            this.buttonRegistrarRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 203);
             this.buttonRegistrarRegistro.Name = "buttonRegistrarRegistro";
             this.buttonRegistrarRegistro.Size = new System.Drawing.Size(75, 23);
@@ -190,6 +202,7 @@
             // 
             // buttonLimpar
             // 
+            this.buttonLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLimpar.Location = new System.Drawing.Point(331, 203);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
@@ -200,6 +213,7 @@
             // 
             // buttonCancelarRegistro
             // 
+            this.buttonCancelarRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 203);
             this.buttonCancelarRegistro.Name = "buttonCancelarRegistro";
             this.buttonCancelarRegistro.Size = new System.Drawing.Size(75, 23);
@@ -219,6 +233,7 @@
             // 
             // comboBoxFormaPagamento
             // 
+            this.comboBoxFormaPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxFormaPagamento.FormattingEnabled = true;
             this.comboBoxFormaPagamento.Items.AddRange(new object[] {
             "Á vista",
@@ -253,6 +268,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(700, 300);
+            this.MinimumSize = new System.Drawing.Size(530, 279);
             this.Name = "Registros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registros";

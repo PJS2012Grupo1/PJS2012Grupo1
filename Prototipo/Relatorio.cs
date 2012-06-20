@@ -347,6 +347,6 @@ namespace WindowsFormsApplication1
             }
             else
                 comboBoxRelatorioCategoria.Enabled = false;
-        }        
+        }       
     }
 }
