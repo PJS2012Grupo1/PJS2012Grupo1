@@ -29,11 +29,13 @@ namespace WindowsFormsApplication1
             if (textBoxDescricao.Text == "")
             {
                 labelCampoPreenchidos.Text = "*Campo descrição vazio.";
+                textBoxDescricao.Focus();
                 labelCampoPreenchidos.Visible = true;
             }                
             else if (textBoxOrcamento.Text == "")
             {
                 labelCampoPreenchidos.Text = "*Campo orçamento vazio.";
+                textBoxOrcamento.Focus();
                 labelCampoPreenchidos.Visible = true;
             }
             else

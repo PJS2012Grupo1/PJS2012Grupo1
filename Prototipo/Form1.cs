@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        //Coloca o nome do mes por extenso
         private string nomeMes(int mes)
         {
             switch (mes)
@@ -174,7 +175,7 @@ namespace WindowsFormsApplication1
                 if (registro["DataVencimento"].ToString() == "")
                     data = Convert.ToDateTime(registro["DataPagamento"].ToString());
                 else
-                    data = Convert.ToDateTime(registro["DataPagamento"].ToString());
+                    data = Convert.ToDateTime(registro["DataVencimento"].ToString());
                 if (data.Month == mes && data.Year == ano)
                 {
                     adicionaItensListView(registro);
