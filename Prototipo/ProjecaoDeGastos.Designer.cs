@@ -37,37 +37,49 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonSair = new System.Windows.Forms.Button();
+            this.labelAno = new System.Windows.Forms.Label();
+            this.labelMes = new System.Windows.Forms.Label();
+            this.labelSemana = new System.Windows.Forms.Label();
+            this.columnHeaderDescricao = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(28, 133);
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderDescricao});
+            this.listView1.Location = new System.Drawing.Point(28, 99);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(459, 279);
+            this.listView1.Size = new System.Drawing.Size(459, 313);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // radioButtonGastosParc
             // 
             this.radioButtonGastosParc.AutoSize = true;
-            this.radioButtonGastosParc.Location = new System.Drawing.Point(113, 101);
+            this.radioButtonGastosParc.Location = new System.Drawing.Point(112, 76);
             this.radioButtonGastosParc.Name = "radioButtonGastosParc";
             this.radioButtonGastosParc.Size = new System.Drawing.Size(114, 17);
             this.radioButtonGastosParc.TabIndex = 4;
             this.radioButtonGastosParc.TabStop = true;
+            this.radioButtonGastosParc.Tag = "1";
             this.radioButtonGastosParc.Text = "Gastos Parcelados";
             this.radioButtonGastosParc.UseVisualStyleBackColor = true;
+            this.radioButtonGastosParc.CheckedChanged += new System.EventHandler(this.radioButtonGastosParc_CheckedChanged);
+            this.radioButtonGastosParc.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // radioButtonGastosPeri
             // 
             this.radioButtonGastosPeri.AutoSize = true;
-            this.radioButtonGastosPeri.Location = new System.Drawing.Point(283, 101);
+            this.radioButtonGastosPeri.Location = new System.Drawing.Point(282, 76);
             this.radioButtonGastosPeri.Name = "radioButtonGastosPeri";
             this.radioButtonGastosPeri.Size = new System.Drawing.Size(110, 17);
             this.radioButtonGastosPeri.TabIndex = 5;
             this.radioButtonGastosPeri.TabStop = true;
+            this.radioButtonGastosPeri.Tag = "2";
             this.radioButtonGastosPeri.Text = "Gastos Periódicos";
             this.radioButtonGastosPeri.UseVisualStyleBackColor = true;
+            this.radioButtonGastosPeri.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // comboBoxSemanaProj
             // 
@@ -121,11 +133,46 @@
             this.buttonSair.UseVisualStyleBackColor = true;
             this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
             // 
+            // labelAno
+            // 
+            this.labelAno.AutoSize = true;
+            this.labelAno.Location = new System.Drawing.Point(366, 30);
+            this.labelAno.Name = "labelAno";
+            this.labelAno.Size = new System.Drawing.Size(26, 13);
+            this.labelAno.TabIndex = 8;
+            this.labelAno.Text = "Ano";
+            // 
+            // labelMes
+            // 
+            this.labelMes.AutoSize = true;
+            this.labelMes.Location = new System.Drawing.Point(197, 30);
+            this.labelMes.Name = "labelMes";
+            this.labelMes.Size = new System.Drawing.Size(27, 13);
+            this.labelMes.TabIndex = 9;
+            this.labelMes.Text = "Mês";
+            // 
+            // labelSemana
+            // 
+            this.labelSemana.AutoSize = true;
+            this.labelSemana.Location = new System.Drawing.Point(25, 30);
+            this.labelSemana.Name = "labelSemana";
+            this.labelSemana.Size = new System.Drawing.Size(46, 13);
+            this.labelSemana.TabIndex = 10;
+            this.labelSemana.Text = "Semana";
+            // 
+            // columnHeaderDescricao
+            // 
+            this.columnHeaderDescricao.Text = "Descrição";
+            this.columnHeaderDescricao.Width = 100;
+            // 
             // ProjecaoDeGastos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 464);
+            this.Controls.Add(this.labelSemana);
+            this.Controls.Add(this.labelMes);
+            this.Controls.Add(this.labelAno);
             this.Controls.Add(this.buttonSair);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -137,6 +184,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "ProjecaoDeGastos";
             this.Text = "ProjecaoDeGastos";
+            this.Load += new System.EventHandler(this.ProjecaoDeGastos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +201,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSair;
+        private System.Windows.Forms.Label labelAno;
+        private System.Windows.Forms.Label labelMes;
+        private System.Windows.Forms.Label labelSemana;
+        private System.Windows.Forms.ColumnHeader columnHeaderDescricao;
     }
 }
