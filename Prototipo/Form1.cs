@@ -12,8 +12,8 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         DataSet dados = new DataSet();
-        AdaptadorRegistros registros;
-        AdaptadorCategoria categorias;
+        SqlDataAdapter adaptadorReg = new SqlDataAdapter();
+        SqlDataAdapter adaptadorCat = new SqlDataAdapter();
         int mesCarregado;
         int anoCarregado;
 
@@ -84,6 +84,7 @@ namespace WindowsFormsApplication1
             string categoria = "";
             DateTime data = DateTime.Now;
             DateTime data2 = DateTime.Now;
+
             if (registro["DataVencimento"].ToString() == "")
                 dataVencimento = " ";
             else
@@ -107,6 +108,7 @@ namespace WindowsFormsApplication1
             string nome_ano = label_mes_ano[2];
             int num_mes = atualizaMes(nome_mes);
             int num_ano = int.Parse(nome_ano);
+
             if (registro["Recorrente"].ToString() != "2")
             {
                 if (data.Month == num_mes && data.Year == num_ano)
@@ -158,8 +160,6 @@ namespace WindowsFormsApplication1
                gasto = 0;
             }
         }
-
-
         //Atualiza list view por data
         public void atualizaListView(int mes, int ano)
         {
@@ -199,9 +199,24 @@ namespace WindowsFormsApplication1
 
         public void atualizaMesListView()
         {
-            string mes = nomeMes(mesCarregado);
-            
-           
+            string mes;
+            switch (mesCarregado)
+            {
+                case 1: mes = "Janeiro"; break;
+                case 2: mes = "Fevereiro"; break;
+                case 3: mes = "Março"; break;
+                case 4: mes = "Abril"; break;
+                case 5: mes = "Maio"; break;
+                case 6: mes = "Junho"; break;
+                case 7: mes = "Julho"; break;
+                case 8: mes = "Agosto"; break;
+                case 9: mes = "Setembro"; break;
+                case 10: mes = "Outubro"; break;
+                case 11: mes = "Novembro"; break;
+                case 12: mes = "Dezembro"; break;
+
+                default: mes = " ";break;
+            }
             labelNomeMes.Text = mes + " de " + anoCarregado.ToString();
         }
 
@@ -215,35 +230,85 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabelStatus.Text = "Conectando Banco de Dados";
-
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
 
-            comboBoxMes.Text = nomeMes(mesCarregado);
-
-            comboBoxAno.Text = anoCarregado.ToString();
-
-            registros = new AdaptadorRegistros();
-            categorias = new AdaptadorCategoria();
-
-            registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            categorias.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-            registros.adaptador.Fill(dados, "Registros");
-            categorias.adaptador.Fill(dados, "Categoria");
-
             atualizaMesListView();
-            atualizaListView(mesCarregado,anoCarregado);
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+
+            //Comandos para a seleção
+            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros order by Categoria, Descricao;", conexao);
+
+            adaptadorReg.SelectCommand = comandoSelecaoReg;
+
+            //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            //adaptador.SelectCommand = comandoSelecaoCat;
+            SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
+            adaptadorCat.SelectCommand = comandoSelecaoCat;
+            
+            //SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
+            //SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            //prmDescricaoCat.SourceColumn = "DescricaoCat";
+            //prmDescricaoCat.SourceVersion = DataRowVersion.Current;
+            //comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
+
+            //SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            //prmOrcamento.SourceColumn = "Orcamento";
+            //prmOrcamento.SourceVersion = DataRowVersion.Current;
+            //comandoInsercaoCat.Parameters.Add(prmOrcamento);
+
+            //adaptadorCat.InsertCommand = comandoInsercaoCat;
+            
+
+            SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
+            SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
+            prmDescricaoCat.SourceColumn = "DescricaoCat";
+            prmDescricaoCat.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoCat.Parameters.Add(prmDescricaoCat);
+
+            SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
+            prmOrcamento.SourceColumn = "Orcamento";
+            prmOrcamento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoCat.Parameters.Add(prmOrcamento);
+
+            SqlParameter prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
+            prmCodigoCat.SourceColumn = "CodigoCat";
+            prmCodigoCat.SourceVersion = DataRowVersion.Original;
+            comandoAtualizacaoCat.Parameters.Add(prmCodigoCat);
+
+            adaptadorCat.UpdateCommand = comandoAtualizacaoCat;
+
+            //Caomandos para a remoção de dados
+            SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
+            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
+            prmCodigo.SourceColumn = "Codigo";
+            prmCodigo.SourceVersion = DataRowVersion.Original;
+            comandoRemocaoReg.Parameters.Add(prmCodigo);
+            adaptadorReg.DeleteCommand = comandoRemocaoReg;
+
+            SqlCommand comandoRemocaoCat = new SqlCommand("Delete from Categoria where CodigoCat = @CodigoCat", conexao);
+            prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
+            prmCodigoCat.SourceColumn = "CodigoCat";
+            prmCodigoCat.SourceVersion = DataRowVersion.Original;
+            comandoRemocaoCat.Parameters.Add(prmCodigoCat);
+            adaptadorCat.DeleteCommand = comandoRemocaoCat;
+
+            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adaptadorCat.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            
+            adaptadorReg.Fill(dados, "Registros");
+            adaptadorCat.Fill(dados, "Categoria");
+
+            atualizaListView();
             adicionaCat();
             carregaCat();
-
-            toolStripStatusLabelStatus.Text = "Pronto";
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros(dados, registros.adaptador, categorias.adaptador);
+            Registros cadastroRegistro = new Registros(dados, adaptadorReg, adaptadorCat);
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
@@ -257,7 +322,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa(dados, registros.adaptador, categorias.adaptador);
+            Caixa cadastroCaixa = new Caixa(dados, adaptadorReg, adaptadorCat);
             cadastroCaixa.ShowDialog(this);
 
             atualizaListView();
@@ -338,7 +403,7 @@ namespace WindowsFormsApplication1
         //Limpa a aba de busca
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
-            atualizaListView(mesCarregado,anoCarregado);
+            atualizaListView();
             
             comboBoxCategoria.SelectedIndex = -1;
             textBoxDescricao.Text = "";
@@ -409,8 +474,9 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categorias.adaptador);
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
             cadastroCategoria.ShowDialog(this);
+
             carregaCat();
             adicionaCat();
         }
@@ -424,18 +490,17 @@ namespace WindowsFormsApplication1
         //Altera um registro por meio de um clique duplo
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
-            int codigo = int.Parse(listViewPrincipal.SelectedItems[0].Tag.ToString());
 
             DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
 
             if (registro["DataVencimento"].ToString() == "")
             {
-                Caixa cadastroCaixa = new Caixa(registro, true, dados, registros.adaptador, categorias.adaptador);
+                Caixa cadastroCaixa = new Caixa(registro, true, dados, adaptadorReg, adaptadorCat);
                 cadastroCaixa.ShowDialog(this);
             }
             else
             {
-                Registros cadastroPrograma = new Registros(registro, true, dados, registros.adaptador, categorias.adaptador);
+                Registros cadastroPrograma = new Registros(registro, true, dados, adaptadorReg, adaptadorCat);
                 cadastroPrograma.ShowDialog(this);
             }
             atualizaListView();
@@ -452,7 +517,7 @@ namespace WindowsFormsApplication1
                     //colocar mais um atributo de data no banco!!!
                 }
                 registro.Delete();
-                registros.adaptador.Update(dados, "Registros");
+                adaptadorReg.Update(dados, "Registros");
 
                 atualizaListView();
             }
@@ -476,8 +541,7 @@ namespace WindowsFormsApplication1
                 }
 
                 atualizaMesListView();
-
-                atualizaListView(mesCarregado, anoCarregado);
+                atualizaListView();
             }
             else
             {
@@ -501,7 +565,7 @@ namespace WindowsFormsApplication1
                     mesCarregado += 1;
 
                 atualizaMesListView();
-                atualizaListView(mesCarregado, anoCarregado);
+                atualizaListView();
             }
             else
                 buttonProximo.Enabled = false;
@@ -528,20 +592,10 @@ namespace WindowsFormsApplication1
             return numero_mes;
         }
 
-        private void buttonIrData_Click(object sender, EventArgs e)
+        private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mesCarregado = comboBoxMes.SelectedIndex + 1;
-            anoCarregado = int.Parse(comboBoxAno.Text);
-            atualizaListView(mesCarregado,anoCarregado);
-            atualizaMesListView();
-
-
-            if (mesCarregado == 12 && anoCarregado == 2020)
-                buttonProximo.Enabled = false;
-            else if (mesCarregado == 1 && anoCarregado == 2000)
-                buttonAnterior.Enabled = false;
-            
+            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
+            projecaoGastos.ShowDialog(this);
         }
-
     }
 }
