@@ -569,5 +569,11 @@ namespace WindowsFormsApplication1
             }
             return numero_mes;
         }
+
+        private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
+            projecaoGastos.ShowDialog(this);
+        }
     }
 }
