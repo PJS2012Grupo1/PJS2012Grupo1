@@ -130,7 +130,7 @@
             this.dateTimePickerDataVencimentoReg.Location = new System.Drawing.Point(15, 165);
             this.dateTimePickerDataVencimentoReg.Name = "dateTimePickerDataVencimentoReg";
             this.dateTimePickerDataVencimentoReg.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePickerDataVencimentoReg.TabIndex = 9;
+            this.dateTimePickerDataVencimentoReg.TabIndex = 6;
             // 
             // dateTimePickerDataPagamentoReg
             // 
@@ -138,7 +138,7 @@
             this.dateTimePickerDataPagamentoReg.Location = new System.Drawing.Point(199, 165);
             this.dateTimePickerDataPagamentoReg.Name = "dateTimePickerDataPagamentoReg";
             this.dateTimePickerDataPagamentoReg.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePickerDataPagamentoReg.TabIndex = 10;
+            this.dateTimePickerDataPagamentoReg.TabIndex = 7;
             this.dateTimePickerDataPagamentoReg.Value = new System.DateTime(2012, 6, 4, 0, 0, 0, 0);
             // 
             // label5
@@ -186,7 +186,7 @@
             this.comboBoxQtdeParcelasReg.Location = new System.Drawing.Point(377, 107);
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
-            this.comboBoxQtdeParcelasReg.TabIndex = 7;
+            this.comboBoxQtdeParcelasReg.TabIndex = 5;
             this.comboBoxQtdeParcelasReg.Text = "1";
             // 
             // buttonRegistrarRegistro
@@ -195,7 +195,7 @@
             this.buttonRegistrarRegistro.Location = new System.Drawing.Point(239, 203);
             this.buttonRegistrarRegistro.Name = "buttonRegistrarRegistro";
             this.buttonRegistrarRegistro.Size = new System.Drawing.Size(75, 23);
-            this.buttonRegistrarRegistro.TabIndex = 11;
+            this.buttonRegistrarRegistro.TabIndex = 8;
             this.buttonRegistrarRegistro.Text = "Cadastrar";
             this.buttonRegistrarRegistro.UseVisualStyleBackColor = true;
             this.buttonRegistrarRegistro.Click += new System.EventHandler(this.buttonRegistrarRegistro_Click);
@@ -206,7 +206,7 @@
             this.buttonLimpar.Location = new System.Drawing.Point(331, 203);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
-            this.buttonLimpar.TabIndex = 12;
+            this.buttonLimpar.TabIndex = 9;
             this.buttonLimpar.Text = "Limpar";
             this.buttonLimpar.UseVisualStyleBackColor = true;
             this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
@@ -217,7 +217,7 @@
             this.buttonCancelarRegistro.Location = new System.Drawing.Point(423, 203);
             this.buttonCancelarRegistro.Name = "buttonCancelarRegistro";
             this.buttonCancelarRegistro.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelarRegistro.TabIndex = 13;
+            this.buttonCancelarRegistro.TabIndex = 10;
             this.buttonCancelarRegistro.Text = "Cancelar";
             this.buttonCancelarRegistro.UseVisualStyleBackColor = true;
             this.buttonCancelarRegistro.Click += new System.EventHandler(this.buttonCancelarRegistro_Click);
@@ -242,7 +242,7 @@
             this.comboBoxFormaPagamento.Location = new System.Drawing.Point(176, 107);
             this.comboBoxFormaPagamento.Name = "comboBoxFormaPagamento";
             this.comboBoxFormaPagamento.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxFormaPagamento.TabIndex = 21;
+            this.comboBoxFormaPagamento.TabIndex = 4;
             this.comboBoxFormaPagamento.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaPagamento_SelectedIndexChanged);
             // 
             // Registros
