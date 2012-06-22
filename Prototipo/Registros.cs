@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1
                 {
                     float valor = (float.Parse(textBoxValorRegistro.Text) / parcelas);
                     string data = dateTimePickerDataVencimentoReg.Value.ToString("dd/MM/yyyy");
-                    string[] datas = data.Split('/');
+                    string[] datas = data.Split(' ');
                     int mes = int.Parse(datas[1]);
                     int ano = int.Parse(datas[2]);
                     

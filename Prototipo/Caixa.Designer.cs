@@ -38,12 +38,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxCategoriaCaixa = new System.Windows.Forms.ComboBox();
             this.labelCampoPreenchimento = new System.Windows.Forms.Label();
+            this.checkBoxRecorrente = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 23);
+            this.label2.Location = new System.Drawing.Point(12, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 1;
@@ -52,7 +53,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 72);
+            this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -67,14 +68,14 @@
             // 
             // textBoxValorCaixa
             // 
-            this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 88);
+            this.textBoxValorCaixa.Location = new System.Drawing.Point(12, 95);
             this.textBoxValorCaixa.Name = "textBoxValorCaixa";
             this.textBoxValorCaixa.Size = new System.Drawing.Size(121, 20);
             this.textBoxValorCaixa.TabIndex = 2;
             // 
             // buttonCadastrar
             // 
-            this.buttonCadastrar.Location = new System.Drawing.Point(171, 124);
+            this.buttonCadastrar.Location = new System.Drawing.Point(206, 137);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(75, 23);
             this.buttonCadastrar.TabIndex = 5;
@@ -84,7 +85,7 @@
             // 
             // Limpar
             // 
-            this.Limpar.Location = new System.Drawing.Point(257, 124);
+            this.Limpar.Location = new System.Drawing.Point(292, 137);
             this.Limpar.Name = "Limpar";
             this.Limpar.Size = new System.Drawing.Size(75, 23);
             this.Limpar.TabIndex = 6;
@@ -94,7 +95,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(343, 124);
+            this.button1.Location = new System.Drawing.Point(378, 137);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -105,7 +106,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(195, 72);
+            this.label1.Location = new System.Drawing.Point(275, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 11;
@@ -114,7 +115,7 @@
             // comboBoxCategoriaCaixa
             // 
             this.comboBoxCategoriaCaixa.FormattingEnabled = true;
-            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(198, 87);
+            this.comboBoxCategoriaCaixa.Location = new System.Drawing.Point(276, 94);
             this.comboBoxCategoriaCaixa.Name = "comboBoxCategoriaCaixa";
             this.comboBoxCategoriaCaixa.Size = new System.Drawing.Size(177, 21);
             this.comboBoxCategoriaCaixa.TabIndex = 4;
@@ -128,11 +129,23 @@
             this.labelCampoPreenchimento.TabIndex = 12;
             this.labelCampoPreenchimento.Visible = false;
             // 
+            // checkBoxRecorrente
+            // 
+            this.checkBoxRecorrente.AutoSize = true;
+            this.checkBoxRecorrente.Location = new System.Drawing.Point(164, 97);
+            this.checkBoxRecorrente.Name = "checkBoxRecorrente";
+            this.checkBoxRecorrente.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxRecorrente.TabIndex = 3;
+            this.checkBoxRecorrente.Text = "Recorrente";
+            this.checkBoxRecorrente.UseVisualStyleBackColor = true;
+            this.checkBoxRecorrente.CheckedChanged += new System.EventHandler(this.checkBoxRecorrente_CheckedChanged);
+            // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 161);
+            this.ClientSize = new System.Drawing.Size(465, 172);
+            this.Controls.Add(this.checkBoxRecorrente);
             this.Controls.Add(this.labelCampoPreenchimento);
             this.Controls.Add(this.comboBoxCategoriaCaixa);
             this.Controls.Add(this.label1);
@@ -144,7 +157,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(446, 199);
             this.MinimumSize = new System.Drawing.Size(446, 199);
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -167,5 +179,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxCategoriaCaixa;
         private System.Windows.Forms.Label labelCampoPreenchimento;
+        private System.Windows.Forms.CheckBox checkBoxRecorrente;
     }
 }

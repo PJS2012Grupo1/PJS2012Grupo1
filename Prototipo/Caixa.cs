@@ -36,6 +36,13 @@ namespace WindowsFormsApplication1
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
+            int recorrente = 1;
+
+            if (checkBoxRecorrente.Checked == true)
+                recorrente = 2;
+            else
+                recorrente = 1;
+
             if (textBoxDescricaoCaixa.Text == "")
             {
                 labelCampoPreenchimento.Text = "*Campo descrição vazio.";
@@ -63,6 +70,7 @@ namespace WindowsFormsApplication1
                 {
                     registro["Descricao"] = textBoxDescricaoCaixa.Text;
                     registro["Valor"] = textBoxValorCaixa.Text;
+                    registro["Recorrente"] = recorrente;
                     registro["Categoria"] = categoria;
                     adaptadorReg.Update(dados, "Registros");
                 }
@@ -72,6 +80,7 @@ namespace WindowsFormsApplication1
                     DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
                     novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
                     novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
+                    novoRegistroCai["Recorrente"] = recorrente;
                     novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
                     novoRegistroCai["Categoria"] = categoria;
                     dados.Tables["Registros"].Rows.Add(novoRegistroCai);
@@ -97,10 +106,10 @@ namespace WindowsFormsApplication1
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
-            SqlCommand comandoSelecaoCai = new SqlCommand("select Descricao, Valor, DataCadastro, Categoria;", conexao);
+            SqlCommand comandoSelecaoCai = new SqlCommand("select Descricao, Valor, Recorrente, DataCadastro, Categoria;", conexao);
             adaptadorCat.SelectCommand = comandoSelecaoCai;
 
-            SqlCommand comandoInsercaoCai = new SqlCommand("Insert into Registros (Descricao, Valor, DataCadastro, Categoria) values (@Desc, @Valor, @DataCadastro, @Categoria)", conexao);
+            SqlCommand comandoInsercaoCai = new SqlCommand("Insert into Registros (Descricao, Valor, Recorrente, DataCadastro, Categoria) values (@Desc, @Valor, @Recorrente, @DataCadastro, @Categoria)", conexao);
 
             SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
@@ -110,6 +119,11 @@ namespace WindowsFormsApplication1
             prmValor.SourceColumn = "Valor";
             prmValor.SourceVersion = DataRowVersion.Current;
             comandoInsercaoCai.Parameters.Add(prmValor);
+
+            SqlParameter prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoCai.Parameters.Add(prmRecorrente);
 
             SqlParameter prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
             prmDataCadastro.SourceColumn = "DataCadastro";
@@ -124,7 +138,7 @@ namespace WindowsFormsApplication1
             adaptadorReg.InsertCommand = comandoInsercaoCai;
 
             //Comandos para Atualização
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria where Codigo = @Codigo", conexao);
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Recorrente = @Recorrente, Categoria = @Categoria where Codigo = @Codigo", conexao);
             prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
             prmDescricao.SourceColumn = "Descricao";
             prmDescricao.SourceVersion = DataRowVersion.Current;
@@ -134,6 +148,11 @@ namespace WindowsFormsApplication1
             prmValor.SourceColumn = "Valor";
             prmValor.SourceVersion = DataRowVersion.Current;
             comandoAtualizacaoReg.Parameters.Add(prmValor);
+
+            prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmRecorrente);
 
             prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
             prmCategoria.SourceColumn = "Categoria";
@@ -150,6 +169,7 @@ namespace WindowsFormsApplication1
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());
 
+          
             if (atualiza)
             {
                 string categoria = " ";
@@ -162,6 +182,11 @@ namespace WindowsFormsApplication1
                 comboBoxCategoriaCaixa.Text = categoria;
                 textBoxValorCaixa.Text = registro["Valor"].ToString();
             }
+        }
+
+        private void checkBoxRecorrente_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
