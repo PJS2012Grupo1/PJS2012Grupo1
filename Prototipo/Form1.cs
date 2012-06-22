@@ -31,6 +31,29 @@ namespace WindowsFormsApplication1
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
 
+        public void atulizalist(DataRow registro, string categoria, string dataVencimento, string dataPagamento)
+        {
+            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+            item.UseItemStyleForSubItems = false;
+            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
+            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
+            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
+            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
+            if (float.Parse(registro["Valor"].ToString()) < 0)
+                subItemValor.ForeColor = Color.Red;
+            else
+                subItemValor.ForeColor = Color.Blue;
+            item.Tag = registro["Codigo"].ToString();
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemDataCadastro);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewPrincipal.Items.Add(item);
+        }
+
         //Adiciona os itens do ListView Principal
         public void adicionaItensListView(DataRow registro)
         {
@@ -38,6 +61,8 @@ namespace WindowsFormsApplication1
             string dataPagamento;
             string categoria = "";
             DateTime data = DateTime.Now;
+            DateTime data2 = DateTime.Now;
+
             if (registro["DataVencimento"].ToString() == "")
                 dataVencimento = " ";
             else
@@ -53,35 +78,29 @@ namespace WindowsFormsApplication1
             
             if(registro["DataVencimento"].ToString()!="")
                 data = DateTime.Parse(registro["DataVencimento"].ToString());
+            else
+               data2 = DateTime.Parse(registro["DataCadastro"].ToString());
             string mes = labelNomeMes.Text;
             string[] label_mes_ano = mes.Split(' ');
             string nome_mes = label_mes_ano[0];
             string nome_ano = label_mes_ano[2];
             int num_mes = atualizaMes(nome_mes);
             int num_ano = int.Parse(nome_ano);
-            if (data.Month == num_mes && data.Year == num_ano)
-            {
-                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-                item.UseItemStyleForSubItems = false;
-                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-                ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, categoria);
-                ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyy"));
-                ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
-                ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
 
-                if (float.Parse(registro["Valor"].ToString()) < 0)
-                    subItemValor.ForeColor = Color.Red;
-                else
-                    subItemValor.ForeColor = Color.Blue;
-                item.Tag = registro["Codigo"].ToString();
-                item.SubItems.Add(subItemValor);
-                item.SubItems.Add(subItemCategoria);
-                item.SubItems.Add(subItemDataCadastro);
-                item.SubItems.Add(subItemDataVencimento);
-                item.SubItems.Add(subItemDataPagamento);
-                listViewPrincipal.Items.Add(item);
+            if (registro["Recorrente"].ToString() != "2")
+            {
+                if (data.Month == num_mes && data.Year == num_ano)
+                {
+                    atulizalist(registro, categoria, dataVencimento, dataPagamento);
+                }
             }
-           
+            else
+            {
+                if (data2.Year < num_ano || (data2.Month <= num_mes && data2.Year == num_ano))
+                {
+                   atulizalist(registro, categoria, dataVencimento, dataPagamento);
+                }
+            }       
         }
 
         //Adiciona as Categorias e orçamentos
@@ -119,9 +138,26 @@ namespace WindowsFormsApplication1
                gasto = 0;
             }
         }
+        //Atualiza list view por data
+        public void atualizaListView(int mes, int ano)
+        {
+            listViewPrincipal.Items.Clear();
+            float totalPositivo = 0f;
+            float totalNegativo = 0f;
 
-        //Atualiza list view
-        public void atualizaListView() 
+            foreach (DataRow registro in dados.Tables["Registros"].Rows)
+            {
+                adicionaItensListView(registro);
+                if (float.Parse(registro["Valor"].ToString()) < 0)
+                    totalNegativo += float.Parse(registro["Valor"].ToString());
+                else
+                    totalPositivo += float.Parse(registro["Valor"].ToString());
+            }
+            atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
+        }
+
+        //Atualiza list view todos os cadastros
+        public void atualizaListView()
         {
             listViewPrincipal.Items.Clear();
 
@@ -454,6 +490,10 @@ namespace WindowsFormsApplication1
             if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
             {
                 DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (registro["Recorrente"].ToString() == "2")
+                {
+                    //colocar mais um atributo de data no banco!!!
+                }
                 registro.Delete();
                 adaptadorReg.Update(dados, "Registros");
 

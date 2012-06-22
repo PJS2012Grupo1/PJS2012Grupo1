@@ -115,6 +115,7 @@
             this.listViewPrincipal.UseCompatibleStateImageBehavior = false;
             this.listViewPrincipal.View = System.Windows.Forms.View.Details;
             this.listViewPrincipal.DoubleClick += new System.EventHandler(this.listViewPrincipal_DoubleClick);
+            this.listViewPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewPrincipal_KeyDown);
             // 
             // columnHeaderDescricao
             // 
@@ -508,7 +509,7 @@
             this.Categorias.Location = new System.Drawing.Point(4, 22);
             this.Categorias.Name = "Categorias";
             this.Categorias.Padding = new System.Windows.Forms.Padding(3);
-            this.Categorias.Size = new System.Drawing.Size(246, 500);
+            this.Categorias.Size = new System.Drawing.Size(246, 464);
             this.Categorias.TabIndex = 1;
             this.Categorias.Text = "Categorias";
             this.Categorias.UseVisualStyleBackColor = true;
