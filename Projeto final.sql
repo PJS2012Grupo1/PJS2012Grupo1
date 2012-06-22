@@ -63,10 +63,10 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento,
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 6/12', -50.00, '05-20-2012', '10-20-2012', 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 7/12', -50.00, '05-20-2012', '11-20-2012', 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 8/12', -50.00, '05-20-2012', '12-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 9/12', -50.00, '05-20-2012', '01-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 10/12', -50.00, '05-20-2012', '02-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 11/12', -50.00, '05-20-2012', '03-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 12/12', -50.00, '05-20-2012', '04-20-2012', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 9/12', -50.00, '05-20-2012', '01-20-2013', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 10/12', -50.00, '05-20-2012', '02-20-2013', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 11/12', -50.00, '05-20-2012', '03-20-2013', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(3, 'Celular 12/12', -50.00, '05-20-2012', '04-20-2013', 1);
 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataPagamento, DataVencimento,  Recorrente) VALUES(1, 'Geladeira 1/12', -75.00, '04-20-2012', '04-20-2012', '04-20-2012', 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 2/12', -75.00, '05-20-2012', '05-20-2012', 1);
@@ -77,9 +77,9 @@ INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento,
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 7/12', -75.00, '05-20-2012', '10-20-2012', 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 8/12', -75.00, '05-20-2012', '11-20-2012', 1);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 9/12', -75.00, '05-20-2012', '12-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 10/12', -75.00, '05-20-2012', '01-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 11/12', -75.00, '05-20-2012', '02-20-2012', 1);
-INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 12/12', -75.00, '05-20-2012', '03-20-2012', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 10/12', -75.00, '05-20-2012', '01-20-2013', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 11/12', -75.00, '05-20-2012', '02-20-2013', 1);
+INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, DataVencimento, Recorrente) VALUES(1, 'Geladeira 12/12', -75.00, '05-20-2012', '03-20-2013', 1);
 
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, recorrente) VALUES(3, 'Salário', 2000.00, getdate(), 2);
 INSERT INTO Registros(Categoria, Descricao, Valor, DataCadastro, recorrente) VALUES(3, 'Esmola', 15.00, '06-04-2012', 1);
