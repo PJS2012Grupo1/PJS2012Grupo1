@@ -49,11 +49,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBoxMes = new System.Windows.Forms.ComboBox();
-            this.comboBoxSemana = new System.Windows.Forms.ComboBox();
             this.checkBoxSemana = new System.Windows.Forms.CheckBox();
             this.checkBoxMes = new System.Windows.Forms.CheckBox();
             this.checkBoxAno = new System.Windows.Forms.CheckBox();
             this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
+            this.dateTimePickerSemana = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -266,15 +266,6 @@
             this.comboBoxMes.TabIndex = 7;
             this.comboBoxMes.SelectedIndexChanged += new System.EventHandler(this.comboBoxMes_SelectedIndexChanged);
             // 
-            // comboBoxSemana
-            // 
-            this.comboBoxSemana.Enabled = false;
-            this.comboBoxSemana.FormattingEnabled = true;
-            this.comboBoxSemana.Location = new System.Drawing.Point(29, 42);
-            this.comboBoxSemana.Name = "comboBoxSemana";
-            this.comboBoxSemana.Size = new System.Drawing.Size(143, 21);
-            this.comboBoxSemana.TabIndex = 8;
-            // 
             // checkBoxSemana
             // 
             this.checkBoxSemana.AutoSize = true;
@@ -319,16 +310,26 @@
             this.checkBoxCategoria.UseVisualStyleBackColor = true;
             this.checkBoxCategoria.CheckedChanged += new System.EventHandler(this.checkBoxCategoria_CheckedChanged);
             // 
+            // dateTimePickerSemana
+            // 
+            this.dateTimePickerSemana.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerSemana.Location = new System.Drawing.Point(29, 48);
+            this.dateTimePickerSemana.Name = "dateTimePickerSemana";
+            this.dateTimePickerSemana.Size = new System.Drawing.Size(112, 20);
+            this.dateTimePickerSemana.TabIndex = 13;
+            this.dateTimePickerSemana.Value = new System.DateTime(2012, 5, 22, 19, 32, 0, 0);
+            this.dateTimePickerSemana.ValueChanged += new System.EventHandler(this.dateTimePickerSemana_ValueChanged);
+            // 
             // Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 691);
+            this.Controls.Add(this.dateTimePickerSemana);
             this.Controls.Add(this.checkBoxCategoria);
             this.Controls.Add(this.checkBoxAno);
             this.Controls.Add(this.checkBoxMes);
             this.Controls.Add(this.checkBoxSemana);
-            this.Controls.Add(this.comboBoxSemana);
             this.Controls.Add(this.comboBoxMes);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.groupBox1);
@@ -370,10 +371,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBoxDescCat;
-        private System.Windows.Forms.ComboBox comboBoxSemana;
         private System.Windows.Forms.CheckBox checkBoxSemana;
         private System.Windows.Forms.CheckBox checkBoxMes;
         private System.Windows.Forms.CheckBox checkBoxAno;
         private System.Windows.Forms.CheckBox checkBoxCategoria;
+        private System.Windows.Forms.DateTimePicker dateTimePickerSemana;
     }
 }
