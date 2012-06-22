@@ -107,22 +107,20 @@ namespace WindowsFormsApplication1
             string nome_ano = label_mes_ano[2];
             int num_mes = atualizaMes(nome_mes);
             int num_ano = int.Parse(nome_ano);
-            if (data.Month == num_mes && data.Year == num_ano || registro["Recorrente"].ToString() == "2")
+            if (registro["Recorrente"].ToString() != "2")
             {
-                if (registro["Recorrente"].ToString() == "2")
+                if (data.Month == num_mes && data.Year == num_ano)
                 {
-                    if (data2.Year < num_ano || (data2.Month <= num_mes && data2.Year <= num_ano))
-                    {
-                        atulizalist(registro, categoria, dataVencimento, dataPagamento);
-                    }
-                }
-                else
-                {
-                    if (data.Month == num_mes && data.Year == num_ano)
-                        atulizalist(registro, categoria, dataVencimento, dataPagamento);
+                    atulizalist(registro, categoria, dataVencimento, dataPagamento);
                 }
             }
-           
+            else
+            {
+                if (data2.Year < num_ano || (data2.Month <= num_mes && data2.Year == num_ano))
+                {
+                   atulizalist(registro, categoria, dataVencimento, dataPagamento);
+                }
+            }       
         }
 
         //Adiciona as Categorias e orçamentos
@@ -171,19 +169,11 @@ namespace WindowsFormsApplication1
 
             foreach (DataRow registro in dados.Tables["Registros"].Rows)
             {
-                DateTime data;
-                if (registro["DataVencimento"].ToString() == "")
-                    data = Convert.ToDateTime(registro["DataPagamento"].ToString());
+                adicionaItensListView(registro);
+                if (float.Parse(registro["Valor"].ToString()) < 0)
+                    totalNegativo += float.Parse(registro["Valor"].ToString());
                 else
-                    data = Convert.ToDateTime(registro["DataVencimento"].ToString());
-                if (data.Month == mes && data.Year == ano)
-                {
-                    adicionaItensListView(registro);
-                    if (float.Parse(registro["Valor"].ToString()) < 0)
-                        totalNegativo += float.Parse(registro["Valor"].ToString());
-                    else
-                        totalPositivo += float.Parse(registro["Valor"].ToString());
-                }
+                    totalPositivo += float.Parse(registro["Valor"].ToString());
             }
             atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
         }
@@ -457,6 +447,10 @@ namespace WindowsFormsApplication1
             if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
             {
                 DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (registro["Recorrente"].ToString() == "2")
+                {
+                    //colocar mais um atributo de data no banco!!!
+                }
                 registro.Delete();
                 registros.adaptador.Update(dados, "Registros");
 
