@@ -22,6 +22,27 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        private string nomeMes(int mes)
+        {
+            switch (mes)
+            {
+                case 1: return "Janeiro";
+                case 2: return "Fevereiro";
+                case 3: return "Março";
+                case 4: return "Abril";
+                case 5: return "Maio";
+                case 6: return "Junho";
+                case 7: return "Julho";
+                case 8: return "Agosto";
+                case 9: return "Setembro";
+                case 10: return "Outubro";
+                case 11: return "Novembro";
+                case 12: return "Dezembro";
+
+                default: return " ";
+            }
+        }
+
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
@@ -120,7 +141,9 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void atualizaListView(int mes, int ano) //Atualiza list view por data
+
+        //Atualiza list view por data
+        public void atualizaListView(int mes, int ano)
         {
             listViewPrincipal.Items.Clear();
             float totalPositivo = 0f;
@@ -145,7 +168,8 @@ namespace WindowsFormsApplication1
             atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
         }
 
-        public void atualizaListView() //Atualiza list view todos os cadastros
+        //Atualiza list view todos os cadastros
+        public void atualizaListView()
         {
             listViewPrincipal.Items.Clear();
 
@@ -165,24 +189,9 @@ namespace WindowsFormsApplication1
 
         public void atualizaMesListView()
         {
-            string mes;
-            switch (mesCarregado)
-            {
-                case 1: mes = "Janeiro"; break;
-                case 2: mes = "Fevereiro"; break;
-                case 3: mes = "Março"; break;
-                case 4: mes = "Abril"; break;
-                case 5: mes = "Maio"; break;
-                case 6: mes = "Junho"; break;
-                case 7: mes = "Julho"; break;
-                case 8: mes = "Agosto"; break;
-                case 9: mes = "Setembro"; break;
-                case 10: mes = "Outubro"; break;
-                case 11: mes = "Novembro"; break;
-                case 12: mes = "Dezembro"; break;
-
-                default: mes = " ";break;
-            }
+            string mes = nomeMes(mesCarregado);
+            
+           
             labelNomeMes.Text = mes + " de " + anoCarregado.ToString();
         }
 
@@ -196,27 +205,12 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            toolStripStatusLabelStatus.Text = "Conectando Banco de Dados";
+
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
 
-            
-            switch (mesCarregado)
-            {
-                case 1: comboBoxMes.Text = "Janeiro"; break;
-                case 2: comboBoxMes.Text = "Fevereiro"; break;
-                case 3: comboBoxMes.Text = "Março"; break;
-                case 4: comboBoxMes.Text = "Abril"; break;
-                case 5: comboBoxMes.Text = "Maio"; break;
-                case 6: comboBoxMes.Text = "Junho"; break;
-                case 7: comboBoxMes.Text = "Julho"; break;
-                case 8: comboBoxMes.Text = "Agosto"; break;
-                case 9: comboBoxMes.Text = "Setembro"; break;
-                case 10: comboBoxMes.Text = "Outubro"; break;
-                case 11: comboBoxMes.Text = "Novembro"; break;
-                case 12: comboBoxMes.Text = "Dezembro"; break;
-
-                default: comboBoxMes.Text = " "; break;
-            }
+            comboBoxMes.Text = nomeMes(mesCarregado);
 
             comboBoxAno.Text = anoCarregado.ToString();
 
@@ -233,6 +227,8 @@ namespace WindowsFormsApplication1
             atualizaListView(mesCarregado,anoCarregado);
             adicionaCat();
             carregaCat();
+
+            toolStripStatusLabelStatus.Text = "Pronto";
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
@@ -405,7 +401,6 @@ namespace WindowsFormsApplication1
         {
             FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categorias.adaptador);
             cadastroCategoria.ShowDialog(this);
-
             carregaCat();
             adicionaCat();
         }
