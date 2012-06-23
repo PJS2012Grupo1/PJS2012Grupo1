@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdaptadorCategoria.cs" />
+    <Compile Include="AdaptadorRegistros.cs" />
     <Compile Include="Caixa.cs">
       <SubType>Form</SubType>
     </Compile>

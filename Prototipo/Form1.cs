@@ -11,9 +11,10 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        //Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI
         DataSet dados = new DataSet();
-        SqlDataAdapter adaptadorReg = new SqlDataAdapter();
-        SqlDataAdapter adaptadorCat = new SqlDataAdapter();
+        AdaptadorRegistros registros;
+        AdaptadorCategoria categoria;
         int mesCarregado;
         int anoCarregado;
 
@@ -27,20 +28,39 @@ namespace WindowsFormsApplication1
         {
             switch (mes)
             {
-                case 1: return "Janeiro";
-                case 2: return "Fevereiro";
-                case 3: return "Março";
-                case 4: return "Abril";
-                case 5: return "Maio";
-                case 6: return "Junho";
-                case 7: return "Julho";
-                case 8: return "Agosto";
-                case 9: return "Setembro";
+                case 1:  return "Janeiro";
+                case 2:  return "Fevereiro";
+                case 3:  return "Março";
+                case 4:  return "Abril";
+                case 5:  return "Maio";
+                case 6:  return "Junho";
+                case 7:  return "Julho";
+                case 8:  return "Agosto";
+                case 9:  return "Setembro";
                 case 10: return "Outubro";
                 case 11: return "Novembro";
                 case 12: return "Dezembro";
+                default: return "";
+            }
+        }
 
-                default: return " ";
+        public int atualizaMes(string mes)
+        {
+            switch (mes)
+            {
+                case "Janeiro":   return 1;
+                case "Fevereiro": return 2;
+                case "Março":     return 3;
+                case "Abril":     return 4;
+                case "Maio":      return 5;
+                case "Junho":     return 6;
+                case "Julho":     return 7;
+                case "Agosto":    return 8;
+                case "Setembro":  return 9;
+                case "Outubro":   return 10;
+                case "Novembro":  return 11;
+                case "Dezembro":  return 12;
+                default: return 0;
             }
         }
 
@@ -101,7 +121,7 @@ namespace WindowsFormsApplication1
             if(registro["DataVencimento"].ToString()!="")
                 data = DateTime.Parse(registro["DataVencimento"].ToString());
             else
-               data2 = DateTime.Parse(registro["DataCadastro"].ToString());
+                data2 = DateTime.Parse(registro["DataCadastro"].ToString());
             string mes = labelNomeMes.Text;
             string[] label_mes_ano = mes.Split(' ');
             string nome_mes = label_mes_ano[0];
@@ -233,73 +253,21 @@ namespace WindowsFormsApplication1
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
 
+            registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+            categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+
             atualizaMesListView();
 
-            SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            //SqlConnection conexao = new SqlConnection();
+            //conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
-            //Comandos para a seleção
-            SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros order by Categoria, Descricao;", conexao);
-
-            adaptadorReg.SelectCommand = comandoSelecaoReg;
-
-            //SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
-            //adaptador.SelectCommand = comandoSelecaoCat;
-            SqlCommand comandoSelecaoCat = new SqlCommand("Select * from Categoria", conexao);
-            adaptadorCat.SelectCommand = comandoSelecaoCat;
-            
-            //SqlCommand comandoInsercaoCat = new SqlCommand("Insert into Categoria (DescricaoCat, Orcamento) values (@DescricaoCat, @Orcamento)", conexao);
-            //SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
-            //prmDescricaoCat.SourceColumn = "DescricaoCat";
-            //prmDescricaoCat.SourceVersion = DataRowVersion.Current;
-            //comandoInsercaoCat.Parameters.Add(prmDescricaoCat);
-
-            //SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
-            //prmOrcamento.SourceColumn = "Orcamento";
-            //prmOrcamento.SourceVersion = DataRowVersion.Current;
-            //comandoInsercaoCat.Parameters.Add(prmOrcamento);
-
-            //adaptadorCat.InsertCommand = comandoInsercaoCat;
             
 
-            SqlCommand comandoAtualizacaoCat = new SqlCommand("Update Categoria set DescricaoCat = @DescricaoCat, Orcamento = @Orcamento where CodigoCat = @CodigoCat", conexao);
-            SqlParameter prmDescricaoCat = new SqlParameter("@DescricaoCat", SqlDbType.VarChar, 40);
-            prmDescricaoCat.SourceColumn = "DescricaoCat";
-            prmDescricaoCat.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoCat.Parameters.Add(prmDescricaoCat);
+            registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            categoria.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
-            SqlParameter prmOrcamento = new SqlParameter("@Orcamento", SqlDbType.Decimal);
-            prmOrcamento.SourceColumn = "Orcamento";
-            prmOrcamento.SourceVersion = DataRowVersion.Current;
-            comandoAtualizacaoCat.Parameters.Add(prmOrcamento);
-
-            SqlParameter prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
-            prmCodigoCat.SourceColumn = "CodigoCat";
-            prmCodigoCat.SourceVersion = DataRowVersion.Original;
-            comandoAtualizacaoCat.Parameters.Add(prmCodigoCat);
-
-            adaptadorCat.UpdateCommand = comandoAtualizacaoCat;
-
-            //Caomandos para a remoção de dados
-            SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);
-            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
-            prmCodigo.SourceColumn = "Codigo";
-            prmCodigo.SourceVersion = DataRowVersion.Original;
-            comandoRemocaoReg.Parameters.Add(prmCodigo);
-            adaptadorReg.DeleteCommand = comandoRemocaoReg;
-
-            SqlCommand comandoRemocaoCat = new SqlCommand("Delete from Categoria where CodigoCat = @CodigoCat", conexao);
-            prmCodigoCat = new SqlParameter("@CodigoCat", SqlDbType.Int);
-            prmCodigoCat.SourceColumn = "CodigoCat";
-            prmCodigoCat.SourceVersion = DataRowVersion.Original;
-            comandoRemocaoCat.Parameters.Add(prmCodigoCat);
-            adaptadorCat.DeleteCommand = comandoRemocaoCat;
-
-            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            adaptadorCat.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            
-            adaptadorReg.Fill(dados, "Registros");
-            adaptadorCat.Fill(dados, "Categoria");
+            registros.adaptador.Fill(dados, "Registros");
+            categoria.adaptador.Fill(dados, "Categoria");
 
             atualizaListView();
             adicionaCat();
@@ -308,7 +276,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros(dados, adaptadorReg, adaptadorCat);
+            Registros cadastroRegistro = new Registros(dados, registros.adaptador, categoria.adaptador);
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
@@ -322,7 +290,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Caixa cadastroCaixa = new Caixa(dados, adaptadorReg, adaptadorCat);
+            Caixa cadastroCaixa = new Caixa(dados, registros.adaptador, categoria.adaptador);
             cadastroCaixa.ShowDialog(this);
 
             atualizaListView();
@@ -474,7 +442,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, adaptadorCat);
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria.adaptador);
             cadastroCategoria.ShowDialog(this);
 
             carregaCat();
@@ -495,12 +463,12 @@ namespace WindowsFormsApplication1
 
             if (registro["DataVencimento"].ToString() == "")
             {
-                Caixa cadastroCaixa = new Caixa(registro, true, dados, adaptadorReg, adaptadorCat);
+                Caixa cadastroCaixa = new Caixa(registro, true, dados, registros.adaptador, categoria.adaptador);
                 cadastroCaixa.ShowDialog(this);
             }
             else
             {
-                Registros cadastroPrograma = new Registros(registro, true, dados, adaptadorReg, adaptadorCat);
+                Registros cadastroPrograma = new Registros(registro, true, dados, registros.adaptador, categoria.adaptador);
                 cadastroPrograma.ShowDialog(this);
             }
             atualizaListView();
@@ -517,7 +485,7 @@ namespace WindowsFormsApplication1
                     //colocar mais um atributo de data no banco!!!
                 }
                 registro.Delete();
-                adaptadorReg.Update(dados, "Registros");
+                registros.adaptador.Update(dados, "Registros");
 
                 atualizaListView();
             }
@@ -527,7 +495,6 @@ namespace WindowsFormsApplication1
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
             buttonProximo.Enabled = true;
-            
             if (!(mesCarregado == 2 && anoCarregado == 2000))
             {
                 if (mesCarregado == 1)
@@ -539,14 +506,15 @@ namespace WindowsFormsApplication1
                 {
                     mesCarregado -= 1;
                 }
-
-                atualizaMesListView();
-                atualizaListView();
             }
             else
             {
+                mesCarregado = 1;
+                anoCarregado = 2000;
                 buttonAnterior.Enabled = false;
             }
+            atualizaMesListView();
+            atualizaListView();
         }
 
         //Navega pelo botão 'Próximo'
@@ -559,38 +527,23 @@ namespace WindowsFormsApplication1
                 {
                     anoCarregado += 1;
                     mesCarregado = 1;
-                    
                 }
                 else
+                {
                     mesCarregado += 1;
-
-                atualizaMesListView();
-                atualizaListView();
+                }
             }
             else
+            {
+                mesCarregado = 12;
+                anoCarregado = 2020;
                 buttonProximo.Enabled = false;
+            }
+                atualizaMesListView();
+                atualizaListView();
         }
 
-        public int atualizaMes(string s)
-        {
-            int numero_mes = 0;
-            switch (s)
-            {
-                case "Janeiro": numero_mes = 1; break;
-                case "Fevereiro": numero_mes = 2; break;
-                case "Março": numero_mes = 3; break;
-                case "Abril": numero_mes = 4; break;
-                case "Maio": numero_mes = 5; break;
-                case "Junho": numero_mes = 6; break;
-                case "Julho": numero_mes = 7; break;
-                case "Agosto": numero_mes = 8; break;
-                case "Setembro": numero_mes = 9; break;
-                case "Outubro": numero_mes = 10; break;
-                case "Novembro": numero_mes = 11; break;
-                case "Dezembro": numero_mes = 12; break;
-            }
-            return numero_mes;
-        }
+        
 
         private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
         {
