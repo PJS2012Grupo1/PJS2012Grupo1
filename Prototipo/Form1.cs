@@ -67,7 +67,6 @@ namespace WindowsFormsApplication1
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
-            groupBoxDadosMes.Text = "Mes: " + labelNomeMes.Text;
             labelTotalCaixaValor.Text = "R$ " + caixa.ToString("0.00");
             labelTotalContasValor.Text = "R$ " + contas.ToString("0.00");
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
@@ -180,6 +179,7 @@ namespace WindowsFormsApplication1
                gasto = 0;
             }
         }
+
         //Atualiza list view por data
         public void atualizaListView(int mes, int ano)
         {

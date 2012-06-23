@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1
             label2.Text = "0.00";
             label3.Text = "0.00";
             label8.Text = "0.00";
+            dateTimePickerSemana.Enabled = false;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
             {
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
@@ -308,11 +309,11 @@ namespace WindowsFormsApplication1
         {
             if (checkBoxSemana.Checked == true)
             {
-                comboBoxSemana.Enabled = true;
-                comboBoxSemana.Enabled = true;
+                dateTimePickerSemana.Enabled = true;
+                dateTimePickerSemana.Enabled = true;
             }
             else
-                comboBoxSemana.Enabled = false;
+                dateTimePickerSemana.Enabled = false;
         }
 
         private void checkBoxMes_CheckedChanged(object sender, EventArgs e)
@@ -347,6 +348,40 @@ namespace WindowsFormsApplication1
             }
             else
                 comboBoxRelatorioCategoria.Enabled = false;
+        }
+        //Filtra pela data
+        private void dateTimePickerSemana_ValueChanged(object sender, EventArgs e)
+        {
+            listViewRelatorio.Items.Clear();
+            dateTimePickerSemana.CustomFormat = "dd/MM/yyyy";
+            DateTime data = DateTime.Now;
+            DateTime data1 = DateTime.Now;
+            string data_aux;
+            string data2;
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
+            //int numero_mes = verificaMes(comboBoxMes.SelectedItem.ToString());
+            //if (registro["DataVencimento"].ToString() != "")
+            
+            
+            if (registros.Length != 0)
+            {
+                foreach (DataRow registro in registros)
+                {  
+                    if (registro["DataVencimento"].ToString() != "")
+                    {
+                        data = dateTimePickerSemana.Value;
+                        data1 = data.AddDays(7);
+                        data_aux = data.ToString("dd/MM/yyyy");
+                        data2 = data1.ToString("dd/MM/yyyy");
+                        if (DateTime.Parse(registro["DataVencimento"].ToString()) >= DateTime.Parse(data_aux) && DateTime.Parse(registro["DataVencimento"].ToString()) <= DateTime.Parse(data2))
+                            adicionaItensListView(registro);
+                    }
+                }
+            }
+            comboBoxDescCat.Visible = true;
+
+            //atualizaCombo();
+            atualizaGroupBox();
         }       
     }
 }

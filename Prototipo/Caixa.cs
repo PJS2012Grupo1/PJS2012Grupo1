@@ -94,6 +94,8 @@ namespace WindowsFormsApplication1
         {
             textBoxDescricaoCaixa.Text = "";
             textBoxValorCaixa.Text = "";
+            checkBoxRecorrente.Checked = false;
+            comboBoxCategoriaCaixa.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
