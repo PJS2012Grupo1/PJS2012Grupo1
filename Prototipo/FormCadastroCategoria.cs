@@ -49,5 +49,16 @@ namespace WindowsFormsApplication1
                 Close();
             }
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            textBoxDescricao.Text = "";
+            textBoxOrcamento.Text = "";
+        }
     }
 }
