@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //carrega o numero do mes
         public int atualizaMes(string mes)
         {
             switch (mes)
@@ -219,24 +220,7 @@ namespace WindowsFormsApplication1
 
         public void atualizaMesListView()
         {
-            string mes;
-            switch (mesCarregado)
-            {
-                case 1: mes = "Janeiro"; break;
-                case 2: mes = "Fevereiro"; break;
-                case 3: mes = "Março"; break;
-                case 4: mes = "Abril"; break;
-                case 5: mes = "Maio"; break;
-                case 6: mes = "Junho"; break;
-                case 7: mes = "Julho"; break;
-                case 8: mes = "Agosto"; break;
-                case 9: mes = "Setembro"; break;
-                case 10: mes = "Outubro"; break;
-                case 11: mes = "Novembro"; break;
-                case 12: mes = "Dezembro"; break;
-
-                default: mes = " ";break;
-            }
+            string mes = nomeMes(mesCarregado);
             labelNomeMes.Text = mes + " de " + anoCarregado.ToString();
         }
 
@@ -250,28 +234,32 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            toolStripStatusLabelStatus.Text = "Conectando Banco de Dados";
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
 
-            registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-            categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+            try
+            {
+                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
-            atualizaMesListView();
+                atualizaMesListView();
 
-            //SqlConnection conexao = new SqlConnection();
-            //conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+                registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+                categoria.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
-            
+                registros.adaptador.Fill(dados, "Registros");
+                categoria.adaptador.Fill(dados, "Categoria");
 
-            registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            categoria.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-            registros.adaptador.Fill(dados, "Registros");
-            categoria.adaptador.Fill(dados, "Categoria");
-
-            atualizaListView();
-            adicionaCat();
-            carregaCat();
+                atualizaListView();
+                adicionaCat();
+                carregaCat();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Não foi possivel conectar com o Banco de Dados.", "Erro ao Conectar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
@@ -550,5 +538,8 @@ namespace WindowsFormsApplication1
             ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
             projecaoGastos.ShowDialog(this);
         }
+
+        
+        
     }
 }
