@@ -550,5 +550,13 @@ namespace WindowsFormsApplication1
             ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
             projecaoGastos.ShowDialog(this);
         }
+        //Botão ir
+        private void buttonIrData_Click(object sender, EventArgs e)
+        {
+            mesCarregado = atualizaMes(comboBoxMes.SelectedItem.ToString());
+            anoCarregado = int.Parse(comboBoxAno.SelectedItem.ToString());
+            labelNomeMes.Text = comboBoxMes.SelectedItem.ToString() + " de " + comboBoxAno.SelectedItem.ToString();
+            atualizaListView();
+        }
     }
 }

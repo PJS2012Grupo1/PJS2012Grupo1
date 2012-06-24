@@ -37,7 +37,26 @@ namespace WindowsFormsApplication1
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
  
             }
-           
+            foreach (DataRow reg in dados.Tables["Registros"].Rows)
+            {
+                string ano;
+                string[] ano_aux;
+                string a;
+                if (reg["DataVencimento"].ToString() != "")
+                    ano = reg["DataVencimento"].ToString();
+                else
+                    ano = reg["DataCadastro"].ToString();
+                a = ano.Substring(0, 10);
+                ano_aux = a.Split('/');
+                if (comboBox1.Items.Count == 0)
+                    comboBox1.Items.Add(ano_aux[2]);
+                else
+                {
+                    for (int i = 0; i < comboBox1.Items.Count; i++)
+                        if (comboBox1.Items[i].ToString() != ano_aux[2].ToString())
+                            comboBox1.Items.Add(ano_aux[2]);
+                    }
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,7 +261,7 @@ namespace WindowsFormsApplication1
                 {
                     if (comboBoxDescCat.Visible == false)                                            
                     {
-                        if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString())
+                        if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString() && listViewRelatorio.Items[i].SubItems[1].ForeColor != Color.Blue)
                         {
                             if (gasto_total > float.Parse(cat["Orcamento"].ToString()))
                             {
@@ -277,7 +296,7 @@ namespace WindowsFormsApplication1
             {
                 for (int i = 0; i < listViewRelatorio.Items.Count; i++)
                 {
-                    if (listViewRelatorio.Items[i].SubItems[2].Text == comboBoxDescCat.SelectedItem.ToString())
+                    if (listViewRelatorio.Items[i].SubItems[2].Text == comboBoxDescCat.SelectedItem.ToString() && listViewRelatorio.Items[i].SubItems[1].ForeColor != Color.Blue)
                     {
                         soma_parcial = listViewRelatorio.Items[i].SubItems[1].Text;
                         gasto_parcial += float.Parse(soma_parcial);
@@ -287,7 +306,6 @@ namespace WindowsFormsApplication1
             gasto_parcial *= -1;
             foreach (DataRow cat in dados.Tables["Categoria"].Rows)
             {
-
                 if (comboBoxDescCat.SelectedItem.ToString() == cat["DescricaoCat"].ToString())
                 {
                     if (gasto_parcial> float.Parse(cat["Orcamento"].ToString()))
