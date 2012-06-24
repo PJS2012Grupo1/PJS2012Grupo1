@@ -38,6 +38,7 @@
             this.columnHeaderDataVencimento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.comboBoxDescCat = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,6 +55,8 @@
             this.checkBoxAno = new System.Windows.Forms.CheckBox();
             this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             this.dateTimePickerSemana = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.buttonLimpar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +135,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.comboBoxDescCat);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -147,6 +152,15 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(437, 64);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "label9";
             // 
             // comboBoxDescCat
             // 
@@ -166,11 +180,12 @@
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "label8";
+            
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(349, 34);
+            this.label7.Location = new System.Drawing.Point(263, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 13);
             this.label7.TabIndex = 6;
@@ -206,7 +221,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(372, 65);
+            this.label3.Location = new System.Drawing.Point(289, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
@@ -317,11 +332,31 @@
             this.dateTimePickerSemana.Value = new System.DateTime(2012, 5, 22, 19, 32, 0, 0);
             this.dateTimePickerSemana.ValueChanged += new System.EventHandler(this.dateTimePickerSemana_ValueChanged);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(411, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(117, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Crédito ou Débito Geral";
+            // 
+            // buttonLimpar
+            // 
+            this.buttonLimpar.Location = new System.Drawing.Point(570, 654);
+            this.buttonLimpar.Name = "buttonLimpar";
+            this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
+            this.buttonLimpar.TabIndex = 14;
+            this.buttonLimpar.Text = "Limpar";
+            this.buttonLimpar.UseVisualStyleBackColor = true;
+            this.buttonLimpar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 691);
+            this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.dateTimePickerSemana);
             this.Controls.Add(this.checkBoxCategoria);
             this.Controls.Add(this.checkBoxAno);
@@ -373,5 +408,8 @@
         private System.Windows.Forms.CheckBox checkBoxAno;
         private System.Windows.Forms.CheckBox checkBoxCategoria;
         private System.Windows.Forms.DateTimePicker dateTimePickerSemana;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button buttonLimpar;
     }
 }

@@ -27,10 +27,11 @@ namespace WindowsFormsApplication1
 
         private void Relatorio_Load(object sender, EventArgs e)
         {
-            label1.Text = "0.00";
-            label2.Text = "0.00";
-            label3.Text = "0.00";
-            label8.Text = "0.00";
+            label1.Text = "0.00R$";
+            label2.Text = "0.00R$";
+            label3.Text = "0.00R$";
+            label8.Text = "0.00R$";
+            label9.Text = "0.00R$";
             dateTimePickerSemana.Enabled = false;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
             {
@@ -221,11 +222,13 @@ namespace WindowsFormsApplication1
             DataRow[] categoria = dados.Tables["Categoria"].Select("CodigoCat > 0");
             float maior = 0;
             float menor = 0;
+            int contador = 0;
             //Soma o total no ListView
             foreach (ListViewItem item in listViewRelatorio.Items)
             {
                 if (item.SubItems[1].ForeColor != Color.Blue)
                 {
+                    contador++;
                     soma = item.SubItems[1].Text;
                     gasto_total += float.Parse(soma);
                 }
@@ -257,41 +260,49 @@ namespace WindowsFormsApplication1
             {
                 float dif = 0;
                 gasto_total *= -1;
-                for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+
+                if (comboBoxDescCat.Visible == false)
                 {
-                    if (comboBoxDescCat.Visible == false)                                            
+                    for (int i = 0; i < listViewRelatorio.Items.Count; i++)
                     {
                         if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString() && listViewRelatorio.Items[i].SubItems[1].ForeColor != Color.Blue)
                         {
                             if (gasto_total > float.Parse(cat["Orcamento"].ToString()))
                             {
                                 dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
-                                label3.Text = "Débito de:" + dif;
+                                label9.Text = "Débito de:" + dif + "R$";
                                 break;
                             }
                             else
                             {
                                 dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
-                                label3.Text = "Crédito de:" + dif;
+                                label9.Text = "Crédito de:" + dif + "R$";
                                 break;
                             }
                         }
-                    }
+                    }  
                 }
+                
             }
             if (gasto_total != 0)
-                media = gasto_total / listViewRelatorio.Items.Count;
-            label1.Text = media.ToString("0.00");
-            label2.Text = menor.ToString("0.00");
-            label8.Text = maior.ToString("0.00");
+                media = gasto_total / contador;
+            if (checkBoxAno.Checked == true || checkBoxMes.Checked == true || checkBoxSemana.Checked == true)
+                verificaSituacao(gasto_total);
+            label1.Text = media.ToString("0.00") + "R$";
+            label2.Text = menor.ToString("0.00") + "R$";
+            label8.Text = maior.ToString("0.00") + "R$";
             
         }
 
         private void comboBoxDescCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             float gasto_parcial = 0;
+            float gasto_total = 0; 
             string soma_parcial;
+            string soma_total;
+            
             float dif = 0;
+          
             if (comboBoxDescCat.SelectedIndex != -1)
             {
                 for (int i = 0; i < listViewRelatorio.Items.Count; i++)
@@ -301,27 +312,54 @@ namespace WindowsFormsApplication1
                         soma_parcial = listViewRelatorio.Items[i].SubItems[1].Text;
                         gasto_parcial += float.Parse(soma_parcial);
                     }
+                    soma_total = listViewRelatorio.Items[i].SubItems[1].Text;
+                    gasto_total += float.Parse(soma_total);
                 }
             }
             gasto_parcial *= -1;
             foreach (DataRow cat in dados.Tables["Categoria"].Rows)
             {
+                
                 if (comboBoxDescCat.SelectedItem.ToString() == cat["DescricaoCat"].ToString())
                 {
                     if (gasto_parcial> float.Parse(cat["Orcamento"].ToString()))
                     {
                         dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
-                        label3.Text = "Débito de:" + dif;
+                        label3.Text = "Débito de:" + dif +  "R$";
                         break;
                     }
                     else
                     {
                         dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
-                        label3.Text = "Crédito de:" + dif;
+                        label3.Text = "Crédito de:" + dif + "R$";
                         break;
                     }
                 }
+                
             }     
+        }
+        //Débito ou crédito com mais de uma categoria
+        public void verificaSituacao(float gasto_total)
+        {
+            float gasto_cat = 0;
+            string soma_cat;
+            foreach (DataRow cat in dados.Tables["Categoria"].Rows)
+            {    
+               for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+               {
+                   if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString())
+                   {
+                       soma_cat = cat["Orcamento"].ToString();
+                       gasto_cat += float.Parse(soma_cat);
+                       break;
+                   }
+                }
+                if (gasto_cat > gasto_total)
+                    label9.Text = "Crédito de:" + (gasto_cat - gasto_total);
+                else
+                    label9.Text = "Débito de:" + (gasto_cat - gasto_total);
+            }
+               
         }
         private void checkBoxSemana_CheckedChanged(object sender, EventArgs e)
         {
@@ -400,6 +438,26 @@ namespace WindowsFormsApplication1
 
             //atualizaCombo();
             atualizaGroupBox();
-        }       
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listViewRelatorio.Items.Clear();
+            checkBoxMes.Checked = false;
+            checkBoxAno.Checked = false;
+            checkBoxSemana.Checked = false;
+            checkBoxCategoria.Checked = false;
+            comboBox1.SelectedIndex = -1;
+            comboBoxMes.SelectedIndex = -1;
+            comboBoxRelatorioCategoria.SelectedIndex = -1;
+            comboBoxDescCat.Visible = false;
+            label1.Text = "0.00 R$";
+            label2.Text = "0.00 R$";
+            label3.Text = "0.00 R$";
+            label8.Text = "0.00 R$";
+            label9.Text = "0.00 R$";
+        }
+
+           
     }
 }
