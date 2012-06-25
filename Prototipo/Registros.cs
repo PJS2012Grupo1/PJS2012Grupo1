@@ -14,10 +14,12 @@ namespace WindowsFormsApplication1
         DataSet dados;
         DataRow registro;
         bool atualiza = false;
-        SqlDataAdapter adaptadorReg = new SqlDataAdapter();
-        SqlDataAdapter adaptadorCat;
+        AdaptadorRegistros adaptadorReg;
+        AdaptadorCategoria adaptadorCat;
+        //SqlDataAdapter adaptadorReg;// = new SqlDataAdapter();
+        //SqlDataAdapter adaptadorCat;
 
-        public Registros(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
+        public Registros(DataSet dados, AdaptadorRegistros adaptadorReg, AdaptadorCategoria adaptadorCat)
         {
             this.dados = dados;
             this.adaptadorReg = adaptadorReg;
@@ -25,7 +27,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public Registros(DataRow registro, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
+        public Registros(DataRow registro, bool atualiza, DataSet dados, AdaptadorRegistros adaptadorReg, AdaptadorCategoria adaptadorCat)
         {
             this.atualiza = atualiza;
             this.registro = registro;
@@ -107,7 +109,7 @@ namespace WindowsFormsApplication1
                     registro["Recorrente"] = recorrente;
                     registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
                     registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
-                    adaptadorReg.Update(dados, "Registros");
+                    adaptadorReg.adaptador.Update(dados, "Registros");
                 }
                 else if (parcelas > 1)
                 {
@@ -134,7 +136,7 @@ namespace WindowsFormsApplication1
                             novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                         novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                         dados.Tables["Registros"].Rows.Add(novoRegistro);
-                        adaptadorReg.Update(dados, "Registros");
+                        adaptadorReg.adaptador.Update(dados, "Registros");
                         mes = mes + 1;
                     }
                 }
@@ -149,7 +151,7 @@ namespace WindowsFormsApplication1
                     novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                     novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                     dados.Tables["Registros"].Rows.Add(novoRegistro);
-                    adaptadorReg.Update(dados, "Registros");
+                    adaptadorReg.adaptador.Update(dados, "Registros");
                 }
                 Close();
             }

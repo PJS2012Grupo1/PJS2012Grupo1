@@ -235,17 +235,21 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabelStatus.Text = "Conectando Banco de Dados";
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
+
+            for (int i = 1; i <= 12; i++)
+                comboBoxMes.Items.Add(nomeMes(i));
+            for (int i = 2000; i <= 2020; i++)
+                comboBoxAno.Items.Add(i);
 
             comboBoxMes.SelectedIndex = mesCarregado - 1;
             comboBoxAno.SelectedItem = anoCarregado.ToString();
 
             try
             {
-                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 atualizaMesListView();
 
@@ -268,7 +272,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros(dados, registros.adaptador, categoria.adaptador);
+            Registros cadastroRegistro = new Registros(dados, registros, categoria);
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
@@ -460,7 +464,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                Registros cadastroPrograma = new Registros(registro, true, dados, registros.adaptador, categoria.adaptador);
+                Registros cadastroPrograma = new Registros(registro, true, dados, registros, categoria);
                 cadastroPrograma.ShowDialog(this);
             }
             atualizaListView();
@@ -569,7 +573,18 @@ namespace WindowsFormsApplication1
 
         private void deletarSelecionadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (registro["Recorrente"].ToString() == "2")
+                {
+                    //colocar mais um atributo de data no banco!!!
+                }
+                registro.Delete();
+                registros.adaptador.Update(dados, "Registros");
 
+                atualizaListView();
+            }
         }
 
     }

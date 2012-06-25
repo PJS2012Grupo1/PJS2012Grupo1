@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1
 {
-    class AdaptadorRegistros
+    public class AdaptadorRegistros
     {
         //parametros
         private SqlParameter prmDescricao = new SqlParameter();
