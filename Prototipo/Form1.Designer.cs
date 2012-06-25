@@ -39,6 +39,7 @@
             this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.cadatroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletarSelecionadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +79,7 @@
             this.columnHeaderOrcamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderGasto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelTopo = new System.Windows.Forms.Panel();
+            this.buttonMesAtual = new System.Windows.Forms.Button();
             this.comboBoxAno = new System.Windows.Forms.ComboBox();
             this.comboBoxMes = new System.Windows.Forms.ComboBox();
             this.buttonIrData = new System.Windows.Forms.Button();
@@ -86,8 +88,6 @@
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.buttonMesAtual = new System.Windows.Forms.Button();
-            this.deletarSelecionadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -187,6 +187,13 @@
             this.cadastroToolStripMenuItem.Text = "&Cadastrar";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
+            // deletarSelecionadoToolStripMenuItem
+            // 
+            this.deletarSelecionadoToolStripMenuItem.Name = "deletarSelecionadoToolStripMenuItem";
+            this.deletarSelecionadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.deletarSelecionadoToolStripMenuItem.Text = "&Deletar selecionado";
+            this.deletarSelecionadoToolStripMenuItem.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem_Click);
+            // 
             // relatorioToolStripMenuItem
             // 
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -198,7 +205,7 @@
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem1.Text = "&Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
@@ -213,7 +220,7 @@
             // cadastroToolStripMenuItem2
             // 
             this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
-            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
             this.cadastroToolStripMenuItem2.Text = "&Cadastro";
             this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
             // 
@@ -579,6 +586,16 @@
             this.panelTopo.Size = new System.Drawing.Size(670, 35);
             this.panelTopo.TabIndex = 4;
             // 
+            // buttonMesAtual
+            // 
+            this.buttonMesAtual.Location = new System.Drawing.Point(3, 6);
+            this.buttonMesAtual.Name = "buttonMesAtual";
+            this.buttonMesAtual.Size = new System.Drawing.Size(125, 23);
+            this.buttonMesAtual.TabIndex = 6;
+            this.buttonMesAtual.Text = "Voltar ao mês atual";
+            this.buttonMesAtual.UseVisualStyleBackColor = true;
+            this.buttonMesAtual.Click += new System.EventHandler(this.buttonMesAtual_Click);
+            // 
             // comboBoxAno
             // 
             this.comboBoxAno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -693,23 +710,6 @@
             this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
             this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(43, 17);
             this.toolStripStatusLabelStatus.Text = "Pronto";
-            // 
-            // buttonMesAtual
-            // 
-            this.buttonMesAtual.Location = new System.Drawing.Point(3, 6);
-            this.buttonMesAtual.Name = "buttonMesAtual";
-            this.buttonMesAtual.Size = new System.Drawing.Size(125, 23);
-            this.buttonMesAtual.TabIndex = 6;
-            this.buttonMesAtual.Text = "Voltar ao mês atual";
-            this.buttonMesAtual.UseVisualStyleBackColor = true;
-            this.buttonMesAtual.Click += new System.EventHandler(this.buttonMesAtual_Click);
-            // 
-            // deletarSelecionadoToolStripMenuItem
-            // 
-            this.deletarSelecionadoToolStripMenuItem.Name = "deletarSelecionadoToolStripMenuItem";
-            this.deletarSelecionadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.deletarSelecionadoToolStripMenuItem.Text = "&Deletar selecionado";
-            this.deletarSelecionadoToolStripMenuItem.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem_Click);
             // 
             // Form1
             // 
