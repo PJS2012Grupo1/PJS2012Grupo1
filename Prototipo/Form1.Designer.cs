@@ -86,6 +86,8 @@
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonMesAtual = new System.Windows.Forms.Button();
+            this.deletarSelecionadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -172,16 +174,17 @@
             // cadatroToolStripMenuItem
             // 
             this.cadatroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastroToolStripMenuItem});
+            this.cadastroToolStripMenuItem,
+            this.deletarSelecionadoToolStripMenuItem});
             this.cadatroToolStripMenuItem.Name = "cadatroToolStripMenuItem";
             this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.cadatroToolStripMenuItem.Text = "Contas";
+            this.cadatroToolStripMenuItem.Text = "&Contas";
             // 
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.cadastroToolStripMenuItem.Text = "Cadastro";
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.cadastroToolStripMenuItem.Text = "&Cadastrar";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
             // relatorioToolStripMenuItem
@@ -190,13 +193,13 @@
             this.cadastroToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.relatorioToolStripMenuItem.Text = "Caixa";
+            this.relatorioToolStripMenuItem.Text = "C&aixa";
             // 
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
-            this.cadastroToolStripMenuItem1.Text = "Cadastro";
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem1.Text = "&Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
             // categoriToolStripMenuItem
@@ -205,13 +208,13 @@
             this.cadastroToolStripMenuItem2});
             this.categoriToolStripMenuItem.Name = "categoriToolStripMenuItem";
             this.categoriToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.categoriToolStripMenuItem.Text = "Categorias";
+            this.categoriToolStripMenuItem.Text = "Ca&tegorias";
             // 
             // cadastroToolStripMenuItem2
             // 
             this.cadastroToolStripMenuItem2.Name = "cadastroToolStripMenuItem2";
-            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
-            this.cadastroToolStripMenuItem2.Text = "Cadastro";
+            this.cadastroToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem2.Text = "&Cadastro";
             this.cadastroToolStripMenuItem2.Click += new System.EventHandler(this.cadastroToolStripMenuItem2_Click);
             // 
             // sairToolStripMenuItem
@@ -221,27 +224,27 @@
             this.categoriaToolStripMenuItem});
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.sairToolStripMenuItem.Text = "Relatórios";
+            this.sairToolStripMenuItem.Text = "&Relatórios";
             // 
             // projeçãoDeGastosToolStripMenuItem
             // 
             this.projeçãoDeGastosToolStripMenuItem.Name = "projeçãoDeGastosToolStripMenuItem";
             this.projeçãoDeGastosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.projeçãoDeGastosToolStripMenuItem.Text = "Projeção de Gastos";
+            this.projeçãoDeGastosToolStripMenuItem.Text = "&Projeção de Gastos";
             this.projeçãoDeGastosToolStripMenuItem.Click += new System.EventHandler(this.projeçãoDeGastosToolStripMenuItem_Click);
             // 
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
             this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.categoriaToolStripMenuItem.Text = "Relatório Final";
+            this.categoriaToolStripMenuItem.Text = "&Relatório Final";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem1
             // 
             this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
             this.sairToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
-            this.sairToolStripMenuItem1.Text = "Sair";
+            this.sairToolStripMenuItem1.Text = "&Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // groupBoxDadosMes
@@ -564,6 +567,7 @@
             this.panelTopo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelTopo.Controls.Add(this.buttonMesAtual);
             this.panelTopo.Controls.Add(this.comboBoxAno);
             this.panelTopo.Controls.Add(this.comboBoxMes);
             this.panelTopo.Controls.Add(this.buttonIrData);
@@ -578,6 +582,7 @@
             // comboBoxAno
             // 
             this.comboBoxAno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAno.FormattingEnabled = true;
             this.comboBoxAno.Items.AddRange(new object[] {
             "2000",
@@ -601,14 +606,15 @@
             "2018",
             "2019",
             "2020"});
-            this.comboBoxAno.Location = new System.Drawing.Point(571, 7);
+            this.comboBoxAno.Location = new System.Drawing.Point(576, 7);
             this.comboBoxAno.Name = "comboBoxAno";
-            this.comboBoxAno.Size = new System.Drawing.Size(60, 21);
+            this.comboBoxAno.Size = new System.Drawing.Size(55, 21);
             this.comboBoxAno.TabIndex = 6;
             // 
             // comboBoxMes
             // 
             this.comboBoxMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMes.FormattingEnabled = true;
             this.comboBoxMes.Items.AddRange(new object[] {
             "Janeiro",
@@ -623,9 +629,9 @@
             "Outubro",
             "Novembro",
             "Dezembro"});
-            this.comboBoxMes.Location = new System.Drawing.Point(465, 7);
+            this.comboBoxMes.Location = new System.Drawing.Point(475, 7);
             this.comboBoxMes.Name = "comboBoxMes";
-            this.comboBoxMes.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxMes.Size = new System.Drawing.Size(95, 21);
             this.comboBoxMes.TabIndex = 5;
             // 
             // buttonIrData
@@ -637,11 +643,12 @@
             this.buttonIrData.TabIndex = 4;
             this.buttonIrData.Text = "Ir";
             this.buttonIrData.UseVisualStyleBackColor = true;
+            this.buttonIrData.Click += new System.EventHandler(this.buttonIrData_Click);
             // 
             // buttonProximo
             // 
             this.buttonProximo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProximo.Location = new System.Drawing.Point(290, 6);
+            this.buttonProximo.Location = new System.Drawing.Point(406, 6);
             this.buttonProximo.Name = "buttonProximo";
             this.buttonProximo.Size = new System.Drawing.Size(60, 23);
             this.buttonProximo.TabIndex = 2;
@@ -652,7 +659,7 @@
             // buttonAnterior
             // 
             this.buttonAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonAnterior.Location = new System.Drawing.Point(88, 6);
+            this.buttonAnterior.Location = new System.Drawing.Point(204, 6);
             this.buttonAnterior.Name = "buttonAnterior";
             this.buttonAnterior.Size = new System.Drawing.Size(60, 23);
             this.buttonAnterior.TabIndex = 1;
@@ -664,7 +671,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(154, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(270, 10);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -686,6 +693,23 @@
             this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
             this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(43, 17);
             this.toolStripStatusLabelStatus.Text = "Pronto";
+            // 
+            // buttonMesAtual
+            // 
+            this.buttonMesAtual.Location = new System.Drawing.Point(3, 6);
+            this.buttonMesAtual.Name = "buttonMesAtual";
+            this.buttonMesAtual.Size = new System.Drawing.Size(125, 23);
+            this.buttonMesAtual.TabIndex = 6;
+            this.buttonMesAtual.Text = "Voltar ao mês atual";
+            this.buttonMesAtual.UseVisualStyleBackColor = true;
+            this.buttonMesAtual.Click += new System.EventHandler(this.buttonMesAtual_Click);
+            // 
+            // deletarSelecionadoToolStripMenuItem
+            // 
+            this.deletarSelecionadoToolStripMenuItem.Name = "deletarSelecionadoToolStripMenuItem";
+            this.deletarSelecionadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.deletarSelecionadoToolStripMenuItem.Text = "&Deletar selecionado";
+            this.deletarSelecionadoToolStripMenuItem.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -788,6 +812,8 @@
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projeçãoDeGastosToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelStatus;
+        private System.Windows.Forms.Button buttonMesAtual;
+        private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem;
 
     }
 }

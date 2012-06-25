@@ -26,13 +26,13 @@ namespace WindowsFormsApplication1
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             
-            if (textBoxDescricao.Text == "")
+            if (textBoxDescricao.Text.Trim() == "")
             {
                 labelCampoPreenchidos.Text = "*Campo descrição vazio.";
                 textBoxDescricao.Focus();
                 labelCampoPreenchidos.Visible = true;
             }                
-            else if (textBoxOrcamento.Text == "")
+            else if (textBoxOrcamento.Text.Trim() == "")
             {
                 labelCampoPreenchidos.Text = "*Campo orçamento vazio.";
                 textBoxOrcamento.Focus();
@@ -47,7 +47,6 @@ namespace WindowsFormsApplication1
                 dados.Tables["Categoria"].Rows.Add(novoRegistro);
 
                 adaptadorCat.Update(dados, "Registros");
-
                 Close();
             }
         }

@@ -50,8 +50,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
@@ -98,8 +98,8 @@
             // 
             // textBoxDescricaoRegistro
             // 
-            this.textBoxDescricaoRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxDescricaoRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescricaoRegistro.Location = new System.Drawing.Point(12, 39);
             this.textBoxDescricaoRegistro.Name = "textBoxDescricaoRegistro";
             this.textBoxDescricaoRegistro.Size = new System.Drawing.Size(268, 20);
@@ -107,8 +107,8 @@
             // 
             // textBoxValorRegistro
             // 
-            this.textBoxValorRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxValorRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValorRegistro.Location = new System.Drawing.Point(12, 105);
             this.textBoxValorRegistro.Name = "textBoxValorRegistro";
             this.textBoxValorRegistro.Size = new System.Drawing.Size(99, 20);
@@ -117,6 +117,7 @@
             // comboBoxCategoriaRegistro
             // 
             this.comboBoxCategoriaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxCategoriaRegistro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategoriaRegistro.FormattingEnabled = true;
             this.comboBoxCategoriaRegistro.Location = new System.Drawing.Point(306, 39);
             this.comboBoxCategoriaRegistro.Name = "comboBoxCategoriaRegistro";
@@ -164,6 +165,7 @@
             // comboBoxQtdeParcelasReg
             // 
             this.comboBoxQtdeParcelasReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxQtdeParcelasReg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxQtdeParcelasReg.Enabled = false;
             this.comboBoxQtdeParcelasReg.FormattingEnabled = true;
             this.comboBoxQtdeParcelasReg.Items.AddRange(new object[] {
@@ -187,7 +189,6 @@
             this.comboBoxQtdeParcelasReg.Name = "comboBoxQtdeParcelasReg";
             this.comboBoxQtdeParcelasReg.Size = new System.Drawing.Size(54, 21);
             this.comboBoxQtdeParcelasReg.TabIndex = 5;
-            this.comboBoxQtdeParcelasReg.Text = "1";
             // 
             // buttonRegistrarRegistro
             // 
@@ -234,6 +235,7 @@
             // comboBoxFormaPagamento
             // 
             this.comboBoxFormaPagamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxFormaPagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFormaPagamento.FormattingEnabled = true;
             this.comboBoxFormaPagamento.Items.AddRange(new object[] {
             "Á vista",

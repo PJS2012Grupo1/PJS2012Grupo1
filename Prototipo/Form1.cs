@@ -73,6 +73,7 @@ namespace WindowsFormsApplication1
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
 
+
         public void atulizalist(DataRow registro, string categoria, string dataVencimento, string dataPagamento)
         {
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
@@ -237,6 +238,9 @@ namespace WindowsFormsApplication1
             toolStripStatusLabelStatus.Text = "Conectando Banco de Dados";
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
+
+            comboBoxMes.SelectedIndex = mesCarregado - 1;
+            comboBoxAno.SelectedItem = anoCarregado.ToString();
 
             try
             {
@@ -537,6 +541,35 @@ namespace WindowsFormsApplication1
         {
             ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
             projecaoGastos.ShowDialog(this);
+        }
+
+        private void buttonIrData_Click(object sender, EventArgs e)
+        {
+            if (mesCarregado == 1 && anoCarregado == 2000)
+            {
+                buttonAnterior.Enabled = false;
+            }
+            else if (mesCarregado == 12 && anoCarregado == 2020)
+            {
+                buttonProximo.Enabled = false;
+            }
+            mesCarregado = comboBoxMes.SelectedIndex + 1;
+            anoCarregado = int.Parse(comboBoxAno.SelectedItem.ToString());
+            atualizaMesListView();
+            atualizaListView();
+        }
+
+        private void buttonMesAtual_Click(object sender, EventArgs e)
+        {
+            mesCarregado = DateTime.Now.Month;
+            anoCarregado = DateTime.Now.Year;
+            atualizaMesListView();
+            atualizaListView();
+        }
+
+        private void deletarSelecionadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         
