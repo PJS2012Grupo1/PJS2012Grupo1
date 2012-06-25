@@ -248,8 +248,12 @@ namespace WindowsFormsApplication1
 
             try
             {
-                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+
+
+                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 atualizaMesListView();
 
