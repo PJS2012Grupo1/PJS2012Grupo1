@@ -38,6 +38,7 @@
             this.columnHeaderDataVencimento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBoxDescCat = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,13 +56,13 @@
             this.checkBoxAno = new System.Windows.Forms.CheckBox();
             this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             this.dateTimePickerSemana = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
             this.buttonLimpar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxRelatorioCategoria
             // 
+            this.comboBoxRelatorioCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRelatorioCategoria.Enabled = false;
             this.comboBoxRelatorioCategoria.FormattingEnabled = true;
             this.comboBoxRelatorioCategoria.Location = new System.Drawing.Point(566, 42);
@@ -83,9 +84,9 @@
             // 
             // listViewRelatorio
             // 
-            this.listViewRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewRelatorio.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderDescricao,
             this.columnHeaderValor,
@@ -109,6 +110,7 @@
             // columnHeaderValor
             // 
             this.columnHeaderValor.Text = "Valor";
+            this.columnHeaderValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderValor.Width = 90;
             // 
             // columnHeaderCategoria
@@ -133,8 +135,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.comboBoxDescCat);
@@ -152,6 +154,15 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(411, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(117, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Crédito ou Débito Geral";
             // 
             // label9
             // 
@@ -180,7 +191,6 @@
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "label8";
-            
             // 
             // label7
             // 
@@ -247,8 +257,31 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020"});
             this.comboBox1.Location = new System.Drawing.Point(394, 42);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -257,6 +290,7 @@
             // 
             // comboBoxMes
             // 
+            this.comboBoxMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMes.Enabled = false;
             this.comboBoxMes.FormattingEnabled = true;
             this.comboBoxMes.Items.AddRange(new object[] {
@@ -331,15 +365,6 @@
             this.dateTimePickerSemana.TabIndex = 13;
             this.dateTimePickerSemana.Value = new System.DateTime(2012, 5, 22, 19, 32, 0, 0);
             this.dateTimePickerSemana.ValueChanged += new System.EventHandler(this.dateTimePickerSemana_ValueChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(411, 32);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 13);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Crédito ou Débito Geral";
             // 
             // buttonLimpar
             // 

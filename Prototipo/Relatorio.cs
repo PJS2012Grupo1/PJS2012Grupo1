@@ -38,26 +38,8 @@ namespace WindowsFormsApplication1
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
  
             }
-            foreach (DataRow reg in dados.Tables["Registros"].Rows)
-            {
-                string ano;
-                string[] ano_aux;
-                string a;
-                if (reg["DataVencimento"].ToString() != "")
-                    ano = reg["DataVencimento"].ToString();
-                else
-                    ano = reg["DataCadastro"].ToString();
-                a = ano.Substring(0, 10);
-                ano_aux = a.Split('/');
-                if (comboBox1.Items.Count == 0)
-                    comboBox1.Items.Add(ano_aux[2]);
-                else
-                {
-                    for (int i = 0; i < comboBox1.Items.Count; i++)
-                        if (comboBox1.Items[i].ToString() != ano_aux[2].ToString())
-                            comboBox1.Items.Add(ano_aux[2]);
-                    }
-            }
+           
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,10 +122,14 @@ namespace WindowsFormsApplication1
             {
                 foreach (DataRow registro in registros)
                 {
-                    if(registro["DataVencimento"].ToString() != "")
+                    if (registro["DataVencimento"].ToString() != "")
                         data = DateTime.Parse(registro["DataVencimento"].ToString());
+                    else
+                        data = DateTime.Parse(registro["DataCadastro"].ToString());
                     if (data.Year == int.Parse(comboBox1.SelectedItem.ToString()))
                         adicionaItensListView(registro);
+                    //else
+                    //    break;
                 }
             }
             comboBoxDescCat.Visible = true;
@@ -447,10 +433,13 @@ namespace WindowsFormsApplication1
             checkBoxAno.Checked = false;
             checkBoxSemana.Checked = false;
             checkBoxCategoria.Checked = false;
-            comboBox1.SelectedIndex = -1;
-            comboBoxMes.SelectedIndex = -1;
-            comboBoxRelatorioCategoria.SelectedIndex = -1;
+            comboBox1.Text = "";
+            comboBoxMes.Text = "";
+            comboBox1.Enabled = false;
+            comboBoxMes.Enabled = false;
+            comboBoxRelatorioCategoria.Enabled = false;
             comboBoxDescCat.Visible = false;
+            
             label1.Text = "0.00 R$";
             label2.Text = "0.00 R$";
             label3.Text = "0.00 R$";
