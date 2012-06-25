@@ -580,14 +580,28 @@ namespace WindowsFormsApplication1
             if (listViewPrincipal.SelectedItems.Count > 0)
             {
                 DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-                if (registro["Recorrente"].ToString() == "2")
+                if (float.Parse(registro["Valor"].ToString()) < 0)
                 {
-                    //colocar mais um atributo de data no banco!!!
-                }
-                registro.Delete();
-                registros.adaptador.Update(dados, "Registros");
+                    registro.Delete();
+                    registros.adaptador.Update(dados, "Registros");
 
-                atualizaListView();
+                    atualizaListView();
+                }
+            }
+        }
+
+        private void deletarSelecionadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (float.Parse(registro["Valor"].ToString()) > 0)
+                {
+                    registro.Delete();
+                    registros.adaptador.Update(dados, "Registros");
+
+                    atualizaListView();
+                }
             }
         }
 

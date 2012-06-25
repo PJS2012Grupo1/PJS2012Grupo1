@@ -87,6 +87,7 @@
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.deletarSelecionadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -195,7 +196,8 @@
             // relatorioToolStripMenuItem
             // 
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastroToolStripMenuItem1});
+            this.cadastroToolStripMenuItem1,
+            this.deletarSelecionadoToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.relatorioToolStripMenuItem.Text = "C&aixa";
@@ -666,6 +668,13 @@
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip1";
             // 
+            // deletarSelecionadoToolStripMenuItem1
+            // 
+            this.deletarSelecionadoToolStripMenuItem1.Name = "deletarSelecionadoToolStripMenuItem1";
+            this.deletarSelecionadoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.deletarSelecionadoToolStripMenuItem1.Text = "&Deletar selecionado";
+            this.deletarSelecionadoToolStripMenuItem1.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -766,6 +775,7 @@
         private System.Windows.Forms.ToolStripMenuItem projeçãoDeGastosToolStripMenuItem;
         private System.Windows.Forms.Button buttonMesAtual;
         private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem1;
 
     }
 }
