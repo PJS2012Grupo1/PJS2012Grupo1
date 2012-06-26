@@ -46,9 +46,9 @@ namespace WindowsFormsApplication1
         {
             SqlConnection conexao = new SqlConnection();
 
-            conexao.ConnectionString = "Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            //conexao.ConnectionString = "Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
             
-            //conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             SqlCommand comandoSelecaoCai = new SqlCommand("select Descricao, Valor, Recorrente, DataCadastro, Categoria;", conexao);
             adaptadorCat.SelectCommand = comandoSelecaoCai;

@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
             labelValorCreDeb1.Text = "0.00R$";
             labelValorMaiorGasto.Text = "0.00R$";
             labelValorCreDeb2.Text = "0.00R$";
+            labelSituacao.Text = "---";
             dateTimePickerSemana.Enabled = false;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
             {
@@ -193,6 +194,8 @@ namespace WindowsFormsApplication1
         public void atualizaGroupBox()
         {
             float gasto_total = 0;
+            float gasto_total1 = 0;
+            string soma1;
             float media = 0;
             string soma;
             DataRow[] categoria = dados.Tables["Categoria"].Select("CodigoCat > 0");
@@ -206,6 +209,11 @@ namespace WindowsFormsApplication1
                 {
                     soma = item.SubItems[1].Text;
                     gasto_total += float.Parse(soma);
+                }
+                else
+                {
+                    soma1 = item.SubItems[1].Text;
+                    gasto_total1 += float.Parse(soma1);
                 }
             }
             gasto_total *= -1;
@@ -259,6 +267,10 @@ namespace WindowsFormsApplication1
                 }
                 
             }
+            if (gasto_total <= gasto_total1)
+                labelSituacao.Text = "Positivo";
+            else
+                labelSituacao.Text = "Negativo";
             if (gasto_total != 0)
                 media = gasto_total / listViewRelatorio.Items.Count;
             if (checkBoxAno.Checked == true || checkBoxMes.Checked == true || checkBoxSemana.Checked == true)
@@ -446,7 +458,9 @@ namespace WindowsFormsApplication1
             labelValorCreDeb1.Text = "0.00 R$";
             labelValorMaiorGasto.Text = "0.00 R$";
             labelValorCreDeb2.Text = "0.00 R$";
+            labelSituacao.Text = "---";
         }
+
 
     }
 }

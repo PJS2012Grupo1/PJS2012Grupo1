@@ -57,6 +57,8 @@
             this.checkBoxCategoria = new System.Windows.Forms.CheckBox();
             this.dateTimePickerSemana = new System.Windows.Forms.DateTimePicker();
             this.buttonLimpar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelSituacao = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +138,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.labelSituacao);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.labelCreDebGeral);
             this.groupBox1.Controls.Add(this.labelValorCreDeb2);
             this.groupBox1.Controls.Add(this.comboBoxDescCat);
@@ -159,9 +163,9 @@
             this.labelCreDebGeral.AutoSize = true;
             this.labelCreDebGeral.Location = new System.Drawing.Point(48, 87);
             this.labelCreDebGeral.Name = "labelCreDebGeral";
-            this.labelCreDebGeral.Size = new System.Drawing.Size(117, 13);
+            this.labelCreDebGeral.Size = new System.Drawing.Size(120, 13);
             this.labelCreDebGeral.TabIndex = 10;
-            this.labelCreDebGeral.Text = "Crédito ou Débito Geral";
+            this.labelCreDebGeral.Text = "Crédito ou Débito Geral:";
             // 
             // labelValorCreDeb2
             // 
@@ -203,27 +207,27 @@
             this.labelMenorGasto.AutoSize = true;
             this.labelMenorGasto.Location = new System.Drawing.Point(194, 54);
             this.labelMenorGasto.Name = "labelMenorGasto";
-            this.labelMenorGasto.Size = new System.Drawing.Size(68, 13);
+            this.labelMenorGasto.Size = new System.Drawing.Size(71, 13);
             this.labelMenorGasto.TabIndex = 5;
-            this.labelMenorGasto.Text = "Menor Gasto";
+            this.labelMenorGasto.Text = "Menor Gasto:";
             // 
             // labelMaiorGasto
             // 
             this.labelMaiorGasto.AutoSize = true;
             this.labelMaiorGasto.Location = new System.Drawing.Point(48, 54);
             this.labelMaiorGasto.Name = "labelMaiorGasto";
-            this.labelMaiorGasto.Size = new System.Drawing.Size(64, 13);
+            this.labelMaiorGasto.Size = new System.Drawing.Size(67, 13);
             this.labelMaiorGasto.TabIndex = 4;
-            this.labelMaiorGasto.Text = "Maior Gasto";
+            this.labelMaiorGasto.Text = "Maior Gasto:";
             // 
             // labelMedia
             // 
             this.labelMedia.AutoSize = true;
             this.labelMedia.Location = new System.Drawing.Point(247, 87);
             this.labelMedia.Name = "labelMedia";
-            this.labelMedia.Size = new System.Drawing.Size(82, 13);
+            this.labelMedia.Size = new System.Drawing.Size(85, 13);
             this.labelMedia.TabIndex = 3;
-            this.labelMedia.Text = "Média de Gasto";
+            this.labelMedia.Text = "Média de Gasto:";
             // 
             // labelValorCreDeb1
             // 
@@ -371,6 +375,24 @@
             this.buttonLimpar.UseVisualStyleBackColor = true;
             this.buttonLimpar.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(413, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Saldo: ";
+            // 
+            // labelSituacao
+            // 
+            this.labelSituacao.AutoSize = true;
+            this.labelSituacao.Location = new System.Drawing.Point(459, 87);
+            this.labelSituacao.Name = "labelSituacao";
+            this.labelSituacao.Size = new System.Drawing.Size(16, 13);
+            this.labelSituacao.TabIndex = 16;
+            this.labelSituacao.Text = "---";
+            // 
             // Relatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,5 +453,7 @@
         private System.Windows.Forms.Label labelValorCreDeb2;
         private System.Windows.Forms.Label labelCreDebGeral;
         private System.Windows.Forms.Button buttonLimpar;
+        private System.Windows.Forms.Label labelSituacao;
+        private System.Windows.Forms.Label label1;
     }
 }

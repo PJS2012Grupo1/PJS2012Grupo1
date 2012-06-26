@@ -107,6 +107,8 @@ namespace WindowsFormsApplication1
         }
 
         //atualiza as informaçoes do mes
+
+        //Atualiza o groupBox com as informações sobre o saldo
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
@@ -257,6 +259,7 @@ namespace WindowsFormsApplication1
         }
 
         //atualiza o nome do mes no listview
+        //Carrega o mês com o ano
         public void atualizaMesListView()
         {
             string mes = nomeMes(mesCarregado);
@@ -288,12 +291,12 @@ namespace WindowsFormsApplication1
 
             try
             {
-                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
-                //registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 categoria.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -553,7 +556,6 @@ namespace WindowsFormsApplication1
         {
             atualizaMesListView();
             atualizaListView();
-            
             comboBoxCategoria.SelectedIndex = -1;
             textBoxDescricao.Text = "";
             dateTimePickerDataMinima.Value = dateTimePickerDataMinima.MinDate;

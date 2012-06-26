@@ -664,7 +664,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(270, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(270, 11);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -678,7 +678,7 @@
             this.statusStrip.Size = new System.Drawing.Size(954, 22);
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip1";
-            // 
+            //
             // alterarSelecionadoToolStripMenuItem
             // 
             this.alterarSelecionadoToolStripMenuItem.Name = "alterarSelecionadoToolStripMenuItem";
