@@ -38,32 +38,8 @@ namespace WindowsFormsApplication1
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
  
             }
-            foreach (DataRow reg in dados.Tables["Registros"].Rows)
-            {
-                string ano;
-                string[] ano_aux;
-                string a;
-                if (reg["DataVencimento"].ToString() != "")
-                    ano = reg["DataVencimento"].ToString();
-                else
-                    ano = reg["DataCadastro"].ToString();
-                a = ano.Substring(0, 10);
-                ano_aux = a.Split('/');
-                if (comboBox1.Items.Count == 0)
-                    comboBox1.Items.Add(ano_aux[2]);
-                else
-                {
-                    for (int i = 0; i < comboBox1.Items.Count; i++)
-                        if (comboBox1.Items[i].ToString() != ano_aux[2].ToString())
-                            comboBox1.Items.Add(ano_aux[2]);
-                    }
-            }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
         public void adicionaItensListView(DataRow registro)
         {
             string dataVencimento;
@@ -97,19 +73,16 @@ namespace WindowsFormsApplication1
                 subItemValor.ForeColor = Color.Blue;
 
             item.UseItemStyleForSubItems = false;
-
     
-                item.Tag = registro["Codigo"].ToString();
-                item.SubItems.Add(subItemValor);
-                item.SubItems.Add(subItemCategoria);
-                item.SubItems.Add(subItemDataCadastro);
-                item.SubItems.Add(subItemDataVencimento);
-                item.SubItems.Add(subItemDataPagamento);
-                listViewRelatorio.Items.Add(item);
-            
-
-
+            item.Tag = registro["Codigo"].ToString();
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemDataCadastro);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewRelatorio.Items.Add(item);
         }
+
         //Verifica quais são os registros de determinada categoria
         private void comboBoxRelatorioCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -130,6 +103,7 @@ namespace WindowsFormsApplication1
             }
             atualizaGroupBox();
         }
+
         //Verifica quais são os registros de determinado ano
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
