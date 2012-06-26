@@ -40,10 +40,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
         //Adiciona os itens no List View
         public void adicionaItensListView(DataRow registro)
         {

@@ -9,6 +9,7 @@ namespace WindowsFormsApplication1
 {
     public class AdaptadorRegistros
     {
+
         //parametros
         private SqlParameter prmDescricao = new SqlParameter();
         private SqlParameter prmValor = new SqlParameter();
