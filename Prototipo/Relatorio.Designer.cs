@@ -38,17 +38,17 @@
             this.columnHeaderDataVencimento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDataPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelCreDebGeral = new System.Windows.Forms.Label();
+            this.labelValorCreDeb2 = new System.Windows.Forms.Label();
             this.comboBoxDescCat = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelValorMaiorGasto = new System.Windows.Forms.Label();
+            this.labelCreDebCat = new System.Windows.Forms.Label();
+            this.labelMenorGasto = new System.Windows.Forms.Label();
+            this.labelMaiorGasto = new System.Windows.Forms.Label();
+            this.labelMedia = new System.Windows.Forms.Label();
+            this.labelValorCreDeb1 = new System.Windows.Forms.Label();
+            this.labelValorMenorGasto = new System.Windows.Forms.Label();
+            this.labelValorMedia = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBoxMes = new System.Windows.Forms.ComboBox();
             this.checkBoxSemana = new System.Windows.Forms.CheckBox();
@@ -137,41 +137,41 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.labelCreDebGeral);
+            this.groupBox1.Controls.Add(this.labelValorCreDeb2);
             this.groupBox1.Controls.Add(this.comboBoxDescCat);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.labelValorMaiorGasto);
+            this.groupBox1.Controls.Add(this.labelCreDebCat);
+            this.groupBox1.Controls.Add(this.labelMenorGasto);
+            this.groupBox1.Controls.Add(this.labelMaiorGasto);
+            this.groupBox1.Controls.Add(this.labelMedia);
+            this.groupBox1.Controls.Add(this.labelValorCreDeb1);
+            this.groupBox1.Controls.Add(this.labelValorMenorGasto);
+            this.groupBox1.Controls.Add(this.labelValorMedia);
             this.groupBox1.Location = new System.Drawing.Point(31, 478);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(698, 150);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Relatório";
             // 
-            // label11
+            // labelCreDebGeral
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(411, 32);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 13);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Crédito ou Débito Geral";
+            this.labelCreDebGeral.AutoSize = true;
+            this.labelCreDebGeral.Location = new System.Drawing.Point(411, 32);
+            this.labelCreDebGeral.Name = "labelCreDebGeral";
+            this.labelCreDebGeral.Size = new System.Drawing.Size(117, 13);
+            this.labelCreDebGeral.TabIndex = 10;
+            this.labelCreDebGeral.Text = "Crédito ou Débito Geral";
             // 
-            // label9
+            // labelValorCreDeb2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(437, 64);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "label9";
+            this.labelValorCreDeb2.AutoSize = true;
+            this.labelValorCreDeb2.Location = new System.Drawing.Point(437, 64);
+            this.labelValorCreDeb2.Name = "labelValorCreDeb2";
+            this.labelValorCreDeb2.Size = new System.Drawing.Size(35, 13);
+            this.labelValorCreDeb2.TabIndex = 9;
+            this.labelValorCreDeb2.Text = "label9";
             // 
             // comboBoxDescCat
             // 
@@ -183,77 +183,77 @@
             this.comboBoxDescCat.Visible = false;
             this.comboBoxDescCat.SelectedIndexChanged += new System.EventHandler(this.comboBoxDescCat_SelectedIndexChanged);
             // 
-            // label8
+            // labelValorMaiorGasto
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(59, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "label8";
+            this.labelValorMaiorGasto.AutoSize = true;
+            this.labelValorMaiorGasto.Location = new System.Drawing.Point(59, 65);
+            this.labelValorMaiorGasto.Name = "labelValorMaiorGasto";
+            this.labelValorMaiorGasto.Size = new System.Drawing.Size(35, 13);
+            this.labelValorMaiorGasto.TabIndex = 7;
+            this.labelValorMaiorGasto.Text = "label8";
             // 
-            // label7
+            // labelCreDebCat
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(263, 34);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Crédito ou Débito";
+            this.labelCreDebCat.AutoSize = true;
+            this.labelCreDebCat.Location = new System.Drawing.Point(263, 34);
+            this.labelCreDebCat.Name = "labelCreDebCat";
+            this.labelCreDebCat.Size = new System.Drawing.Size(89, 13);
+            this.labelCreDebCat.TabIndex = 6;
+            this.labelCreDebCat.Text = "Crédito ou Débito";
             // 
-            // label6
+            // labelMenorGasto
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(143, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Menor Gasto";
+            this.labelMenorGasto.AutoSize = true;
+            this.labelMenorGasto.Location = new System.Drawing.Point(143, 34);
+            this.labelMenorGasto.Name = "labelMenorGasto";
+            this.labelMenorGasto.Size = new System.Drawing.Size(68, 13);
+            this.labelMenorGasto.TabIndex = 5;
+            this.labelMenorGasto.Text = "Menor Gasto";
             // 
-            // label5
+            // labelMaiorGasto
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Maior Gasto";
+            this.labelMaiorGasto.AutoSize = true;
+            this.labelMaiorGasto.Location = new System.Drawing.Point(36, 34);
+            this.labelMaiorGasto.Name = "labelMaiorGasto";
+            this.labelMaiorGasto.Size = new System.Drawing.Size(64, 13);
+            this.labelMaiorGasto.TabIndex = 4;
+            this.labelMaiorGasto.Text = "Maior Gasto";
             // 
-            // label4
+            // labelMedia
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(576, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Média de Gasto";
+            this.labelMedia.AutoSize = true;
+            this.labelMedia.Location = new System.Drawing.Point(576, 25);
+            this.labelMedia.Name = "labelMedia";
+            this.labelMedia.Size = new System.Drawing.Size(82, 13);
+            this.labelMedia.TabIndex = 3;
+            this.labelMedia.Text = "Média de Gasto";
             // 
-            // label3
+            // labelValorCreDeb1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(289, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.labelValorCreDeb1.AutoSize = true;
+            this.labelValorCreDeb1.Location = new System.Drawing.Point(289, 65);
+            this.labelValorCreDeb1.Name = "labelValorCreDeb1";
+            this.labelValorCreDeb1.Size = new System.Drawing.Size(35, 13);
+            this.labelValorCreDeb1.TabIndex = 2;
+            this.labelValorCreDeb1.Text = "label3";
             // 
-            // label2
+            // labelValorMenorGasto
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.labelValorMenorGasto.AutoSize = true;
+            this.labelValorMenorGasto.Location = new System.Drawing.Point(157, 65);
+            this.labelValorMenorGasto.Name = "labelValorMenorGasto";
+            this.labelValorMenorGasto.Size = new System.Drawing.Size(35, 13);
+            this.labelValorMenorGasto.TabIndex = 1;
+            this.labelValorMenorGasto.Text = "label2";
             // 
-            // label1
+            // labelValorMedia
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(598, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.labelValorMedia.AutoSize = true;
+            this.labelValorMedia.Location = new System.Drawing.Point(598, 65);
+            this.labelValorMedia.Name = "labelValorMedia";
+            this.labelValorMedia.Size = new System.Drawing.Size(35, 13);
+            this.labelValorMedia.TabIndex = 0;
+            this.labelValorMedia.Text = "label1";
             // 
             // comboBox1
             // 
@@ -417,24 +417,24 @@
         private System.Windows.Forms.ColumnHeader columnHeaderDataVencimento;
         private System.Windows.Forms.ColumnHeader columnHeaderDataPagamento;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelValorMedia;
+        private System.Windows.Forms.Label labelValorMenorGasto;
+        private System.Windows.Forms.Label labelValorCreDeb1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBoxMes;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelCreDebCat;
+        private System.Windows.Forms.Label labelMenorGasto;
+        private System.Windows.Forms.Label labelMaiorGasto;
+        private System.Windows.Forms.Label labelMedia;
+        private System.Windows.Forms.Label labelValorMaiorGasto;
         private System.Windows.Forms.ComboBox comboBoxDescCat;
         private System.Windows.Forms.CheckBox checkBoxSemana;
         private System.Windows.Forms.CheckBox checkBoxMes;
         private System.Windows.Forms.CheckBox checkBoxAno;
         private System.Windows.Forms.CheckBox checkBoxCategoria;
         private System.Windows.Forms.DateTimePicker dateTimePickerSemana;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelValorCreDeb2;
+        private System.Windows.Forms.Label labelCreDebGeral;
         private System.Windows.Forms.Button buttonLimpar;
     }
 }
