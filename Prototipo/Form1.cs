@@ -237,23 +237,21 @@ namespace WindowsFormsApplication1
         {
             mesCarregado = DateTime.Now.Month;
             anoCarregado = DateTime.Now.Year;
-
             for (int i = 1; i <= 12; i++)
                 comboBoxMes.Items.Add(nomeMes(i));
             for (int i = 2000; i <= 2020; i++)
                 comboBoxAno.Items.Add(i);
-
             comboBoxMes.SelectedIndex = mesCarregado - 1;
-            comboBoxAno.SelectedItem = anoCarregado.ToString();
+            comboBoxAno.SelectedItem = anoCarregado;
 
             try
             {
-                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
-                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 atualizaMesListView();
 
