@@ -64,7 +64,49 @@ namespace WindowsFormsApplication1
                 default: return 0;
             }
         }
-        //
+
+        //metodos auxiliares do
+        //form principal e de seus elementos
+
+        private void adicionaItensListViewBusca(DataRow registro)
+        {
+            labelNomeMes.Text = "Busca";
+            string dataVencimento;
+            string dataPagamento;
+            if (registro["DataVencimento"].ToString() == "")
+                dataVencimento = "";
+            else
+                dataVencimento = registro["DataVencimento"].ToString();
+
+            if (registro["DataPagamento"].ToString() == "")
+                dataPagamento = "";
+            else
+                dataPagamento = registro["DataPagamento"].ToString();
+
+            listViewPrincipal.Items.Clear();
+            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+            item.UseItemStyleForSubItems = false;
+            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyyy"));
+            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
+            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
+            if (float.Parse(registro["Valor"].ToString()) < 0)
+                subItemValor.ForeColor = Color.Red;
+            else
+                subItemValor.ForeColor = Color.Blue;
+
+            item.Tag = registro["Codigo"].ToString();
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemDataCadastro);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewPrincipal.Items.Add(item);
+        }
+
+        //atualiza as informaçoes do mes
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
@@ -73,7 +115,7 @@ namespace WindowsFormsApplication1
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
 
-
+        //inser um registro no listview
         public void atulizalist(DataRow registro, string categoria, string dataVencimento, string dataPagamento)
         {
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
@@ -164,20 +206,15 @@ namespace WindowsFormsApplication1
                     if (float.Parse(registro[i]["Valor"].ToString()) < 0)
                         if (registro[i]["Categoria"].ToString() == categoria["CodigoCat"].ToString())
                             gasto += float.Parse(registro[i]["Valor"].ToString());
-
                 gasto *= -1;
-                
                ListViewItem.ListViewSubItem subItemConta = new ListViewItem.ListViewSubItem(item, gasto.ToString());
-
                if (gasto > float.Parse(categoria["Orcamento"].ToString()))
                    subItemConta.ForeColor = Color.Red;
                else
                    subItemConta.ForeColor = Color.Blue;
-               
                item.SubItems.Add(subItemOrcamento);
                item.SubItems.Add(subItemConta);
                listViewCategorias.Items.Add(item);
-
                gasto = 0;
             }
         }
@@ -219,6 +256,7 @@ namespace WindowsFormsApplication1
 
         }
 
+        //atualiza o nome do mes no listview
         public void atualizaMesListView()
         {
             string mes = nomeMes(mesCarregado);
@@ -233,6 +271,10 @@ namespace WindowsFormsApplication1
                 comboBoxCategoria.Items.Add(registro["DescricaoCat"].ToString());
         }
 
+        //fim metodos auxiliares
+
+        //carrega o form principal
+        //instancia os adaptadores
         private void Form1_Load(object sender, EventArgs e)
         {
             mesCarregado = DateTime.Now.Month;
@@ -246,14 +288,12 @@ namespace WindowsFormsApplication1
 
             try
             {
-                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
-                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-
-                atualizaMesListView();
+                //registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 categoria.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -261,6 +301,7 @@ namespace WindowsFormsApplication1
                 registros.adaptador.Fill(dados, "Registros");
                 categoria.adaptador.Fill(dados, "Categoria");
 
+                atualizaMesListView();
                 atualizaListView();
                 adicionaCat();
                 carregaCat();
@@ -272,11 +313,13 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //eventos cliques no
+        //menu do form principal
+
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Registros cadastroRegistro = new Registros(dados, registros, categoria);
             cadastroRegistro.ShowDialog(this);
-
             atualizaListView();
             adicionaCat();
         }
@@ -293,6 +336,145 @@ namespace WindowsFormsApplication1
 
             atualizaListView();
         }
+
+        private void deletarSelecionadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (float.Parse(registro["Valor"].ToString()) < 0)
+                {
+                    registro.Delete();
+                    registros.adaptador.Update(dados, "Registros");
+
+                    atualizaListView();
+                }
+            }
+        }
+
+        private void alterarSelecionadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (registro["DataVencimento"].ToString() != "")
+                {
+                    Caixa cadastroCaixa = new Caixa(registro, true, dados, registros.adaptador, categoria.adaptador);
+                    cadastroCaixa.ShowDialog(this);
+                }
+            }
+        }
+
+        private void deletarSelecionadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (float.Parse(registro["Valor"].ToString()) > 0)
+                {
+                    registro.Delete();
+                    registros.adaptador.Update(dados, "Registros");
+
+                    atualizaListView();
+                }
+            }
+        }
+
+        private void alterarSelecionadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listViewPrincipal.SelectedItems.Count > 0)
+            {
+                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
+                if (registro["DataVencimento"].ToString() == "")
+                {
+                    Caixa cadastroCaixa = new Caixa(registro, true, dados, registros.adaptador, categoria.adaptador);
+                    cadastroCaixa.ShowDialog(this);
+                }
+            }
+        }
+
+        private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos(dados, this);
+            projecaoGastos.ShowDialog(this);
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Relatorio relatorio = new Relatorio(dados, this);
+            relatorio.ShowDialog(this);
+        }
+
+        private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria);
+            cadastroCategoria.ShowDialog(this);
+
+            carregaCat();
+            adicionaCat();
+        }
+
+        //fim do menu principal
+
+        //sub-rotinas da
+        //aba de busca
+
+        //Verifica o que está selecionado para efetuar a busca
+        private void verificaCheckBox()
+        {
+            if (checkBoxDescricao.Checked == true || checkBoxData.Checked == true || checkBoxCategoria.Checked == true)
+            {
+                buttonBuscar.Enabled = true;
+                buttonLimpar.Enabled = true;
+            }
+            else
+            {
+                buttonBuscar.Enabled = false;
+                buttonLimpar.Enabled = false;
+            }
+        }
+
+        //verifica o checkBoxDescricao
+        private void checkBoxDescricao_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxDescricao.Checked == true)
+            {
+                groupBoxDescricao.Enabled = true;
+                textBoxDescricao.Enabled = true;
+            }
+            else
+                groupBoxDescricao.Enabled = false;
+        }
+
+        //verifica o checkBoxData
+        private void checkBoxData_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxData.Checked == true)
+            {
+                groupBoxData.Enabled = true;
+                dateTimePickerDataMaxima.Enabled = true;
+                dateTimePickerDataMinima.Enabled = true;
+            }
+            else
+                groupBoxData.Enabled = false;
+        }
+
+        //verifica o checkBoxCategoria
+        private void checkBoxCategoria_Click(object sender, EventArgs e)
+        {
+            verificaCheckBox();
+            if (checkBoxCategoria.Checked == true)
+            {
+                groupBoxCategoria.Enabled = true;
+                comboBoxCategoria.Enabled = true;
+            }
+            else
+                groupBoxCategoria.Enabled = false;
+        }
+
+        //botões da aba de busca
 
         //Botão que efetua a busca
         private void buttonBuscar_Click(object sender, EventArgs e)
@@ -366,7 +548,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        //Limpa a aba de busca
+        //Botão que limpa a busca
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
             atualizaMesListView();
@@ -387,72 +569,10 @@ namespace WindowsFormsApplication1
             comboBoxCategoria.Enabled = false;
         }
 
-        //Verifica o que está selecionado para efetuar a busca
-        private void verificaCheckBox()
-        {
-            if (checkBoxDescricao.Checked == true || checkBoxData.Checked == true || checkBoxCategoria.Checked == true)
-            {
-                buttonBuscar.Enabled = true;
-                buttonLimpar.Enabled = true;
-            }
-            else
-            {
-                buttonBuscar.Enabled = false;
-                buttonLimpar.Enabled = false;
-            }
-        }
+        //fim da aba busca
 
-        private void checkBoxDescricao_Click(object sender, EventArgs e)
-        {
-            verificaCheckBox();
-            if (checkBoxDescricao.Checked == true)
-            {
-                groupBoxDescricao.Enabled = true;
-                textBoxDescricao.Enabled = true;
-            }
-            else
-                groupBoxDescricao.Enabled = false;
-        }
-
-        private void checkBoxData_Click(object sender, EventArgs e)
-        {
-            verificaCheckBox();
-            if (checkBoxData.Checked == true)
-            {
-                groupBoxData.Enabled = true;
-                dateTimePickerDataMaxima.Enabled = true;
-                dateTimePickerDataMinima.Enabled = true;
-            }
-            else
-                groupBoxData.Enabled = false;
-        }
-
-        private void checkBoxCategoria_Click(object sender, EventArgs e)
-        {
-            verificaCheckBox();
-            if (checkBoxCategoria.Checked == true)
-            {
-                groupBoxCategoria.Enabled = true;
-                comboBoxCategoria.Enabled = true;
-            }
-            else
-                groupBoxCategoria.Enabled = false;
-        }
-
-        private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria);
-            cadastroCategoria.ShowDialog(this);
-
-            carregaCat();
-            adicionaCat();
-        }
-
-        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Relatorio relatorio = new Relatorio(dados, this);
-            relatorio.ShowDialog(this);            
-        }
+        //eventos do
+        //listview principal
 
         //Altera um registro por meio de um clique duplo
         private void listViewPrincipal_DoubleClick(object sender, EventArgs e)
@@ -479,16 +599,17 @@ namespace WindowsFormsApplication1
             if (e.KeyCode == Keys.Delete && listViewPrincipal.SelectedItems.Count > 0)
             {
                 DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-                if (registro["Recorrente"].ToString() == "2")
-                {
-                    //colocar mais um atributo de data no banco!!!
-                }
                 registro.Delete();
                 registros.adaptador.Update(dados, "Registros");
 
                 atualizaListView();
             }
         }
+
+        //fim listviewe principal
+
+        //sub-rotinas do panelTopo
+        //topo do listvieew principal
 
         //Navega pelo botão 'Anterior'
         private void buttonAnterior_Click(object sender, EventArgs e)
@@ -542,14 +663,7 @@ namespace WindowsFormsApplication1
                 atualizaListView();
         }
 
-        
-
-        private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos(dados, this);
-            projecaoGastos.ShowDialog(this);
-        }
-
+        //navega pelo botão 'Ir'
         private void buttonIrData_Click(object sender, EventArgs e)
         {
             if (mesCarregado == 1 && anoCarregado == 2000)
@@ -566,6 +680,7 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
+        //navega pelo botão 'Mes Atual'
         private void buttonMesAtual_Click(object sender, EventArgs e)
         {
             mesCarregado = DateTime.Now.Month;
@@ -574,73 +689,9 @@ namespace WindowsFormsApplication1
             atualizaListView();
         }
 
-        private void deletarSelecionadoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listViewPrincipal.SelectedItems.Count > 0)
-            {
-                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-                if (float.Parse(registro["Valor"].ToString()) < 0)
-                {
-                    registro.Delete();
-                    registros.adaptador.Update(dados, "Registros");
+        //fim panelTopo
 
-                    atualizaListView();
-                }
-            }
-        }
 
-        private void deletarSelecionadoToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (listViewPrincipal.SelectedItems.Count > 0)
-            {
-                DataRow registro = dados.Tables["Registros"].Rows.Find(listViewPrincipal.SelectedItems[0].Tag);
-                if (float.Parse(registro["Valor"].ToString()) > 0)
-                {
-                    registro.Delete();
-                    registros.adaptador.Update(dados, "Registros");
-
-                    atualizaListView();
-                }
-            }
-        }
-
-        private void adicionaItensListViewBusca(DataRow registro)
-        {
-            labelNomeMes.Text = "Busca";
-            string dataVencimento;
-            string dataPagamento;
-            if (registro["DataVencimento"].ToString() == "")
-                dataVencimento = "";
-            else
-                dataVencimento = registro["DataVencimento"].ToString();
-
-            if (registro["DataPagamento"].ToString() == "")
-                dataPagamento = "";
-            else
-                dataPagamento = registro["DataPagamento"].ToString();
-
-            listViewPrincipal.Items.Clear();
-            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
-            item.UseItemStyleForSubItems = false;
-            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
-            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
-            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyyy"));
-            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
-            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
-
-            if (float.Parse(registro["Valor"].ToString()) < 0)
-                subItemValor.ForeColor = Color.Red;
-            else
-                subItemValor.ForeColor = Color.Blue;
-
-            item.Tag = registro["Codigo"].ToString();
-            item.SubItems.Add(subItemValor);
-            item.SubItems.Add(subItemCategoria);
-            item.SubItems.Add(subItemDataCadastro);
-            item.SubItems.Add(subItemDataVencimento);
-            item.SubItems.Add(subItemDataPagamento);
-            listViewPrincipal.Items.Add(item);
-        }
 
     }
 }

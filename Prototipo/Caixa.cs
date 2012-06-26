@@ -18,6 +18,9 @@ namespace WindowsFormsApplication1
         SqlDataAdapter adaptadorCat;
         bool atualiza = false;
 
+        //metodos construtores
+        //para cadastrar e para alterar
+
         public Caixa(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.dados = dados;
@@ -34,80 +37,18 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void buttonCadastrar_Click(object sender, EventArgs e)
-        {
-            int recorrente = 1;
-            float valor;
+        //fim metodos construtores
 
-            if (checkBoxRecorrente.Checked == true)
-                recorrente = 2;
-            else
-                recorrente = 1;
 
-            if (textBoxDescricaoCaixa.Text == "")
-            {
-                labelCampoPreenchimento.Text = "*Campo descrição invalido.";
-                labelCampoPreenchimento.Visible = true;
-            }
-
-            else if (textBoxValorCaixa.Text == "" || !(float.TryParse(textBoxValorCaixa.Text, out valor)) || valor < 0)
-            {
-                labelCampoPreenchimento.Text = "*Campo valor invalido.";
-                labelCampoPreenchimento.Visible = true;
-            }
-
-            else if (comboBoxCategoriaCaixa.SelectedIndex == -1)
-            {
-                labelCampoPreenchimento.Text = "*Categoria não selecionada.";
-                labelCampoPreenchimento.Visible = true;
-            }
-            else
-            {
-                int categoria = 0;
-                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
-                    if (comboBoxCategoriaCaixa.Text == registro["DescricaoCat"].ToString())
-                        categoria = int.Parse(registro["CodigoCat"].ToString());
-                if (atualiza)
-                {
-                    registro["Descricao"] = textBoxDescricaoCaixa.Text;
-                    registro["Valor"] = textBoxValorCaixa.Text;
-                    registro["Recorrente"] = recorrente;
-                    registro["Categoria"] = categoria;
-                    adaptadorReg.Update(dados, "Registros");
-                }
-                else
-                {
-                    labelCampoPreenchimento.Visible = false;
-                    DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
-                    novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
-                    novoRegistroCai["Recorrente"] = recorrente;
-                    novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
-                    novoRegistroCai["Categoria"] = categoria;
-                    novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
-                    dados.Tables["Registros"].Rows.Add(novoRegistroCai);
-                    adaptadorReg.Update(dados, "Registros");
-                }
-                Close();
-            }
-        }
-
-        private void Limpar_Click(object sender, EventArgs e)
-        {
-            textBoxDescricaoCaixa.Text = "";
-            textBoxValorCaixa.Text = "";
-            checkBoxRecorrente.Checked = false;
-            comboBoxCategoriaCaixa.Text = "";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        //carrega o form caixa
+        //instancia e configura os adaptadores
         private void Caixa_Load(object sender, EventArgs e)
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+
+            conexao.ConnectionString = "Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+            
+            //conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
 
             SqlCommand comandoSelecaoCai = new SqlCommand("select Descricao, Valor, Recorrente, DataCadastro, Categoria;", conexao);
             adaptadorCat.SelectCommand = comandoSelecaoCai;
@@ -185,6 +126,82 @@ namespace WindowsFormsApplication1
                 comboBoxCategoriaCaixa.Text = categoria;
                 textBoxValorCaixa.Text = registro["Valor"].ToString();
             }
+        }
+
+        //eventos dos
+        //botões
+
+        //botão cadastrar
+        private void buttonCadastrar_Click(object sender, EventArgs e)
+        {
+            int recorrente = 1;
+            float valor;
+
+            if (checkBoxRecorrente.Checked == true)
+                recorrente = 2;
+            else
+                recorrente = 1;
+
+            if (textBoxDescricaoCaixa.Text == "")
+            {
+                labelCampoPreenchimento.Text = "*Campo descrição invalido.";
+                labelCampoPreenchimento.Visible = true;
+            }
+
+            else if (textBoxValorCaixa.Text == "" || !(float.TryParse(textBoxValorCaixa.Text, out valor)) || valor < 0)
+            {
+                labelCampoPreenchimento.Text = "*Campo valor invalido.";
+                labelCampoPreenchimento.Visible = true;
+            }
+
+            else if (comboBoxCategoriaCaixa.SelectedIndex == -1)
+            {
+                labelCampoPreenchimento.Text = "*Categoria não selecionada.";
+                labelCampoPreenchimento.Visible = true;
+            }
+            else
+            {
+                int categoria = 0;
+                foreach (DataRow registro in dados.Tables["Categoria"].Rows)
+                    if (comboBoxCategoriaCaixa.Text == registro["DescricaoCat"].ToString())
+                        categoria = int.Parse(registro["CodigoCat"].ToString());
+                if (atualiza)
+                {
+                    registro["Descricao"] = textBoxDescricaoCaixa.Text;
+                    registro["Valor"] = textBoxValorCaixa.Text;
+                    registro["Recorrente"] = recorrente;
+                    registro["Categoria"] = categoria;
+                    adaptadorReg.Update(dados, "Registros");
+                }
+                else
+                {
+                    labelCampoPreenchimento.Visible = false;
+                    DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
+                    novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
+                    novoRegistroCai["Recorrente"] = recorrente;
+                    novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
+                    novoRegistroCai["Categoria"] = categoria;
+                    novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
+                    dados.Tables["Registros"].Rows.Add(novoRegistroCai);
+                    adaptadorReg.Update(dados, "Registros");
+                }
+                Close();
+            }
+        }
+
+        //botão limpar
+        private void Limpar_Click(object sender, EventArgs e)
+        {
+            textBoxDescricaoCaixa.Text = "";
+            textBoxValorCaixa.Text = "";
+            checkBoxRecorrente.Checked = false;
+            comboBoxCategoriaCaixa.Text = "";
+        }
+
+        //botão cancelar
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
 
             DataRow[] registros = dados.Tables["Registros"].Select("Codigo > 0");
 
-            string categoria = "";
+            //string categoria = "";
             string descricao2 = "";
             int ultimaPaga = 0;
 
