@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1
                 default: return 0;
             }
         }
-
+        //
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
@@ -153,7 +153,7 @@ namespace WindowsFormsApplication1
             float gasto = 0;
             DataRow[] registroCat = dados.Tables["Categoria"].Select("CodigoCat > 0");
             DataRow[] registro = dados.Tables["Registros"].Select("Codigo > 0");
-
+            
             foreach (DataRow categoria in dados.Tables["Categoria"].Rows)
             {                
                 ListViewItem item = new ListViewItem(categoria["DescricaoCat"].ToString());

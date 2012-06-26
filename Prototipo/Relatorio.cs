@@ -24,28 +24,27 @@ namespace WindowsFormsApplication1
         {
             Close();
         }
-
+        //Carrega o Form e prepara o mesmo para o uso
         private void Relatorio_Load(object sender, EventArgs e)
         {
-            label1.Text = "0.00R$";
-            label2.Text = "0.00R$";
-            label3.Text = "0.00R$";
-            label8.Text = "0.00R$";
-            label9.Text = "0.00R$";
+            labelValorMedia.Text = "0.00R$";
+            labelValorMenorGasto.Text = "0.00R$";
+            labelValorCreDeb1.Text = "0.00R$";
+            labelValorMaiorGasto.Text = "0.00R$";
+            labelValorCreDeb2.Text = "0.00R$";
             dateTimePickerSemana.Enabled = false;
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
             {
                 comboBoxRelatorioCategoria.Items.Add(registro["DescricaoCat"].ToString());
  
             }
-           
-            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
            
         }
+        //Adiciona os itens no List View
         public void adicionaItensListView(DataRow registro)
         {
             string dataVencimento;
@@ -60,7 +59,7 @@ namespace WindowsFormsApplication1
                 dataPagamento = " ";
             else
                 dataPagamento = ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy");
-
+            //Adiciona as descrições de outra tabela.
             foreach (DataRow registroCat in dados.Tables["Categoria"].Rows)
                 if (registro["Categoria"].ToString() == registroCat["CodigoCat"].ToString())
                     categoria = registroCat["DescricaoCat"].ToString();
@@ -72,26 +71,23 @@ namespace WindowsFormsApplication1
             ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
             ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
 
+            //Verifica se o valor é negativo ou positivo. Depois, atribui a cor de referência
             if (float.Parse(registro["Valor"].ToString()) < 0)
                 subItemValor.ForeColor = Color.Red;
-
             else
                 subItemValor.ForeColor = Color.Blue;
 
             item.UseItemStyleForSubItems = false;
-
     
-                item.Tag = registro["Codigo"].ToString();
-                item.SubItems.Add(subItemValor);
-                item.SubItems.Add(subItemCategoria);
-                item.SubItems.Add(subItemDataCadastro);
-                item.SubItems.Add(subItemDataVencimento);
-                item.SubItems.Add(subItemDataPagamento);
-                listViewRelatorio.Items.Add(item);
-            
-
-
+            item.Tag = registro["Codigo"].ToString();
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemDataCadastro);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewRelatorio.Items.Add(item);
         }
+
         //Verifica quais são os registros de determinada categoria
         private void comboBoxRelatorioCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -101,8 +97,7 @@ namespace WindowsFormsApplication1
                 if (comboBoxRelatorioCategoria.Text == registro["DescricaoCat"].ToString())
                     categoria = int.Parse(registro["CodigoCat"].ToString());
 
-            DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "'");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
-
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "'");
             if (registros.Length != 0)
             {
                 foreach (DataRow registro in registros)
@@ -112,12 +107,13 @@ namespace WindowsFormsApplication1
             }
             atualizaGroupBox();
         }
+
         //Verifica quais são os registros de determinado ano
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
             DateTime data = DateTime.Now;
-            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");      
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
             if (registros.Length != 0)
             {
                 foreach (DataRow registro in registros)
@@ -128,8 +124,6 @@ namespace WindowsFormsApplication1
                         data = DateTime.Parse(registro["DataCadastro"].ToString());
                     if (data.Year == int.Parse(comboBox1.SelectedItem.ToString()))
                         adicionaItensListView(registro);
-                    //else
-                    //    break;
                 }
             }
             comboBoxDescCat.Visible = true;
@@ -157,14 +151,14 @@ namespace WindowsFormsApplication1
                 case "Dezembro": numero_mes = 12; break;
             }
             return numero_mes;
-
         }
+
         //Verifica quais são os registros de determinado mês
         private void comboBoxMes_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
             DateTime data = DateTime.Now;
-            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
+            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
             int numero_mes = verificaMes(comboBoxMes.SelectedItem.ToString());
             if (registros.Length != 0)
             {
@@ -177,11 +171,10 @@ namespace WindowsFormsApplication1
                 }
             }
             comboBoxDescCat.Visible = true;
-
             atualizaCombo();
             atualizaGroupBox();
         }
-
+        //Adiciona as categorias que estão no ListView no comboBox do Relatório
         public void atualizaCombo()
         {
             comboBoxDescCat.Items.Clear();
@@ -199,7 +192,8 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        //Atualiza as informações no GroupBox
+
+        //Atualiza as informações no GroupBox para gerar o relatório
         public void atualizaGroupBox()
         {
             float gasto_total = 0;
@@ -208,16 +202,12 @@ namespace WindowsFormsApplication1
             DataRow[] categoria = dados.Tables["Categoria"].Select("CodigoCat > 0");
             float maior = 0;
             float menor = 0;
-            int contador = 0;
+  
             //Soma o total no ListView
             foreach (ListViewItem item in listViewRelatorio.Items)
             {
-                if (item.SubItems[1].ForeColor != Color.Blue)
-                {
-                    contador++;
-                    soma = item.SubItems[1].Text;
-                    gasto_total += float.Parse(soma);
-                }
+                soma = item.SubItems[1].Text;
+                gasto_total += float.Parse(soma);
             }
             
             //Verifica o maior e o menor valor
@@ -241,7 +231,7 @@ namespace WindowsFormsApplication1
                 }
                 
             }
-            //Verifica o débito ou crédito no orçamento da categoria
+            //Verifica o débito ou crédito geral
             foreach (DataRow cat in dados.Tables["Categoria"].Rows)
             {
                 float dif = 0;
@@ -256,13 +246,13 @@ namespace WindowsFormsApplication1
                             if (gasto_total > float.Parse(cat["Orcamento"].ToString()))
                             {
                                 dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
-                                label9.Text = "Débito de:" + dif + "R$";
+                                labelValorCreDeb2.Text = "Débito de:" + dif + "R$";
                                 break;
                             }
                             else
                             {
                                 dif = float.Parse(cat["Orcamento"].ToString()) - gasto_total;
-                                label9.Text = "Crédito de:" + dif + "R$";
+                                labelValorCreDeb2.Text = "Crédito de:" + dif + "R$";
                                 break;
                             }
                         }
@@ -271,22 +261,21 @@ namespace WindowsFormsApplication1
                 
             }
             if (gasto_total != 0)
-                media = gasto_total / contador;
+                media = gasto_total / listViewRelatorio.Items.Count;
             if (checkBoxAno.Checked == true || checkBoxMes.Checked == true || checkBoxSemana.Checked == true)
                 verificaSituacao(gasto_total);
-            label1.Text = media.ToString("0.00") + "R$";
-            label2.Text = menor.ToString("0.00") + "R$";
-            label8.Text = maior.ToString("0.00") + "R$";
-            
+            labelValorMedia.Text = media.ToString("0.00") + "R$";
+            labelValorMenorGasto.Text = menor.ToString("0.00") + "R$";
+            labelValorMaiorGasto.Text = maior.ToString("0.00") + "R$";
         }
 
+        //Informação do débito ou crédito por categoria
         private void comboBoxDescCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             float gasto_parcial = 0;
             float gasto_total = 0; 
             string soma_parcial;
-            string soma_total;
-            
+            string soma_total;  
             float dif = 0;
           
             if (comboBoxDescCat.SelectedIndex != -1)
@@ -311,42 +300,47 @@ namespace WindowsFormsApplication1
                     if (gasto_parcial> float.Parse(cat["Orcamento"].ToString()))
                     {
                         dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
-                        label3.Text = "Débito de:" + dif +  "R$";
+                        labelValorCreDeb1.Text = "Débito de:" + dif +  "R$";
                         break;
                     }
                     else
                     {
                         dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
-                        label3.Text = "Crédito de:" + dif + "R$";
+                        labelValorCreDeb1.Text = "Crédito de:" + dif + "R$";
                         break;
                     }
                 }
                 
             }     
         }
-        //Débito ou crédito com mais de uma categoria
+        //Débito ou crédito com mais de uma categoria, verificando somente a categoria escolhida
         public void verificaSituacao(float gasto_total)
         {
             float gasto_cat = 0;
             string soma_cat;
-            foreach (DataRow cat in dados.Tables["Categoria"].Rows)
-            {    
-               for (int i = 0; i < listViewRelatorio.Items.Count; i++)
-               {
-                   if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString())
-                   {
-                       soma_cat = cat["Orcamento"].ToString();
-                       gasto_cat += float.Parse(soma_cat);
-                       break;
-                   }
+            if (listViewRelatorio.Items.Count > 0)
+            {
+                foreach (DataRow cat in dados.Tables["Categoria"].Rows)
+                {
+                    for (int i = 0; i < listViewRelatorio.Items.Count; i++)
+                    {
+                        if (listViewRelatorio.Items[i].SubItems[2].Text == cat["DescricaoCat"].ToString())
+                        {
+                            soma_cat = cat["Orcamento"].ToString();
+                            gasto_cat += float.Parse(soma_cat);
+                            break;
+                        }
+                    }
+                    if (gasto_cat > gasto_total)
+                        labelValorCreDeb2.Text = "Crédito de:" + (gasto_cat - gasto_total) + "R$";
+                    else
+                        labelValorCreDeb2.Text = "Débito de:" + (gasto_cat - gasto_total) + "R$";
                 }
-                if (gasto_cat > gasto_total)
-                    label9.Text = "Crédito de:" + (gasto_cat - gasto_total);
-                else
-                    label9.Text = "Débito de:" + (gasto_cat - gasto_total);
             }
-               
+        
         }
+
+        //Verifica se o checkBox da semana está selecionado
         private void checkBoxSemana_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSemana.Checked == true)
@@ -358,6 +352,7 @@ namespace WindowsFormsApplication1
                 dateTimePickerSemana.Enabled = false;
         }
 
+        //Verifica se o checkBox do mês está selecionado
         private void checkBoxMes_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxMes.Checked == true)
@@ -369,6 +364,7 @@ namespace WindowsFormsApplication1
                 comboBoxMes.Enabled = false;
         }
 
+        //Verifica se o checkBox do ano está selecionado
         private void checkBoxAno_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxAno.Checked == true)
@@ -380,18 +376,27 @@ namespace WindowsFormsApplication1
                 comboBox1.Enabled = false;
         }
 
+        //Verifica se o checkBox da categoria está selecionado
         private void checkBoxCategoria_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxCategoria.Checked == true)
             {
                 comboBoxDescCat.Visible = false;
+                labelCreDebCat.Visible = false;
+                labelValorCreDeb1.Visible = false;
                 comboBoxRelatorioCategoria.Enabled = true;
                 comboBoxRelatorioCategoria.Enabled = true;
             }
             else
+            {
                 comboBoxRelatorioCategoria.Enabled = false;
+                labelCreDebCat.Visible = true;
+                labelValorCreDeb1.Visible = true;
+                
+            }
         }
-        //Filtra pela data
+
+        //Verifica quais são os registros da semana escolhida
         private void dateTimePickerSemana_ValueChanged(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
@@ -401,10 +406,6 @@ namespace WindowsFormsApplication1
             string data_aux;
             string data2;
             DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
-            //int numero_mes = verificaMes(comboBoxMes.SelectedItem.ToString());
-            //if (registro["DataVencimento"].ToString() != "")
-            
-            
             if (registros.Length != 0)
             {
                 foreach (DataRow registro in registros)
@@ -421,14 +422,16 @@ namespace WindowsFormsApplication1
                 }
             }
             comboBoxDescCat.Visible = true;
-
-            //atualizaCombo();
+            atualizaCombo();
             atualizaGroupBox();
         }
 
+        //Limpa as informações do relatório
         private void button1_Click(object sender, EventArgs e)
         {
             listViewRelatorio.Items.Clear();
+            comboBoxDescCat.Items.Clear();
+            comboBoxDescCat.Text = "";
             checkBoxMes.Checked = false;
             checkBoxAno.Checked = false;
             checkBoxSemana.Checked = false;
@@ -439,14 +442,11 @@ namespace WindowsFormsApplication1
             comboBoxMes.Enabled = false;
             comboBoxRelatorioCategoria.Enabled = false;
             comboBoxDescCat.Visible = false;
-            
-            label1.Text = "0.00 R$";
-            label2.Text = "0.00 R$";
-            label3.Text = "0.00 R$";
-            label8.Text = "0.00 R$";
-            label9.Text = "0.00 R$";
+            labelValorMedia.Text = "0.00 R$";
+            labelValorMenorGasto.Text = "0.00 R$";
+            labelValorCreDeb1.Text = "0.00 R$";
+            labelValorMaiorGasto.Text = "0.00 R$";
+            labelValorCreDeb2.Text = "0.00 R$";
         }
-
-           
     }
 }
