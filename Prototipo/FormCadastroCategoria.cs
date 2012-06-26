@@ -14,9 +14,9 @@ namespace WindowsFormsApplication1
     public partial class FormCadastroCategoria : Form
     {
         DataSet dados;
-        SqlDataAdapter adaptadorCat;
+        AdaptadorCategoria adaptadorCat;
 
-        public FormCadastroCategoria(DataSet dados, SqlDataAdapter adaptadorCat)
+        public FormCadastroCategoria(DataSet dados, AdaptadorCategoria adaptadorCat)
         {
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1
                 novoRegistro["Orcamento"] = textBoxOrcamento.Text;
                 dados.Tables["Categoria"].Rows.Add(novoRegistro);
 
-                adaptadorCat.Update(dados, "Registros");
+                adaptadorCat.adaptador.Update(dados, "Registros");
                 Close();
             }
         }

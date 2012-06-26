@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1
                 default: return 0;
             }
         }
-        //
+        //Atualiza o groupBox com as informações sobre o saldo
         public void atualizaGroupBoxDadosMes(float contas, float caixa)
         {
             contas *= -1;
@@ -218,7 +218,7 @@ namespace WindowsFormsApplication1
             atualizaGroupBoxDadosMes(totalNegativo, totalPositivo);
 
         }
-
+        //Carrega o mês com o ano
         public void atualizaMesListView()
         {
             string mes = nomeMes(mesCarregado);
@@ -246,6 +246,7 @@ namespace WindowsFormsApplication1
 
             try
             {
+
                 registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
                 categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
@@ -442,7 +443,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria.adaptador);
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria);
             cadastroCategoria.ShowDialog(this);
 
             carregaCat();
