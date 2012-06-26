@@ -447,5 +447,6 @@ namespace WindowsFormsApplication1
             labelValorMaiorGasto.Text = "0.00 R$";
             labelValorCreDeb2.Text = "0.00 R$";
         }
+
     }
 }

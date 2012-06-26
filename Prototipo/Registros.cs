@@ -159,9 +159,9 @@ namespace WindowsFormsApplication1
 
         private void Registros_Load(object sender, EventArgs e)
         {
-            //AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+            AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
-            AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+            //AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
            
             registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             registros.adaptador.Fill(dados, "Registros");
