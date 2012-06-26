@@ -25,16 +25,17 @@ namespace WindowsFormsApplication1
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            
+            float valor;
             if (textBoxDescricao.Text.Trim() == "")
             {
-                labelCampoPreenchidos.Text = "*Campo descrição vazio.";
+                labelCampoPreenchidos.Text = "*Campo descrição invalido.";
                 textBoxDescricao.Focus();
                 labelCampoPreenchidos.Visible = true;
-            }                
-            else if (textBoxOrcamento.Text.Trim() == "")
+            }
+
+            else if (textBoxOrcamento.Text.Trim() == "" || !(float.TryParse(textBoxOrcamento.Text, out valor)) || valor < 0)
             {
-                labelCampoPreenchidos.Text = "*Campo orçamento vazio.";
+                labelCampoPreenchidos.Text = "*Campo orçamento invalido.";
                 textBoxOrcamento.Focus();
                 labelCampoPreenchidos.Visible = true;
             }

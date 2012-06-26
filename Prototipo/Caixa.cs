@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             int recorrente = 1;
+            float valor;
 
             if (checkBoxRecorrente.Checked == true)
                 recorrente = 2;
@@ -45,19 +46,19 @@ namespace WindowsFormsApplication1
 
             if (textBoxDescricaoCaixa.Text == "")
             {
-                labelCampoPreenchimento.Text = "*Campo descrição vazio.";
+                labelCampoPreenchimento.Text = "*Campo descrição invalido.";
                 labelCampoPreenchimento.Visible = true;
             }
 
-            else if (textBoxValorCaixa.Text == "")
+            else if (textBoxValorCaixa.Text == "" || !(float.TryParse(textBoxValorCaixa.Text, out valor)) || valor < 0)
             {
-                labelCampoPreenchimento.Text = "*Campo valor vazio.";
+                labelCampoPreenchimento.Text = "*Campo valor invalido.";
                 labelCampoPreenchimento.Visible = true;
             }
 
             else if (comboBoxCategoriaCaixa.SelectedIndex == -1)
             {
-                labelCampoPreenchimento.Text = "*Campo categoria vazio.";
+                labelCampoPreenchimento.Text = "*Categoria não selecionada.";
                 labelCampoPreenchimento.Visible = true;
             }
             else
@@ -79,10 +80,10 @@ namespace WindowsFormsApplication1
                     labelCampoPreenchimento.Visible = false;
                     DataRow novoRegistroCai = dados.Tables["Registros"].NewRow();
                     novoRegistroCai["Descricao"] = textBoxDescricaoCaixa.Text;
-                    novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
                     novoRegistroCai["Recorrente"] = recorrente;
                     novoRegistroCai["DataCadastro"] = DateTime.Now.ToShortDateString();
                     novoRegistroCai["Categoria"] = categoria;
+                    novoRegistroCai["Valor"] = textBoxValorCaixa.Text;
                     dados.Tables["Registros"].Rows.Add(novoRegistroCai);
                     adaptadorReg.Update(dados, "Registros");
                 }
@@ -171,7 +172,7 @@ namespace WindowsFormsApplication1
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaCaixa.Items.Add(registro["DescricaoCat"].ToString());
 
-          
+
             if (atualiza)
             {
                 string categoria = " ";
@@ -184,11 +185,6 @@ namespace WindowsFormsApplication1
                 comboBoxCategoriaCaixa.Text = categoria;
                 textBoxValorCaixa.Text = registro["Valor"].ToString();
             }
-        }
-
-        private void checkBoxRecorrente_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
