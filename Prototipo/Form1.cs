@@ -11,7 +11,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        //Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI
         DataSet dados = new DataSet();
         AdaptadorRegistros registros;
         AdaptadorCategoria categoria;
@@ -72,8 +71,7 @@ namespace WindowsFormsApplication1
             labelTotalContasValor.Text = "R$ " + contas.ToString("0.00");
             labelSaldoValor.Text = "R$ " + (caixa - contas).ToString("0.00");
         }
-
-
+        
         public void atulizalist(DataRow registro, string categoria, string dataVencimento, string dataPagamento)
         {
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
@@ -246,12 +244,12 @@ namespace WindowsFormsApplication1
 
             try
             {
-                //registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
-                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 atualizaMesListView();
 

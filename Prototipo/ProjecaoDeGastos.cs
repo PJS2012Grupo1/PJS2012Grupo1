@@ -24,15 +24,14 @@ namespace WindowsFormsApplication1
             listView1.Columns.Clear();
             listView1.Items.Clear();
             listView1.Columns.Add("Descrição");
-            listView1.Columns.Add("Numero de parcelas");
-            listView1.Columns.Add("Parcelas pagas");
-            listView1.Columns.Add("Parcelas restantes");
+            listView1.Columns.Add("Parcelas");
+            listView1.Columns.Add("Pagas");
+            listView1.Columns.Add("Restantes");
             listView1.Columns.Add("Valor total");
             listView1.Columns.Add("Valor parcela");
 
             DataRow[] registros = dados.Tables["Registros"].Select("Codigo > 0");
 
-            string categoria = "";
             string descricao2 = "";
             int ultimaPaga = 0;
 
@@ -97,7 +96,6 @@ namespace WindowsFormsApplication1
                         ultimaPaga = 0;
 
                     }
-
                     descricao2 = descricao;
                 }
             }
@@ -139,35 +137,215 @@ namespace WindowsFormsApplication1
                 adicionaItensListViewRecorrente();
             }
         }
-
-        private void radioButtonGastosParc_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void comboBoxMesProj_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
-            DateTime data = DateTime.Now;
-            DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");// and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");      
-            if (registros.Length != 0)
+            if (radioButtonGastosParc.Checked == true)
             {
-                foreach (DataRow registro in registros)
+                listView1.Columns.Clear();
+                listView1.Items.Clear();
+                listView1.Columns.Add("Descrição");
+                listView1.Columns.Add("Valor");
+                listView1.Columns.Add("Data Vencimento");
+
+                DateTime data = DateTime.Now;
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
+                int numero_mes = verificaMes(comboBoxMesProj.SelectedItem.ToString());
+                if (registros.Length != 0)
                 {
-                    if (registro["DataVencimento"].ToString() != "")
-                        data = DateTime.Parse(registro["DataVencimento"].ToString());
-                    if (data.Year == int.Parse(comboBoxMesProj.SelectedItem.ToString()))
-                        if (radioButtonGastosParc.Checked == true)
-                            adicionaItensListViewParcelado();
-                        else if (radioButtonGastosPeri.Checked == true)
-                            adicionaItensListViewRecorrente();
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["DataVencimento"].ToString() != "")
+                            data = DateTime.Parse(registro["DataVencimento"].ToString());
+                        if (data.Month == numero_mes)
+                        {
+                            int index;
+                            string parcelas = registro["Descricao"].ToString();
+                            index = parcelas.IndexOf("/");
+
+                            if (index != -1)
+                            {
+                                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                                ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, registro["DataVencimento"].ToString());
+
+                                item.SubItems.Add(subItemValor);
+                                item.SubItems.Add(subItemDataPagamento);
+                                listView1.Items.Add(item);
+                            }
+                        }
+                    }
                 }
             }
+
+            else if (radioButtonGastosPeri.Checked == true)
+            {
+                listView1.Columns.Clear();
+                listView1.Items.Clear();
+                listView1.Columns.Add("Descrição");
+                listView1.Columns.Add("Valor");
+
+                DateTime data = DateTime.Now;
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
+                int numero_mes = verificaMes(comboBoxMesProj.SelectedItem.ToString());
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["DataVencimento"].ToString() != "")
+                            data = DateTime.Parse(registro["DataVencimento"].ToString());
+                        if (data.Month == numero_mes)
+                            if (registro["Recorrente"].ToString() == "2")
+                            {
+                                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                                item.SubItems.Add(subItemValor);
+                                listView1.Items.Add(item);
+                            }
+                    }
+                }
+            }            
         }
 
         private void ProjecaoDeGastos_Load(object sender, EventArgs e)
         {
             adicionaItensListViewParcelado();
+        }
+
+        public int verificaMes(string mes)
+        {
+            int numero_mes = 0;
+            switch (mes)
+            {
+                case "Janeiro": numero_mes = 1; break;
+                case "Fevereiro": numero_mes = 2; break;
+                case "Março": numero_mes = 3; break;
+                case "Abril": numero_mes = 4; break;
+                case "Maio": numero_mes = 5; break;
+                case "Junho": numero_mes = 6; break;
+                case "Julho": numero_mes = 7; break;
+                case "Agosto": numero_mes = 8; break;
+                case "Setembro": numero_mes = 9; break;
+                case "Outubro": numero_mes = 10; break;
+                case "Novembro": numero_mes = 11; break;
+                case "Dezembro": numero_mes = 12; break;
+            }
+            return numero_mes;
+        }
+
+        private void comboBoxAnoProj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (radioButtonGastosParc.Checked == true)
+            {
+                listView1.Columns.Clear();
+                listView1.Items.Clear();
+                listView1.Columns.Add("Descrição");
+                listView1.Columns.Add("Valor");
+                listView1.Columns.Add("Data Vencimento");
+                listView1.Columns.Add("Data Pagamento");
+
+                DateTime data = DateTime.Now;
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["DataVencimento"].ToString() != "")
+                            data = DateTime.Parse(registro["DataVencimento"].ToString());
+                        else
+                            data = DateTime.Parse(registro["DataCadastro"].ToString());
+                        if (data.Year == int.Parse(comboBoxAnoProj.SelectedItem.ToString()))
+                        {
+                            int index;
+                            string parcelas = registro["Descricao"].ToString();
+                            index = parcelas.IndexOf("/");                        
+                            string dataPagamento;
+
+                            if (registro["DataPagamento"].ToString() == "")
+                                dataPagamento = " ";
+                            else
+                                dataPagamento = ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy");
+
+                            if (index != -1)
+                            {
+                                ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                                ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                                ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy"));
+                                ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
+                                item.SubItems.Add(subItemValor);
+                                item.SubItems.Add(subItemDataVencimento);
+                                item.SubItems.Add(subItemDataPagamento);
+                                listView1.Items.Add(item);
+                            }
+                        }
+                    }
+                }
+            }                       
+        }
+
+        private void dateTimePickerSemana_ValueChanged(object sender, EventArgs e)
+        {
+            if (radioButtonGastosParc.Checked == true)
+            {
+                listView1.Columns.Clear();
+                listView1.Items.Clear();
+                listView1.Columns.Add("Descrição");
+                listView1.Columns.Add("Valor");
+                listView1.Columns.Add("Data Vencimento");
+                listView1.Columns.Add("Data Pagamento");
+
+                dateTimePickerSemana.CustomFormat = "dd/MM/yyyy";
+                DateTime data = DateTime.Now;
+                DateTime data1 = DateTime.Now;
+                string data_aux;
+                string data2;
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria > 0");
+                if (registros.Length != 0)
+                {
+                    foreach (DataRow registro in registros)
+                    {
+                        if (registro["DataVencimento"].ToString() != "")
+                        {
+                            data = dateTimePickerSemana.Value;
+                            data1 = data.AddDays(7);
+                            data_aux = data.ToString("dd/MM/yyyy");
+                            data2 = data1.ToString("dd/MM/yyyy");
+                            if (DateTime.Parse(registro["DataVencimento"].ToString()) >= DateTime.Parse(data_aux) && DateTime.Parse(registro["DataVencimento"].ToString()) <= DateTime.Parse(data2))
+                            {
+                                int index;
+                                string parcelas = registro["Descricao"].ToString();
+                                index = parcelas.IndexOf("/");
+                                string dataPagamento;
+
+                                if (registro["DataPagamento"].ToString() == "")
+                                    dataPagamento = " ";
+                                else
+                                    dataPagamento = ((DateTime)registro["DataPagamento"]).ToString("dd/MM/yyy");
+
+                                if (index != -1)
+                                {
+                                    ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+                                    ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+                                    ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataVencimento"]).ToString("dd/MM/yyy"));
+                                    ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
+                                    item.SubItems.Add(subItemValor);
+                                    item.SubItems.Add(subItemDataVencimento);
+                                    item.SubItems.Add(subItemDataPagamento);
+                                    listView1.Items.Add(item);
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        }
+
+        private void radioButtonGastosPeri_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePickerSemana.Enabled = false;
+            comboBoxAnoProj.Enabled = false;
         }
     }
 }

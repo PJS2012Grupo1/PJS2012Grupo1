@@ -63,7 +63,6 @@
             this.radioButtonGastosParc.Tag = "1";
             this.radioButtonGastosParc.Text = "Gastos Parcelados";
             this.radioButtonGastosParc.UseVisualStyleBackColor = true;
-            this.radioButtonGastosParc.CheckedChanged += new System.EventHandler(this.radioButtonGastosParc_CheckedChanged);
             this.radioButtonGastosParc.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // radioButtonGastosPeri
@@ -76,6 +75,7 @@
             this.radioButtonGastosPeri.Tag = "2";
             this.radioButtonGastosPeri.Text = "Gastos Periódicos";
             this.radioButtonGastosPeri.UseVisualStyleBackColor = true;
+            this.radioButtonGastosPeri.CheckedChanged += new System.EventHandler(this.radioButtonGastosPeri_CheckedChanged);
             this.radioButtonGastosPeri.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // comboBoxMesProj
@@ -129,6 +129,7 @@
             this.comboBoxAnoProj.Name = "comboBoxAnoProj";
             this.comboBoxAnoProj.Size = new System.Drawing.Size(121, 21);
             this.comboBoxAnoProj.TabIndex = 3;
+            this.comboBoxAnoProj.SelectedIndexChanged += new System.EventHandler(this.comboBoxAnoProj_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -193,6 +194,7 @@
             this.dateTimePickerSemana.Size = new System.Drawing.Size(112, 20);
             this.dateTimePickerSemana.TabIndex = 14;
             this.dateTimePickerSemana.Value = new System.DateTime(2012, 5, 22, 19, 32, 0, 0);
+            this.dateTimePickerSemana.ValueChanged += new System.EventHandler(this.dateTimePickerSemana_ValueChanged);
             // 
             // ProjecaoDeGastos
             // 

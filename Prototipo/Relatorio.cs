@@ -170,6 +170,7 @@ namespace WindowsFormsApplication1
             atualizaCombo();
             atualizaGroupBox();
         }
+
         //Adiciona as categorias que estão no ListView no comboBox do Relatório
         public void atualizaCombo()
         {
@@ -312,6 +313,7 @@ namespace WindowsFormsApplication1
                 
             }     
         }
+
         //Débito ou crédito com mais de uma categoria.
         public void verificaSituacao(float gasto_total)
         {
