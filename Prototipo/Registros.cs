@@ -14,12 +14,12 @@ namespace WindowsFormsApplication1
         DataSet dados;
         DataRow registro;
         bool atualiza = false;
-        AdaptadorRegistros adaptadorReg;
-        AdaptadorCategoria adaptadorCat;
-        //SqlDataAdapter adaptadorReg;// = new SqlDataAdapter();
-        //SqlDataAdapter adaptadorCat;
+        //AdaptadorRegistros adaptadorReg;
+        //AdaptadorCategoria adaptadorCat;
+        SqlDataAdapter adaptadorReg;// = new SqlDataAdapter();
+        SqlDataAdapter adaptadorCat;
 
-        public Registros(DataSet dados, AdaptadorRegistros adaptadorReg, AdaptadorCategoria adaptadorCat)
+        public Registros(DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.dados = dados;
             this.adaptadorReg = adaptadorReg;
@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public Registros(DataRow registro, bool atualiza, DataSet dados, AdaptadorRegistros adaptadorReg, AdaptadorCategoria adaptadorCat)
+        public Registros(DataRow registro, bool atualiza, DataSet dados, SqlDataAdapter adaptadorReg, SqlDataAdapter adaptadorCat)
         {
             this.atualiza = atualiza;
             this.registro = registro;
@@ -103,13 +103,14 @@ namespace WindowsFormsApplication1
 
                 if (atualiza)
                 {
-                    registro["Descricao"] = textBoxDescricaoRegistro.Text;
-                    registro["Valor"] = "-" + textBoxValorRegistro.Text;
+                    float valor = float.Parse(textBoxValorRegistro.Text) * -1;
+                    registro["Descricao"] = textBoxDescricaoRegistro.Text ;
+                    registro["Valor"] = valor;
                     registro["Categoria"] = categoria;
                     registro["Recorrente"] = recorrente;
                     registro["DataVencimento"] = dateTimePickerDataVencimentoReg.Value;
                     registro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
-                    adaptadorReg.adaptador.Update(dados, "Registros");
+                    adaptadorReg.Update(dados, "Registros");
                 }
                 else if (parcelas > 1)
                 {
@@ -136,7 +137,7 @@ namespace WindowsFormsApplication1
                             novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                         novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                         dados.Tables["Registros"].Rows.Add(novoRegistro);
-                        adaptadorReg.adaptador.Update(dados, "Registros");
+                        adaptadorReg.Update(dados, "Registros");
                         mes = mes + 1;
                     }
                 }
@@ -151,7 +152,7 @@ namespace WindowsFormsApplication1
                     novoRegistro["DataPagamento"] = dateTimePickerDataPagamentoReg.Value;
                     novoRegistro["DataCadastro"] = DateTime.Now.ToShortDateString();
                     dados.Tables["Registros"].Rows.Add(novoRegistro);
-                    adaptadorReg.adaptador.Update(dados, "Registros");
+                    adaptadorReg.Update(dados, "Registros");
                 }
                 Close();
             }
@@ -159,6 +160,92 @@ namespace WindowsFormsApplication1
 
         private void Registros_Load(object sender, EventArgs e)
         {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI";
+
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro) values (@Desc, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro)", conexao);
+            SqlParameter prmDescricao = new SqlParameter("@Desc", SqlDbType.VarChar, 40);
+            prmDescricao.SourceColumn = "Descricao";
+            prmDescricao.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmDescricao);
+
+            SqlParameter prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
+            prmValor.SourceColumn = "Valor";
+            prmValor.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmValor);
+
+            SqlParameter prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
+            prmCategoria.SourceColumn = "Categoria";
+            prmCategoria.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmCategoria);
+
+            SqlParameter prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmRecorrente);
+
+            SqlParameter prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
+            prmDataVencimento.SourceColumn = "DataVencimento";
+            prmDataVencimento.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmDataVencimento);
+
+            SqlParameter prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
+            prmDataPagamento.SourceColumn = "DataPagamento";
+            prmDataPagamento.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmDataPagamento);
+
+            SqlParameter prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
+            prmDataCadastro.SourceColumn = "DataCadastro";
+            prmDataCadastro.SourceVersion = DataRowVersion.Current;
+            comandoInsercaoReg.Parameters.Add(prmDataCadastro);
+
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Recorrente = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro where Codigo = @Codigo", conexao);
+            prmDescricao = new SqlParameter("@Descricao", SqlDbType.VarChar, 40);
+            prmDescricao.SourceColumn = "Descricao";
+            prmDescricao.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDescricao);
+
+            prmValor = new SqlParameter("@Valor", SqlDbType.Decimal);
+            prmValor.SourceColumn = "Valor";
+            prmValor.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmValor);
+
+            prmCategoria = new SqlParameter("@Categoria", SqlDbType.Int);
+            prmCategoria.SourceColumn = "Categoria";
+            prmCategoria.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmCategoria);
+
+            prmRecorrente = new SqlParameter("@Recorrente", SqlDbType.TinyInt);
+            prmRecorrente.SourceColumn = "Recorrente";
+            prmRecorrente.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmRecorrente);
+
+            prmDataVencimento = new SqlParameter("@DataVencimento", SqlDbType.Date);
+            prmDataVencimento.SourceColumn = "DataVencimento";
+            prmDataVencimento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataVencimento);
+
+            prmDataPagamento = new SqlParameter("@DataPagamento", SqlDbType.Date);
+            prmDataPagamento.SourceColumn = "DataPagamento";
+            prmDataPagamento.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataPagamento);
+
+            prmDataCadastro = new SqlParameter("@DataCadastro", SqlDbType.Date);
+            prmDataCadastro.SourceColumn = "DataCadastro";
+            prmDataCadastro.SourceVersion = DataRowVersion.Current;
+            comandoAtualizacaoReg.Parameters.Add(prmDataCadastro);
+            
+            SqlParameter prmCodigo = new SqlParameter("@Codigo", SqlDbType.Int);
+            prmCodigo.SourceColumn = "Codigo";
+            prmCodigo.SourceVersion = DataRowVersion.Original;
+            comandoAtualizacaoReg.Parameters.Add(prmCodigo);
+
+            adaptadorReg.UpdateCommand = comandoAtualizacaoReg;
+
+            adaptadorReg.InsertCommand = comandoInsercaoReg;
+            adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+
+            adaptadorReg.Fill(dados, "Registros");
             //AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
             AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
@@ -194,18 +281,19 @@ namespace WindowsFormsApplication1
                     comboBoxFormaPagamento.Enabled = false;
                     comboBoxQtdeParcelasReg.Enabled = false;
                     textBoxValorRegistro.Enabled = false;
+                    descricao = descricao.Replace(descricao.Substring(index + -2), " ");
                 }
                 else
                 {
                     comboBoxQtdeParcelasReg.Enabled = true;
                     formaPagamento = 0;
+                    descricao = registro["Descricao"].ToString();
                 }
 
                 if (registro["DataPagamento"].ToString() == "")
                     data = DateTime.Parse(DateTime.Now.ToShortDateString());
                 else
                     data = DateTime.Parse(registro["DataPagamento"].ToString());
-                descricao = descricao.Replace(descricao.Substring(index + -2), " ");
 
                 textBoxDescricaoRegistro.Text = descricao;
                 comboBoxCategoriaRegistro.Text = categoria;

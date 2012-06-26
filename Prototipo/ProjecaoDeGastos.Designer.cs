@@ -139,6 +139,7 @@
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Total Gasto:";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -148,6 +149,7 @@
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "label2";
+            this.label2.Visible = false;
             // 
             // buttonSair
             // 

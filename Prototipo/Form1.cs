@@ -272,7 +272,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Registros cadastroRegistro = new Registros(dados, registros, categoria);
+            Registros cadastroRegistro = new Registros(dados, registros.adaptador, categoria.adaptador);
             cadastroRegistro.ShowDialog(this);
 
             atualizaListView();
@@ -464,7 +464,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                Registros cadastroPrograma = new Registros(registro, true, dados, registros, categoria);
+                Registros cadastroPrograma = new Registros(registro, true, dados, registros.adaptador, categoria.adaptador);
                 cadastroPrograma.ShowDialog(this);
             }
             atualizaListView();
@@ -616,7 +616,6 @@ namespace WindowsFormsApplication1
             else
                 dataPagamento = registro["DataPagamento"].ToString();
 
-            listViewPrincipal.Items.Clear();
             ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
             item.UseItemStyleForSubItems = false;
             ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
