@@ -206,10 +206,13 @@ namespace WindowsFormsApplication1
             //Soma o total no ListView
             foreach (ListViewItem item in listViewRelatorio.Items)
             {
-                soma = item.SubItems[1].Text;
-                gasto_total += float.Parse(soma);
+                if (item.SubItems[1].ForeColor != Color.Blue)
+                {
+                    soma = item.SubItems[1].Text;
+                    gasto_total += float.Parse(soma);
+                }
             }
-            
+            gasto_total *= -1;
             //Verifica o maior e o menor valor
             for (int i = 0; i < listViewRelatorio.Items.Count; i++)
             {
@@ -231,12 +234,12 @@ namespace WindowsFormsApplication1
                 }
                 
             }
+            menor *= -1;
+            maior *= -1;
             //Verifica o débito ou crédito geral
             foreach (DataRow cat in dados.Tables["Categoria"].Rows)
             {
                 float dif = 0;
-                gasto_total *= -1;
-
                 if (comboBoxDescCat.Visible == false)
                 {
                     for (int i = 0; i < listViewRelatorio.Items.Count; i++)
@@ -291,7 +294,7 @@ namespace WindowsFormsApplication1
                     gasto_total += float.Parse(soma_total);
                 }
             }
-            gasto_parcial *= -1;
+            
             foreach (DataRow cat in dados.Tables["Categoria"].Rows)
             {
                 
@@ -305,7 +308,7 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-                        dif = float.Parse(cat["Orcamento"].ToString()) - gasto_parcial;
+                        dif = float.Parse(cat["Orcamento"].ToString()) + gasto_parcial;
                         labelValorCreDeb1.Text = "Crédito de:" + dif + "R$";
                         break;
                     }
@@ -313,7 +316,7 @@ namespace WindowsFormsApplication1
                 
             }     
         }
-        //Débito ou crédito com mais de uma categoria, verificando somente a categoria escolhida
+        //Débito ou crédito com mais de uma categoria.
         public void verificaSituacao(float gasto_total)
         {
             float gasto_cat = 0;
@@ -331,11 +334,11 @@ namespace WindowsFormsApplication1
                             break;
                         }
                     }
-                    if (gasto_cat > gasto_total)
-                        labelValorCreDeb2.Text = "Crédito de:" + (gasto_cat - gasto_total) + "R$";
-                    else
-                        labelValorCreDeb2.Text = "Débito de:" + (gasto_cat - gasto_total) + "R$";
                 }
+                if (gasto_total < gasto_cat)
+                    labelValorCreDeb2.Text = "Crédito de:" + (gasto_cat - gasto_total) + "R$";
+                else
+                    labelValorCreDeb2.Text = "Débito de:" + (gasto_cat - gasto_total) + "R$";
             }
         
         }
