@@ -157,7 +157,7 @@
             // labelCreDebGeral
             // 
             this.labelCreDebGeral.AutoSize = true;
-            this.labelCreDebGeral.Location = new System.Drawing.Point(80, 97);
+            this.labelCreDebGeral.Location = new System.Drawing.Point(48, 87);
             this.labelCreDebGeral.Name = "labelCreDebGeral";
             this.labelCreDebGeral.Size = new System.Drawing.Size(117, 13);
             this.labelCreDebGeral.TabIndex = 10;
@@ -165,7 +165,7 @@
             // 
             // labelValorCreDeb2
             // 
-            this.labelValorCreDeb2.Location = new System.Drawing.Point(203, 97);
+            this.labelValorCreDeb2.Location = new System.Drawing.Point(171, 87);
             this.labelValorCreDeb2.Name = "labelValorCreDeb2";
             this.labelValorCreDeb2.Size = new System.Drawing.Size(70, 13);
             this.labelValorCreDeb2.TabIndex = 9;
@@ -174,7 +174,7 @@
             // comboBoxDescCat
             // 
             this.comboBoxDescCat.FormattingEnabled = true;
-            this.comboBoxDescCat.Location = new System.Drawing.Point(379, 40);
+            this.comboBoxDescCat.Location = new System.Drawing.Point(454, 51);
             this.comboBoxDescCat.Name = "comboBoxDescCat";
             this.comboBoxDescCat.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDescCat.TabIndex = 8;
@@ -183,7 +183,7 @@
             // 
             // labelValorMaiorGasto
             // 
-            this.labelValorMaiorGasto.Location = new System.Drawing.Point(150, 64);
+            this.labelValorMaiorGasto.Location = new System.Drawing.Point(118, 54);
             this.labelValorMaiorGasto.Name = "labelValorMaiorGasto";
             this.labelValorMaiorGasto.Size = new System.Drawing.Size(70, 13);
             this.labelValorMaiorGasto.TabIndex = 7;
@@ -192,16 +192,16 @@
             // labelCreDebCat
             // 
             this.labelCreDebCat.AutoSize = true;
-            this.labelCreDebCat.Location = new System.Drawing.Point(376, 64);
+            this.labelCreDebCat.Location = new System.Drawing.Point(344, 54);
             this.labelCreDebCat.Name = "labelCreDebCat";
-            this.labelCreDebCat.Size = new System.Drawing.Size(166, 13);
+            this.labelCreDebCat.Size = new System.Drawing.Size(104, 13);
             this.labelCreDebCat.TabIndex = 6;
-            this.labelCreDebCat.Text = "Crédito ou Débito desta Categoria";
+            this.labelCreDebCat.Text = "Crédito ou Débito de";
             // 
             // labelMenorGasto
             // 
             this.labelMenorGasto.AutoSize = true;
-            this.labelMenorGasto.Location = new System.Drawing.Point(226, 64);
+            this.labelMenorGasto.Location = new System.Drawing.Point(194, 54);
             this.labelMenorGasto.Name = "labelMenorGasto";
             this.labelMenorGasto.Size = new System.Drawing.Size(68, 13);
             this.labelMenorGasto.TabIndex = 5;
@@ -210,7 +210,7 @@
             // labelMaiorGasto
             // 
             this.labelMaiorGasto.AutoSize = true;
-            this.labelMaiorGasto.Location = new System.Drawing.Point(80, 64);
+            this.labelMaiorGasto.Location = new System.Drawing.Point(48, 54);
             this.labelMaiorGasto.Name = "labelMaiorGasto";
             this.labelMaiorGasto.Size = new System.Drawing.Size(64, 13);
             this.labelMaiorGasto.TabIndex = 4;
@@ -219,7 +219,7 @@
             // labelMedia
             // 
             this.labelMedia.AutoSize = true;
-            this.labelMedia.Location = new System.Drawing.Point(279, 97);
+            this.labelMedia.Location = new System.Drawing.Point(247, 87);
             this.labelMedia.Name = "labelMedia";
             this.labelMedia.Size = new System.Drawing.Size(82, 13);
             this.labelMedia.TabIndex = 3;
@@ -227,7 +227,7 @@
             // 
             // labelValorCreDeb1
             // 
-            this.labelValorCreDeb1.Location = new System.Drawing.Point(548, 64);
+            this.labelValorCreDeb1.Location = new System.Drawing.Point(580, 54);
             this.labelValorCreDeb1.Name = "labelValorCreDeb1";
             this.labelValorCreDeb1.Size = new System.Drawing.Size(70, 13);
             this.labelValorCreDeb1.TabIndex = 2;
@@ -235,7 +235,7 @@
             // 
             // labelValorMenorGasto
             // 
-            this.labelValorMenorGasto.Location = new System.Drawing.Point(300, 64);
+            this.labelValorMenorGasto.Location = new System.Drawing.Point(268, 54);
             this.labelValorMenorGasto.Name = "labelValorMenorGasto";
             this.labelValorMenorGasto.Size = new System.Drawing.Size(70, 13);
             this.labelValorMenorGasto.TabIndex = 1;
@@ -243,7 +243,7 @@
             // 
             // labelValorMedia
             // 
-            this.labelValorMedia.Location = new System.Drawing.Point(367, 97);
+            this.labelValorMedia.Location = new System.Drawing.Point(335, 87);
             this.labelValorMedia.Name = "labelValorMedia";
             this.labelValorMedia.Size = new System.Drawing.Size(70, 13);
             this.labelValorMedia.TabIndex = 0;

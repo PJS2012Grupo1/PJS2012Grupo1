@@ -246,8 +246,8 @@ namespace WindowsFormsApplication1
 
             try
             {
-                //registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                //categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
                 registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
@@ -441,7 +441,7 @@ namespace WindowsFormsApplication1
 
         private void cadastroToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria.adaptador);
+            FormCadastroCategoria cadastroCategoria = new FormCadastroCategoria(dados, categoria);
             cadastroCategoria.ShowDialog(this);
 
             carregaCat();
