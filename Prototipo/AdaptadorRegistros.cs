@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1
 {
-    class AdaptadorRegistros
+    public class AdaptadorRegistros
     {
         //parametros
         private SqlParameter prmDescricao = new SqlParameter();
@@ -17,7 +17,6 @@ namespace WindowsFormsApplication1
         private SqlParameter prmDataVencimento = new SqlParameter();
         private SqlParameter prmDataPagamento = new SqlParameter();
         private SqlParameter prmDataCadastro = new SqlParameter();
-        private SqlParameter prmParcelas = new SqlParameter();
         private SqlParameter prmCodigo = new SqlParameter();
 
 		private SqlParameter prmDescricaoAt = new SqlParameter();
@@ -27,7 +26,6 @@ namespace WindowsFormsApplication1
         private SqlParameter prmDataVencimentoAt = new SqlParameter();
         private SqlParameter prmDataPagamentoAt = new SqlParameter();
         private SqlParameter prmDataCadastroAt = new SqlParameter();
-        private SqlParameter prmParcelasAt = new SqlParameter();
         private SqlParameter prmCodigoAt = new SqlParameter();
 
         //adaptador
@@ -77,13 +75,7 @@ namespace WindowsFormsApplication1
             prmDataCadastro.SqlDbType = SqlDbType.Date;
             prmDataCadastro.SourceColumn = "DataCadastro";
             prmDataCadastro.SourceVersion = DataRowVersion.Current;
-
-            //parametro prmParcelas
-            prmParcelas.ParameterName = "@Parcelas";
-            prmParcelas.SqlDbType = SqlDbType.Int;
-            prmParcelas.SourceColumn = "Parcelas";
-            prmParcelas.SourceVersion = DataRowVersion.Current;
-
+            
             //parametro prmCodigo
             prmCodigo.ParameterName = "@Codigo";
             prmCodigo.SqlDbType = SqlDbType.Int;
@@ -126,12 +118,7 @@ namespace WindowsFormsApplication1
             prmDataCadastroAt.SqlDbType = SqlDbType.Date;
             prmDataCadastroAt.SourceColumn = "DataCadastro";
             prmDataCadastroAt.SourceVersion = DataRowVersion.Current;
-
-            prmParcelasAt.ParameterName = "@Parcelas";
-            prmParcelasAt.SqlDbType = SqlDbType.Int;
-            prmParcelasAt.SourceColumn = "Parcelas";
-            prmParcelasAt.SourceVersion = DataRowVersion.Current;
-
+            
             prmCodigoAt.ParameterName = "@Codigo";
             prmCodigoAt.SqlDbType = SqlDbType.Int;
             prmCodigoAt.SourceColumn = "Codigo";
@@ -151,7 +138,7 @@ namespace WindowsFormsApplication1
             //Comando para a seleção de dados
             SqlCommand comandoSelecaoReg = new SqlCommand("select * from Registros order by Categoria, Descricao;", conexao);
             //Comando para a inserção de dados
-            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro, Parcelas) values ('@Descricao', @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro, @Parcelas)", conexao);
+            SqlCommand comandoInsercaoReg = new SqlCommand("Insert into Registros (Descricao, Valor, Categoria, Recorrente, DataVencimento, DataPagamento, DataCadastro) values (@Descricao, @Valor, @Categoria, @Recorrente, @DataVencimento, @DataPagamento, @DataCadastro)", conexao);
             comandoInsercaoReg.Parameters.Add(prmDescricao);
             comandoInsercaoReg.Parameters.Add(prmValor);
             comandoInsercaoReg.Parameters.Add(prmCategoria);
@@ -159,9 +146,8 @@ namespace WindowsFormsApplication1
             comandoInsercaoReg.Parameters.Add(prmDataVencimento);
             comandoInsercaoReg.Parameters.Add(prmDataPagamento);
             comandoInsercaoReg.Parameters.Add(prmDataCadastro);
-            comandoInsercaoReg.Parameters.Add(prmParcelas);
             //Comando para a atualização de dados
-            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro, Parcelas = @Parcelas where Codigo = @Codigo", conexao);
+            SqlCommand comandoAtualizacaoReg = new SqlCommand("Update Registros set Descricao = @Descricao, Valor = @Valor, Categoria = @Categoria, Status1 = @Recorrente, DataVencimento = @DataVencimento, DataPagamento = @DataPagamento, DataCadastro = @DataCadastro = @Parcelas where Codigo = @Codigo", conexao);
             comandoAtualizacaoReg.Parameters.Add(prmDescricaoAt);
             comandoAtualizacaoReg.Parameters.Add(prmValorAt);
             comandoAtualizacaoReg.Parameters.Add(prmCategoriaAt);
@@ -169,7 +155,6 @@ namespace WindowsFormsApplication1
             comandoAtualizacaoReg.Parameters.Add(prmDataVencimentoAt);
             comandoAtualizacaoReg.Parameters.Add(prmDataPagamentoAt);
             comandoAtualizacaoReg.Parameters.Add(prmDataCadastroAt);
-            comandoAtualizacaoReg.Parameters.Add(prmParcelasAt);
             comandoAtualizacaoReg.Parameters.Add(prmCodigoAt);
             //Comandos para a remoção de dados
             SqlCommand comandoRemocaoReg = new SqlCommand("Delete from Registros where Codigo = @Codigo", conexao);

@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1
 {
-    class AdaptadorCategoria
+    public class AdaptadorCategoria
     {
         //parametros
         private SqlParameter prmDescricaoCat = new SqlParameter();
