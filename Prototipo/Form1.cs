@@ -308,11 +308,11 @@ namespace WindowsFormsApplication1
                     if (comboBoxCategoria.Text == registro["DescricaoCat"].ToString())
                         categoria = int.Parse(registro["CodigoCat"].ToString());
 
-                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '"+categoria+ "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBoxDescricao.Text + "%'");
+                DataRow[] registros = dados.Tables["Registros"].Select("Categoria = '" + categoria + "' and DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "' and Descricao like '%" + textBoxDescricao.Text + "%'");
 
                 if (registros.Length != 0)
                     foreach (DataRow registro in registros)
-                        adicionaItensListView(registro);
+                        adicionaItensListViewBusca(registro);
                 return;
             }
 
@@ -327,7 +327,7 @@ namespace WindowsFormsApplication1
 
                 if (registros.Length != 0)
                     foreach (DataRow registro in registros)
-                        adicionaItensListView(registro);
+                        adicionaItensListViewBusca(registro);
                 return;
             }
             //Busca só pela descrição
@@ -339,17 +339,17 @@ namespace WindowsFormsApplication1
                 {
                     listViewPrincipal.Items.Clear();
                     foreach (DataRow registro in registros)
-                        adicionaItensListView(registro);
+                        adicionaItensListViewBusca(registro);
                 }
             }
             //Busca pela intervalo de data
             if (checkBoxData.Checked == true)
-            {                
-                DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value+"'");
+            {
+                DataRow[] registros = dados.Tables["Registros"].Select("DataCadastro >= '" + dateTimePickerDataMinima.Value + "' and DataCadastro <= '" + dateTimePickerDataMaxima.Value + "'");
 
                 if (registros.Length != 0)
                     foreach (DataRow registro in registros)
-                        adicionaItensListView(registro);
+                        adicionaItensListViewBusca(registro);
             }
             //Busca pela categoria
             if (checkBoxCategoria.Checked == true)
@@ -362,7 +362,7 @@ namespace WindowsFormsApplication1
 
                 if (registros.Length != 0)
                     foreach (DataRow registro in registros)
-                        adicionaItensListView(registro);
+                        adicionaItensListViewBusca(registro);
             }
         }
 
@@ -545,7 +545,7 @@ namespace WindowsFormsApplication1
 
         private void projeçãoDeGastosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos();
+            ProjecaoDeGastos projecaoGastos = new ProjecaoDeGastos(dados, this);
             projecaoGastos.ShowDialog(this);
         }
 
@@ -601,6 +601,44 @@ namespace WindowsFormsApplication1
                     atualizaListView();
                 }
             }
+        }
+
+        private void adicionaItensListViewBusca(DataRow registro)
+        {
+            labelNomeMes.Text = "Busca";
+            string dataVencimento;
+            string dataPagamento;
+            if (registro["DataVencimento"].ToString() == "")
+                dataVencimento = "";
+            else
+                dataVencimento = registro["DataVencimento"].ToString();
+
+            if (registro["DataPagamento"].ToString() == "")
+                dataPagamento = "";
+            else
+                dataPagamento = registro["DataPagamento"].ToString();
+
+            listViewPrincipal.Items.Clear();
+            ListViewItem item = new ListViewItem(registro["Descricao"].ToString());
+            item.UseItemStyleForSubItems = false;
+            ListViewItem.ListViewSubItem subItemValor = new ListViewItem.ListViewSubItem(item, registro["Valor"].ToString());
+            ListViewItem.ListViewSubItem subItemCategoria = new ListViewItem.ListViewSubItem(item, registro["Categoria"].ToString());
+            ListViewItem.ListViewSubItem subItemDataCadastro = new ListViewItem.ListViewSubItem(item, ((DateTime)registro["DataCadastro"]).ToString("dd/MM/yyyy"));
+            ListViewItem.ListViewSubItem subItemDataVencimento = new ListViewItem.ListViewSubItem(item, dataVencimento);
+            ListViewItem.ListViewSubItem subItemDataPagamento = new ListViewItem.ListViewSubItem(item, dataPagamento);
+
+            if (float.Parse(registro["Valor"].ToString()) < 0)
+                subItemValor.ForeColor = Color.Red;
+            else
+                subItemValor.ForeColor = Color.Blue;
+
+            item.Tag = registro["Codigo"].ToString();
+            item.SubItems.Add(subItemValor);
+            item.SubItems.Add(subItemCategoria);
+            item.SubItems.Add(subItemDataCadastro);
+            item.SubItems.Add(subItemDataVencimento);
+            item.SubItems.Add(subItemDataPagamento);
+            listViewPrincipal.Items.Add(item);
         }
 
     }

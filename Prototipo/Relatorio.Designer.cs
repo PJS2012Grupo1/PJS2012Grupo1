@@ -100,7 +100,6 @@
             this.listViewRelatorio.TabIndex = 4;
             this.listViewRelatorio.UseCompatibleStateImageBehavior = false;
             this.listViewRelatorio.View = System.Windows.Forms.View.Details;
-            this.listViewRelatorio.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeaderDescricao
             // 
