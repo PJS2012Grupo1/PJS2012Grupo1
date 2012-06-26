@@ -23,12 +23,12 @@ namespace WindowsFormsApplication1
         {
             listView1.Columns.Clear();
             listView1.Items.Clear();
-            listView1.Columns.Add("Descrição");
-            listView1.Columns.Add("Numero de parcelas");
-            listView1.Columns.Add("Parcelas pagas");
-            listView1.Columns.Add("Parcelas restantes");
-            listView1.Columns.Add("Valor total");
-            listView1.Columns.Add("Valor parcela");
+            listView1.Columns.Add("Descrição").Width = 167;
+            listView1.Columns.Add("Numero de parcelas").Width = 120;
+            listView1.Columns.Add("Parcelas pagas").Width = 90;
+            listView1.Columns.Add("Parcelas restantes").Width = 120;
+            listView1.Columns.Add("Valor total").Width = 80;
+            listView1.Columns.Add("Valor parcela").Width = 90;
 
             DataRow[] registros = dados.Tables["Registros"].Select("Codigo > 0");
 

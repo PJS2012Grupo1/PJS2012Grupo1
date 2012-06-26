@@ -54,23 +54,25 @@ namespace WindowsFormsApplication1
 
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
         {
+            float num;
             //parameter.Value = DBNull.Value;
             
             if (textBoxDescricaoRegistro.Text.Trim() == "")
             {
-                labelCampoPreenchidos.Text = "*Campo descrição vazio.";
+                labelCampoPreenchidos.Text = "*Campo descrição invalido.";
                 labelCampoPreenchidos.Visible = true;
                 textBoxDescricaoRegistro.Focus();
             }
             else if (comboBoxCategoriaRegistro.SelectedIndex == -1)
             {
-                labelCampoPreenchidos.Text = "*Campo categoria vazio.";
+                labelCampoPreenchidos.Text = "*Campo categoria invalido.";
                 labelCampoPreenchidos.Visible = true;
                 comboBoxCategoriaRegistro.Focus();
             }
-            else if (textBoxValorRegistro.Text.Trim() == "")
+
+            else if (textBoxValorRegistro.Text.Trim() == "" || !(float.TryParse(textBoxValorRegistro.Text, out num)) || num < 0)
             {
-                labelCampoPreenchidos.Text = "*Campo valor vazio.";
+                labelCampoPreenchidos.Text = "*Campo valor invalido.";
                 labelCampoPreenchidos.Visible = true;
                 textBoxValorRegistro.Focus();
             }

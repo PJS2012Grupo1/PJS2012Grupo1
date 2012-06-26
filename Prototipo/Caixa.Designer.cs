@@ -138,7 +138,6 @@
             this.checkBoxRecorrente.TabIndex = 3;
             this.checkBoxRecorrente.Text = "Recorrente";
             this.checkBoxRecorrente.UseVisualStyleBackColor = true;
-            this.checkBoxRecorrente.CheckedChanged += new System.EventHandler(this.checkBoxRecorrente_CheckedChanged);
             // 
             // Caixa
             // 
@@ -157,7 +156,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(446, 199);
+            this.MaximumSize = new System.Drawing.Size(473, 206);
+            this.MinimumSize = new System.Drawing.Size(473, 206);
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";

@@ -250,8 +250,8 @@ namespace WindowsFormsApplication1
                 //categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
 
-                registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
-                categoria = new AdaptadorCategoria("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+                categoria = new AdaptadorCategoria("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
                 atualizaMesListView();
 
@@ -369,6 +369,7 @@ namespace WindowsFormsApplication1
         //Limpa a aba de busca
         private void buttonLimpar_Click(object sender, EventArgs e)
         {
+            atualizaMesListView();
             atualizaListView();
             
             comboBoxCategoria.SelectedIndex = -1;

@@ -367,6 +367,7 @@
             // 
             // buttonLimpar
             // 
+            this.buttonLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLimpar.Location = new System.Drawing.Point(570, 654);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
@@ -379,7 +380,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 691);
+            this.ClientSize = new System.Drawing.Size(763, 692);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.dateTimePickerSemana);
             this.Controls.Add(this.checkBoxCategoria);
