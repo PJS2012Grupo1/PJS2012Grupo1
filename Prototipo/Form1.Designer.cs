@@ -87,7 +87,7 @@
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.deletarSelecionadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -97,7 +97,6 @@
             this.groupBoxDescricao.SuspendLayout();
             this.Categorias.SuspendLayout();
             this.panelTopo.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewPrincipal
@@ -197,7 +196,8 @@
             // relatorioToolStripMenuItem
             // 
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastroToolStripMenuItem1});
+            this.cadastroToolStripMenuItem1,
+            this.deletarSelecionadoToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.relatorioToolStripMenuItem.Text = "C&aixa";
@@ -601,28 +601,6 @@
             this.comboBoxAno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAno.FormattingEnabled = true;
-            this.comboBoxAno.Items.AddRange(new object[] {
-            "2000",
-            "2001",
-            "2002",
-            "2003",
-            "2004",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.comboBoxAno.Location = new System.Drawing.Point(576, 7);
             this.comboBoxAno.Name = "comboBoxAno";
             this.comboBoxAno.Size = new System.Drawing.Size(55, 21);
@@ -633,19 +611,6 @@
             this.comboBoxMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMes.FormattingEnabled = true;
-            this.comboBoxMes.Items.AddRange(new object[] {
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"});
             this.comboBoxMes.Location = new System.Drawing.Point(475, 7);
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(95, 21);
@@ -697,19 +662,18 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabelStatus});
             this.statusStrip.Location = new System.Drawing.Point(0, 540);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(954, 22);
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip1";
             // 
-            // toolStripStatusLabelStatus
+            // deletarSelecionadoToolStripMenuItem1
             // 
-            this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
-            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(43, 17);
-            this.toolStripStatusLabelStatus.Text = "Pronto";
+            this.deletarSelecionadoToolStripMenuItem1.Name = "deletarSelecionadoToolStripMenuItem1";
+            this.deletarSelecionadoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.deletarSelecionadoToolStripMenuItem1.Text = "&Deletar selecionado";
+            this.deletarSelecionadoToolStripMenuItem1.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -744,8 +708,6 @@
             this.groupBoxDescricao.PerformLayout();
             this.Categorias.ResumeLayout(false);
             this.panelTopo.ResumeLayout(false);
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -811,9 +773,9 @@
         protected internal System.Windows.Forms.ColumnHeader columnHeaderCodigo;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projeçãoDeGastosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelStatus;
         private System.Windows.Forms.Button buttonMesAtual;
         private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem1;
 
     }
 }
