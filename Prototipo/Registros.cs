@@ -54,23 +54,25 @@ namespace WindowsFormsApplication1
 
         private void buttonRegistrarRegistro_Click(object sender, EventArgs e)
         {
+            float num;
             //parameter.Value = DBNull.Value;
             
             if (textBoxDescricaoRegistro.Text.Trim() == "")
             {
-                labelCampoPreenchidos.Text = "*Campo descrição vazio.";
+                labelCampoPreenchidos.Text = "*Campo descrição invalido.";
                 labelCampoPreenchidos.Visible = true;
                 textBoxDescricaoRegistro.Focus();
             }
             else if (comboBoxCategoriaRegistro.SelectedIndex == -1)
             {
-                labelCampoPreenchidos.Text = "*Campo categoria vazio.";
+                labelCampoPreenchidos.Text = "*Campo categoria invalido.";
                 labelCampoPreenchidos.Visible = true;
                 comboBoxCategoriaRegistro.Focus();
             }
-            else if (textBoxValorRegistro.Text.Trim() == "")
+
+            else if (textBoxValorRegistro.Text.Trim() == "" || !(float.TryParse(textBoxValorRegistro.Text, out num)) || num < 0)
             {
-                labelCampoPreenchidos.Text = "*Campo valor vazio.";
+                labelCampoPreenchidos.Text = "*Campo valor invalido.";
                 labelCampoPreenchidos.Visible = true;
                 textBoxValorRegistro.Focus();
             }
@@ -246,12 +248,12 @@ namespace WindowsFormsApplication1
             adaptadorReg.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
             adaptadorReg.Fill(dados, "Registros");
-            //AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=LUIZGUSTAVO-STI\\SERVER;Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
 
-            AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
+
+            //AdaptadorRegistros registros = new AdaptadorRegistros("Data Source=(local);Initial Catalog=SistemaFinanceiro;Integrated Security=SSPI");
            
-            registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            registros.adaptador.Fill(dados, "Registros");
+            //registros.adaptador.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            //registros.adaptador.Fill(dados, "Registros");
 
             foreach (DataRow registro in dados.Tables["Categoria"].Rows)
                 comboBoxCategoriaRegistro.Items.Add(registro["DescricaoCat"].ToString());

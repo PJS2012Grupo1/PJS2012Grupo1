@@ -23,15 +23,14 @@ namespace WindowsFormsApplication1
         {
             listView1.Columns.Clear();
             listView1.Items.Clear();
-            listView1.Columns.Add("Descrição");
-            listView1.Columns.Add("Parcelas");
-            listView1.Columns.Add("Pagas");
-            listView1.Columns.Add("Restantes");
-            listView1.Columns.Add("Valor total");
-            listView1.Columns.Add("Valor parcela");
+            listView1.Columns.Add("Descrição").Width = 167;
+            listView1.Columns.Add("Numero de parcelas").Width = 120;
+            //listView1.Columns.Add("Parcelas pagas").Width = 90;
+            //listView1.Columns.Add("Parcelas restantes").Width = 120;
+            listView1.Columns.Add("Valor total").Width = 80;
+            listView1.Columns.Add("Valor parcela").Width = 90;
 
             DataRow[] registros = dados.Tables["Registros"].Select("Codigo > 0");
-
             string descricao2 = "";
             int ultimaPaga = 0;
 
@@ -82,14 +81,14 @@ namespace WindowsFormsApplication1
                         float valorTotal = int.Parse(parcela) * valorParcela;
                         ListViewItem item = new ListViewItem(descricao);
                         ListViewItem.ListViewSubItem subItemNumParcelas = new ListViewItem.ListViewSubItem(item, parcela);
-                        ListViewItem.ListViewSubItem subItemPagas = new ListViewItem.ListViewSubItem(item, ultimaPaga.ToString());
-                        ListViewItem.ListViewSubItem subItemRestantes = new ListViewItem.ListViewSubItem(item, restantes.ToString());
+                        //ListViewItem.ListViewSubItem subItemPagas = new ListViewItem.ListViewSubItem(item, ultimaPaga.ToString());
+                        //ListViewItem.ListViewSubItem subItemRestantes = new ListViewItem.ListViewSubItem(item, restantes.ToString());
                         ListViewItem.ListViewSubItem subItemValorTotal = new ListViewItem.ListViewSubItem(item, valorTotal.ToString());
                         ListViewItem.ListViewSubItem subItemValorParcela = new ListViewItem.ListViewSubItem(item, valorParcela.ToString());
 
                         item.SubItems.Add(subItemNumParcelas);
-                        item.SubItems.Add(subItemPagas);
-                        item.SubItems.Add(subItemRestantes);
+                        //item.SubItems.Add(subItemPagas);
+                        //item.SubItems.Add(subItemRestantes);
                         item.SubItems.Add(subItemValorTotal);
                         item.SubItems.Add(subItemValorParcela);
                         listView1.Items.Add(item);
@@ -346,6 +345,12 @@ namespace WindowsFormsApplication1
         {
             dateTimePickerSemana.Enabled = false;
             comboBoxAnoProj.Enabled = false;
+        }
+
+        private void radioButtonGastosParc_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePickerSemana.Enabled = true;
+            comboBoxAnoProj.Enabled = true;
         }
     }
 }

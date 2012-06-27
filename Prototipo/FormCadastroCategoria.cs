@@ -14,9 +14,9 @@ namespace WindowsFormsApplication1
     public partial class FormCadastroCategoria : Form
     {
         DataSet dados;
-        SqlDataAdapter adaptadorCat;
+        AdaptadorCategoria adaptadorCat;
 
-        public FormCadastroCategoria(DataSet dados, SqlDataAdapter adaptadorCat)
+        public FormCadastroCategoria(DataSet dados, AdaptadorCategoria adaptadorCat)
         {
             this.dados = dados;
             this.adaptadorCat = adaptadorCat;
@@ -25,16 +25,17 @@ namespace WindowsFormsApplication1
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
-            
+            float valor;
             if (textBoxDescricao.Text.Trim() == "")
             {
-                labelCampoPreenchidos.Text = "*Campo descrição vazio.";
+                labelCampoPreenchidos.Text = "*Campo descrição invalido.";
                 textBoxDescricao.Focus();
                 labelCampoPreenchidos.Visible = true;
-            }                
-            else if (textBoxOrcamento.Text.Trim() == "")
+            }
+
+            else if (textBoxOrcamento.Text.Trim() == "" || !(float.TryParse(textBoxOrcamento.Text, out valor)) || valor < 0)
             {
-                labelCampoPreenchidos.Text = "*Campo orçamento vazio.";
+                labelCampoPreenchidos.Text = "*Campo orçamento invalido.";
                 textBoxOrcamento.Focus();
                 labelCampoPreenchidos.Visible = true;
             }
@@ -46,7 +47,7 @@ namespace WindowsFormsApplication1
                 novoRegistro["Orcamento"] = textBoxOrcamento.Text;
                 dados.Tables["Categoria"].Rows.Add(novoRegistro);
 
-                adaptadorCat.Update(dados, "Registros");
+                adaptadorCat.adaptador.Update(dados, "Registros");
                 Close();
             }
         }

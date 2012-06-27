@@ -42,6 +42,7 @@
             this.deletarSelecionadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletarSelecionadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +88,8 @@
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.labelNomeMes = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.deletarSelecionadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.alterarSelecionadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alterarSelecionadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             this.groupBoxDadosMes.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -174,7 +176,8 @@
             // 
             this.cadatroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem,
-            this.deletarSelecionadoToolStripMenuItem});
+            this.deletarSelecionadoToolStripMenuItem,
+            this.alterarSelecionadoToolStripMenuItem});
             this.cadatroToolStripMenuItem.Name = "cadatroToolStripMenuItem";
             this.cadatroToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.cadatroToolStripMenuItem.Text = "&Contas";
@@ -197,7 +200,8 @@
             // 
             this.relatorioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem1,
-            this.deletarSelecionadoToolStripMenuItem1});
+            this.deletarSelecionadoToolStripMenuItem1,
+            this.alterarSelecionadoToolStripMenuItem1});
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             this.relatorioToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.relatorioToolStripMenuItem.Text = "C&aixa";
@@ -205,9 +209,16 @@
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
             this.cadastroToolStripMenuItem1.Text = "&Cadastro";
             this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
+            // 
+            // deletarSelecionadoToolStripMenuItem1
+            // 
+            this.deletarSelecionadoToolStripMenuItem1.Name = "deletarSelecionadoToolStripMenuItem1";
+            this.deletarSelecionadoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.deletarSelecionadoToolStripMenuItem1.Text = "&Deletar selecionado";
+            this.deletarSelecionadoToolStripMenuItem1.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem1_Click);
             // 
             // categoriToolStripMenuItem
             // 
@@ -653,7 +664,7 @@
             // 
             this.labelNomeMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelNomeMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomeMes.Location = new System.Drawing.Point(270, 10);
+            this.labelNomeMes.Location = new System.Drawing.Point(270, 11);
             this.labelNomeMes.Name = "labelNomeMes";
             this.labelNomeMes.Size = new System.Drawing.Size(130, 15);
             this.labelNomeMes.TabIndex = 0;
@@ -667,13 +678,20 @@
             this.statusStrip.Size = new System.Drawing.Size(954, 22);
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip1";
+            //
+            // alterarSelecionadoToolStripMenuItem
             // 
-            // deletarSelecionadoToolStripMenuItem1
+            this.alterarSelecionadoToolStripMenuItem.Name = "alterarSelecionadoToolStripMenuItem";
+            this.alterarSelecionadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.alterarSelecionadoToolStripMenuItem.Text = "&Alterar selecionado";
+            this.alterarSelecionadoToolStripMenuItem.Click += new System.EventHandler(this.alterarSelecionadoToolStripMenuItem_Click);
             // 
-            this.deletarSelecionadoToolStripMenuItem1.Name = "deletarSelecionadoToolStripMenuItem1";
-            this.deletarSelecionadoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
-            this.deletarSelecionadoToolStripMenuItem1.Text = "&Deletar selecionado";
-            this.deletarSelecionadoToolStripMenuItem1.Click += new System.EventHandler(this.deletarSelecionadoToolStripMenuItem1_Click);
+            // alterarSelecionadoToolStripMenuItem1
+            // 
+            this.alterarSelecionadoToolStripMenuItem1.Name = "alterarSelecionadoToolStripMenuItem1";
+            this.alterarSelecionadoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.alterarSelecionadoToolStripMenuItem1.Text = "A&lterar selecionado";
+            this.alterarSelecionadoToolStripMenuItem1.Click += new System.EventHandler(this.alterarSelecionadoToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -776,6 +794,8 @@
         private System.Windows.Forms.Button buttonMesAtual;
         private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletarSelecionadoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem alterarSelecionadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alterarSelecionadoToolStripMenuItem1;
 
     }
 }

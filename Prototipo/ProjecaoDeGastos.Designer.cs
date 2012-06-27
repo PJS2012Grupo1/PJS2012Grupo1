@@ -44,6 +44,8 @@
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.listView1.Location = new System.Drawing.Point(12, 99);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(671, 381);
@@ -63,6 +65,7 @@
             this.radioButtonGastosParc.Tag = "1";
             this.radioButtonGastosParc.Text = "Gastos Parcelados";
             this.radioButtonGastosParc.UseVisualStyleBackColor = true;
+            this.radioButtonGastosParc.CheckedChanged += new System.EventHandler(this.radioButtonGastosParc_CheckedChanged);
             this.radioButtonGastosParc.Click += new System.EventHandler(this.radioButtonClicado);
             // 
             // radioButtonGastosPeri
@@ -133,6 +136,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(40, 501);
             this.label1.Name = "label1";
@@ -143,6 +147,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(111, 501);
             this.label2.Name = "label2";
@@ -153,6 +158,7 @@
             // 
             // buttonSair
             // 
+            this.buttonSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSair.Location = new System.Drawing.Point(608, 501);
             this.buttonSair.Name = "buttonSair";
             this.buttonSair.Size = new System.Drawing.Size(75, 23);
@@ -202,7 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 536);
+            this.ClientSize = new System.Drawing.Size(687, 536);
             this.Controls.Add(this.dateTimePickerSemana);
             this.Controls.Add(this.labelSemana);
             this.Controls.Add(this.labelMes);
@@ -215,7 +221,10 @@
             this.Controls.Add(this.radioButtonGastosPeri);
             this.Controls.Add(this.radioButtonGastosParc);
             this.Controls.Add(this.listView1);
+            this.MaximumSize = new System.Drawing.Size(703, 850);
+            this.MinimumSize = new System.Drawing.Size(703, 570);
             this.Name = "ProjecaoDeGastos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjecaoDeGastos";
             this.Load += new System.EventHandler(this.ProjecaoDeGastos_Load);
             this.ResumeLayout(false);
